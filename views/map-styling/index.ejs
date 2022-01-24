@@ -17,7 +17,7 @@
         href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/css/mapstyle.css">
 
 
     <title>My playground in Dusseldorf</title>
@@ -99,8 +99,20 @@
             <input type="text" class="form-control" placeholder="Where do you want to play?"
                 aria-label="Example text with button addon" aria-describedby="button-addon1" id="searchbox" />
 
+            <!-- Select type of playground -->
+            <select name="labelselect" id="labelselect">
+                <option value="">--Please choose an option--</option>
+                <% for(let label of labels) { %> 
+                    <option value="<%= label %>"><%= label %></option>
+                <% } %> 
+            </select>
+
+            <input type="number" name="num-pg" id="num-pg" placeholder="Num. playgrounds">
+
+            <input type="number" name="dist" id="dist" placeholder="Dist. in m">
+
             <div class="input-group-append">
-                <button class="btn btn-outline-primary" type="button">Search</button>
+                <button id="searchbutton" class="btn btn-outline-primary" type="button">Search</button>
             </div>
 
         </div>
@@ -122,18 +134,13 @@
 
 
 
-
-
-
-
     <footer class="footer mt-auto py-3">
         <div class="container">
             <span class="text-muted">All rights reserved.</span>
         </div>
     </footer>
 
-
-    <script src="script.js"></script>
+    <script src="/javascripts/map.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -146,7 +153,8 @@
         crossorigin="anonymous"></script>
 
     <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARgDXNRDqAFtg-mDbjeTrLOjrm1LBQwCc&map_ids=546de97e85a128a6&callback=initMap"></script>
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARgDXNRDqAFtg-mDbjeTrLOjrm1LBQwCc&map_ids=546de97e85a128a6&callback=initMap"
+        async></script>
 </body>
 
 </html>
