@@ -1,0 +1,17 @@
+<% if(errors){ %> 
+  <% errors.forEach(function(error) { %>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <%= error %>
+    </div>
+  <% }); %> 
+<% } %> 
+  <% if(success != ''){ %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <%= success %>
+    </div>
+  <% } %> 
+  <% if(failure != ''){ %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <%= failure %>
+    </div>
+  <% } %> 
