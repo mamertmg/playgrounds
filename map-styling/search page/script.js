@@ -1,3 +1,19 @@
+let autocomplete;
+async function initAutocomplete() {
+
+    autocomplete = new google.maps.places.Autocomplete(document.getElementById("autocomplete"))
+
+    // ,
+    // {
+    //     types: ['establishments'],
+    //     componentRestrictions: { 'country': ['DE'] },
+    //     fields: ['place_id', 'geometry', 'name']
+    // };
+
+
+}
+
+
 async function initMap() {
 
     // const markers = async (index) => {
@@ -6,7 +22,6 @@ async function initMap() {
     //     arr = res.data.result.records
     //     return arr[index]
     // }
-
 
 
     const map = new google.maps.Map(document.getElementById("map"), {
@@ -85,3 +100,5 @@ function getLocation() {
         console.log("Geolocation is not supported by this browser.");
     }
 }
+
+
