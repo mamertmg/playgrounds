@@ -23,7 +23,7 @@ router.get("/playgrounds", async (req, res, next) => {
 
         // use default value if limit and distance not defined by request
         limit = Number(limit) ? Number(limit) : defaultLimit;
-        dist = Number(dist) ? Number(dist) : defaultDistance;
+        dist = Number(dist) ? Number(dist)*1000 : defaultDistance;
 
         if (isLatitude(lat) && isLongitude(lng)) {
             if (!label) {

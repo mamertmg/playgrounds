@@ -14,7 +14,7 @@ const limitInput = document.querySelector('#num-pg');
 const distInput = document.querySelector('#dist');
 
 limitInput.setAttribute('min', 1);
-distInput.setAttribute('min', 0);
+distInput.setAttribute('min', 1);
 
 searchForm.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -22,7 +22,6 @@ searchForm.addEventListener('submit', (event) => {
 })
 
 function searchPlaygrounds() {
-    console.log(searchInput.value);
     if(searchInput.value) {
         // use geocoding API to get location in latitude and longitude
         axios.get(`https://nominatim.openstreetmap.org/search?q=${searchInput.value}&format=json&limit=1`)
@@ -37,7 +36,6 @@ function searchPlaygrounds() {
         })
         .catch((e) => {
             console.log(e);
-            alert("something wrong");
         });
     } else {
         alert('Search field is empty!');
@@ -52,7 +50,7 @@ searchInput.addEventListener('submit', () => {
 function deleteMarkers() {
     for (let i = 0; i < markerList.length; i++) {
         markerList[i].setMap(null);
-      }    
+    }    
     markerList = [];
 }
 
@@ -62,7 +60,6 @@ function deleteMarkers() {
 // currCoordinates: array [lat, lng]; current center of map
 function placeMarkers(markers, currCoordinates) {
     if(map) {
-        console.log(markers);
         const marker = new google.maps.Marker({
             position: currCoordinates,
             map
@@ -108,7 +105,6 @@ function placeMarkers(markers, currCoordinates) {
 
 // initialises map
 async function initMap() {
-    console.log('Start init map...');
     map = new google.maps.Map(document.getElementById("map"), {
         mapId: "546de97e85a128a6",
         center: { lat: 51.22, lng: 6.77 },
@@ -149,7 +145,6 @@ function getPlaygrounds(lat, lng, label='', limit='', dist='') {
             })
             .catch((e) => {
                 console.log(e);
-                alert('API error');
             });
     }
 }
@@ -158,9 +153,16 @@ function getPlaygrounds(lat, lng, label='', limit='', dist='') {
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (pos) {
-            // searchInput.value = `lat: ${pos.coords.latitude}, lng: ${pos.coords.longitude}`;
-            // getPlaygrounds(pos.coords.latitude, pos.coords.longitude);
-            getPlaygrounds(51.22, 6.77, labelSelect.value, limitInput.value, distInput.value);
+            axios.get(`https://nominatim.openstreetmap.org/reverse?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&format=json&limit=1`)
+                .then(response => {
+                    const { city, road, house_number } = response.data.address;
+                    searchInput.value = `${city} ${road} ${house_number}`;
+                    getPlaygrounds(pos.coords.latitude, pos.coords.longitude, labelSelect.value, limitInput.value, distInput.value);
+                    //getPlaygrounds(51.22, 6.77, labelSelect.value, limitInput.value, distInput.value);
+                })
+                .catch((e) => {
+                    console.log(e);
+                });
         });
     } else {
         console.log("Geolocation is not supported by this browser.");

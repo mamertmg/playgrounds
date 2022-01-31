@@ -22,7 +22,7 @@
 
         <!-- Select type of playground -->
         <select name="labelselect" id="labelselect">
-            <option value="">--Please choose an option--</option>
+            <option value="">Any playground type</option>
             <% for(let label of labels) { %> 
                 <option value="<%= label %>"><%= label %></option>
             <% } %> 
@@ -30,7 +30,7 @@
 
         <input type="number" name="num-pg" id="num-pg" placeholder="Num. playgrounds">
 
-        <input type="number" name="dist" id="dist" placeholder="Dist. in m">
+        <input type="number" name="dist" id="dist" placeholder="Dist. in km">
 
         <div class="input-group-append">
             <button id="searchbutton" class="btn btn-danger">Search</button>
