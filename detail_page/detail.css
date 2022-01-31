@@ -2,13 +2,16 @@ h1, h2, h3, h4, h5 {
 
     font-family: Montserrat, sans-serif;
     color: #074266;
-    padding: 20px 20px 10px 0;
-}
-
-h3, h2 {
     display: inline-block;
 }
 
+h1 {
+    padding-top: 30px;
+}
+
+.container-fluid {
+    padding: 50px 4% 0 4%;
+}
 
 .tag {
     border: 1px black solid;
@@ -49,42 +52,41 @@ h3, h2 {
 
 body {
     background: #fffaf4;
-
-}
-
-#pgName {
-    padding-top: 40px;
-    font-size: 3rem;
-    font-weight: 400;
-    display: inline-block;
 }
 
 #btn-login, #btn-signup {
-    background: white;
-    color: #032B43;
-    font-weight: 400;
-    font-size: 1rem;
+    background: #4ea599;
+    color: white;
+    font-weight: 200;
+    font-size: 1.5rem;
 }
 
 #btn-login:hover, #btn-signup:hover {
-    background: #FFBA08;
-    color: white;
-    transition-property: background, color;
-    transition-duration: 0.2s;
-}
-
-#btn-addevent, #btn-lostfound {
-    background: #FFBA08;
-    color: white;
-    font-weight: 400;
-    font-size: 1rem;
-    display: inline-block;
-    margin: -5px 20px 10px 0;
-}
-
-#btn-addevent:hover, #btn-lostfound:hover {
-    background: #ffb908a9;
+    background: #90CBC3;
     color: #032B43;
+    transition-property: background, color;
+    transition-duration: 0.5s;
+}
+
+.btn-collapse {
+    font-weight: 700;
+    color: #4ea599;
+}
+
+.btn-collapse:hover {
+    color: #074266;
+    cursor: pointer;
+    transition-property: background, color;
+    transition-duration: 0.2s
+}
+
+.btn-plus {
+    color: #FFBA08;
+}
+
+.btn-plus:hover {
+    color: #4ea599;
+    cursor: pointer;
     transition-property: background, color;
     transition-duration: 0.2s
 }
@@ -129,63 +131,70 @@ body {
 .rating-fixed {
     color: #FFBA08;
     fill: #FFBA08;
-    margin-top: 0;
-
+    display: inline-block;
 }
 
-.date {
-    display: flex;
-    text-align: end;
-    flex-direction: row-reverse;
-    display: flex;
-    margin: 20px;
 
+.card-body {
+    min-width: fit-content;
+    min-height: fit-content;
+    border-radius: 10px;
+    border: 2px solid #ffb908a9;
 }
 
-.container-fluid {
-    padding: 30px 40px 0 40px;
+.card-text {
+    line-height: 1.5rem;
+    font-family: Montserrat, sans-serif;
 }
 
+.link {
+    color: #3F88C5;
+}
+
+#carouselIndicators {
+    margin: 10px 0;
+    border: 1px solid #032B43;
+    border-radius: 5px;
+    position: relative;
+
+}
 
 .carousel-inner {
-    height: 500px;
-
+    max-height: 460px;
 }
 
-.carousel-inner img {
-    position: absolute;
-    height: 500px;
-
+#event-header, #lostfound-header {
+    margin-top: 30px;
+    margin-right: 20px;
 }
 
-.row {
-    padding: 20px 0px 20px 0px;
-    border-radius: 5px;
+#addphoto {
+    color: #ffb908;
+    position: relative;
+    z-index: 1;
+    left: 86%;
+    top: 8%;
 }
 
-.tdrev {
-    padding: 0 20px;
-
+#navbar-logo {
+    height: 52px;
 }
 
-#textcell {
-    padding-top: 0px;
+
+.card {
+    border: none;
+    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.03)
 }
 
-#userrev {
-    text-align: center;
-    padding: 20px;
+.comment-text {
+    font-size: 14px
 }
 
-.trow:nth-of-type(2) {
-    background: #e7e7e7;
-
+.fs-10 {
+    font-size: 14px
 }
 
-.bi-caret-up:hover {
-    fill: green;
-}
-
-.bi-caret-down:hover {
-    fill: red;
+.comment-header {
+    color: #4ea599;
 }
