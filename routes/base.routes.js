@@ -1,13 +1,28 @@
 const express = require('express');
+const Playground = require('../models/playground.model');
 
 const router = express.Router();
 
 router.get('/', function(req, res) {
-  res.render('base/landingpage');
+  // Collect all labels from DB for rendering landing page
+  Playground.distinct('type', function(err, types) {
+    if(err) { 
+      // TODO: redo error handling?
+      res.status(500).render('shared/500');
+    } else {
+      res.render('base/landingpage', { labels: types });
+    }
+  });
 });
 
-router.get('/playgrounds', function(req, res) {
-  res.render('base/playgrounds');
+router.get('/playgrounds/:id', async (req, res, next) => {
+  try{
+    const { id } = req.params;
+    const playground = await Playground.findById(id);
+    res.render('base/playgrounds', { playground });
+  } catch (e) {
+    res.redirect('/');
+  }
 });
 
 router.get('/401', function(req, res) {

@@ -3,6 +3,7 @@ const path = require('path');
 const morgan = require('morgan');
 const db = require('./data/database');
 
+const apiRoutes = require('./routes/api.routes');
 const baseRoutes = require('./routes/base.routes');
 const userRoutes = require('./routes/user.routes');
 
@@ -70,6 +71,7 @@ app.use(function(req, res, next) {
 });
 
 // Router handler
+app.use('/api', apiRoutes);
 app.use('/', baseRoutes);
 app.use('/', userRoutes);
 
