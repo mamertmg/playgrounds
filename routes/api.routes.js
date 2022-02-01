@@ -4,8 +4,8 @@ const { isLatitude, isLongitude } = require("../middlewares/apiValidators");
 
 const router = express.Router();
 
-const defaultLimit = 10;
-const defaultDistance = 5000;
+const DEFAULT_LIMIT = 10;
+const DEFAULT_DISTANCE = 5000;
 
 // Handle queries to DB from client
 router.get("/playgrounds", async (req, res, next) => {
@@ -22,8 +22,8 @@ router.get("/playgrounds", async (req, res, next) => {
         let { lat, lng, label, limit, dist } = req.query;
 
         // use default value if limit and distance not defined by request
-        limit = Number(limit) ? Number(limit) : defaultLimit;
-        dist = Number(dist) ? Number(dist)*1000 : defaultDistance;
+        limit = Number(limit) ? Number(limit) : DEFAULT_LIMIT;
+        dist = Number(dist) ? Number(dist) * 1000 : DEFAULT_DISTANCE;
 
         if (isLatitude(lat) && isLongitude(lng)) {
             if (!label) {

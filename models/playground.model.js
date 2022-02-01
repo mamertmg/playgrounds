@@ -4,7 +4,7 @@ var playgroundSchema = mongoose.Schema({
     key: {
         type: String,
         require: true,
-        default: ''
+        default: "",
     },
     name: {
         type: String,
@@ -14,54 +14,60 @@ var playgroundSchema = mongoose.Schema({
     type: {
         type: String,
         require: true,
-        default: 'Kinderspielplatz',
+        default: "Kinderspielplatz",
     },
     // store location as a GEOJSON object
     // https://docs.mongodb.com/manual/geospatial-queries/#geospatial-data
     location: {
         type: {
             type: String,
-            enum: ['Point'],
-            required: true
+            enum: ["Point"],
+            required: true,
         },
         coordinates: {
             type: [Number],
-            required: true
-        }
-    }
+            required: true,
+        },
+    },
 });
 
 playgroundSchema.index({ location: "2dsphere" });
 
-playgroundSchema.statics.findByLocation = function([lat, lng, dist, limit], cb) {
+playgroundSchema.statics.findByLocation = function (
+    [lat, lng, dist, limit],
+    cb
+) {
     return this.find({
         location: {
             $near: {
-                $geometry: { type: "Point",  coordinates: [lng, lat] },
+                $geometry: { type: "Point", coordinates: [lng, lat] },
                 $minDistance: 0,
-                $maxDistance: dist
-            }
-        }
-    })
-    .limit(limit)
-    .exec(cb);
-};
-
-playgroundSchema.statics.findByLocAndLabel = function([lat, lng, label, dist, limit], cb) {
-    return this.find({
-        location: {
-            $near: {
-                $geometry: { type: "Point",  coordinates: [lng, lat] },
-                $minDistance: 0,
-                $maxDistance: dist
-            }
+                $maxDistance: dist,
+            },
         },
-        type: label
     })
-    .limit(limit)
-    .exec(cb);
+        .limit(limit)
+        .exec(cb);
 };
 
-var Playground = mongoose.model("Playground", playgroundSchema);
+playgroundSchema.statics.findByLocAndLabel = function (
+    [lat, lng, label, dist, limit],
+    cb
+) {
+    return this.find({
+        location: {
+            $near: {
+                $geometry: { type: "Point", coordinates: [lng, lat] },
+                $minDistance: 0,
+                $maxDistance: dist,
+            },
+        },
+        type: label,
+    })
+        .limit(limit)
+        .exec(cb);
+};
+
+const Playground = mongoose.model("Playground", playgroundSchema);
 
 module.exports = Playground;

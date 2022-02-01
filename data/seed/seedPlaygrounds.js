@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const axios = require('axios');
+const axios = require("axios");
 const Playground = require("../../models/playground.model");
 
 mongoose.connect("mongodb://127.0.0.1:27017/playgrounds");
@@ -7,7 +7,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/playgrounds");
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error"));
 db.once("open", () => {
-    console.log('Database connected');
+    console.log("Database connected");
 });
 
 // Fetch playground data and seed database.
@@ -16,34 +16,34 @@ axios
         "https://opendata.duesseldorf.de/sites/default/files/Spielpl%C3%A4tze%20mit%20Notfallnummern%20WGS84.geojson"
     )
     .then((res) => {
-        let response = res.data.features;
+        const response = res.data.features;
         const data = [];
         for (let i = 0; i < response.length; i++) {
-            let { nr } = response[i].properties;
+            const { nr } = response[i].properties;
             // for valid data, nr is a Number, null otherwise
             if (!nr && nr !== 0) {
                 continue;
             }
-            console.log(nr);
-            let {
+
+            const {
                 objektschluessel,
                 objektbezeichnung,
                 strasse_hausnr,
                 objektart,
             } = response[i].properties;
 
-            let typeSplit = objektart.split(' ');
-            if(typeSplit.length === 2) {
+            const typeSplit = objektart.split(" ");
+            if (typeSplit.length === 2) {
                 objektart = typeSplit[1];
             }
 
-            let location = response[i].geometry;
-            let playground = {
+            const location = response[i].geometry;
+            const playground = {
                 key: objektschluessel,
                 name: objektbezeichnung,
                 address: strasse_hausnr,
                 type: objektart,
-                location
+                location,
             };
             data.push(playground);
         }
