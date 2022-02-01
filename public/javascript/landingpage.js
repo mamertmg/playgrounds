@@ -179,7 +179,6 @@ function getLocation() {
                         limitInput.value,
                         distInput.value
                     );
-                    //getPlaygrounds(51.22, 6.77, labelSelect.value, limitInput.value, distInput.value);
                 })
                 .catch((e) => {
                     console.log(e);
