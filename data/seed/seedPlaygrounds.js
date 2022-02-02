@@ -20,20 +20,18 @@ axios
         const data = [];
         for (let i = 0; i < response.length; i++) {
             const { nr } = response[i].properties;
-            // for valid data, nr is a Number, null otherwise
+            // skip empty rows where nr has the value null (the value is a number otherwise)
             if (!nr && nr !== 0) {
                 continue;
             }
 
-            const {
-                objektschluessel,
-                objektbezeichnung,
-                strasse_hausnr,
-                objektart,
-            } = response[i].properties;
+            const { objektschluessel, objektbezeichnung, strasse_hausnr } =
+                response[i].properties;
 
+            // most 'objektart' values have the format "336 Kinderspielplatz"
+            let { objektart } = response[i].properties;
             const typeSplit = objektart.split(" ");
-            if (typeSplit.length === 2) {
+            if (typeSplit.length > 1) {
                 objektart = typeSplit[1];
             }
 
