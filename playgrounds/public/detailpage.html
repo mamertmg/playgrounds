@@ -15,14 +15,20 @@
         crossorigin="anonymous"></script>
 
     <title>Playground Details</title>
-    <link rel="stylesheet" href="playgrounds/public/css/detailpage.css">
+    <link rel="stylesheet" href="css/detailpage.css">
 
 </head>
 
 <body>
     <nav id='mainNavbar' class='navbar navbar-dark navbar-expand-md py-0 px-3 fixed-top'>
         <a href="#" class='navbar-brand'>
-            <img id="navbar-logo" src="playground.png" alt=""> my favourite playground</a>
+
+            <!-- Link to fulfill license regulations of flaticon.com:
+                  <a href="https://www.flaticon.com/free-icons/playground" title="playground icons">Playground icons created by
+        photo3idea_studio - Flaticon</a> -->
+
+            <img id="navbar-logo" src="images/playground.png" alt=""> my favourite playground
+        </a>
         <button class='navbar-toggler' data-toggle='collapse' data-target='#navlinks' aria-label='Toggle Navigation'>
             <span class='navbar-toggler-icon'></span>
         </button>
@@ -407,62 +413,13 @@
                             placeholder="Please tell us more....">
                     </div>
 
-                    <div class="d-flex flex-row justify-content-end"> <span>
-                            <button class="btn">Send</button>
-                        </span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        </div>
-
-        <form id="eventForm" class="mb-5" action="/eventdatabase">
-            <input id="eventDate" type="date">
-            <input id="eventTime" type="time">
-            <input id="eventName" type="text" placeholder="name of the event">
-            <input id="eventInfo" type="text" placeholder="further information">
-            <button>Send</button>
-            <div>
-                <h1>events</h1>
-                <ul id="events"></ul>
-
-            </div>
-
-            <table id="eventTable" class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">DATE & TIME</th>
-                        <th scope="col">DESCRIPTION</th>
-                        <th scope="col">MORE INFORMATION</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td> 13/08/22 10am</td>
-                        <td>Summerbreak Activities - Basketball</td>
-                        <td> <a href="link to page">summerbreak-action.com</a></td>
-
-                    </tr>
-                    <tr>
-                        <td> 08/05/22 9am </td>
-                        <td>Father-Child Gymnastics</td>
-                        <td> <a href="link to page">fitdaddy-ddorf.de</a> </td>
-                    </tr>
-                </tbody>
-            </table>
-            </div>
-
-
-        </form>
 
 
 
     </section>
 
 
-    <script src="/playgrounds/public/javascript/detailpage.js"></script>
+    <script src="javascript/detailpage.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -474,8 +431,6 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 
-    <!-- <a href="https://www.flaticon.com/free-icons/playground" title="playground icons">Playground icons created by
-        photo3idea_studio - Flaticon</a> -->
 
 </body>
 
