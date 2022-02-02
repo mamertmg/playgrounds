@@ -1,4 +1,22 @@
 <% layout('./layouts/boilerplate')%>
-<h1 class="text-center">Here comes the playgrounds</h1>
+<div class="container">
+    <div class="row align-items-center justify-content-center mt-3 mb-3">
+        <div class="card" style="width: 500px;">
+            <img class="card-img-top mt-3" src="https://source.unsplash.com/collection/10738016" class="card-img-top" alt="">
+            <div class="card-body">
+              <h5 class="card-title"><%= playground.name %> </h5>
+                <% if(playground.address) { %> 
+                    <p class="card-text text-muted"><b>Address:</b> <%= playground.address %></p>
+                <% } %> 
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><%= playground.type %></li>
+            </ul>
+            <div class="card-body">
+              <a href="/" class="card-link">Home</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 
