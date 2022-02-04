@@ -198,3 +198,11 @@ body {
 .comment-header {
     color: #4ea599;
 }
+
+#eventName, #eventInfo {
+    display: block;
+}
+
+#eventForm {
+    padding: 10px 50px 10px 50px;
+}
