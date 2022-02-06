@@ -29,6 +29,12 @@ var playgroundSchema = mongoose.Schema({
             required: true,
         },
     },
+    reviews: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Review'
+        }
+    ]
 });
 
 playgroundSchema.index({ location: "2dsphere" });
