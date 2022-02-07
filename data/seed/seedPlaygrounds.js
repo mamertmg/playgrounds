@@ -25,7 +25,7 @@ axios
                 continue;
             }
 
-            const { objektschluessel, objektbezeichnung, strasse_hausnr } =
+            const { objektbezeichnung, strasse_hausnr } =
                 response[i].properties;
 
             // most 'objektart' values have the format "336 Kinderspielplatz"
@@ -37,7 +37,6 @@ axios
 
             const location = response[i].geometry;
             const playground = {
-                key: objektschluessel,
                 name: objektbezeichnung,
                 address: strasse_hausnr,
                 type: objektart,

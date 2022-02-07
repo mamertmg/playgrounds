@@ -1,8 +1,10 @@
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
+const methodOverride = require('method-override');
 const db = require('./data/database');
 
+const playgroundRoutes = require('./routes/playground.routes');
 const apiRoutes = require('./routes/api.routes');
 const baseRoutes = require('./routes/base.routes');
 const userRoutes = require('./routes/user.routes');
@@ -23,9 +25,12 @@ const passport = require('passport');
 const app = express();
 
 // Connect to db
-db.on("error", console.error.bind(console, "Failed to connect to the database"));
-db.once("open", () => {
-    console.log("Database connected");
+db.on(
+    'error',
+    console.error.bind(console, 'Failed to connect to the database')
+);
+db.once('open', () => {
+    console.log('Database connected');
 });
 
 // Config http request logger middleware
@@ -35,13 +40,15 @@ app.use(morgan('dev'));
 require('./middlewares/passport')(passport);
 
 // Activate EJS view engine
-app.engine('ejs', ejsMate)
+app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-app.use(express.static(path.join(__dirname, 'public'))) // Serve static files (e.g. CSS files)
+app.use(methodOverride('_method'));
 
-app.use(express.urlencoded({extended: true})); // Extract (parses) incoming url request bodies
+app.use(express.static(path.join(__dirname, 'public'))); // Serve static files (e.g. CSS files)
+
+app.use(express.urlencoded({ extended: true })); // Extract (parses) incoming url request bodies
 app.use(express.json()); // All incoming requests are now also checked for JSON data
 
 // Create session
@@ -54,16 +61,16 @@ app.use(flash());
 // Passport middleware for authentication
 app.use(passport.initialize());
 app.use(passport.session());
-  
+
 // Protection against CSRF attacks
 app.use(csrf(), (req, res, next) => {
     res.locals.csrftoken = req.csrfToken();
     next();
 });
-  
+
 // Global variables
-app.use(function(req, res, next) {
-    res.locals.isAuthenticated= req.isAuthenticated();
+app.use(function (req, res, next) {
+    res.locals.isAuthenticated = req.isAuthenticated();
     res.locals.success = req.flash('success');
     res.locals.failure = req.flash('failure');
     res.locals.errors = req.flash('error');
@@ -72,11 +79,12 @@ app.use(function(req, res, next) {
 
 // Router handler
 app.use('/api', apiRoutes);
+app.use('/playgrounds', playgroundRoutes);
 app.use('/', baseRoutes);
 app.use('/', userRoutes);
 
-// Not found 
-app.use(notFoundMiddleware);    
+// Not found
+app.use(notFoundMiddleware);
 
 // Error handler
 app.use(errorHandlerMiddleware);

@@ -14,20 +14,20 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
 
-    <title>Playground Details</title>
-    <link rel="stylesheet" href="../public/css/detailpage.css">
+    <title><%= playground.name %></title>
+    <link rel="stylesheet" href="/css/detailpage.css">
 
 </head>
 
 <body>
     <nav id='mainNavbar' class='navbar navbar-dark navbar-expand-md py-0 px-3 fixed-top'>
-        <a href="#" class='navbar-brand'>
+        <a href="/" class='navbar-brand'>
 
             <!-- Link to fulfill license regulations of flaticon.com:
                   <a href="https://www.flaticon.com/free-icons/playground" title="playground icons">Playground icons created by
         photo3idea_studio - Flaticon</a> -->
 
-            <img id="navbar-logo" src="../public/images/playground.png" alt=""> my favourite playground
+            <img id="navbar-logo" src="/images/playground.png" alt=""> my favourite playground
         </a>
         <button class='navbar-toggler' data-toggle='collapse' data-target='#navlinks' aria-label='Toggle Navigation'>
             <span class='navbar-toggler-icon'></span>
@@ -54,7 +54,7 @@
     <section class="container-fluid">
 
         <div class="row">
-            <h1 class="gx-5 col" id="pgName">Spielplatz Lessingplatz
+            <h1 class="gx-5 col" id="pgName"><%= playground.name %>
                 <span class="rating-fixed">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
                         class="bi bi-star-fill" viewBox="0 0 16 16">
@@ -81,7 +81,7 @@
             </h1>
 
             <div class="gx-5">
-                <span class="tag"> Naturspielplatz </span>
+                <span class="tag"> <%= playground.type %>  </span>
                 <span class="tag"> public </span>
             </div>
         </div>
@@ -91,7 +91,7 @@
 
                 <div class="card-body">
 
-                    <h3 class="card-title">Lessingplatz, 40227 Düsseldorf (Oberbilk)</h3><a class="link l-20"
+                    <h3 class="card-title"><%= playground.address %> </h3><a class="link l-20"
                         href="">show
                         on map</a>
                     <p>
@@ -102,14 +102,9 @@
                     </p>
                     <div class="collapse" id="infocard-collapse">
 
-                        <p class="card-text"> <b>Alter:</b> Von 0 bis 16+ Jahre</p>
-                        <p class="card-text"> <b>Ausstattung:</b> Eingezäunt, Liegt im Grünen,
-                            Sitzbänke,
-                            Schatten,
-                            Parkplätze
-                        </p>
-                        <p class="card-text"> <b>Spielgeräte:</b> Seilbahn,
-                            Tischtennisplatte, Fußball-Tore, Klettergerät mit Rutsche, Sandfläche</p>
+                        <p class="card-text"> <b>Alter:</b> <%= playground.age_group %> </p>
+                        <p class="card-text"> <b>Ausstattung:</b> <%= playground.description %> </p>
+                        <p class="card-text"> <b>Spielgeräte:</b> <%= playground.equipment %></p>
                     </div>
 
                 </div>
@@ -200,7 +195,7 @@
                                                 placeholder="name of the event">
                                             <input id="eventInfo" type="text" class="w-100 mt-2 p-2 br-10"
                                                 placeholder="further information">
-
+                                        </form>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
@@ -447,9 +442,17 @@
 
 
     </section>
+    <section>
+        <span><a class="btn btn-success" href="/playgrounds/new">Add</a></span>
+        <span><a class="btn btn-warning" href="/playgrounds/<%= playground._id %>/edit">Update</a></span>
+        <form action="/playgrounds/<%= playground._id %>?_method=delete" method="post">
+            <input type="hidden" name="_csrf" value="<%= csrftoken %>">
+            <button class="btn btn-danger" onclick="console.log(isAuthenticated);">Delete</button>
+        </form>
+    </section>
 
 
-    <script src="../public/javascript/detailpage.js"></script>
+    <script src="/javascript/detailpage.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
