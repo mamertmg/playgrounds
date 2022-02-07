@@ -16,3 +16,9 @@ This branch contains the following aspects:
 - Error handler and not found middleware for status code 404 and 500
 - Script for fetching and saving playground data in Düsseldorf in MongoDB
 - Setup for querying playground database from client side with filters and displaying the result on a map.
+
+## New features
+- Page to display information about a single playground now uses the datail page design from the detailPage branch.
+- Updated playground model and added event model
+- CRUD for playground entries
+- Validation when creating or updating playground entries (WIP)
