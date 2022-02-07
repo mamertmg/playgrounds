@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const Event = require('./events.model');
+const Event = require('./event.model');
 
 const playgroundSchema = new Schema({
     name: {

@@ -21,4 +21,6 @@ This branch contains the following aspects:
 - Page to display information about a single playground now uses the datail page design from the detailPage branch.
 - Updated playground model and added event model
 - CRUD for playground entries
+- Creation and deletion of event entries
 - Validation when creating or updating playground entries (WIP)
+- Error handling is a WIP

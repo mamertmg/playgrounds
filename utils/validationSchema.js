@@ -13,3 +13,13 @@ module.exports.playgroundSchema = Joi.object({
     }).required(),
     _csrf: Joi.string(),
 });
+
+module.exports.eventSchema = Joi.object({
+    event: Joi.object({
+        name: Joi.string().required(),
+        date: Joi.date().required(),
+        time: Joi.string().regex(/^([0-9]{2})\:([0-9]{2})$/).required(),
+        info_link: Joi.string().required(),
+    }).required(),
+    _csrf: Joi.string(),
+});

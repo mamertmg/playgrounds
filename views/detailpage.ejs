@@ -58,7 +58,7 @@
                 <span><a class="btn btn-warning me-2" href="/playgrounds/<%= playground._id %>/edit">Update</a></span>
                 <form style="display: inline;" action="/playgrounds/<%= playground._id %>?_method=delete" method="post">
                     <input type="hidden" name="_csrf" value="<%= csrftoken %>">
-                    <button class="btn btn-danger" onclick="console.log(isAuthenticated);">Delete</button>
+                    <button class="btn btn-danger">Delete</button>
                 </form>
             </section>
         </div>
@@ -198,24 +198,28 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form id="eventForm" class="mb-5" action="/eventdatabase">
-                                            <input id="eventDate" type="date" class="w-60  mt-2 p-2 br-10">
-                                            <input id="eventTime" type="time" class="w-45  mt-2 p-2 br-10">
-                                            <input id="eventName" type="text" class="w-100 mt-2 p-2 br-10"
+                                        <form id="eventForm" class="mb-5" action="/playgrounds/<%= playground._id %>/event" method="post">
+                                            <input type="hidden" name="_csrf" value="<%= csrftoken %>">
+                                            <input id="eventDate" type="date" name="event[date]" class="w-60  mt-2 p-2 br-10">
+                                            <input id="eventTime" type="time" name="event[time]" class="w-45  mt-2 p-2 br-10">
+                                            <input id="eventName" type="text" name="event[name]" class="w-100 mt-2 p-2 br-10"
                                                 placeholder="name of the event">
-                                            <input id="eventInfo" type="text" class="w-100 mt-2 p-2 br-10"
+                                            <input id="eventInfo" type="text" name="event[info_link]" class="w-100 mt-2 p-2 br-10"
                                                 placeholder="further information">
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Send</button>
+                                        <button id="submitButton" type="submit" form="eventForm" class="btn btn-primary">Send</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
+                        <% if(!playground.events.length) { %>
+                            <div style="text-align: center;">
+                                No Events
+                            </div>
+                        <% } else { %>
                         <table id="eventtable" class="table">
                             <thead>
                                 <tr>
@@ -225,19 +229,32 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <% for(let event of playground.events) { %> 
                                 <tr>
+                                    <td><%= event.date.toString().split(':', 2).join(':') %></td>
+                                    <td><%= event.name %> </td>
+                                    <td> <a href="<%= event.info_link %>"><%= event.info_link %></a></td>
+                                    <td>
+                                        <form action="/playgrounds/<%= playground._id %>/event/<%= event._id %>?_method=delete" method="post">
+                                            <input type="hidden" name="_csrf" value="<%= csrftoken %>">
+                                            <button class="btn-sm btn-danger eventBtn">X</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <% } %> 
+                                <!-- <tr>
                                     <td> 13/08/22 10am</td>
                                     <td>Summerbreak Activities - Basketball</td>
                                     <td> <a href="link to page">summerbreak-action.com</a></td>
-
-                                </tr>
-                                <tr>
+                                </tr> -->
+                                <!-- <tr>
                                     <td> 08/05/22 9am </td>
                                     <td>Father-Child Gymnastics</td>
                                     <td> <a href="link to page">fitdaddy-ddorf.de</a> </td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
+                        <% } %> 
                     </div>
 
 

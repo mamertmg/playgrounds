@@ -206,3 +206,11 @@ body {
 #eventForm {
     padding: 10px 50px 10px 50px;
 }
+
+.eventBtn {
+    opacity: 0;
+}
+  
+tr:hover .eventBtn {
+    opacity: 1;
+}
