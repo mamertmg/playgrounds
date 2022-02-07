@@ -20,7 +20,33 @@ This branch contains the following aspects:
 ## New features
 - Page to display information about a single playground now uses the datail page design from the detailPage branch.
 - Updated playground model and added event model
-- CRUD for playground entries
-- Creation and deletion of event entries
-- Validation when creating or updating playground entries (WIP)
-- Error handling is a WIP
+- CRUD for playground data
+- Creation and deletion of event data
+- Server-side validation for playground and event data
+
+ ## Todo
+ - [ ] Finish implementing error handling in new features.
+ - [ ] Client-side validation for playground data
+ - [ ] Update event model and adjust code accordingly.
+ - [ ] Client-side validation for event data
+ - [ ] Add lost and found model + CRUD
+ - [ ] Click on map should close any open InfoWindows.
+
+## Usage
+First install [Node.js](http://nodejs.org/) and [MongoDB](https://docs.mongodb.com/manual/installation/). Then download this repository and from its root execute the command
+
+    $ npm install
+
+to install all required node modules. Before starting the app, run
+
+    $ npm run seed-playgrounds
+
+to seed the database with the playground data. As a final step, run 
+
+    $ npm run start
+
+to start the server. Alternatively, you can run
+
+    $ npm run dev
+
+ to start the server with [Nodemon](https://www.npmjs.com/package/nodemon) for development. The web app can then be seen at [http://localhost:3000/](http://localhost:3000/).
