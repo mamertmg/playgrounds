@@ -31,6 +31,12 @@ var playgroundSchema = mongoose.Schema({
             required: true,
         },
     },
+    rating:[
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Rating'
+        }
+    ],
     reviews: [
         {
             type: Schema.Types.ObjectId,
