@@ -3,12 +3,16 @@ const router = express.Router();
 const asyncWrapper = require('../utils/asyncWrapper');
 const { validatePlayground } = require('../middlewares/validation');
 const playgroundController = require('../controllers/playground.controller');
+const Playground = require('../models/playground.model');
 
 router
     .route('/')
-    .get((req, res) => {
-        res.render('base/playgrounds');
-    })
+    .get(
+        asyncWrapper(async (req, res) => {
+            const playgrounds = await Playground.find({});
+            res.render('base/playgrounds', { playgrounds });
+        })
+    )
     .post(asyncWrapper(playgroundController.createPlayground));
 
 router.get('/new', playgroundController.renderNewFrom);

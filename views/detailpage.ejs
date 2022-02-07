@@ -53,6 +53,16 @@
 
     <section class="container-fluid">
 
+        <div class="row mt-3">
+            <section class="col d-flex justify-content-end">
+                <span><a class="btn btn-warning me-2" href="/playgrounds/<%= playground._id %>/edit">Update</a></span>
+                <form style="display: inline;" action="/playgrounds/<%= playground._id %>?_method=delete" method="post">
+                    <input type="hidden" name="_csrf" value="<%= csrftoken %>">
+                    <button class="btn btn-danger" onclick="console.log(isAuthenticated);">Delete</button>
+                </form>
+            </section>
+        </div>
+
         <div class="row">
             <h1 class="gx-5 col" id="pgName"><%= playground.name %>
                 <span class="rating-fixed">
@@ -441,14 +451,6 @@
 
 
 
-    </section>
-    <section>
-        <span><a class="btn btn-success" href="/playgrounds/new">Add</a></span>
-        <span><a class="btn btn-warning" href="/playgrounds/<%= playground._id %>/edit">Update</a></span>
-        <form action="/playgrounds/<%= playground._id %>?_method=delete" method="post">
-            <input type="hidden" name="_csrf" value="<%= csrftoken %>">
-            <button class="btn btn-danger" onclick="console.log(isAuthenticated);">Delete</button>
-        </form>
     </section>
 
 

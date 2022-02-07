@@ -1,19 +1,29 @@
 <% layout('./layouts/boilerplate')%>
 <div class="container">
     <div class="row align-items-center justify-content-center mt-3 mb-3">
-        <div class="card" style="width: 500px;">
-            <img class="card-img-top mt-3" src="https://source.unsplash.com/collection/10738016" class="card-img-top" alt="">
-            <div class="card-body">
-              <h5 class="card-title"><%= playground.name %> </h5>
-                <% if(playground.address) { %> 
-                    <p class="card-text text-muted"><b>Address:</b> <%= playground.address %></p>
-                <% } %> 
+        <div class="card">
+            <img class="card-img-top rounded mx-auto d-block mt-3" style="max-height: 500px; max-width: 600px;" src="https://images.unsplash.com/photo-1589918258765-428da706ddd6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="card-img-top" alt="">
+            <div class="card-body d-flex justify-content-between">
+              <h5 class="card-title" style="display:inline;">Playgrounds in Düsseldorf </h5>
+              <a class="btn btn-success" href="/playgrounds/new">+</a>
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item"><%= playground.type %></li>
+              <% for(let playground of playgrounds) { %> 
+              <li class="list-group-item d-flex justify-content-between">
+                <a href="/playgrounds/<%= playground._id %>"><%= playground.name %></a>
+                <span>
+                  <span>
+                    <a class="btn btn-info" href="/playgrounds/<%= playground._id %>/edit">Update</a></span>
+                    <form style="display: inline;" action="/playgrounds/<%= playground._id %>?_method=delete" method="post">
+                      <input type="hidden" name="_csrf" value="<%= csrftoken %>">
+                      <button class="btn btn-danger" onclick="console.log(isAuthenticated);">Delete</button>
+                    </form>
+                </span>
+              </li>
+              <% } %> 
             </ul>
             <div class="card-body">
-              <a href="/" class="card-link">Home</a>
+              <a href="/" class="btn btn-primary">Home</a>
             </div>
         </div>
     </div>
