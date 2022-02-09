@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const Review = require('./review.model')
+const Schema = mongoose.Schema;
 
 const UserSchema = new mongoose.Schema({
     name: {
@@ -16,7 +18,13 @@ const UserSchema = new mongoose.Schema({
     date: {
         type: Date,
         default: Date.now
-    }
+    },
+    reviews: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Review'
+        }
+    ]
 });
 
 const User = mongoose.model('User', UserSchema);

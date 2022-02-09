@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const Review = require("./review.model")
+const Schema = mongoose.Schema;
 
 var playgroundSchema = mongoose.Schema({
     key: {
@@ -29,6 +31,18 @@ var playgroundSchema = mongoose.Schema({
             required: true,
         },
     },
+    rating:[
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Rating'
+        }
+    ],
+    reviews: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Review'
+        }
+    ]
 });
 
 playgroundSchema.index({ location: "2dsphere" });
