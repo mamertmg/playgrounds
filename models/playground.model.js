@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Event = require('./event.model');
+const Review = require("./review.model")
+
 
 const playgroundSchema = new Schema({
     name: {
@@ -44,6 +46,18 @@ const playgroundSchema = new Schema({
             required: true,
         },
     },
+    rating:[
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Rating'
+        }
+    ],
+    reviews: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Review'
+        }
+    ]
 });
 
 playgroundSchema.index({ location: '2dsphere' });
