@@ -91,6 +91,7 @@ body {
     transition-duration: 0.2s
 }
 
+
 .rating {
     display: inline-flex;
     flex-direction: row-reverse;
@@ -168,13 +169,6 @@ body {
     margin-right: 20px;
 }
 
-#addphoto {
-    color: #ffb908;
-    position: relative;
-    z-index: 1;
-    left: 86%;
-    top: 8%;
-}
 
 #navbar-logo {
     height: 52px;
@@ -205,4 +199,54 @@ body {
 
 #eventForm {
     padding: 10px 50px 10px 50px;
+}
+
+.form-check-label {
+    font-family: Montserrat, sans-serif;
+    color: #074266;
+    display: inline-block;
+    font-size: 1.1rem;
+}
+
+
+.link {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.link:hover {
+
+    text-decoration: underline;
+    background-color: #f8f8f8;
+}
+
+
+.day {
+    font-family: Montserrat, sans-serif;
+    color: #074266;
+    font-size: 1.6rem;
+}
+
+.month {
+    font-family: Montserrat, sans-serif;
+    color: #07426694;
+    font-size: 0.8rem;
+}
+
+
+.time, .location {
+    line-height: 1rem;
+    color: #07426694;
+
+}
+
+
+li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+hr {
+    border-top: 1px solid #0742664b;
 }
