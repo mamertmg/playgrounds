@@ -6,27 +6,11 @@ h1, h2, h3, h4, h5 {
 }
 
 
-
 *, ::before, ::after {
     margin:0;
     padding:0;
     box-sizing: border-box;
 }
-
-
-.container-fluid-nav{
-    display: flex;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    background-color: #3F88C5;
-    justify-content: space-evenly;
-    min-height: fit-content;
-}
-
-
-
-
 
 
 h1 {
@@ -37,10 +21,6 @@ body {
     background: #fffaf4;
 }
 
-
-/* .form-group{
-    display: flex;
-} */
 .form-group > input:focus{
     background-color: #84bdeb;
 }
@@ -75,8 +55,6 @@ input:focus~label{
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.03)
 }
 
-
-/* have an account login */
 
 p{
     display: flex;
