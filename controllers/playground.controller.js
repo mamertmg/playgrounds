@@ -21,7 +21,7 @@ module.exports.renderNewFrom = async (req, res, next) => {
             res.render('playgrounds/form', {
                 actionType: 'Add',
                 actionDest: '/playgrounds',
-                labels: types,
+                types,
             });
         }
     });
@@ -42,7 +42,7 @@ module.exports.renderEditForm = async (req, res) => {
             res.render('playgrounds/form', {
                 actionType: 'Edit',
                 actionDest: `/playgrounds/${playground._id}?_method=put`,
-                labels: types,
+                types,
                 playground,
             });
         }

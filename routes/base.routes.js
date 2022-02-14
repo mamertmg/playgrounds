@@ -7,10 +7,11 @@ router.get('/', function (req, res) {
     // Collect all labels from DB for rendering landing page
     Playground.distinct('type', function (err, types) {
         if (err) {
-            // TODO: redo error handling?
             res.status(500).render('shared/500');
         } else {
-            res.render('base/landingpage', { labels: types });
+            res.render('base/landingpage', {
+                types,
+            });
         }
     });
 });

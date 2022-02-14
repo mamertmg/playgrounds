@@ -19,20 +19,13 @@ This branch contains the following aspects:
 - Users, Playgrounds, Reviews and Ratings model
 - Authorization middleware for routes protection
 
-## New features
+## New
 - Page to display information about a single playground now uses the datail page design from the detailPage branch.
+- "Playgrounds" page now lists all playgrounds
 - Updated playground model and added event model
 - CRUD for playground data
-- Creation and deletion of event data
+- CRD for event data
 - Server-side validation for playground and event data
-
- ## Todo
- - [ ] Finish implementing error handling in new features.
- - [ ] Client-side validation for playground data
- - [ ] Update event model and adjust code accordingly.
- - [ ] Client-side validation for event data
- - [ ] Add lost and found model + CRUD
- - [ ] Click on map should close any open InfoWindows.
 
 ## Usage
 First install [Node.js](http://nodejs.org/) and [MongoDB](https://docs.mongodb.com/manual/installation/). Then download this repository and from its root execute the command

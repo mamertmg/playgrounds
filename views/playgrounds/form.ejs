@@ -10,8 +10,8 @@
         <label for="type" class="form-label">Playground type</label>
         <input class="form-control" list="types" id="type" name="playground[type]" value="<%= actionType === 'Edit' ? playground.type : "" %>"/>
         <datalist id="types">
-            <% for(let label of labels) { %> 
-                <option value="<%= label %>"><%= label %></option>
+            <% for(let type of types) { %> 
+                <option value="<%= type %>"><%= type %></option>
             <% } %>
         </datalist>
     </div>
