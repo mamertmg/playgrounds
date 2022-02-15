@@ -1,0 +1,20 @@
+
+
+
+
+
+.input-group {
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    min-height: 600px;
+  }
+
+
+  #carouselExampleIndicators{
+    min-height: 30%;
+    width: 30%;
+ 
+  }
+
