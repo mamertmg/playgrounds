@@ -170,8 +170,8 @@ function getLocation() {
                     `https://nominatim.openstreetmap.org/reverse?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&format=json&limit=1`
                 )
                 .then((response) => {
-                    const { city, road, house_number } = response.data.address;
-                    searchInput.value = `${city} ${road} ${house_number}`;
+                    const { city, road } = response.data.address;
+                    searchInput.value = `${city} ${road}`;
                     getPlaygrounds(
                         pos.coords.latitude,
                         pos.coords.longitude,

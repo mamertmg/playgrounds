@@ -1,30 +1,36 @@
 const mongoose = require('mongoose');
-const Review = require('./review.model')
+const Review = require('./review.model');
 const Schema = mongoose.Schema;
 
 const UserSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
     },
     email: {
         type: String,
-        required: true
+        required: true,
     },
     password: {
         type: String,
-        required: true
+        required: true,
     },
     date: {
         type: Date,
-        default: Date.now
+        default: Date.now,
     },
     reviews: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'Review'
-        }
-    ]
+            ref: 'Review',
+        },
+    ],
+    events: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Review',
+        },
+    ],
 });
 
 const User = mongoose.model('User', UserSchema);

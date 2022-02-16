@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "seed-playgrounds": "node data/seed/seedDatabase.js"
   },
   "author": "Aaron Espinoza, Alina Krischke, Alberto Marquez, Wutao Wen, Aksana Yakabchuk",
   "license": "ISC",
@@ -19,6 +20,8 @@
     "ejs-mate": "^3.0.0",
     "express": "^4.17.2",
     "express-session": "^1.17.2",
+    "joi": "^17.6.0",
+    "method-override": "^3.0.0",
     "mongodb": "^4.3.0",
     "mongoose": "^6.1.7",
     "passport": "^0.5.2",

@@ -1,13 +1,10 @@
-const mongoose = require("mongoose");
-const Review = require("./review.model")
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Event = require('./event.model');
+const Review = require("./review.model")
 
-var playgroundSchema = mongoose.Schema({
-    key: {
-        type: String,
-        require: true,
-        default: "",
-    },
+
+const playgroundSchema = new Schema({
     name: {
         type: String,
         require: true,
@@ -16,14 +13,32 @@ var playgroundSchema = mongoose.Schema({
     type: {
         type: String,
         require: true,
-        default: "Kinderspielplatz",
+        default: 'Kinderspielplatz',
     },
+    age_group: {
+        type: String,
+        default: '',
+    },
+    description: {
+        type: String,
+        default: '',
+    },
+    equipment: {
+        type: String,
+        default: '',
+    },
+    events: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Event',
+        },
+    ],
     // store location as a GEOJSON object
     // https://docs.mongodb.com/manual/geospatial-queries/#geospatial-data
     location: {
         type: {
             type: String,
-            enum: ["Point"],
+            enum: ['Point'],
             required: true,
         },
         coordinates: {
@@ -45,7 +60,7 @@ var playgroundSchema = mongoose.Schema({
     ]
 });
 
-playgroundSchema.index({ location: "2dsphere" });
+playgroundSchema.index({ location: '2dsphere' });
 
 playgroundSchema.statics.findByLocation = function (
     [lat, lng, dist, limit],
@@ -54,7 +69,7 @@ playgroundSchema.statics.findByLocation = function (
     return this.find({
         location: {
             $near: {
-                $geometry: { type: "Point", coordinates: [lng, lat] },
+                $geometry: { type: 'Point', coordinates: [lng, lat] },
                 $minDistance: 0,
                 $maxDistance: dist,
             },
@@ -71,7 +86,7 @@ playgroundSchema.statics.findByLocAndLabel = function (
     return this.find({
         location: {
             $near: {
-                $geometry: { type: "Point", coordinates: [lng, lat] },
+                $geometry: { type: 'Point', coordinates: [lng, lat] },
                 $minDistance: 0,
                 $maxDistance: dist,
             },
@@ -82,6 +97,12 @@ playgroundSchema.statics.findByLocAndLabel = function (
         .exec(cb);
 };
 
-const Playground = mongoose.model("Playground", playgroundSchema);
+playgroundSchema.post('findOneAndDelete', async function (playground) {
+    if (playground) {
+        await Event.deleteMany({ _id: { $in: playground.events } });
+    }
+});
+
+const Playground = mongoose.model('Playground', playgroundSchema);
 
 module.exports = Playground;

@@ -1,14 +1,14 @@
-const express = require("express");
-const Playground = require("../models/playground.model");
-const { isLatitude, isLongitude } = require("../middlewares/apiValidators");
+const express = require('express');
+const Playground = require('../models/playground.model');
+const { isLatitude, isLongitude } = require('../utils/validation');
 
 const router = express.Router();
 
 const DEFAULT_LIMIT = 10;
-const DEFAULT_DISTANCE = 5000;
+const DEFAULT_DISTANCE = 2000;
 
 // Handle queries to DB from client
-router.get("/playgrounds", async (req, res, next) => {
+router.get('/playgrounds', async (req, res, next) => {
     // return all playgrounds if no query params
     if (Object.keys(req.query).length === 0) {
         try {
@@ -61,7 +61,7 @@ router.get("/playgrounds", async (req, res, next) => {
                 );
             }
         } else {
-            res.status(400).send("Invalid coordinates in query");
+            res.status(400).send('Invalid coordinates in query');
         }
     }
 });
