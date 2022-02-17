@@ -1,20 +1,15 @@
 
 
-
-
-
-.input-group {
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    min-height: 600px;
-  }
-
-
-  #carouselExampleIndicators{
-    min-height: 30%;
-    width: 30%;
- 
-  }
-
+.pac-container {
+  background-color: #FFF;
+  z-index: 20;
+  position: fixed;
+  display: block;
+  float: left;
+}
+.modal{
+  z-index: 20;   
+}
+.modal-backdrop{
+  z-index: 10;        
+}

@@ -25,9 +25,41 @@ const sectionOneObserver = new IntersectionObserver(function (
 
 sectionOneObserver.observe(sectionOne);
 
-const searchBar = document.getElementById('searchBar')
-searchBar.addEventListener('click', event => {
-    console.log(event.detail)
-});
+
+//Autocomplete
+
+let autocomplete;
+
+const southwest = { lat: 5.6108, lng: 136.589326 };
+const northeast = { lat: 61.179287, lng: 2.64325 };
+const newBounds = new google.maps.LatLngBounds(southwest, northeast);
+
+
+
+function initAutocomplete() {
+
+    autocomplete = new google.maps.places.Autocomplete(document.querySelector("#autocomplete"),
+        {
+            componentRestrictions: { 'country': ['de'] },
+            fields: ['geometry', 'name', 'place_id'],
+            types: ['address'],
+        });
+
+    autocomplete.addListener('place_changed', onPlaceChanged);
+
+}
+
+function onPlaceChanged() {
+    let place = autocomplete.getPlace();
+    if (!place.geometry) {
+        // user didnt choose a prediction, reset the input field
+        document.getElementById('autocomplete').placeholder = 'Enter a place';
+    }
+    else {
+        document.getElementById('details').innerHTML = place.name;
+    }
+}
+
+
 
 
