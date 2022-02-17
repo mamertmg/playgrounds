@@ -103,7 +103,7 @@ body {
 
 .rating>label {
     position: relative;
-    width: 2.5rem;
+    width: 40px;
     font-size: 3rem;
     color: #FFBA08;
     cursor: pointer;
@@ -188,11 +188,11 @@ body {
 }
 
 .comment-text {
-    font-size: 14px
+    font-size: 0.875rempx
 }
 
 .fs-10 {
-    font-size: 14px
+    font-size: 0.875rempx
 }
 
 .comment-header {
