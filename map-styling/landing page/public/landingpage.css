@@ -1,15 +1,42 @@
 
-
 .pac-container {
-  background-color: #FFF;
-  z-index: 20;
-  position: fixed;
+  z-index: 1061 !important;
+  position: relative;
+}
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-slide img {
   display: block;
-  float: left;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
-.modal{
-  z-index: 20;   
+
+.swiper-slide {
+  width: 80%;
+
 }
-.modal-backdrop{
-  z-index: 10;        
-}
+

@@ -6,28 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>2bit style map</title>
+    <title>My playground in Dusseldorf</title>
 
 
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
 
-    <link rel="stylesheet" href="../public/css/landingpage.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
 
-    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.css" rel="stylesheet" /> -->
+
+    <link rel="stylesheet" href="../public/landingpage.css">
+
 
     <script src="https://kit.fontawesome.com/cb28a685ae.js" crossorigin="anonymous"></script>
 
-
-    <title>My playground in Dusseldorf</title>
 </head>
 
 
 <body>
+
 
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <symbol id="people-circle" viewBox="0 0 16 16">
@@ -42,9 +43,9 @@
             <nav class="navbar fixed-top navbar-light">
 
                 <div class="mx-auto d-md-none d-lg-none d-xl-none">
-                    <button type="button" class="btn btn-light btn-lg rounded-pill text-muted" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-light btn-md rounded-pill text-muted" data-bs-toggle="modal"
                         data-bs-target="#exampleModal">
-                        Where do you want to play? </button>
+                        Looking for playgrounds in Duesseldorf? </button>
                 </div>
 
             </nav>
@@ -53,42 +54,94 @@
 
         <div class="modal d-md-none d-lg-none d-xl-none" id="exampleModal" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
-            <div class="modal-dialog modal-fullscreen-md-down " data-backdrop="false">
-                <div class="modal-content bg-transparent">
-                    <div class="modal-header">
-                        <input class="modal-title col-11 border-0" id="autocomplete" placeholder="Enter address"
-                            type="text">
-                        <button type="button" class="btn-close col-1" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
+            <div class="modal-dialog modal-fullscreen-md-down ">
+                <div class="modal-content">
 
-                        <div id="details"></div>
+                    <!-- form action needs to be described here -->
 
-                        <form id="searchForm" class="mt-5" action="/xxx">
+                    <form class="" id="searchform-landingpage-mobileview" action="" method="get" autocomplete="off">
+                        <div class="modal-header">
 
-                            <input id="num_playgrounds" type="number" class="w-100 mt-2 p-2 br-10"
-                                placeholder="Num. playgrounds">
-                            <input id="Dist" type="number" class="w-100 mt-2 p-2 br-10" placeholder="Dist. in km">
-                            <input id="num_playgrounds" type="option" class="w-100 mt-2 p-2 br-10" placeholder="type">
-                        </form>
-                    </div>
-                    <div class="modal-footer mb-0">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Search</button>
-                    </div>
+                            <i class="fa fa-md fa-map-marker" aria-hidden="true" onclick='getLocation()'></i>
+                            <label for="autocomplete" class="form-label col-1"></label>
+                            <input class="modal-title col-10 border-0" id="autocomplete" placeholder="Enter address"
+                                type="search">
+
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+
+
+
+                        </div>
+                        <div class="modal-body">
+                            <div class="my-2">
+
+                                <h3>Who's playing?</h3>
+
+                                <div class="d-flex d-flex align-content-start flex-wrap my-2">
+
+
+                                    <div class="form-check form-check-inline">
+                                        <input type="checkbox" class="form-check-input" id="kids_playground"
+                                            name="kids_playground" checked>
+                                        <label class="form-check-label" for="kids_playground">Kids playground </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+
+                                        <input type="checkbox" class="form-check-input" id="bolzplatz" name="bolzplatz">
+                                        <label class="form-check-label" for="bolzplatz">Kickers playground </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <input type="checkbox" class="form-check-input" id="skaters_playground"
+                                            name="skaters_playground">
+                                        <label class="form-check-label" for="skaters_playground">Skaters
+                                            playground</label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <input type="checkbox" class="form-check-input" id="other_playground"
+                                            name="other_playground">
+                                        <label class="form-check-label" for="other_playground">Others</label>
+                                    </div>
+
+
+
+                                </div>
+
+                            </div>
+
+                            <hr>
+
+                            <div class="my-2">
+
+                                <h3>How close should it be?</h3>
+
+                                <label for="dist">
+                                    Search radius in km:
+                                </label> <br>
+                                <input id="dist" type="range" value="1" min="1" max="5"
+                                    class=" d-flex justify-content-center form-range w-100 mt-2"
+                                    oninput="this.nextElementSibling.value = this.value">
+                                <output class="d-flex justify-content-center">1</output>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="modal-footer mb-0">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                    </form>
                 </div>
+
             </div>
 
+
+
         </div>
-
-
-
-
-
-
-
-
 
 
 
@@ -126,6 +179,7 @@
 
             </div>
         </nav>
+
 
 
 
@@ -181,7 +235,7 @@
                 class="d-flex justify-content-center align-items-center position-absolute bottom-0 start-50 translate-middle-x text-white">
                 <div class="text-white text-center mb-5 pb-5">
                     <h2>Planning the next activities with your kid?</h2>
-                    <a class="btn btn-light btn-md rounded-pill" href="#!" role="button">
+                    <a class="btn btn-light btn-md rounded-pill" href="#events" role="button">
                         Get inspired
                     </a>
                 </div>
@@ -217,261 +271,268 @@
                 playgrounds</button>
         </p> -->
 
+        <div class="mb-5 pb-2" id="events"></div>
+
+        <div class="column-container mx-3 my-4">
+
+            <h2 class="mx-3 my-3">Upcoming events</h2>
 
 
-        <div class=" column-container mx-3 my-3">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
 
-            <h3>Top rated playgrounds in Duesseldorf</h3>
+                    <div class="swiper-slide">
 
-            <div class="container my-5">
-                <!-- Carousel wrapper -->
-                <div id="carouselBasicExample" class="carousel slide carousel-dark text-center" data-bs-ride="carousel">
-                    <!-- Controls -->
-                    <div class="d-flex justify-content-center mb-4">
-                        <button class="carousel-control-prev position-relative" type="button"
-                            data-bs-target="#carouselBasicExample" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next position-relative" type="button"
-                            data-bs-target="#carouselBasicExample" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
+
+                        <div class="card">
+                            <div class="card-header ">Comming up in 2 days </div>
+                            <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top"
+                                alt="Fissure in Sandstone" />
+                            <div class="card-body">
+                                <h5 class="card-title">Father-Child Gymnastics</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                                <a href="#!" class="btn btn-primary">Register</a>
+                            </div>
+
+                        </div>
+
+
+
                     </div>
-                    <!-- Inner -->
-                    <div class="carousel-inner py-4">
-                        <!-- Single item -->
-                        <div class="carousel-item active">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <div class="card">
-                                            <img src="https://mdbootstrap.com/img/new/standard/nature/181.jpg"
-                                                class="card-img-top" alt="..." />
-                                            <div class="card-body">
-                                                <h5 class="card-title">Playground 3</h5>
-                                                <p class="card-text">
-                                                    Some quick example text to build on the card title and
-                                                    make up the bulk of the card's content.
-                                                </p>
-                                                <a href="#!" class="btn btn-primary">Button</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4 d-none d-lg-block">
-                                        <div class="card">
-                                            <img src="https://mdbootstrap.com/img/new/standard/nature/182.jpg"
-                                                class="card-img-top" alt="..." />
-                                            <div class="card-body">
-                                                <h5 class="card-title">Playground 2</h5>
-                                                <p class="card-text">
-                                                    Some quick example text to build on the card title and
-                                                    make up the bulk of the card's content.
-                                                </p>
-                                                <a href="#!" class="btn btn-primary">Button</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4 d-none d-lg-block">
-                                        <div class="card">
-                                            <img src="https://mdbootstrap.com/img/new/standard/nature/183.jpg"
-                                                class="card-img-top" alt="..." />
-                                            <div class="card-body">
-                                                <h5 class="card-title">Playground 3</h5>
-                                                <p class="card-text">
-                                                    Some quick example text to build on the card title and
-                                                    make up the bulk of the card's content.
-                                                </p>
-                                                <a href="#!" class="btn btn-primary">Button</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <div class="card-header">Date: 18th June</div>
+                            <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top"
+                                alt="Fissure in Sandstone" />
+                            <div class="card-body">
+                                <h5 class="card-title">Summerbreak Activities
+                                </h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                                <a href="#!" class="btn btn-primary">Register</a>
                             </div>
+
+
                         </div>
 
-                        <!-- Single item -->
-                        <div class="carousel-item">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-12">
-                                        <div class="card">
-                                            <img src="https://mdbootstrap.com/img/new/standard/nature/184.jpg"
-                                                class="card-img-top" alt="..." />
-                                            <div class="card-body">
-                                                <h5 class="card-title">Playground 1</h5>
-                                                <p class="card-text">
-                                                    Some quick example text to build on the card title and
-                                                    make up the bulk of the card's content.
-                                                </p>
-                                                <a href="#!" class="btn btn-primary">Button</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4 d-none d-lg-block">
-                                        <div class="card">
-                                            <img src="https://mdbootstrap.com/img/new/standard/nature/185.jpg"
-                                                class="card-img-top" alt="..." />
-                                            <div class="card-body">
-                                                <h5 class="card-title">Playground 2</h5>
-                                                <p class="card-text">
-                                                    Some quick example text to build on the card title and
-                                                    make up the bulk of the card's content.
-                                                </p>
-                                                <a href="#!" class="btn btn-primary">Button</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4 d-none d-lg-block">
-                                        <div class="card">
-                                            <img src="https://mdbootstrap.com/img/new/standard/nature/186.jpg"
-                                                class="card-img-top" alt="..." />
-                                            <div class="card-body">
-                                                <h5 class="card-title">Playground 3</h5>
-                                                <p class="card-text">
-                                                    Some quick example text to build on the card title and
-                                                    make up the bulk of the card's content.
-                                                </p>
-                                                <a href="#!" class="btn btn-primary">Button</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single item -->
-                        <div class="carousel-item">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-                                        <div class="card">
-                                            <img src="https://mdbootstrap.com/img/new/standard/nature/187.jpg"
-                                                class="card-img-top" alt="..." />
-                                            <div class="card-body">
-                                                <h5 class="card-title">Playground 2</h5>
-                                                <p class="card-text">
-                                                    Some quick example text to build on the card title and
-                                                    make up the bulk of the card's content.
-                                                </p>
-                                                <a href="#!" class="btn btn-primary">Button</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4 mb-4 mb-lg-0 d-none d-lg-block">
-                                        <div class="card">
-                                            <img src="https://mdbootstrap.com/img/new/standard/nature/188.jpg"
-                                                class="card-img-top" alt="..." />
-                                            <div class="card-body">
-                                                <h5 class="card-title">Playground 2</h5>
-                                                <p class="card-text">
-                                                    Some quick example text to build on the card title and
-                                                    make up the bulk of the card's content.
-                                                </p>
-                                                <a href="#!" class="btn btn-primary">Button</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4 mb-4 mb-lg-0 d-none d-lg-block">
-                                        <div class="card">
-                                            <img src="https://mdbootstrap.com/img/new/standard/nature/189.jpg"
-                                                class="card-img-top" alt="..." />
-                                            <div class="card-body">
-                                                <h5 class="card-title">Playground 3</h5>
-                                                <p class="card-text">
-                                                    Some quick example text to build on the card title and
-                                                    make up the bulk of the card's content.
-                                                </p>
-                                                <a href="#!" class="btn btn-primary">Button</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                    <!-- Inner -->
+
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <div class="card-header "> Date: 28th June</div>
+                            <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top"
+                                alt="Fissure in Sandstone" />
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                                <a href="#!" class="btn btn-primary">Register</a>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
                 </div>
-                <!-- Carousel wrapper -->
+
             </div>
-
-
-
 
         </div>
 
 
+        <div class="column-container mx-3 my-4">
 
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam fugit ullam ducimus fugiat, odio
-        nostrum
-        fuga quos sint assumenda qui, quasi rerum eaque voluptas, quod obcaecati dolore? Voluptatum, incidunt
-        dolores.
-        Laboriosam voluptatum tempore, voluptatibus a velit possimus tenetur id, nobis dolore quos excepturi
-        blanditiis quidem dolor hic ipsam reprehenderit alias tempora natus minima? Dolor, asperiores?
-        Exercitationem et facilis error unde?
-        Quam, provident alias. Cumque, ex voluptas perspiciatis iusto nisi exercitationem tempora consequuntur,
-        saepe praesentium voluptate voluptatem repellendus possimus debitis! Quod reiciendis minus quas
-        necessitatibus dolorem ipsum incidunt asperiores itaque dignissimos.
-        Architecto itaque nemo dignissimos inventore magnam, distinctio explicabo aut cum voluptatibus nulla
-        sed?
-        Sit quos inventore minus blanditiis impedit a quam voluptatibus provident, totam quia, ea aspernatur aut
-        ab
-        velit.
-        Neque, voluptas fuga vero error laboriosam obcaecati commodi velit excepturi est minus fugit nam,
-        officia
-        eos odit nobis! Accusamus cupiditate modi ab inventore, dolorum cum sint iste laudantium molestiae
-        possimus?
-        Ipsam praesentium nulla, dolorum necessitatibus provident tempora officiis ab cumque, veniam harum autem
-        temporibus incidunt minima eius debitis alias, eligendi sit illum qui quisquam error. Facere sequi
-        dignissimos quasi distinctio.
-        Assumenda, libero optio earum repudiandae vitae molestiae odit autem incidunt in. Quisquam dolores a rem
-        officia, omnis praesentium nulla optio aspernatur nostrum ex fugiat laboriosam animi architecto alias
-        porro
-        eius?
+            <h2 class="mx-3 my-3">Playgrounds of the month</h2>
 
 
-        Fugit, at. In doloremque, nam eveniet assumenda natus voluptatem suscipit adipisci eos, labore quia
-        tempora
-        quibusdam deserunt a qui dolor architecto, excepturi cupiditate! Hic dolore voluptatibus, repellat ipsa
-        animi voluptate?
-        Cupiditate esse reiciendis odit nostrum voluptates assumenda iusto, possimus quam vero quo quos eius
-        quisquam commodi, porro unde architecto itaque ullam molestias voluptatem expedita? Quam dolorem
-        eligendi
-        incidunt fuga eos.
-        Delectus quasi laudantium alias, fugiat velit commodi maxime. Aliquid pariatur voluptas praesentium
-        ducimus
-        quibusdam unde impedit, quo possimus iste architecto doloremque minima dignissimos accusamus, rem,
-        obcaecati
-        voluptatem est? Doloremque, qui.
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide">
+
+
+                        <div class="card">
+                            <div class="card-header ">Top rated </div>
+                            <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top"
+                                alt="Fissure in Sandstone" />
+                            <div class="card-body">
+                                <h5 class="card-title">Father-Child Gymnastics</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                                <a href="#!" class="btn btn-primary">Explore</a>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <div class="card-header">Our recommendation</div>
+                            <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top"
+                                alt="Fissure in Sandstone" />
+                            <div class="card-body">
+                                <h5 class="card-title">Summerbreak Activities
+                                </h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                                <a href="#!" class="btn btn-primary">Explore</a>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <div class="card-header "> Our recommendation</div>
+                            <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top"
+                                alt="Fissure in Sandstone" />
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                                <a href="#!" class="btn btn-primary">Explore</a>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
 
 
     </main>
 
 
-    </div>
 
 
 
 
 
-    <footer class="footer mt-auto py-3">
-        <div class="container">
-            <span class="text-muted">All rights reserved.</span>
+
+    <!-- Footer -->
+
+    <footer class="text-center text-lg-start bg-light text-muted">
+
+        <!-- Section: Links  -->
+        <section class="">
+            <div class="container text-center text-md-start mt-5">
+                <!-- Grid row -->
+                <div class="row mt-3">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <!-- Content -->
+                        <h6 class="text-uppercase fw-bold my-4">
+                            <i class="fas fa-gem me-3"></i>My favourite Playground inc.
+                        </h6>
+
+                    </div>
+                    <!-- Grid column -->
+
+
+
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            About us
+                        </h6>
+                        <p>
+                            <a href="#!" class="text-reset">Our story</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Our data policy</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Become a partner</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Career</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Contact
+                        </h6>
+                        <p><i class="fas fa-home me-3"></i> DUS, NRW, Germany</p>
+                        <p>
+                            <i class="fas fa-envelope me-3"></i>
+                            info@example.com
+                        </p>
+                        <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
+                        <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+            </div>
+        </section>
+        <!-- Section: Links  -->
+
+        <div class="container pt-4">
+            <!-- Section: Social media -->
+            <section class="mb-4 d-flex justify-content-center bottom-container">
+                <!-- Facebook -->
+                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
+                    data-mdb-ripple-color="dark"><i class="fab fa-facebook-f"></i></a>
+
+                <!-- Twitter -->
+                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
+                    data-mdb-ripple-color="dark"><i class="fab fa-twitter"></i></a>
+
+                <!-- Instagram -->
+                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
+                    data-mdb-ripple-color="dark"><i class="fab fa-instagram"></i></a>
+
+                <!-- Linkedin -->
+                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
+                    data-mdb-ripple-color="dark"><i class="fab fa-linkedin"></i></a>
+                <!-- Github -->
+                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
+                    data-mdb-ripple-color="dark"><i class="fab fa-github"></i></a>
+            </section>
+            <!-- Section: Social media -->
         </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+            © 2021 Copyright:
+            <a class="text-reset fw-bold" href="">playground.nrw</a>
+        </div>
+        <!-- Copyright -->
     </footer>
 
 
+    <!-- Footer -->
 
+
+
+
+
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
 
     <script src="../public/app.js"></script>
+
+
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
 
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -487,7 +548,8 @@
         integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
         crossorigin="anonymous"></script>
 
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.js"></script> -->
+
+
 
 
 
