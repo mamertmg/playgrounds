@@ -1,13 +1,8 @@
-function authorization(req, res, next) {
-    if (!res.locals.isAuth) {
-      return res.redirect('/401');
+module.exports = {
+  ensureAuthenticated: function(req, res, next) {
+    if (req.isAuthenticated()) {
+      return next();
     }
-  
-    if (req.path.startsWith('/admin') && !res.locals.isAdmin) {
-      return res.redirect('/403');
-    }
-  
-    next();  
+    res.redirect('/login');
   }
-  
-  module.exports = authorization;
+};

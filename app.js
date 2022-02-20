@@ -8,6 +8,7 @@ const playgroundRoutes = require('./routes/playground.routes');
 const apiRoutes = require('./routes/api.routes');
 const baseRoutes = require('./routes/base.routes');
 const userRoutes = require('./routes/user.routes');
+const reviewRoutes = require('./routes/review.routes')
 
 const csrf = require('csurf');
 
@@ -82,6 +83,7 @@ app.use('/api', apiRoutes);
 app.use('/playgrounds', playgroundRoutes);
 app.use('/', baseRoutes);
 app.use('/', userRoutes);
+app.use('/playgrounds/:id/reviews', reviewRoutes);
 
 // Not found
 app.use(notFoundMiddleware);

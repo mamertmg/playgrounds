@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const asyncWrapper = require('../utils/asyncWrapper');
-const auth = require('../middlewares/authorization');
 const {
     validatePlayground,
     validateEvent,
@@ -10,6 +9,7 @@ const {
 const playgroundController = require('../controllers/playground.controller');
 const Playground = require('../models/playground.model');
 const Event = require('../models/event.model');
+const {ensureAuthenticated} = require('../middlewares/authorization');
 
 router
     .route('/')
@@ -21,7 +21,7 @@ router
     )
     .post(asyncWrapper(playgroundController.createPlayground));
 
-router.get('/new', playgroundController.renderNewFrom);
+router.get('/new', ensureAuthenticated, playgroundController.renderNewFrom);
 
 router
     .route('/:id')

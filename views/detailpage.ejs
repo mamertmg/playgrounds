@@ -32,40 +32,39 @@
         <button class='navbar-toggler' data-toggle='collapse' data-target='#navlinks' aria-label='Toggle Navigation'>
             <span class='navbar-toggler-icon'></span>
         </button>
-        <div id='navlinks' class='collapse navbar-collapse'>
+        <div id='navlinks' class='collapse navbar-collapse d-flex justify-content-between'>
             <ul class='navbar-nav'>
                 <li class='nav-item'>
-                    <a href="" class='nav-link'>HOME</a>
+                    <a href="" class='nav-link'>Home</a>
                 </li>
                 <li class='nav-item'>
-                    <a href="" class='nav-link'>EXPLORE</a>
+                    <a href="" class='nav-link'>Explore</a>
                 </li>
                 <li class='nav-item'>
-                    <a href="" class='nav-link'>ABOUT</a>
+                    <a href="" class='nav-link'>About</a>
                 </li>
             </ul>
+            <ul class="navbar-nav">
+                <% if(isAuthenticated){ %>
+                    <a class="nav-link" href="/logout">Logout</a>
+                <% } %> 
+                <% if(!isAuthenticated){ %>
+                    <li class='nav-item'>
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                    <li class='nav-item'></li>
+                        <a class="nav-link" href="/signup">Signup</a>
+                    </li>
+                <% } %> 
+            </ul>
         </div>
-        <div class="text-right d-none d-lg-block">
-            <button id="btn-login" type="button" class="btn  p-1 mx-1">LOGIN</button>
-            <button id="btn-signup" type="button" class="btn p-1 mx-1">SIGN UP</button>
-        </div>
+
     </nav>
 
     <section class="container-fluid">
-
-        <div class="row mt-3">
-            <section class="col d-flex justify-content-end">
-                <span><a class="btn btn-warning me-2" href="/playgrounds/<%= playground._id %>/edit">Update</a></span>
-                <form style="display: inline;" action="/playgrounds/<%= playground._id %>?_method=delete" method="post">
-                    <input type="hidden" name="_csrf" value="<%= csrftoken %>">
-                    <button class="btn btn-danger">Delete</button>
-                </form>
-            </section>
-        </div>
-
         <div class="row">
             <h1 class="gx-5 col" id="pgName"><%= playground.name %>
-                <span class="rating-fixed">
+                <div class="rating-fixed">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
                         class="bi bi-star-fill" viewBox="0 0 16 16">
                         <path
@@ -87,9 +86,18 @@
                         <path
                             d="M5.354 5.119 7.538.792A.516.516 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.537.537 0 0 1 16 6.32a.548.548 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.52.52 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.58.58 0 0 1 .085-.302.513.513 0 0 1 .37-.245l4.898-.696zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.565.565 0 0 1 .162-.505l2.907-2.77-4.052-.576a.525.525 0 0 1-.393-.288L8.001 2.223 8 2.226v9.8z" />
                     </svg>
-                </span>
-            </h1>
+                </div>
+                <div class="flex d-inline">
+                    <% if(isAuthenticated){ %>
+                        <span><a class="btn btn-warning me-2" href="/playgrounds/<%= playground._id %>/edit">Update</a></span>
+                        <form style="display: inline;" action="/playgrounds/<%= playground._id %>?_method=delete" method="post">
+                            <input type="hidden" name="_csrf" value="<%= csrftoken %>">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    <% } %>                    
+                </div>
 
+            </h1>
             <div class="gx-5">
                 <span class="tag"> <%= playground.type %>  </span>
                 <span class="tag"> public </span>
@@ -174,6 +182,7 @@
                 <div class="row">
                     <div class="col">
                         <h2 id="event-header">UPCOMING EVENTS</h2>
+                        <% if(isAuthenticated){ %>
                         <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus"
                             data-bs-content="Add an Event">
                             <!-- Button trigger modal -->
@@ -187,6 +196,7 @@
                                     </svg> </a>
                             </span>
                         </span>
+                        <% } %> 
                         <!-- Modal -->
                         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -253,6 +263,7 @@
                     <div class="gx-5 col order-md-1">
 
                         <h2 id="lostfound-header">LOST & FOUND</h2>
+                        <% if(isAuthenticated){ %>
                         <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus"
                             data-bs-content="Did you loose/find something?">
 
@@ -265,7 +276,7 @@
                                         d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                                 </svg> </a>
                         </span>
-
+                        <% } %> 
                         <table id="lostitems" class="table">
                             <thead>
                                 <tr>

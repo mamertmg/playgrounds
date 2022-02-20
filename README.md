@@ -18,8 +18,6 @@ This branch contains the following aspects:
 - Setup for querying playground database from client side with filters and displaying the result on a map.
 - Users, Playgrounds, Reviews and Ratings model
 - Authorization middleware for routes protection
-
-## New
 - Page to display information about a single playground now uses the datail page design from the detailPage branch.
 - "Playgrounds" page now lists all playgrounds
 - Updated playground model and added event model
@@ -27,7 +25,14 @@ This branch contains the following aspects:
 - CRD for event data
 - Server-side validation for playground and event data
 
+## New
+
+- CRUD for Reviews
+- Update of EJS views (you need to log in before vieweing/updating or deleting playgrounds, events, lost&found)
+- Initiate profile user page
+
 ## Usage
+
 First install [Node.js](http://nodejs.org/) and [MongoDB](https://docs.mongodb.com/manual/installation/). Then download this repository and from its root execute the command
 
     $ npm install
