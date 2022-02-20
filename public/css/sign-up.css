@@ -1,0 +1,72 @@
+h1, h2, h3, h4, h5 {
+
+    font-family: Montserrat, sans-serif;
+    color: #074266;
+    display: inline-block;
+}
+
+
+*, ::before, ::after {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+
+h1 {
+    padding-top: 30px;
+}
+
+body {
+    background: #fffaf4;
+}
+
+.form-group > input:focus{
+    background-color: #84bdeb;
+}
+
+input:focus~label{
+    color:red;
+}
+
+.form-group > label{
+    pointer-events: none;
+    font-size: 16px;
+
+    color: #074266 ; 
+}
+
+
+.card-body {
+    min-width: fit-content;
+    min-height: fit-content;
+    border-radius: 10px;
+    border: 2px solid #ffb908a9;
+}
+
+.card-text {
+    line-height: 1.5rem;
+    font-family: Montserrat, sans-serif;
+}
+
+.card {
+    border: none;
+    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.03)
+}
+
+
+p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+p>a:hover{
+    transition: ease 2s;
+    color: green;
+    font-size: 22px;
+    margin: 4px;
+}
+
