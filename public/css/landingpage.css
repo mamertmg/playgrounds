@@ -36,8 +36,13 @@
   body {
     margin: 0;
     padding: 0;
-    background-color: rgb(64, 211, 31);
+    background-color: white;
     color: white;
+  }
+
+  .container{
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
   }
   
   #acountIcon {

@@ -5,7 +5,9 @@
             <img class="card-img-top rounded mx-auto d-block mt-3" style="max-height: 500px; max-width: 600px;" src="https://images.unsplash.com/photo-1589918258765-428da706ddd6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="card-img-top" alt="">
             <div class="card-body d-flex justify-content-between">
               <h5 class="card-title" style="display:inline;">Playgrounds in Düsseldorf </h5>
+              <% if(isAuthenticated){ %>
               <a class="btn btn-success" href="/playgrounds/new">+</a>
+              <% } %> 
             </div>
             <ul class="list-group list-group-flush">
               <% for(let playground of playgrounds) { %> 
@@ -13,11 +15,13 @@
                 <a href="/playgrounds/<%= playground._id %>"><%= playground.name %></a>
                 <span>
                   <span>
+                    <% if(isAuthenticated){ %>
                     <a class="btn btn-info" href="/playgrounds/<%= playground._id %>/edit">Update</a></span>
                     <form style="display: inline;" action="/playgrounds/<%= playground._id %>?_method=delete" method="post">
                       <input type="hidden" name="_csrf" value="<%= csrftoken %>">
                       <button class="btn btn-danger" onclick="console.log(isAuthenticated);">Delete</button>
                     </form>
+                    <% } %> 
                 </span>
               </li>
               <% } %> 
