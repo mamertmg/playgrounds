@@ -1,6 +1,6 @@
-//top navbar turn white on scroll, bottom nabar disappears at bottom
+//top navbar turn white on scroll, bottom nabar disappears when reaching bottom
 
-const navTop = document.querySelector("nav");
+const navTop = document.querySelector(".fixed-top");
 const sectionOne = document.querySelector(".top-container");
 
 const sectionOneOptions = {
@@ -58,7 +58,7 @@ let autocomplete;
 
 function initAutocomplete() {
 
-    autocomplete = new google.maps.places.Autocomplete(document.querySelector("#autocomplete"),
+    autocomplete = new google.maps.places.Autocomplete(document.querySelector(".autocomplete"),
         {
             componentRestrictions: { 'country': ['de'] },
             fields: ['geometry', 'name', 'place_id'],
@@ -69,7 +69,7 @@ function initAutocomplete() {
 
 }
 
-// autocompleted address for backend
+// pass autocompleted address as value
 let addressQuery;
 function onPlaceChanged() {
     let place = autocomplete.getPlace();
@@ -78,22 +78,13 @@ function onPlaceChanged() {
     }
     else {
         let addressQuery = place.name;
+        console.log(addressQuery)
     }
+
 }
 
-// Swiper
 
-const swiper = new Swiper('.mySwiper', {
-    // Optional parameters
-    direction: 'horizontal',
-    slidesPerView: "auto",
-    spaceBetween: 30,
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-    },
-});
-
+//get Location from browser
 
 function getLocation() {
     if (navigator.geolocation) {
@@ -122,12 +113,31 @@ function getLocation() {
     }
 }
 
-document.onscroll = function () {
-    if (window.innerHeight + window.scrollY > document.body.clientHeight) {
-        document.getElementById('nav-bottom-mobile').style.display = 'none';
-    } else {
-        document.getElementById('nav-bottom-mobile').style.display = 'block';
-    }
-}
+
+
+
+// Swiper
+
+const swiper = new Swiper('.mySwiper', {
+    // Optional parameters
+    direction: 'horizontal',
+    slidesPerView: "auto",
+    spaceBetween: 30,
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+});
+
+//dropdown checkbox
+
+document.querySelector(".checkbox-menu").addEventListener("change", "input[type='checkbox']", function () {
+    document.querySelector(this).closest("li").classList.toggle("active", this.checked);
+});
+
+document.querySelector(document).addEventListener('click', '.allow-focus', function (e) {
+    e.stopPropagation();
+});
+
 
 

@@ -39,20 +39,116 @@
     </svg>
 
     <main>
-        <div class="top-container">
+        <div class="top-container container">
+
+            <!-- nav for mobile view -->
             <nav class="navbar fixed-top navbar-light">
 
-                <div class="mx-auto d-md-none d-lg-none d-xl-none">
-                    <button type="button" class="btn btn-light btn-md rounded-pill text-muted" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal">
-                        Looking for playgrounds in Duesseldorf? </button>
+                <div class=" mx-auto d-md-none d-lg-none d-xl-none">
+                    <button type="button" class="btn btn-light btn-md rounded-pill text-muted px-5"
+                        data-bs-toggle="modal" data-bs-target="#searchBoxModal">
+                        Find playgrounds now </button>
                 </div>
+
 
             </nav>
 
-        </div>
 
-        <div class="modal d-md-none d-lg-none d-xl-none" id="exampleModal" aria-labelledby="exampleModalLabel"
+        </div>
+        <!-- nav for tablet and laptop -->
+
+        <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light d-none d-md-block d-lg-block d-xl-block">
+            <div class="d-grid">
+                <div class="row">
+                    <div class="navbar col-2 d-flex justify-content-center">
+                        <ul class="navbar-nav ">
+                            <li class="nav-item">
+                                <a class="navbar-brand" href="#"><img src="../public/images/playground.png" alt="logo"
+                                        height="40" loading="lazy"></a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div class="col-6 my-2 d-flex justify-content-center">
+
+                        <form action="">
+
+                            <div class="input-group">
+                                <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        type
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu checkbox-menu allow-focus" aria-labelledby="dropdownMenu1">
+
+                                        <li>
+                                            <label>
+                                                <input type="checkbox"> Skaters
+                                            </label>
+                                        </li>
+
+                                        <li>
+                                            <label>
+                                                <input type="checkbox"> Kids
+                                            </label>
+                                        </li>
+
+                                        <li>
+                                            <label>
+                                                <input type="checkbox"> Kickers
+                                            </label>
+                                        </li>
+
+                                        <li>
+                                            <label>
+                                                <input type="checkbox"> Others
+                                            </label>
+                                        </li>
+
+                                    </ul>
+                                </div>
+
+
+
+
+                                <input type="text" class="form-control rounded-pill autocomplete"
+                                    id="searchaddress-tablet-laptop" placeholder="Enter address" />
+
+                                <label class="visually-hidden" for="searchaddress-tablet-laptop">Enter address</label>
+
+
+
+                                <button type="submit" class="btn btn-danger btn-sm rounded-circle"><i
+                                        class="fas fa-lg fa-search"></i></button>
+
+                            </div>
+                        </form>
+
+                    </div>
+
+                    <div class="navbar col-4 d-flex justify-content-center">
+
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Add new playground</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"> <i class="far fa-lg fa-user-circle"></i> </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </nav>
+
+        <div class="modal d-md-none d-lg-none d-xl-none" id="searchBoxModal" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-fullscreen-md-down ">
                 <div class="modal-content">
@@ -64,8 +160,8 @@
 
                             <i class="fa fa-md fa-map-marker" aria-hidden="true" onclick='getLocation()'></i>
                             <label for="autocomplete" class="form-label col-1"></label>
-                            <input class="modal-title col-10 border-0" id="autocomplete" placeholder="Enter address"
-                                type="search">
+                            <input class="modal-title col-10 border-0 autocomplete" id="autocomplete"
+                                placeholder="Enter address" type="search">
 
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
@@ -138,16 +234,10 @@
                 </div>
 
             </div>
-
-
-
         </div>
 
-
-
-
-        <nav class="navbar fixed-bottom navbar-light bg-light d-lg-none d-xl-none">
-            <div class="container-fluid">
+        <nav class="navbar fixed-bottom navbar-light bg-light d-md-none d-lg-none d-xl-none">
+            <div class="container">
                 <ul class="navbar-nav mx-auto my-0 d-flex flex-row">
                     <li class="nav-item text-center mx-2">
                         <a class="nav-link" href="#">
@@ -227,49 +317,24 @@
             </nav> -->
 
 
-        <div class="d-lg-none d-xl-none bg-image">
-            <img src="../public/images/wilbur-wong-w6n_GLhIzG4-unsplash-small.jpg" class="img-fluid"
-                alt="Responsive image">
-
-            <div
-                class="d-flex justify-content-center align-items-center position-absolute bottom-0 start-50 translate-middle-x text-white">
-                <div class="text-white text-center mb-5 pb-5">
-                    <h2>Planning the next activities with your kid?</h2>
-                    <a class="btn btn-light btn-md rounded-pill" href="#events" role="button">
-                        Get inspired
-                    </a>
-                </div>
+        <div class="bg-image d-flex justify-content-center align-items-end">
 
 
+
+            <div class="text-white text-center pb-5 mb-5">
+                <h2>Planning the next activities with your kid?</h2>
+
+                <a class="btn btn-light btn-md rounded-pill" href="#events" role="button">
+                    Get inspired
+                </a>
 
             </div>
+
+
+
         </div>
 
 
-
-
-
-
-
-        <!-- <div class="d-flex justify-content-center align-items-center h-100">
-            <div class="text-white">
-                <h1 class="mb-3">New parent in
-                    Duesseldorf?</h1>
-
-                <a class="btn btn-outline-light btn-lg" href="#!" role="button">Explore
-                    playgrounds</a>
-            </div>
-        </div>
-        </div> -->
-
-
-        <!-- <h1 class="position-absolute bottom-50 start-50 translate-middle-x text-white">New parent in
-            Duesseldorf?
-        </h1>
-        <p class="lead">
-            <button class="btn-light border-1 rounded-pill">Explore
-                playgrounds</button>
-        </p> -->
 
         <div class="mb-5 pb-2" id="events"></div>
 
@@ -526,6 +591,10 @@
 
 
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+
 
     <script src="../public/app.js"></script>
 
@@ -543,9 +612,6 @@
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
         integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
         crossorigin="anonymous"></script>
 
 
