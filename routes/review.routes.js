@@ -5,9 +5,7 @@ const {ensureAuthenticated} = require('../middlewares/authorization');
 const {isAuthor} = require('../middlewares/isAuthor');
 const asyncWrapper = require('../utils/asyncWrapper')
 
-router.get('/',ensureAuthenticated, asyncWrapper(reviews.getAllReviews))
-
-router.post('/', ensureAuthenticated, isAuthor, asyncWrapper(reviews.createReview))
+router.post('/', ensureAuthenticated, asyncWrapper(reviews.createReview))
 
 router.delete('/:reviewId', ensureAuthenticated, isAuthor, asyncWrapper(reviews.deleteReview))
 

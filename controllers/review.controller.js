@@ -28,9 +28,3 @@ module.exports.updateReview = async (req, res) => {
     req.flash('success', 'Updated review!');
     res.redirect(`/playgrounds/${id}/reviews/${review._id}`);
 }
-
-module.exports.getAllReviews = async(req,res) => {
-    const { id } = req.params;
-    const playground = await Playground.findById(id);
-    res.render(`playgrounds/${id}/reviews/`, {playground});
-}
