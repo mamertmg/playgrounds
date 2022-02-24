@@ -12,6 +12,11 @@ function getSignup (req, res) {
     res.render('user/signup');
 };
 
+// Get Profile Page
+function getProfile(req,res){
+    res.render('user/profile')
+}
+
 // Sign up
 function signup (req,res) {
     const { name, email, password, password2 } = req.body;
@@ -108,5 +113,6 @@ module.exports = {
     getSignup: getSignup,
     signup: signup,
     login: login,
-    logout: logout
+    logout: logout,
+    getProfile: getProfile
 };

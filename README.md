@@ -22,12 +22,16 @@ This branch contains the following aspects:
 - Server-side validation for playground and event data
 - Page to display information about a single playground now uses the datail page design from the detailPage branch.
 - "Playgrounds" page now lists all playgrounds
+- CRUD for Reviews
+- Update of EJS views (you need to log in before vieweing/updating or deleting playgrounds, events, lost&found)
+- Initiate profile user page
 
 ## New
-- small demo for event CRUD on the detailpage
-- implemented and or improved CRUD for event and lost&found
+- Small demo for event CRUD on the detailpage
+- Implemented and or improved CRUD for event and lost&found
 
 ## Usage
+
 First install [Node.js](http://nodejs.org/) and [MongoDB](https://docs.mongodb.com/manual/installation/). Then download this repository and from its root execute the command
 
     $ npm install
