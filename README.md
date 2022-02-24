@@ -16,16 +16,16 @@ This branch contains the following aspects:
 - Error handler and not found middleware for status code 404 and 500
 - Script for fetching and saving playground data in Düsseldorf in MongoDB
 - Setup for querying playground database from client side with filters and displaying the result on a map.
-- Users, Playgrounds, Reviews and Ratings model
+- Users, Playgrounds, Events, Reviews and Ratings model
 - Authorization middleware for routes protection
-
-## New
+- CRUD for playground data
+- Server-side validation for playground and event data
 - Page to display information about a single playground now uses the datail page design from the detailPage branch.
 - "Playgrounds" page now lists all playgrounds
-- Updated playground model and added event model
-- CRUD for playground data
-- CRD for event data
-- Server-side validation for playground and event data
+
+## New
+- small demo for event CRUD on the detailpage
+- implemented and or improved CRUD for event and lost&found
 
 ## Usage
 First install [Node.js](http://nodejs.org/) and [MongoDB](https://docs.mongodb.com/manual/installation/). Then download this repository and from its root execute the command

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Event = require('./event.model');
+const LostFound = require('./lostfound.model');
 const Review = require("./review.model")
 
 
@@ -46,6 +47,12 @@ const playgroundSchema = new Schema({
             required: true,
         },
     },
+    lost_found: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'LostFound',
+        },
+    ],
     rating:[
         {
             type: Schema.Types.ObjectId,
@@ -97,9 +104,12 @@ playgroundSchema.statics.findByLocAndLabel = function (
         .exec(cb);
 };
 
+// Delete associated lists of documents if a playground is deleted.
 playgroundSchema.post('findOneAndDelete', async function (playground) {
     if (playground) {
         await Event.deleteMany({ _id: { $in: playground.events } });
+        await LostFound.deleteMany({ _id: { $in: playground.lost_found } });
+        await Review.deleteMany({ _id: { $in: playground.reviews } });
     }
 });
 

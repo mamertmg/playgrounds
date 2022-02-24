@@ -1,5 +1,9 @@
 const express = require('express');
 const Playground = require('../models/playground.model');
+const Event = require('../models/event.model');
+const LostFound = require('../models/lostfound.model');
+const AppError = require('../utils/AppError');
+const asyncWrapper = require('../utils/asyncWrapper');
 const { isLatitude, isLongitude } = require('../utils/validation');
 
 const router = express.Router();
@@ -65,5 +69,29 @@ router.get('/playgrounds', async (req, res, next) => {
         }
     }
 });
+
+router.get(
+    '/events',
+    asyncWrapper(async (req, res) => {
+        const { id } = req.query;
+        if (!id) {
+            return res.status(400).send('Invalid event ID');
+        }
+        const event = await Event.findById(id);
+        res.send(event);
+    })
+);
+
+router.get(
+    '/lost-found',
+    asyncWrapper(async (req, res) => {
+        const { id } = req.query;
+        if (!id) {
+            return res.status(400).send('Invalid lost and found ID');
+        }
+        const post = await LostFound.findById(id);
+        res.send(post);
+    })
+);
 
 module.exports = router;
