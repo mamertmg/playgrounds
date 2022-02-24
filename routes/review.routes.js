@@ -7,6 +7,6 @@ const asyncWrapper = require('../utils/asyncWrapper')
 
 router.post('/', ensureAuthenticated, asyncWrapper(reviews.createReview))
 
-router.delete('/:reviewId', ensureAuthenticated, isAuthor, asyncWrapper(reviews.deleteReview))
+router.delete('/:reviewId', ensureAuthenticated, asyncWrapper(reviews.deleteReview))
 
 module.exports = router;

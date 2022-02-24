@@ -28,7 +28,7 @@ This branch contains the following aspects:
 
 ## New
 - Small demo for event CRUD on the detailpage
-- Implemented and or improved CRUD for event and lost&found
+- Implemented and/or improved CRUD for event and lost&found
 
 ## Usage
 

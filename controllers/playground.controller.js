@@ -60,7 +60,7 @@ module.exports.createPlayground = async (req, res) => {
 module.exports.showPlayground = async (req, res) => {
     const { id } = req.params;
     const { eventId } = req.query;
-    const playground = await Playground.findById(id).populate('events');
+    const playground = await Playground.findById(id).populate('events').populate('reviews');
     if (!playground) {
         req.flash('failure', 'Could not find playground.');
         return res.redirect('/');
