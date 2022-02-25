@@ -33,9 +33,15 @@
             <input class="form-control" type="number" name="playground[lng]" id="lng" min="-180" max="180" step="any" value="<%= actionType === 'Edit' ? playground.location.coordinates[0] : "" %>">
         </div>
     </div>
-    <div class="mb-3">
-        <label for="age" class="form-label">Age group</label>
-        <input type="text" class="form-control" id="age" name="playground[age_group]" value="<%= actionType === 'Edit' ? playground.age_group : "" %>">
+    <div class="mb-3 row">
+        <div class="col">
+            <label for="minAge" class="form-label">Min. Age</label>
+            <input type="number" class="form-control" id="minAge" name="playground[min_age]" min="0" max="16" value="<%= actionType === 'Edit' ? playground.min_age : "" %>">
+        </div>
+        <div class="col">
+            <label for="maxAge" class="form-label">Max. Age</label>
+            <input type="number" class="form-control" id="maxAge" name="playground[max_age]" min="0" max="100" value="<%= actionType === 'Edit' ? playground.max_age : "" %>">
+        </div>
     </div>
     <div class="mb-3">
         <label for="equipment" class="form-label">Equipment</label>

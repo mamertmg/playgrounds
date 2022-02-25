@@ -45,6 +45,7 @@ const footer = document.querySelector('#eFooter');
 const eventModalBtns = document.querySelectorAll('button.eventBtn');
 const deleteEventForm = document.querySelector('#deleteEvent');
 
+// define behaviour of each "show event details" button for each event
 for (button of eventModalBtns) {
     button.addEventListener('click', (event) => {
         eventModal.show();

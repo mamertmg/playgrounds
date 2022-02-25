@@ -85,11 +85,10 @@ module.exports.updatePlayground = async (req, res) => {
 
 module.exports.deletePlayground = async (req, res) => {
     const { id } = req.params;
-    const playground = await Playground.findById(id);
+    const playground = await Playground.findByIdAndDelete(id);
     if (!playground) {
         req.flash('failure', 'Could not find playground.');
         return res.redirect('/');
     }
-    await playground.deleteOne();
     res.redirect('/');
 };

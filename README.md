@@ -29,6 +29,7 @@ This branch contains the following aspects:
 ## New
 - Small demo for event CRUD on the detailpage
 - Implemented and/or improved CRUD for event and lost&found
+- Modified playground model: new suburb field + age_group is now min_age and max_age.
 
 ## Usage
 

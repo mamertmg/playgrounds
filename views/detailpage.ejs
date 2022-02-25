@@ -109,7 +109,7 @@
 
                 <div class="card-body">
 
-                    <h3 class="card-title"><%= playground.address %> </h3><a class="link l-20"
+                    <h3 class="card-title"><%= playground.suburb %>, Düsseldorf</h3><a class="link l-20"
                         href="">show
                         on map</a>
                     <p>
@@ -120,7 +120,7 @@
                     </p>
                     <div class="collapse" id="infocard-collapse">
 
-                        <p class="card-text"> <b>Age group:</b> <%= playground.age_group %> </p>
+                        <p class="card-text"> <b>Age group:</b> <%= playground.min_age === 16 ? "16+" : `${playground.min_age} - ${playground.max_age}` %> </p>
                         <p class="card-text"> <b>Description:</b> <%= playground.description %> </p>
                         <p class="card-text"> <b>Equipment:</b> <%= playground.equipment %></p>
                     </div>
