@@ -113,7 +113,6 @@ playgroundSchema.statics.findByLocAndLabel = function (
 
 // Delete associated lists of documents if a playground is deleted.
 playgroundSchema.post('findOneAndDelete', async function (playground) {
-    console.log(playground);
     if (playground) {
         await Event.deleteMany({ _id: { $in: playground.events } });
         await LostFound.deleteMany({ _id: { $in: playground.lost_found } });

@@ -89,7 +89,7 @@ axios
                         location,
                     };
                     data.push(playground);
-                    console.log(data.length, suburb, min_age, max_age);
+                    console.log(data.length, suburb);
                 })
                 .catch((err) => console.log(err));
         }
