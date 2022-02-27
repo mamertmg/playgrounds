@@ -197,9 +197,9 @@ body {
     display: block;
 }
 
-#eventForm {
+/* #eventForm {
     padding: 10px 50px 10px 50px;
-}
+} */
 
 .form-check-label {
     font-family: Montserrat, sans-serif;
@@ -211,15 +211,25 @@ body {
 
 .link {
     text-decoration: none;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .link:hover {
 
-    text-decoration: underline;
+    text-decoration: none;
     background-color: #f8f8f8;
 }
 
+#theDate:hover, .heading:hover {
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+#infoCircle:hover {
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+}
 
 .day {
     font-family: Montserrat, sans-serif;
@@ -235,7 +245,7 @@ body {
 
 
 .time, .location {
-    line-height: 1rem;
+    line-height: 1.2rem;
     color: #07426694;
 
 }
@@ -244,9 +254,14 @@ body {
 li {
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding: 10px;
 }
 
 hr {
     border-top: 1px solid #0742664b;
+}
+
+#eventThumbnail {
+    height: 80px;
+    width: 80px;
 }

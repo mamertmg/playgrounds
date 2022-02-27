@@ -40,12 +40,12 @@ submitMessage.style.display = 'none';
 const targetDiv = document.getElementById("eventForm");
 targetDiv.style.display = 'block';
 const btnSubmit = document.getElementById("btnSubmit");
-btnSubmit.onclick = function () {
-  targetDiv.style.display = 'none';
-  btnSubmit.style.display = 'none';
-  submitMessage.style.display = 'inline-block';
+// btnSubmit.onclick = function () {
+//   targetDiv.style.display = 'none';
+//   btnSubmit.style.display = 'none';
+//   submitMessage.style.display = 'inline-block';
 
-};
+// };
 
 const btnClose1 = document.getElementById("btnClose1");
 btnClose1.onclick = function () {
