@@ -59,12 +59,18 @@ module.exports.createPlayground = async (req, res) => {
 
 module.exports.showPlayground = async (req, res) => {
     const { id } = req.params;
-    const playground = await Playground.findById(id).populate('events');
+    const { eventId } = req.query;
+    const playground = await Playground.findById(id).populate('events').populate('reviews');
     if (!playground) {
         req.flash('failure', 'Could not find playground.');
         return res.redirect('/');
     }
-    res.render('detailpage', { playground });
+
+    // TODO: additional check if eventID valid?
+    if(!eventId) {
+        return res.render('detailpage', { playground, eventDetailId: '' });
+    }
+    res.render('detailpage', { playground, eventDetailId: eventId });
 };
 
 module.exports.updatePlayground = async (req, res) => {
@@ -79,11 +85,10 @@ module.exports.updatePlayground = async (req, res) => {
 
 module.exports.deletePlayground = async (req, res) => {
     const { id } = req.params;
-    const playground = await Playground.findById(id);
+    const playground = await Playground.findByIdAndDelete(id);
     if (!playground) {
         req.flash('failure', 'Could not find playground.');
         return res.redirect('/');
     }
-    await playground.deleteOne();
     res.redirect('/');
 };

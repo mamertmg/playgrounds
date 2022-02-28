@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const eventSchema = new Schema({
+const lostFoundSchema = new Schema({
     playground_id: {
         type: Schema.Types.ObjectId,
         ref: 'Playground',
@@ -9,7 +9,7 @@ const eventSchema = new Schema({
     },
     status: {
         type: Number,
-        required: true
+        required: true,
     },
     date: {
         type: Date,
@@ -23,11 +23,9 @@ const eventSchema = new Schema({
         type: String,
         required: true,
     },
-    image: {
+    contact: {
         type: String,
-    },
-    link: {
-        type: String,
+        required: true,
     },
     user_id: {
         type: Schema.Types.ObjectId,
@@ -35,6 +33,6 @@ const eventSchema = new Schema({
     },
 });
 
-const Event = mongoose.model('Event', eventSchema);
+const LostFound = mongoose.model('LostFound', lostFoundSchema);
 
-module.exports = Event;
+module.exports = LostFound;

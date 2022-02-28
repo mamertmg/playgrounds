@@ -16,20 +16,20 @@ This branch contains the following aspects:
 - Error handler and not found middleware for status code 404 and 500
 - Script for fetching and saving playground data in Düsseldorf in MongoDB
 - Setup for querying playground database from client side with filters and displaying the result on a map.
-- Users, Playgrounds, Reviews and Ratings model
+- Users, Playgrounds, Events, Reviews and Ratings model
 - Authorization middleware for routes protection
+- CRUD for playground data
+- Server-side validation for playground and event data
 - Page to display information about a single playground now uses the datail page design from the detailPage branch.
 - "Playgrounds" page now lists all playgrounds
-- Updated playground model and added event model
-- CRUD for playground data
-- CRD for event data
-- Server-side validation for playground and event data
-
-## New
-
 - CRUD for Reviews
 - Update of EJS views (you need to log in before vieweing/updating or deleting playgrounds, events, lost&found)
 - Initiate profile user page
+
+## New
+- Small demo for event CRUD on the detailpage
+- Implemented and/or improved CRUD for event and lost&found
+- Modified playground model: new suburb field + age_group is now min_age and max_age.
 
 ## Usage
 

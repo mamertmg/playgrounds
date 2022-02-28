@@ -7,7 +7,8 @@ module.exports.playgroundSchema = Joi.object({
         type: Joi.string().required(),
         lat: Joi.number().min(-90.0).max(90.0),
         lng: Joi.number().min(-180.0).max(180.0),
-        age_group: Joi.string().allow(''),
+        min_age: Joi.number().min(0).max(16).required(),
+        max_age: Joi.number().min(0).max(100).required(),
         description: Joi.string().allow(''),
         equipment: Joi.string().allow(''),
     }).required(),
@@ -16,10 +17,22 @@ module.exports.playgroundSchema = Joi.object({
 
 module.exports.eventSchema = Joi.object({
     event: Joi.object({
-        name: Joi.string().required(),
+        title: Joi.string().required(),
         date: Joi.date().required(),
         time: Joi.string().regex(/^([0-9]{2})\:([0-9]{2})$/).required(),
-        info_link: Joi.string().required(),
+        image: Joi.string().allow(''),
+        description: Joi.string().allow(''),
+        link: Joi.string().allow(''),
+    }).required(),
+    _csrf: Joi.string(),
+});
+
+module.exports.lostFoundSchema = Joi.object({
+    event: Joi.object({
+        title: Joi.string().required(),
+        date: Joi.date().required(),
+        description: Joi.string().required(),
+        contact: Joi.string().required(),
     }).required(),
     _csrf: Joi.string(),
 });

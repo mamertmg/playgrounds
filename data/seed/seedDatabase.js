@@ -10,7 +10,14 @@ db.once('open', () => {
     console.log('Database connected');
 });
 
-const ageGroupTxt = ['0-16+', '0-12', '10-14'];
+const genAge = function (minAge = -1) {
+    while (true) {
+        let n = Math.floor(Math.random() * 17);
+        if (n > minAge) {
+            return n;
+        }
+    }
+};
 const descriptionTxt = [
     'Fenced, in a park, benches, shaded, nearby parking possible',
     'Forest area, shaded, nearby parking possible',
@@ -28,7 +35,7 @@ axios
     .get(
         'https://opendata.duesseldorf.de/sites/default/files/Spielpl%C3%A4tze%20mit%20Notfallnummern%20WGS84.geojson'
     )
-    .then((res) => {
+    .then(async (res) => {
         const response = res.data.features;
         const data = [];
         for (let i = 0; i < response.length; i++) {
@@ -47,8 +54,8 @@ axios
             if (typeSplit.length > 1) {
                 objektart = typeSplit[1];
             }
-            const age_group =
-                ageGroupTxt[Math.floor(Math.random() * ageGroupTxt.length)];
+            const min_age = genAge();
+            const max_age = min_age === 16 ? 100 : genAge(min_age);
             const description =
                 descriptionTxt[
                     Math.floor(Math.random() * descriptionTxt.length)
@@ -57,16 +64,34 @@ axios
                 equipmentTxt[Math.floor(Math.random() * equipmentTxt.length)];
 
             const location = response[i].geometry;
-            const playground = {
-                name: objektbezeichnung,
-                address: strasse_hausnr,
-                type: objektart,
-                age_group,
-                description,
-                equipment,
-                location,
-            };
-            data.push(playground);
+            const lat = location.coordinates[1];
+            const lng = location.coordinates[0];
+
+            // get suburb from coordinates
+            await axios
+                .get(
+                    `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json&limit=1`
+                )
+                .then((response) => {
+                    const suburb =
+                        objektbezeichnung === 'BUEDERICHER STR., Bolzpl.'
+                            ? 'Lörick'
+                            : response.data.address.suburb;
+                    const playground = {
+                        name: objektbezeichnung,
+                        address: strasse_hausnr,
+                        suburb,
+                        type: objektart,
+                        min_age,
+                        max_age,
+                        description,
+                        equipment,
+                        location,
+                    };
+                    data.push(playground);
+                    console.log(data.length, suburb);
+                })
+                .catch((err) => console.log(err));
         }
 
         Playground.insertMany(data)

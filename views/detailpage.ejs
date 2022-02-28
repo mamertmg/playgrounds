@@ -109,7 +109,7 @@
 
                 <div class="card-body">
 
-                    <h3 class="card-title"><%= playground.address %> </h3><a class="link l-20"
+                    <h3 class="card-title"><%= playground.suburb %>, Düsseldorf</h3><a class="link l-20"
                         href="">show
                         on map</a>
                     <p>
@@ -120,7 +120,7 @@
                     </p>
                     <div class="collapse" id="infocard-collapse">
 
-                        <p class="card-text"> <b>Age group:</b> <%= playground.age_group %> </p>
+                        <p class="card-text"> <b>Age group:</b> <%= playground.min_age === 16 ? "16+" : `${playground.min_age} - ${playground.max_age}` %> </p>
                         <p class="card-text"> <b>Description:</b> <%= playground.description %> </p>
                         <p class="card-text"> <b>Equipment:</b> <%= playground.equipment %></p>
                     </div>
@@ -197,6 +197,31 @@
                             </span>
                         </span>
                         <% } %> 
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="eventModal" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="eventTitle" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="eTitle">Event</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p id="eDescr">Text</p>
+                                    </div>
+                                    <div id="eFooter" class="modal-footer">
+                                        <form id="deleteEvent" action="/playgrounds/<%= playground._id %>/event/" method="post">
+                                            <input type="hidden" name="_csrf" value="<%= csrftoken %>">
+                                            <button class="btn-sm btn-danger">Delete</button>
+                                        </form>
+                                        <button id="editEventBtn" type="button" class="btn btn-primary">Edit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Modal -->
                         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -212,10 +237,13 @@
                                             <input type="hidden" name="_csrf" value="<%= csrftoken %>">
                                             <input id="eventDate" type="date" name="event[date]" class="w-60  mt-2 p-2 br-10">
                                             <input id="eventTime" type="time" name="event[time]" class="w-45  mt-2 p-2 br-10">
-                                            <input id="eventName" type="text" name="event[name]" class="w-100 mt-2 p-2 br-10"
+                                            <input id="eventName" type="text" name="event[title]" class="w-100 mt-2 p-2 br-10"
                                                 placeholder="name of the event">
-                                            <input id="eventInfo" type="text" name="event[info_link]" class="w-100 mt-2 p-2 br-10"
-                                                placeholder="further information">
+                                            <textarea class="w-100 mt-2 p-2 br-10" name="event[description]" id="eventDescr" cols="40" rows="3"></textarea>
+                                            <input id="eventLink" type="text" name="event[link]" class="w-100 mt-2 p-2 br-10"
+                                                placeholder="link (optional)">
+                                            <input id="eventImg" type="text" name="event[image]" class="w-100 mt-2 p-2 br-10"
+                                                placeholder="image url">
                                         </form>
                                     </div>
                                     <div class="modal-footer">
@@ -242,13 +270,10 @@
                                 <% for(let event of playground.events) { %> 
                                 <tr>
                                     <td><%= event.date.toString().split(':', 2).join(':') %></td>
-                                    <td><%= event.name %> </td>
-                                    <td> <a href="<%= event.info_link %>"><%= event.info_link %></a></td>
-                                    <td>
-                                        <form action="/playgrounds/<%= playground._id %>/event/<%= event._id %>?_method=delete" method="post">
-                                            <input type="hidden" name="_csrf" value="<%= csrftoken %>">
-                                            <button class="btn-sm btn-danger eventBtn">X</button>
-                                        </form>
+                                    <td><%= event.title %> </td>
+                                    <td> <a href="<%= event.link %>"><%= event.link %></a></td>
+                                    <td data-id="<%= event.id %>">
+                                        <button <%= eventDetailId && event.id === eventDetailId? "data-id='show'" : '' %>  type="button" class="btn-sm btn-primary eventBtn">+</button>
                                     </td>
                                 </tr>
                                 <% } %>
@@ -471,12 +496,13 @@
 
     </section>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/javascript/detailpage.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>

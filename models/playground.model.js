@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Event = require('./event.model');
-const Review = require("./review.model")
-
+const LostFound = require('./lostfound.model');
+const Review = require('./review.model');
 
 const playgroundSchema = new Schema({
     name: {
@@ -10,14 +10,22 @@ const playgroundSchema = new Schema({
         require: true,
     },
     address: String,
+    suburb: {
+        type: String,
+        required: true,
+    },
     type: {
         type: String,
         require: true,
         default: 'Kinderspielplatz',
     },
-    age_group: {
-        type: String,
-        default: '',
+    min_age: {
+        type: Number,
+        required: true,
+    },
+    max_age: {
+        type: Number,
+        required: true,
     },
     description: {
         type: String,
@@ -46,18 +54,24 @@ const playgroundSchema = new Schema({
             required: true,
         },
     },
-    rating:[
+    lost_found: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'Rating'
-        }
+            ref: 'LostFound',
+        },
+    ],
+    rating: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Rating',
+        },
     ],
     reviews: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'Review'
-        }
-    ]
+            ref: 'Review',
+        },
+    ],
 });
 
 playgroundSchema.index({ location: '2dsphere' });
@@ -97,9 +111,12 @@ playgroundSchema.statics.findByLocAndLabel = function (
         .exec(cb);
 };
 
+// Delete associated lists of documents if a playground is deleted.
 playgroundSchema.post('findOneAndDelete', async function (playground) {
     if (playground) {
         await Event.deleteMany({ _id: { $in: playground.events } });
+        await LostFound.deleteMany({ _id: { $in: playground.lost_found } });
+        await Review.deleteMany({ _id: { $in: playground.reviews } });
     }
 });
 
