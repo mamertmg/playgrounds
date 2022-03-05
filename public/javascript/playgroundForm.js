@@ -17,7 +17,6 @@ function initAutocomplete() {
 }
 
 // pass autocompleted address as value
-let addressQuery;
 function onPlaceChanged() {
     let place = autocomplete.getPlace();
     if (!place.geometry) {
