@@ -18,18 +18,18 @@ This branch contains the following aspects:
 - Setup for querying playground database from client side with filters and displaying the result on a map.
 - Users, Playgrounds, Events, Reviews and Ratings model
 - Authorization middleware for routes protection
-- CRUD for playground data
-- Server-side validation for playground and event data
+- Server-side validation for playground, event, lost&found data
 - Page to display information about a single playground now uses the datail page design from the detailPage branch.
 - "Playgrounds" page now lists all playgrounds
-- CRUD for Reviews
+- CRUD for Playgrounds Reviews, Event, Lost&Found
 - Update of EJS views (you need to log in before vieweing/updating or deleting playgrounds, events, lost&found)
 - Initiate profile user page
 
 ## New
-- Small demo for event CRUD on the detailpage
-- Implemented and/or improved CRUD for event and lost&found
-- Modified playground model: new suburb field + age_group is now min_age and max_age.
+- Modified playground model: removed redundant fields, added labels
+- Each playground now has an address!!
+- Adjusted playground form to fit new model.
+- Fixed behaviour of InfoWindow on map.
 
 ## Usage
 

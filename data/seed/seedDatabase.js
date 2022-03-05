@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 const axios = require('axios');
 const Playground = require('../../models/playground.model');
 
+const { playgroundTypesEN } = require('../../utils/translation');
+const { playgroundLabels, playgroundEquipment } = require('../../utils/labels');
+
 mongoose.connect('mongodb://127.0.0.1:27017/playgrounds');
 
 const db = mongoose.connection;
@@ -9,6 +12,12 @@ db.on('error', console.error.bind(console, 'connection error'));
 db.once('open', () => {
     console.log('Database connected');
 });
+
+const descriptionTxt = [
+    'A wonderful playground in the city.',
+    'There are a lot of trees.',
+    '-',
+];
 
 const genAge = function (minAge = -1) {
     while (true) {
@@ -18,17 +27,17 @@ const genAge = function (minAge = -1) {
         }
     }
 };
-const descriptionTxt = [
-    'Fenced, in a park, benches, shaded, nearby parking possible',
-    'Forest area, shaded, nearby parking possible',
-    'Urban area, no free parking nearby',
-];
-const equipmentTxt = [
-    'Ropeway, table tennis table, football goals, climbing frame with slide, sand play area',
-    'Climbing frame with slide, sand play area',
-    'Ropeway, table tennis table, sand play area',
-    'Football goals, table tennis table',
-];
+
+function sampleDistinctNumbers(max, numSamples = 3) {
+    const result = [];
+    while (result.length < numSamples) {
+        const n = Math.floor(Math.random() * max);
+        if (!result.includes(n)) {
+            result.push(n);
+        }
+    }
+    return result;
+}
 
 // Fetch playground data and seed database.
 axios
@@ -60,12 +69,18 @@ axios
                 descriptionTxt[
                     Math.floor(Math.random() * descriptionTxt.length)
                 ];
-            const equipment =
-                equipmentTxt[Math.floor(Math.random() * equipmentTxt.length)];
 
             const location = response[i].geometry;
             const lat = location.coordinates[1];
             const lng = location.coordinates[0];
+
+            const labels = [];
+            for (let i of sampleDistinctNumbers(playgroundLabels.length)) {
+                labels.push(playgroundLabels[i]);
+            }
+            for (let i of sampleDistinctNumbers(playgroundEquipment.length)) {
+                labels.push(playgroundEquipment[i]);
+            }
 
             // get suburb from coordinates
             await axios
@@ -79,14 +94,17 @@ axios
                             : response.data.address.suburb;
                     const playground = {
                         name: objektbezeichnung,
-                        address: strasse_hausnr,
+                        address: strasse_hausnr
+                            ? strasse_hausnr
+                            : `${response.data.address.road} ${response.data.address.house_number}`,
                         suburb,
-                        type: objektart,
+                        city: 'Düsseldorf',
+                        type: playgroundTypesEN[objektart],
                         min_age,
                         max_age,
                         description,
-                        equipment,
                         location,
+                        labels,
                     };
                     data.push(playground);
                     console.log(data.length, suburb);

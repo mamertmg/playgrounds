@@ -1,22 +1,23 @@
-// map initialised in initMap()
+// Map and InfoWindow initialised in initMap()
 let map = null;
+let infowindow = null;
 
 // list for keeping track of all markers on map
 let markerList = [];
 
-const baseDBQuery = "http://localhost:3000/api/playgrounds?";
+const baseDBQuery = 'http://localhost:3000/api/playgrounds?';
 
 // DOM objects
-const searchInput = document.querySelector("#searchbox");
-const searchForm = document.querySelector("#searchForm");
-const labelSelect = document.querySelector("#labelselect");
-const limitInput = document.querySelector("#num-pg");
-const distInput = document.querySelector("#dist");
+const searchInput = document.querySelector('#searchbox');
+const searchForm = document.querySelector('#searchForm');
+const labelSelect = document.querySelector('#labelselect');
+const limitInput = document.querySelector('#num-pg');
+const distInput = document.querySelector('#dist');
 
-limitInput.setAttribute("min", 1);
-distInput.setAttribute("min", 1);
+limitInput.setAttribute('min', 1);
+distInput.setAttribute('min', 1);
 
-searchForm.addEventListener("submit", (event) => {
+searchForm.addEventListener('submit', (event) => {
     event.preventDefault();
     searchPlaygrounds();
 });
@@ -47,12 +48,12 @@ function searchPlaygrounds() {
                 console.log(e);
             });
     } else {
-        alert("Search field is empty!");
+        alert('Search field is empty!');
     }
 }
 
-searchInput.addEventListener("submit", () => {
-    console.log("Submit");
+searchInput.addEventListener('submit', () => {
+    console.log('Submit');
 });
 
 // Deletes all markers in the array by removing references to them.
@@ -87,7 +88,7 @@ function placeMarkers(markers, currCoordinates) {
                 map,
                 title: currMarker.name,
                 icon: {
-                    url: "/images/icons/playground-pixel.png",
+                    url: '/images/icons/playground-pixel.png',
                     scaledSize: new google.maps.Size(40, 40),
                 },
                 animation: google.maps.Animation.DROP,
@@ -101,11 +102,8 @@ function placeMarkers(markers, currCoordinates) {
             Type: ${currMarker.type}</p>
             <div><a href='http://localhost:3000/playgrounds/${currMarker._id}'>Details</a></div>`;
 
-            const infowindow = new google.maps.InfoWindow({
-                content: contentString,
-            });
-
-            marker.addListener("click", () => {
+            marker.addListener('click', () => {
+                infowindow.setContent(contentString);
                 infowindow.open(map, marker);
             });
 
@@ -116,21 +114,28 @@ function placeMarkers(markers, currCoordinates) {
 
 // initialises map
 async function initMap() {
-    map = new google.maps.Map(document.getElementById("map"), {
-        mapId: "546de97e85a128a6",
+    map = new google.maps.Map(document.getElementById('map'), {
+        mapId: '546de97e85a128a6',
         center: { lat: 51.22, lng: 6.77 },
         zoom: 15,
     });
 
+    infowindow = new google.maps.InfoWindow();
+
+    // click on map closes open InfoWindow
+    google.maps.event.addListener(map, "click", function(event) {
+        infowindow.close();
+    });
+
     // fetch all playgrounds
-    const response = await axios.get("http://localhost:3000/api/playgrounds");
+    const response = await axios.get('http://localhost:3000/api/playgrounds');
     // the data is an array of objects
     const markers = response.data;
     placeMarkers(markers, { lat: 51.22, lng: 6.77 });
 }
 
 // Given input, performs database query to fetch relevant data.
-function getPlaygrounds(lat, lng, label = "", limit = "", dist = "") {
+function getPlaygrounds(lat, lng, label = '', limit = '', dist = '') {
     deleteMarkers();
     map.setCenter({ lat, lng });
 
@@ -185,6 +190,6 @@ function getLocation() {
                 });
         });
     } else {
-        console.log("Geolocation is not supported by this browser.");
+        console.log('Geolocation is not supported by this browser.');
     }
 }

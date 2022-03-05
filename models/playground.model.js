@@ -3,6 +3,8 @@ const Schema = mongoose.Schema;
 const Event = require('./event.model');
 const LostFound = require('./lostfound.model');
 const Review = require('./review.model');
+const { playgroundTypesEN } = require('../utils/translation');
+const { playgroundLabels, playgroundEquipment } = require('../utils/labels');
 
 const playgroundSchema = new Schema({
     name: {
@@ -14,8 +16,13 @@ const playgroundSchema = new Schema({
         type: String,
         required: true,
     },
+    city: {
+        type: String,
+        required: true,
+    },
     type: {
         type: String,
+        enum: playgroundTypesEN,
         require: true,
         default: 'Kinderspielplatz',
     },
@@ -28,10 +35,6 @@ const playgroundSchema = new Schema({
         required: true,
     },
     description: {
-        type: String,
-        default: '',
-    },
-    equipment: {
         type: String,
         default: '',
     },
@@ -72,20 +75,26 @@ const playgroundSchema = new Schema({
             ref: 'Review',
         },
     ],
+    labels: [
+        {
+            type: String,
+            enum: [...playgroundLabels, ...playgroundEquipment],
+        },
+    ],
 });
 
-playgroundSchema.index({ location: '2dsphere' });
+playgroundSchema.index({ "location": '2dsphere' });
 
 playgroundSchema.statics.findByLocation = function (
     [lat, lng, dist, limit],
     cb
 ) {
     return this.find({
-        location: {
-            $near: {
-                $geometry: { type: 'Point', coordinates: [lng, lat] },
-                $minDistance: 0,
-                $maxDistance: dist,
+        "location": {
+            "$near": {
+                "$geometry": { type: 'Point', coordinates: [lng, lat] },
+                "$minDistance": 0,
+                "$maxDistance": dist,
             },
         },
     })
@@ -98,14 +107,14 @@ playgroundSchema.statics.findByLocAndLabel = function (
     cb
 ) {
     return this.find({
-        location: {
-            $near: {
-                $geometry: { type: 'Point', coordinates: [lng, lat] },
-                $minDistance: 0,
-                $maxDistance: dist,
+        "location": {
+            "$near": {
+                "$geometry": { type: 'Point', coordinates: [lng, lat] },
+                "$minDistance": 0,
+                "$maxDistance": dist,
             },
         },
-        type: label,
+        "type": label,
     })
         .limit(limit)
         .exec(cb);

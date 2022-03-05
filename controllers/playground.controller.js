@@ -1,4 +1,5 @@
 const Playground = require('../models/playground.model');
+const { playgroundLabels, playgroundEquipment } = require('../utils/labels');
 
 function preprocessInput(inputObj) {
     const location = {
@@ -9,6 +10,9 @@ function preprocessInput(inputObj) {
     delete playgroundObj.lng;
     delete playgroundObj.lat;
     playgroundObj.location = location;
+    if (!inputObj.labels) {
+        playgroundObj.labels = [];
+    }
     return playgroundObj;
 }
 
@@ -22,6 +26,8 @@ module.exports.renderNewFrom = async (req, res, next) => {
                 actionType: 'Add',
                 actionDest: '/playgrounds',
                 types,
+                playgroundLabels,
+                playgroundEquipment,
             });
         }
     });
@@ -44,6 +50,8 @@ module.exports.renderEditForm = async (req, res) => {
                 actionDest: `/playgrounds/${playground._id}?_method=put`,
                 types,
                 playground,
+                playgroundLabels,
+                playgroundEquipment,
             });
         }
     });
@@ -60,14 +68,16 @@ module.exports.createPlayground = async (req, res) => {
 module.exports.showPlayground = async (req, res) => {
     const { id } = req.params;
     const { eventId } = req.query;
-    const playground = await Playground.findById(id).populate('events').populate('reviews');
+    const playground = await Playground.findById(id)
+        .populate('events')
+        .populate('reviews');
     if (!playground) {
         req.flash('failure', 'Could not find playground.');
         return res.redirect('/');
     }
 
     // TODO: additional check if eventID valid?
-    if(!eventId) {
+    if (!eventId) {
         return res.render('detailpage', { playground, eventDetailId: '' });
     }
     res.render('detailpage', { playground, eventDetailId: eventId });
@@ -75,7 +85,9 @@ module.exports.showPlayground = async (req, res) => {
 
 module.exports.updatePlayground = async (req, res) => {
     const { id } = req.params;
+    console.log(req.body.playground);
     const values = preprocessInput(req.body.playground);
+    console.log(values);
     const playground = await Playground.findByIdAndUpdate(id, {
         ...values,
     });

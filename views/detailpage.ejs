@@ -122,7 +122,7 @@
 
                         <p class="card-text"> <b>Age group:</b> <%= playground.min_age === 16 ? "16+" : `${playground.min_age} - ${playground.max_age}` %> </p>
                         <p class="card-text"> <b>Description:</b> <%= playground.description %> </p>
-                        <p class="card-text"> <b>Equipment:</b> <%= playground.equipment %></p>
+                        <p class="card-text"> <b>Labels:</b> <%= playground.labels.join(", ") %></p>
                     </div>
 
                 </div>
