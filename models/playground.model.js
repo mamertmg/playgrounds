@@ -24,7 +24,6 @@ const playgroundSchema = new Schema({
         type: String,
         enum: playgroundTypesEN,
         require: true,
-        default: 'Kinderspielplatz',
     },
     min_age: {
         type: Number,
