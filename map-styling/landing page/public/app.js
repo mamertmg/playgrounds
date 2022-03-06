@@ -58,7 +58,7 @@ let autocomplete;
 
 function initAutocomplete() {
 
-    autocomplete = new google.maps.places.Autocomplete(document.querySelector(".autocomplete"),
+    autocomplete = new google.maps.places.Autocomplete(document.querySelector("#autocomplete"),
         {
             componentRestrictions: { 'country': ['de'] },
             fields: ['geometry', 'name', 'place_id'],

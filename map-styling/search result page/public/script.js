@@ -1,38 +1,10 @@
-let autocomplete;
-async function initAutocomplete() {
-
-    autocomplete = new google.maps.places.Autocomplete(document.getElementById("autocomplete"))
-
-    // ,
-    // {
-    //     types: ['establishments'],
-    //     componentRestrictions: { 'country': ['DE'] },
-    //     fields: ['place_id', 'geometry', 'name']
-    // };
-
-
-}
-
-
 async function initMap() {
 
-    // const markers = async (index) => {
-
-    //     const res = await axios.get('https://opendata.duesseldorf.de/api/action/datastore/search.json?resource_id=6d19eaa3-9967-4af4-b4b6-b2bcebe301a2&limit=5&fields[]=objektbezeichnung&fields[] =latitude&fields[]=longitude&fields[]=objektart&fields[]=strasse_hausnr')
-    //     arr = res.data.result.records
-    //     return arr[index]
-    // }
-
-
-    const map = new google.maps.Map(document.getElementById("map"), {
+    const map = new google.maps.Map(document.getElementById("mapInResultPage"), {
         mapId: "546de97e85a128a6",
         center: { lat: 51.22, lng: 6.77 },
         zoom: 15,
     });
-
-
-
-
 
 
     const markers = [
@@ -52,14 +24,10 @@ async function initMap() {
         const marker = new google.maps.Marker(
 
             {
-
                 position: { lat: currMarker.latitude, lng: currMarker.longitude },
                 map,
                 title: currMarker.objektbezeichung,
-                icon: {
-                    url: "playground-pixel.png",
-                    scaledSize: new google.maps.Size(40, 40)
-                },
+
                 animation: google.maps.Animation.DROP,
             });
 
@@ -100,5 +68,167 @@ function getLocation() {
         console.log("Geolocation is not supported by this browser.");
     }
 }
+
+
+//top navbar turn white on scroll, bottom nabar disappears when reaching bottom
+
+const navTop = document.querySelector(".fixed-top");
+const sectionOne = document.querySelector(".top-container");
+
+const sectionOneOptions = {
+    threshold: 0.1
+};
+
+const sectionOneObserver = new IntersectionObserver(function (
+    entries,
+    sectionOneObserver
+) {
+    entries.forEach(entry => {
+        if (!entry.isIntersecting) {
+            navTop.classList.add("bg-white");
+        } else {
+
+            navTop.classList.remove("bg-white");
+        }
+    });
+},
+    sectionOneOptions);
+
+sectionOneObserver.observe(sectionOne);
+
+
+const navBottom = document.querySelector(".fixed-bottom");
+const sectionTwo = document.querySelector(".bottom-container");
+
+const sectionTwoOptions = {
+    threshold: 0.1
+};
+
+const sectionTwoObserver = new IntersectionObserver(function (
+    entries,
+    sectionTwoObserver
+) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            navBottom.classList.add("visually-hidden");
+        } else {
+
+            navBottom.classList.remove("visually-hidden");
+        }
+    });
+},
+    sectionTwoOptions);
+
+sectionTwoObserver.observe(sectionTwo);
+
+
+// navbar bottom disappears when filters is clicked on
+
+const filters = document.querySelector('.filters')
+filters.addEventListener('shown.bs.offcanvas', e => {
+
+    if (e) {
+        navBottom.classList.add("visually-hidden");
+    } else {
+        navBottom.classList.remove("visually-hidden");
+    }
+})
+
+filters.addEventListener('hidden.bs.offcanvas', e => {
+
+    if (e) {
+        navBottom.classList.remove("visually-hidden");
+    }
+})
+
+
+
+//Autocomplete
+
+let autocomplete;
+
+function initAutocomplete() {
+
+    autocomplete = new google.maps.places.Autocomplete(document.querySelector("#autocompleteInResultPage"),
+        {
+            componentRestrictions: { 'country': ['de'] },
+            fields: ['geometry', 'name', 'place_id'],
+            types: ['address'],
+        });
+
+    autocomplete.addListener('place_changed', onPlaceChanged);
+
+}
+
+// pass autocompleted address as value
+let addressQuery;
+function onPlaceChanged() {
+    let place = autocomplete.getPlace();
+    if (!place.geometry) {
+        document.getElementById('autocomplete').placeholder = 'Enter a place';
+    }
+    else {
+        let addressQuery = place.name;
+        console.log(addressQuery)
+    }
+
+}
+
+
+//get Location from browser
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (pos) {
+            axios
+                .get(
+                    `https://nominatim.openstreetmap.org/reverse?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&format=json&limit=1`
+                )
+                .then((response) => {
+                    const { city, road } = response.data.address;
+                    searchInput.value = `${city} ${road}`;
+                    getPlaygrounds(
+                        pos.coords.latitude,
+                        pos.coords.longitude,
+                        labelSelect.value,
+                        limitInput.value,
+                        distInput.value
+                    );
+                })
+                .catch((e) => {
+                    console.log(e);
+                });
+        });
+    } else {
+        console.log("Geolocation is not supported by this browser.");
+    }
+}
+
+
+
+
+// Swiper
+
+const swiper = new Swiper('.mySwiper', {
+    // Optional parameters
+    direction: 'horizontal',
+    slidesPerView: "auto",
+    spaceBetween: 30,
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+});
+
+//dropdown checkbox
+
+document.querySelector(".checkbox-menu").addEventListener("change", "input[type='checkbox']", function () {
+    document.querySelector(this).closest("li").classList.toggle("active", this.checked);
+});
+
+document.querySelector(document).addEventListener('click', '.allow-focus', function (e) {
+    e.stopPropagation();
+});
+
 
 
