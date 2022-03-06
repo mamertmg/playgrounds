@@ -2,6 +2,7 @@ const Playground = require('../models/playground.model');
 const { playgroundLabels, playgroundEquipment } = require('../utils/labels');
 
 function preprocessInput(inputObj) {
+    // convert coordinates to GEOJSON format
     const location = {
         type: 'Point',
         coordinates: [inputObj.lng, inputObj.lat],
@@ -10,6 +11,8 @@ function preprocessInput(inputObj) {
     delete playgroundObj.lng;
     delete playgroundObj.lat;
     playgroundObj.location = location;
+
+    // field 'labels' does not exist if user deselected all tags
     if (!inputObj.labels) {
         playgroundObj.labels = [];
     }
@@ -85,9 +88,7 @@ module.exports.showPlayground = async (req, res) => {
 
 module.exports.updatePlayground = async (req, res) => {
     const { id } = req.params;
-    console.log(req.body.playground);
     const values = preprocessInput(req.body.playground);
-    console.log(values);
     const playground = await Playground.findByIdAndUpdate(id, {
         ...values,
     });

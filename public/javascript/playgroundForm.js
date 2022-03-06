@@ -18,7 +18,7 @@ function initAutocomplete() {
 
 // pass autocompleted address as value
 function onPlaceChanged() {
-    let place = autocomplete.getPlace();
+    const place = autocomplete.getPlace();
     if (!place.geometry) {
         addressInput.placeholder = 'Enter a place';
     } else {
