@@ -1,13 +1,13 @@
 .pac-container {
-  z-index: 1061 !important;
+  z-index: 2000 !important;
   position: relative;
 }
 
 
-#mapInResultPage {
-  height: 50vh;
-  width: 50vh;
-  z-index: 2000!;
+
+
+#mapButton {
+  margin-bottom: 120px;
 }
 
 
@@ -20,6 +20,13 @@
   background-size: cover;
   background-position: center;
   
+  }
+
+  #mapInResultPage {
+
+    height: 40vh;
+    margin-top: 120px;
+    
   }
 }
 
@@ -34,6 +41,29 @@
   background-position: center;
   
   }
+
+  #mapInResultPage {
+
+    height: 40vh;
+    margin-top: 120px;
+    
+  }
+}
+
+
+@media screen and (min-width: 768px ) { 
+
+  #mapInResultPage {
+
+    height: 80vh;
+    margin-top: 120px;
+    position: -webkit-sticky;
+    
+  }
+
+ 
+      
+  
 }
 
 
