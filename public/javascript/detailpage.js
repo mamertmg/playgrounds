@@ -1,9 +1,7 @@
-var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+const popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+const popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
   return new bootstrap.Popover(popoverTriggerEl)
 })
-
-
 
 
 // let eventListPGNumber = {};
@@ -107,11 +105,11 @@ const targetDiv2 = document.getElementById("lostForm");
 targetDiv2.style.display = 'block';
 const btnSubmit2 = document.getElementById("btnSubmit2");
 
-btnSubmit2.onclick = function () {
-  targetDiv2.style.display = 'none';
-  btnSubmit2.style.display = 'none';
-  submitMessage2.style.display = 'inline-block';
-}
+// btnSubmit2.onclick = function () {
+//   targetDiv2.style.display = 'none';
+//   btnSubmit2.style.display = 'none';
+//   submitMessage2.style.display = 'inline-block';
+// }
 
 const btnClose3 = document.getElementById("btnClose3");
 btnClose3.onclick = function () {
@@ -163,12 +161,12 @@ submitMessagePhoto.style.display = 'none';
 const targetDiv3Photo = document.getElementById('photoForm');
 const btnSubmitPhoto = document.getElementById('btnSubmitPhoto');
 
-btnSubmitPhoto.onclick = function () {
+// btnSubmitPhoto.onclick = function () {
 
-  targetDiv3Photo.style.display = 'none';
-  btnSubmitPhoto.style.display = 'none';
-  submitMessagePhoto.style.display = 'inline-block';
-}
+//   targetDiv3Photo.style.display = 'none';
+//   btnSubmitPhoto.style.display = 'none';
+//   submitMessagePhoto.style.display = 'inline-block';
+// }
 
 const btnClose5 = document.getElementById('btnClose5');
 btnClose5.onclick = function () {

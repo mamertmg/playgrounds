@@ -1,32 +1,73 @@
+body {
+    background: #fffaf4;
+}
+
 h1, h2, h3, h4, h5 {
     font-family: Montserrat, sans-serif;
     color: #074266;
     display: inline-block;
 }
 
+
+
 h1 {
-    padding-top: 30px;
+    padding: 0px 20px 10px 20px;
 }
 
 .container-fluid {
-    padding: 50px 4% 0 4%;
+    margin-top: 70px;
+
+}
+
+.playground-rating {
+    font-size: 20px;
+
 }
 
 .tag {
-    border: 1px black solid;
-    border-radius: 5px;
-    background: #3F88C5;
-    padding: 5px;
-    margin: 0px 10px 10px 0px;
-    color: white;
+    background: white;
+    color: #074266;
     font-family: Montserrat, sans-serif;
-    font-style: italic;
+    border: solid 1px #074266;
+    border-radius: 25px;
+    padding: 5px;
+    margin: 0px 5px 5px 0px;
+    font-style: bold;
+    display: inline-block;
+
+}
+
+.tag:hover {
+    color: #4EA599;
+    border: solid 1px #4EA599;
+
+}
+
+#featureTags {
+    display: flexbox;
+    justify-content: space-around;
+}
+
+.littleTags {
+    border: solid 1px #074266;
+    border-radius: 25px;
+    padding: 5px;
+    margin: 0px 5px 5px 0px;
+    color: #074266;
+    background: none;
+    font-style: bold;
     display: inline-block;
 }
 
+.littleTags:hover {
+    color: #4EA599;
+    border: solid 1px #4EA599;
+}
+
+
 #mainNavbar {
     background: #4ea599;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-family: Montserrat, sans-serif;
 }
 
@@ -44,20 +85,24 @@ h1 {
 
 #mainNavbar .navbar-brand {
     color: #032B43;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 400;
     margin-left: 15px;
 }
 
-body {
-    background: #fffaf4;
+#navbar-logo {
+    height: 52px;
+}
+
+#nav-header {
+    cursor: default;
 }
 
 #btn-login, #btn-signup {
     background: #4ea599;
     color: white;
     font-weight: 200;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
 #btn-login:hover, #btn-signup:hover {
@@ -80,6 +125,7 @@ body {
 }
 
 .btn-plus {
+
     color: #FFBA08;
 }
 
@@ -128,18 +174,24 @@ body {
     opacity: 0.4
 }
 
-.rating-fixed {
+.bi-star, .bi-star-fill, .bi-star-half {
     color: #FFBA08;
     fill: #FFBA08;
     display: inline-block;
+    margin: -3px;
 }
 
+.playground-rating {
+    display: inline-block;
+    margin-left: 10px;
+}
 
-.card-body {
+#playgroundDetails {
     min-width: fit-content;
     min-height: fit-content;
-    border-radius: 10px;
+    border-radius: 5px;
     border: 2px solid #ffb908a9;
+    background-color: white;
 }
 
 .card-text {
@@ -147,9 +199,15 @@ body {
     font-family: Montserrat, sans-serif;
 }
 
-.link {
-    color: #3F88C5;
+.card-title {
+    text-decoration: underline;
 }
+
+.fa-map-location-dot {
+    font-size: 1.5rem;
+    margin-left: 10px;
+}
+
 
 #carouselIndicators {
     margin: 10px 0;
@@ -157,24 +215,22 @@ body {
     border-radius: 5px;
     position: relative;
 
+
 }
 
 .carousel-inner {
     max-height: 460px;
 }
 
-#event-header, #lostfound-header {
+#event-header, #lostfound-header, #review-header {
     margin-top: 30px;
     margin-right: 20px;
-}
-
-
-#navbar-logo {
-    height: 52px;
+    margin-left: 10px;
 }
 
 
 .card {
+    border-radius: 5px;
     border: none;
     -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.03);
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.03)
@@ -215,6 +271,11 @@ body {
     margin: 0px;
 }
 
+.link {
+    color: #3F88C5;
+}
+
+
 .link:hover {
 
     text-decoration: none;
@@ -224,12 +285,15 @@ body {
 #theDate:hover, .heading:hover, #eventThumbnail:hover, .location:hover {
     font-weight: bold;
     cursor: pointer;
-    /* transition-duration: 1s; */
 }
 
-#infoCircle:hover {
-    width: 26px;
-    height: 26px;
+#iCircleEvent, #iCircleLost {
+    font-size: 24px;
+
+}
+
+#iCircleEvent:hover, #iCircleLost:hover {
+    font-size: 28px;
     cursor: pointer;
 
 }
@@ -237,13 +301,13 @@ body {
 .day {
     font-family: Montserrat, sans-serif;
     color: #074266;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
 }
 
 .month {
     font-family: Montserrat, sans-serif;
     color: #07426694;
-    font-size: 0.8rem;
+    font-size: 1rem;
 }
 
 
@@ -253,10 +317,14 @@ body {
 
 }
 
+ul {
+    padding-left: 0px;
+    margin: 0px;
+}
 
 li {
     list-style-type: none;
-    margin: 0;
+    margin: 0px;
     padding: 10px;
 }
 
@@ -271,20 +339,38 @@ hr {
 
 #statuslost {
     font-weight: 400;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: #FF5C5C;
 }
 
 #statusfound {
     font-weight: 400;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: #4EA599;
 }
 
 #addphoto {
-    z-index: 2;
+    z-index: 1;
 
 }
 
+.chip.chip-md {
+    height: 42px;
+    line-height: 42px;
+    border-radius: 21px;
+}
 
-/* @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css") */
+.chip.chip-md .close {
+    height: 42px;
+    line-height: 42px;
+    border-radius: 21px;
+}
+
+.center {
+    text-align: center;
+}
+
+.bi-heart:hover {
+    fill: red;
+
+}

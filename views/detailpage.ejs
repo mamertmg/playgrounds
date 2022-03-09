@@ -16,13 +16,13 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <script src="https://kit.fontawesome.com/dcfa7fe939.js" crossorigin="anonymous"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
-
     <title>Playground Details</title>
     <link rel="stylesheet" href="../public/css/detailpage.css" />
   </head>
@@ -32,13 +32,15 @@
       id="mainNavbar"
       class="navbar navbar-dark navbar-expand-md py-0 px-3 fixed-top"
     >
-      <a href="#" class="navbar-brand">
+      <a id="nav-header"
+         class="navbar-brand">
         <!-- Link to fulfill license regulations of flaticon.com:
                   <a href="https://www.flaticon.com/free-icons/playground" title="playground icons">Playground icons created by
         photo3idea_studio - Flaticon</a> -->
 
-        <img id="navbar-logo" src="../public/images/playground.png" alt="" /> my
-        favourite playground
+        <img id="navbar-logo" 
+             src="../public/images/playground.png" 
+             alt=""/> my favourite playground
       </a>
       <button
         class="navbar-toggler"
@@ -62,93 +64,51 @@
         </ul>
       </div>
       <div class="text-right d-none d-lg-block">
-        <button id="btn-login" type="button" class="btn p-1 mx-1">LOGIN</button>
+        <button id="btn-login" type="button" class="btn p-1 mx-1">
+          LOGIN
+        </button>
         <button id="btn-signup" type="button" class="btn p-1 mx-1">
           SIGN UP
         </button>
       </div>
     </nav>
 
-    <section class="container-fluid">
+    <section class="container-fluid p-0 p-xs-2 p-sm-4 p-md-5">
       <div class="row">
         <h1 class="gx-5 col" id="pgName">
           Playground Lessingplatz
-          <span class="rating-fixed">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="40"
-              height="40"
-              fill="currentColor"
-              class="bi bi-star-fill"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-              /></svg
-            ><svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="40"
-              height="40"
-              fill="currentColor"
-              class="bi bi-star-fill"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-              /></svg
-            ><svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="40"
-              height="40"
-              fill="currentColor"
-              class="bi bi-star-fill"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-              /></svg
-            ><svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="40"
-              height="40"
-              fill="currentColor"
-              class="bi bi-star-fill"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-              /></svg
-            ><svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="40"
-              height="40"
-              fill="currentColor"
-              class="bi bi-star-half"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M5.354 5.119 7.538.792A.516.516 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.537.537 0 0 1 16 6.32a.548.548 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.52.52 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.58.58 0 0 1 .085-.302.513.513 0 0 1 .37-.245l4.898-.696zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.565.565 0 0 1 .162-.505l2.907-2.77-4.052-.576a.525.525 0 0 1-.393-.288L8.001 2.223 8 2.226v9.8z"
-              />
-            </svg>
+          <sup>
+          <span class="playground-rating">
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-half"></i>
           </span>
+        </sup>
         </h1>
+        </div>
         <div class="row">
           <div class="gx-5 col">
-            <span class="tag"> natural playground </span>
-            <span class="tag"> Oberbilk </span>
+            <div class="btn tag">
+              <i class="fa-solid fa-leaf"></i>
+               natural playground
+            </div>
+              <div class="btn tag">
+                <i class="fa-solid fa-location-dot"></i>
+                   Oberbilk
+              </div>
+        </div>
         </div>
 
         <div class="row">
-          <div class="gx-5 col-md-6 order-md-2">
-            <div class="card-body">
-              <div class="gx-5">
-                
+          <div class="gx-5 col-md-6 order-md-2 mb-3">
+            <div id="playgroundDetails" class="card-body">
               
-              </div>
 
-              <h4 class="card-title"> 
-                OBERBILK, Düsseldorf
-              </h4>
+              <h3 class="card-title"> 
+                OBERBILK, Düsseldorf    
+              </h3> 
               <a
               class="btn-collapse"
               data-bs-toggle="collapse"
@@ -157,17 +117,48 @@
               aria-expanded="false"
               aria-controls="infocard-collapse"
             >
-             show on map
+              <i class="fa-solid fa-map-location-dot"> </i>
             </a>
               <p class="card-text">
-                <b>DESCRIPTION: </b> This is such a nice playground. It is easy accessible with public transport and it is suitable for smaller children as well as for young teens.</p>
+                <h5>
+              DESCRIPTION:</h5> </b> This is a lovely playground. It is easy to get to by public transport and it is suitable for smaller children as well as for young teens.</p>
                 
-              <p>
-               
-              </p>
+              
+                <h5>FEATURES</h5>
+                <div id="featureTags"> 
+                  <div class="btn littleTags">
+                    <i class="fa-solid fa-table-tennis-paddle-ball"></i>
+                      <span class="d-none d-md-inline">
+                        table tennis
+                      </span>
+                    </div>
+                  <div class="btn littleTags">
+                    <i class="fa-solid fa-umbrella-beach"></i>
+                    <span class="d-none d-md-inline">
+                      shaded areas
+                    </span>
+                  </div>
+                  <div class="btn littleTags">
+                    <i class="fa-solid fa-restroom"></i>
+                    <span class="d-none d-md-inline">
+                      public restrooms
+                    </span>
+                  </div>
+                  <div class="btn littleTags">
+                    <i class="fa-solid fa-square-parking"></i>
+                    <span class="d-none d-md-inline">
+                      parking nearby
+                    </span>
+                 </div>
+                 
+                  
+             
+                </div>
+           
+              
               <div class="collapse" id="infocard-collapse">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9997.182405234265!2d6.7936398!3d51.21363!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x1ea4e9a90699b760!2sSpielplatz%20Lessingplatz!5e0!3m2!1sde!2sde!4v1646081872131!5m2!1sde!2sde" 
-                        width="600" 
+                        width="800" 
                         height="450" 
                         style="border:2px;" 
                         allowfullscreen="" 
@@ -179,25 +170,8 @@
           </div>
 
           <div class="gx-5 col-md-6 order-md-1">
-              <a id="addphoto"
-                 class="btn btn-plus"
-                 data-bs-toggle="modal"
-                 data-bs-target="#addPhotoForm">
-                <svg
-                  
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="60"
-                  height="60"
-                  fill="currentColor"
-                  class="bi bi-plus-square-fill align-self-end"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"
-                  />
-                </svg>
-              </a>
-            </span>
+              
+            
 
             <!-- Modal -->
             <div
@@ -223,14 +197,17 @@
                       aria-label="Close"
                     ></button>
                   </div>
-                  <div id="photoForm" class="modal-body">
-                    <form class="mb-5" action="/photodatabase">
+                  <div  class="modal-body">
+                    <form id="photoForm" 
+                          class="mb-5" 
+                          action="https://google.com">
                       <h5 class="mt-3 mb-2"></h5>
                       <input
                         class="form-control"
                         type="file"
                         id="playgroundPhoto"
                         onchange="preview3()"
+                        required
                       />
                       <img id="framePhoto" src="" class="img-fluid mt-4" />
                       <label class="form-check-label" for="photoDescription">
@@ -261,7 +238,8 @@
                     </button>
                     <button
                       id="btnSubmitPhoto"
-                      type="button"
+                      type="submit"
+                      form="photoForm"
                       class="btn btn-primary"
                     >
                       Send
@@ -348,15 +326,32 @@
                 ></span>
                 <span class="visually-hidden">Next</span>
               </button>
+              <a id="addphoto"
+                 class="btn btn-plus position-absolute top-0 end-0"
+                 data-bs-toggle="modal"
+                 data-bs-target="#addPhotoForm">
+                <svg
+                  
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="50"
+                  height="50"
+                  fill="currentColor"
+                  class="bi bi-plus-square-fill align-self-end"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"
+                  />
+                </svg>
+              </a>
             </div>
+            
           </div>
 
           <div class="w-100 d-none d-md-block d-xl-none">
           </div>
           <div class="gx-5 col-12 col-xl-6 order-md-3 order-xl-4">
-              <div class="row card p-3 mb-2">
-                  <div class="col">
-                      <h3 id="event-header">UPCOMING EVENTS</h3>
+            <h3 id="event-header">UPCOMING EVENTS</h3>
                       <span class="d-inline-block" 
                             tabindex="0" 
                             data-bs-toggle="popover"  
@@ -405,6 +400,7 @@
                         id="eventDate"
                         type="date"
                         class="w-100 mt-0 mb-2 p-2 br-10"
+                        required
                       />
                       <label class="form-check-label" for="eventTime">
                         Time
@@ -413,9 +409,10 @@
                         id="eventTime"
                         type="time"
                         class="w-100 mt-0 mb-2 p-2 br-10"
+                        required
                       />
                       <label class="form-check-label" for="eventName">
-                        Name of the event (required)
+                        Name of the event 
                       </label>
                       <input
                         id="eventName"
@@ -482,41 +479,22 @@
                   </div>
                 </div>
               </div>
-            </div>
-                  </div> 
-                  <hr>             
+                         </div>
+              <div class="card">                               
                    <ul>
                       <li>
-
                           <div class="row link">
                               <div id="theDate"
-                                   class="col text-center">
+                                   class="col-2 text-start">
                                   <div class="day d-inline-block"> 
                                       14 
                                   </div>
                                   <div class="month">
                                       FEB
                                   </div>
-                                  <svg id="infoCircle"
-                                       xmlns="http://www.w3.org/2000/svg" 
-                                       width="20" 
-                                       height="20" 
-                                       fill="currentColor"
-                                       type="button" 
-                                       class="bi bi-info-circle text-primary info-btn"
-                                       viewBox="0 0 16 16"
-                                       data-bs-toggle="collapse" 
-                                       href="#event-collapse" 
-                                       role="button"
-                                       aria-expanded="false" 
-                                       aria-controls="event-collapse">
-                                      <path
-                                          d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                      <path
-                                          d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
-                                  </svg>
+                                 
                               </div>
-                              <div class="col">
+                              <div class="col-6 text-center">
                                   <h5 class="heading"
                                       data-bs-toggle="collapse" 
                                       href="#event-collapse" 
@@ -531,7 +509,7 @@
 
                               </div>
                         
-                          <div class="col">
+                          <div class="col-3">
 
                               <img class="thumbnail"
                                    data-bs-toggle="collapse" 
@@ -542,205 +520,229 @@
                                    src="https://images.unsplash.com/photo-1615445565741-c60a9edd393f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8a2lkcyUyMHBhcnR5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" 
                                    alt=""
                               >
-                          </div>
-                          <div class="row">
-                              <div class="col"></div>
-                              <div class="col collapse" 
-                                   id="event-collapse">
-                                  This will be a super fun day! BYOB!
                               </div>
+                              <div class="col-1 align-self-center">
+                              <i id="iCircleEvent"
+                              class="bi bi-info-circle text-primary info-btn"
+                              type="button"
+                              data-bs-toggle="collapse" 
+                                href="#event-collapse" 
+                                role="button"
+                                aria-expanded="false" 
+                                aria-controls="event-collapse"></i>
+                          </div>
+                          
+                          
+                                                                                   
+                              <div class="row collapse mt-3" 
+                                   id="event-collapse">
+                                   <hr> <div class="col-2 text-start align-self-center"> <a href="https://www.youtube.com/watch?v=lMLXyVRlW4o">somuch.fun</a> </div>
+                                   <div class="col-6 text-center align-self-center">
+                                    This will be a super fun day! BYOB!
+                                    </div>
+                                   <div class="col-3 text-center">
+                                       <img src="https://i.imgur.com/C4egmYM.jpg" height="50" width="50"
+                                           class="rounded-circle" />
+                                           LoneWolf67
+                                   </div>
+                                   <div class="col-1"></div>
+                                  
+                              
                               
                           </div>
 
                       </li>
-                    <hr>                                    
+                                                      
                                            
                    </ul>
                  </div>
+                 
               
        
-     
+                 <h3 id="lostfound-header">LOST & FOUND</h3>
+                 <span
+                   class="d-inline-block"
+                   tabindex="0"
+                   data-bs-toggle="popover"
+                   data-bs-trigger="hover focus"
+                   data-bs-content="Did you loose/find something?"
+                 >
+                   <!-- Button trigger modal -->
+                   <span
+                     class="btn"
+                     data-bs-toggle="modal"
+                     data-bs-target="#staticBackdroplostfound"
+                   >
+                     <a class="btn-plus"
+                       ><svg
+                         xmlns="http://www.w3.org/2000/svg"
+                         width="50"
+                         height="50"
+                         fill="currentColor"
+                         class="bi bi-plus-square"
+                         viewBox="0 0 25 25"
+                       >
+                         <path
+                           d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
+                         />
+                         <path
+                           d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                         />
+                       </svg>
+                     </a>
+                   </span>
+                 </span>
+                 <!-- Modal -->
+                 <div
+                   class="modal fade"
+                   id="staticBackdroplostfound"
+                   data-bs-backdrop="static"
+                   data-bs-keyboard="false"
+                   tabindex="-1"
+                   aria-labelledby="staticBackdropLabel"
+                   aria-hidden="true"
+                 >
+                   <div class="modal-dialog">
+                     <div class="modal-content p-3">
+                       <div class="modal-header">
+                         <h4 class="modal-title" id="staticBackdropLabel2">
+                           Lost or Found?
+                         </h4>
+                         <button
+                           type="button"
+                           id="btnClose3"
+                           class="btn-close"
+                           data-bs-dismiss="modal"
+                           aria-label="Close"
+                         ></button>
+                       </div>
+                       <div id="lostForm" class="modal-body">
+                         <form
+                           id="form-lost"
+                           class="mb-5"
+                           action="https://google.com"
+                         >
+                           <div class="form-check">
+                             <input
+                               class="form-check-input"
+                               type="radio"
+                               name="flexRadioDefault"
+                               id="radioLost"
+                               checked
+                             />
+                             <label class="form-check-label" for="radioLost">
+                               Lost
+                             </label>
+                           </div>
+                           <div class="form-check">
+                             <input
+                               class="form-check-input"
+                               type="radio"
+                               name="flexRadioDefault"
+                               id="radioFound"
+                             />
+                             <label class="form-check-label" for="radioFound">
+                               Found
+                             </label>
+                           </div>
+                           <label
+                             class="form-check-label mt-2 mb-0"
+                             for="lostDate"
+                           >
+                             Date
+                           </label>
+                           <input
+                             id="lostDate"
+                             type="date"
+                             class="w-100 mt-0 mb-2 p-2 br-10"
+                           />
+                           <label class="form-check-label mb-0" for="lostItem">
+                             Item
+                           </label>
+                           <input
+                             id="lostItem"
+                             type="text"
+                             class="w-100 mt-0 mb-2 p-2 br-10"
+                             placeholder="name of the item"
+                             required
+                           />
+                           <input
+                             id="lostItemLong"
+                             type="text"
+                             class="w-100 mt-0 mb-2 p-2 br-10"
+                             placeholder="description of the item"
+                           />
+                           <label
+                             class="form-check-label mb-0"
+                             for="lostContact"
+                           >
+                             Contact
+                           </label>
+ 
+                           <input
+                             id="lostContact"
+                             type="text"
+                             class="w-100 mt-0 mb-2 p-2 br-10"
+                             placeholder="contact"
+                           />
+ 
+                           <h5 class="mt-3 mb-2">
+                             Upload a picture of the item!
+                           </h5>
+                           <input
+                             class="form-control"
+                             type="file"
+                             id="lostPhoto"
+                             onchange="preview2()"
+                           />
+                           <img id="frame2" src="" class="img-fluid mt-4" />
+                         </form>
+                       </div>
+                       <span>
+                         <h3 class="text-center p-5" id="submitMessage2">
+                           Thank you! Your entry has been added!
+                         </h3>
+                       </span>
+                       <div class="modal-footer">
+                         <button
+                           type="button"
+                           id="btnClose4"
+                           class="btn btn-secondary"
+                           data-bs-dismiss="modal"
+                         >
+                           Close
+                         </button>
+                         <button
+                           id="btnSubmit2"
+                           type="submit"
+                           class="btn btn-primary"
+                           form="form-lost"
+                         >
+                           Send
+                         </button>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
               
               
-                <div class="row card p-3 mb-2">
-                  <div class="col">
-                <h3 id="lostfound-header">LOST & FOUND</h3>
-                <span
-                  class="d-inline-block"
-                  tabindex="0"
-                  data-bs-toggle="popover"
-                  data-bs-trigger="hover focus"
-                  data-bs-content="Did you loose/find something?"
-                >
-                  <!-- Button trigger modal -->
-                  <span
-                    class="btn"
-                    data-bs-toggle="modal"
-                    data-bs-target="#staticBackdroplostfound"
-                  >
-                    <a class="btn-plus"
-                      ><svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="50"
-                        height="50"
-                        fill="currentColor"
-                        class="bi bi-plus-square"
-                        viewBox="0 0 25 25"
-                      >
-                        <path
-                          d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
-                        />
-                        <path
-                          d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
-                        />
-                      </svg>
-                    </a>
-                  </span>
-                </span>
-                <!-- Modal -->
-                <div
-                  class="modal fade"
-                  id="staticBackdroplostfound"
-                  data-bs-backdrop="static"
-                  data-bs-keyboard="false"
-                  tabindex="-1"
-                  aria-labelledby="staticBackdropLabel"
-                  aria-hidden="true"
-                >
-                  <div class="modal-dialog">
-                    <div class="modal-content p-3">
-                      <div class="modal-header">
-                        <h4 class="modal-title" id="staticBackdropLabel2">
-                          Lost or Found?
-                        </h4>
-                        <button
-                          type="button"
-                          id="btnClose3"
-                          class="btn-close"
-                          data-bs-dismiss="modal"
-                          aria-label="Close"
-                        ></button>
-                      </div>
-                      <div id="lostForm" class="modal-body">
-                        <form
-                          id="form-lost"
-                          class="mb-5"
-                          action="/lostfounddatabase"
-                        >
-                          <div class="form-check">
-                            <input
-                              class="form-check-input"
-                              type="radio"
-                              name="flexRadioDefault"
-                              id="radioLost"
-                              checked
-                            />
-                            <label class="form-check-label" for="radioLost">
-                              Lost
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input
-                              class="form-check-input"
-                              type="radio"
-                              name="flexRadioDefault"
-                              id="radioFound"
-                            />
-                            <label class="form-check-label" for="radioFound">
-                              Found
-                            </label>
-                          </div>
-                          <label
-                            class="form-check-label mt-2 mb-0"
-                            for="lostDate"
-                          >
-                            Date
-                          </label>
-                          <input
-                            id="lostDate"
-                            type="date"
-                            class="w-100 mt-0 mb-2 p-2 br-10"
-                          />
-                          <label class="form-check-label mb-0" for="lostItem">
-                            Item
-                          </label>
-                          <input
-                            id="lostItem"
-                            type="text"
-                            class="w-100 mt-0 mb-2 p-2 br-10"
-                            placeholder="name of the item"
-                            required
-                          />
-                          <input
-                            id="lostItemLong"
-                            type="text"
-                            class="w-100 mt-0 mb-2 p-2 br-10"
-                            placeholder="description of the item"
-                          />
-                          <label
-                            class="form-check-label mb-0"
-                            for="lostContact"
-                          >
-                            Contact
-                          </label>
-
-                          <input
-                            id="lostContact"
-                            type="text"
-                            class="w-100 mt-0 mb-2 p-2 br-10"
-                            placeholder="contact"
-                          />
-
-                          <h5 class="mt-3 mb-2">
-                            Upload a picture of the item!
-                          </h5>
-                          <input
-                            class="form-control"
-                            type="file"
-                            id="lostPhoto"
-                            onchange="preview2()"
-                          />
-                          <img id="frame2" src="" class="img-fluid mt-4" />
-                        </form>
-                      </div>
-                      <span>
-                        <h3 class="text-center p-5" id="submitMessage2">
-                          Thank you! Your entry has been added!
-                        </h3>
-                      </span>
-                      <div class="modal-footer">
-                        <button
-                          type="button"
-                          id="btnClose4"
-                          class="btn btn-secondary"
-                          data-bs-dismiss="modal"
-                        >
-                          Close
-                        </button>
-                        <button
-                          id="btnSubmit2"
-                          type="submit"
-                          class="btn btn-primary"
-                          form="form-lost"
-                        >
-                          Send
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <hr>
+                <div class="card">  
                 <ul>
                     <li>
-                        <div class="row link" data-bs-toggle="collapse" href="#item-collapse" role="button"
-                            aria-expanded="false" aria-controls="item-collapse">
-                            <div id="statuslost" class="col-2 text-center align-self-center">
+                        <div class="row link">
+                            <div id="statuslost" class="col-2 text-start align-self-center">
                                 LOST
                             </div>
 
                             <div class="col-6 text-center align-self-center">
-                                <h5 id="theItem" class="heading">
+                                <h5 id="theItem" 
+                                    class="heading"
+                                    type="button"
+                                    data-bs-toggle="collapse" 
+                                    href="#item-collapse" 
+                                    role="button"
+                                    aria-expanded="false" 
+                                    aria-controls="item-collapse">
                                     My Patience
                                 </h5>
 
@@ -749,46 +751,117 @@
                             <div class="col-3">
                                 <img class="thumbnail"
                                     src="https://images.unsplash.com/photo-1580250642511-1660fe42ad58?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1025&q=80"
-                                    alt="" />
+                                    alt=""
+                                    type="button"
+                                    data-bs-toggle="collapse" 
+                                    href="#item-collapse" 
+                                    role="button"
+                                    aria-expanded="false" 
+                                    aria-controls="item-collapse" 
+                                />
                             </div>
 
                             <div class="col-1 align-self-center">
-                                <svg id="infoCircle" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                    fill="currentColor" type="button" class="bi bi-info-circle text-primary info-btn"
-                                    viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                    <path
-                                        d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
-                                </svg>
+                              <i id="iCircleLost"
+                              class="bi bi-info-circle text-primary info-btn"
+                              type="button"
+                              data-bs-toggle="collapse" 
+                                href="#item-collapse" 
+                                role="button"
+                                aria-expanded="false" 
+                                aria-controls="item-collapse"></i>
+                               
                             </div>
-                            <div class="row collapse mt-5" id="item-collapse">
-                                
-                                    <div class="col-2 text-center"> </div>
-                                    <div class="col-6 text-center">
-                                        Pretty sure I won't get it back here.
+                            <div class="row collapse mt-3" id="item-collapse">
+                                <hr>
+                                    <div class="col-2 text-start align-self-center"> May 21,2020</div>
+                                    <div class="col-6 text-center align-self-center">
+                                        What's gone is gone...
                                      </div>
-                                     
-                                     <div class="col-3 text-center align-self-center">
-                                        <img src="https://i.imgur.com/hczKIze.jpg" height="40" width="40"
+                                    <div class="col-3 text-center">
+                                        <img src="https://i.imgur.com/hczKIze.jpg" height="50" width="50"
                                             class="rounded-circle" />
-                                            28.02.22
+                                            PowerPaps
                                     </div>
+                                    <div class="col-1"></div>
                                 </div>
                             
                         </div>
                     </li>
-                    <hr>
+                    <li>
+                      <div class="row link">
+                          <div id="statusfound" class="col-2 text-start align-self-center">
+                              FOUND
+                          </div>
+
+                          <div class="col-6 text-center align-self-center">
+                              <h5 id="theItem" 
+                                  class="heading"
+                                  type="button"
+                                  data-bs-toggle="collapse" 
+                                  href="#item-collapse" 
+                                  role="button"
+                                  aria-expanded="false" 
+                                  aria-controls="item-collapse">
+                                  Shopping List
+                              </h5>
+
+                          </div>
+
+                          <div class="col-3">
+                              <img class="thumbnail"
+                                  src="https://images.unsplash.com/photo-1536546025187-bad5bfc86628?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                                  alt=""
+                                  type="button"
+                                  data-bs-toggle="collapse" 
+                                  href="#item-collapse" 
+                                  role="button"
+                                  aria-expanded="false" 
+                                  aria-controls="item-collapse" 
+                              />
+                          </div>
+
+                          <div class="col-1 align-self-center">
+                            <i id="iCircleLost"
+                            class="bi bi-info-circle text-primary info-btn"
+                            type="button"
+                            data-bs-toggle="collapse" 
+                              href="#item2-collapse" 
+                              role="button"
+                              aria-expanded="false" 
+                              aria-controls="item-collapse"></i>
+                             
+                          </div>
+                          <div class="row collapse mt-3" id="item2-collapse">
+                              <hr>
+                                  <div class="col-2 text-start align-self-center"> May 21,2020</div>
+                                  <div class="col-6 text-center align-self-center">
+                                      You are supposed to buy: milk, cucumbers, chocolate and diapers.
+                                   </div>
+                                  <div class="col-3 text-center">
+                                      <img src="https://i.imgur.com/hczKIze.jpg" height="50" width="50"
+                                          class="rounded-circle" />
+                                          PowerPaps
+                                  </div>
+                                  <div class="col-1"></div>
+                              </div>
+                          
+                      </div>
+                  </li>
+                    
 
                 </ul>
-              </div>
+              
             </div>
           </div>
 
           <div class="w-100 d-none d-md-block d-xl-none"></div>
           <div class="gx-5 col col-xl-6 order-md-4 order-xl-3">
             <div class="text-left mt-4">
-              <h3>REVIEWS(3)</h3>
+              <h3>REVIEWS (3)</h3>
             </div>
+            <ul>
+              <li>
             <div class="card p-3 mb-2">
               <div class="d-flex flex-row">
                 <img
@@ -799,63 +872,12 @@
                 />
                 <div class="d-flex flex-column ms-2">
                   <h5 class="mb-1 text-primary">Mamita406</h5>
-                  <span class="rating rating-fixed">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="25"
-                      height="25"
-                      fill="currentColor"
-                      class="bi bi-star-fill"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-                      /></svg
-                    ><svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="25"
-                      height="25"
-                      fill="currentColor"
-                      class="bi bi-star-fill"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-                      /></svg
-                    ><svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="25"
-                      height="25"
-                      fill="currentColor"
-                      class="bi bi-star-fill"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-                      /></svg
-                    ><svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="25"
-                      height="25"
-                      fill="currentColor"
-                      class="bi bi-star-fill"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-                      /></svg
-                    ><svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="25"
-                      height="25"
-                      fill="currentColor"
-                      class="bi bi-star-half"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        d="M5.354 5.119 7.538.792A.516.516 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.537.537 0 0 1 16 6.32a.548.548 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.52.52 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.58.58 0 0 1 .085-.302.513.513 0 0 1 .37-.245l4.898-.696zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.565.565 0 0 1 .162-.505l2.907-2.77-4.052-.576a.525.525 0 0 1-.393-.288L8.001 2.223 8 2.226v9.8z"
-                      />
-                    </svg>
+                  <span class="review-rating">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-half"></i>
                   </span>
                   <p class="comment-text">super duper, lots of fun!!!!</p>
                 </div>
@@ -863,11 +885,17 @@
               <div class="d-flex justify-content-between">
                 <div class="d-flex flex-row gap-3 align-items-center">
                   <div class="d-flex align-items-center">
-                    <i class="fa fa-heart-o"></i>
+                    <i class="bi bi-heart"></i>
                     <span class="ms-1 fs-10">Like</span>
                   </div>
                   <div class="d-flex align-items-center">
-                    <i class="fa fa-comment-o"></i>
+                    <i class="bi bi-chat-right-text btn"
+                       type="button"
+                       data-bs-toggle="collapse" 
+                       href="#comment-collapse-1" 
+                       role="button"
+                       aria-expanded="false" 
+                       aria-controls="comment-collapse-1"></i>
                     <span class="ms-1 fs-10">Comment</span>
                   </div>
                 </div>
@@ -877,7 +905,20 @@
                   >
                 </div>
               </div>
-            </div>
+            
+            <div class="row collapse" id="comment-collapse-1">
+              <form method="post";
+                    action="https://google.com">
+              <input type="text"
+                     class="mt-3">
+                     <button class="btn btn-primary"
+                             button="submit"
+                             >Send</button>
+                    </form>
+          </div>
+        </div>
+          </li>
+          <li>
             <div class="card p-3 mb-2">
               <div class="d-flex flex-row">
                 <img
@@ -888,63 +929,12 @@
                 />
                 <div class="d-flex flex-column ms-2">
                   <h5 class="mb-1 text-primary">Power Paps</h5>
-                  <span class="rating rating-fixed">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="25"
-                      height="25"
-                      fill="currentColor"
-                      class="bi bi-star-fill"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-                      /></svg
-                    ><svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="25"
-                      height="25"
-                      fill="currentColor"
-                      class="bi bi-star-fill"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-                      /></svg
-                    ><svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="25"
-                      height="25"
-                      fill="currentColor"
-                      class="bi bi-star-fill"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-                      /></svg
-                    ><svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="25"
-                      height="25"
-                      fill="currentColor"
-                      class="bi bi-star-fill"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-                      /></svg
-                    ><svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="25"
-                      height="25"
-                      fill="currentColor"
-                      class="bi bi-star-half"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        d="M5.354 5.119 7.538.792A.516.516 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.537.537 0 0 1 16 6.32a.548.548 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.52.52 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.58.58 0 0 1 .085-.302.513.513 0 0 1 .37-.245l4.898-.696zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.565.565 0 0 1 .162-.505l2.907-2.77-4.052-.576a.525.525 0 0 1-.393-.288L8.001 2.223 8 2.226v9.8z"
-                      />
-                    </svg>
+                  <span class="review-rating">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star"></i>
                   </span>
                   <p class="comment-text">
                     Nice ONE!!! But no fences... Better keep an eye on your
@@ -955,11 +945,17 @@
               <div class="d-flex justify-content-between">
                 <div class="d-flex flex-row gap-3 align-items-center">
                   <div class="d-flex align-items-center">
-                    <i class="fa fa-heart-o"></i>
+                    <i class="bi bi-heart"></i>
                     <span class="ms-1 fs-10">Like</span>
                   </div>
                   <div class="d-flex align-items-center">
-                    <i class="fa fa-comment-o"></i>
+                    <i class="bi bi-chat-right-text btn"
+                       type="button"
+                       data-bs-toggle="collapse" 
+                       href="#comment-collapse-2" 
+                       role="button"
+                       aria-expanded="false" 
+                       aria-controls="comment-collapse-2"></i>
                     <span class="ms-1 fs-10">Comment</span>
                   </div>
                 </div>
@@ -969,7 +965,20 @@
                   >
                 </div>
               </div>
-            </div>
+            
+            <div class="row collapse" id="comment-collapse-2">
+              <form method="post";
+                    action="https://google.com">
+              <input type="text"
+                     class="mt-3">
+                     <button class="btn btn-primary"
+                             button="submit"
+                             >Send</button>
+                    </form>
+          </div>
+        </div>
+          </li>
+          <li>
             <div class="card p-3 mb-2">
               <div class="d-flex flex-row">
                 <img
@@ -980,64 +989,12 @@
                 />
                 <div class="d-flex flex-column ms-2">
                   <h5 class="mb-1 text-primary">LoneWolf67</h5>
-                  <span class="rating rating-fixed">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="25"
-                      height="25"
-                      fill="currentColor"
-                      class="bi bi-star-fill"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-                      />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="25"
-                      height="25"
-                      fill="currentColor"
-                      class="bi bi-star-fill"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-                      /></svg
-                    ><svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="25"
-                      height="25"
-                      fill="currentColor"
-                      class="bi bi-star-fill"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-                      /></svg
-                    ><svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="25"
-                      height="25"
-                      fill="currentColor"
-                      class="bi bi-star-fill"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-                      /></svg
-                    ><svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="25"
-                      height="25"
-                      fill="currentColor"
-                      class="bi bi-star-fill"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-                      />
-                    </svg>
+                  <span class="review-rating">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
                   </span>
                   <p class="comment-text">
                     The events are really nice. Hope to meet some more people
@@ -1048,11 +1005,19 @@
               <div class="d-flex justify-content-between">
                 <div class="d-flex flex-row gap-3 align-items-center">
                   <div class="d-flex align-items-center">
-                    <i class="fa fa-heart-o"></i>
+                    <i class="bi bi-heart"
+                       type="button"
+                     ></i>
                     <span class="ms-1 fs-10">Like</span>
                   </div>
                   <div class="d-flex align-items-center">
-                    <i class="fa fa-comment-o"></i>
+                    <i class="bi bi-chat-right-text btn"
+                       type="button"
+                       data-bs-toggle="collapse" 
+                       href="#comment-collapse-3" 
+                       role="button"
+                       aria-expanded="false" 
+                       aria-controls="comment-collapse-3"></i>
                     <span class="ms-1 fs-10">Comment</span>
                   </div>
                 </div>
@@ -1062,9 +1027,20 @@
                   >
                 </div>
               </div>
+              <div class="row collapse" id="comment-collapse-3">
+                <form method="post";
+                      action="https://google.com">
+                <input type="text"
+                       class="mt-3">
+                       <button class="btn btn-primary"
+                               button="submit"
+                               >Send</button>
+                      </form>
             </div>
+          </li>
+          </ul>
             <div class="card p-3 mb-2">
-              <form action="/reviews">
+              <form action="https://www.google.com">
               <div class="d-flex flex-row">
                 <div class="d-flex flex-column ms-2">
                   <h4 class="mb-1 comment-header"><b>What do you think?</b></h4>
@@ -1107,17 +1083,21 @@
                 </div>
               </div>
               <div class="mb-3">
-                <label for="review" class="form-label">Write a review</label>
+                <p>
+                <label for="review" class="form-label">Please leave a review!</label>
+              </p>
                 <input               
                   type="text"
-                  class="form-control"
+                  class="w-50 mt-0 mb-2 p-2 br-10"
                   id="review"
-                  placeholder="Please tell us more...."
+                  placeholder="How do you like this playground?"
                 />
                 <button type="submit"
                         class="btn btn-primary"
+                      
                         >Post
                       </button>
+                      </div>
               </form>
               </div>
             </div>
