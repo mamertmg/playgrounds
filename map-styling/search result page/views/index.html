@@ -315,7 +315,7 @@
 
                             <i class="fa fa-md fa-map-marker" aria-hidden="true" onclick='getLocation()'></i>
                             <label for="autocompleteInResultPage" class="form-label col-1"></label>
-                            <input class="modal-title col-10 border-0 autocomplete" id="autocompleteInResultPage"
+                            <input class="modal-title col-10 border-0 autocomplete1" id="autocompleteInResultPage"
                                 placeholder="Enter address" type="search">
 
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -369,39 +369,31 @@
 
                         <form action="">
 
-                            <div class="d-grid">
-                                <div class="row">
+                            <div class="input-group d-flex align-items-center">
 
-                                    <div class="input-group">
+                                <div>
 
-                                        <div class="input-group-prepend">
+                                    <label for="selectSearchRadius"></label>
 
-                                            <select class="custom-select" id="inputGroupSelect04">
-                                                <option selected>Search radius...</option>
-                                                <option value="1">1 km</option>
-                                                <option value="2">2 km </option>
-                                                <option value="3">3 km</option>
-                                                <option value="4">4 km</option>
-                                                <option value="5">5 km</option>
-                                            </select>
+                                    <select class="custom-select" id="selectSearchRadius">
+                                        <option selected>Search radius...</option>
+                                        <option value="1">1 km</option>
+                                        <option value="2">2 km </option>
+                                        <option value="3">3 km</option>
+                                        <option value="4">4 km</option>
+                                        <option value="5">5 km</option>
+                                    </select>
 
-                                        </div>
-
-
-                                        <input type="text" class="form-control rounded-pill autocomplete"
-                                            id="searchaddress-tablet-laptop" placeholder="Enter address" />
-
-                                        <label class="visually-hidden" for="searchaddress-tablet-laptop">Enter
-                                            address</label>
-
-
-                                        <button type="submit"
-                                            class="btn btn-danger btn-sm rounded-circle input-group-append"><i
-                                                class="fas fa-lg fa-search"></i></button>
-
-                                    </div>
                                 </div>
+
+                                <input class="autocomplete2" placeholder="Enter address" type="search">
+
+                                <button type="submit" class="btn btn-danger btn-sm rounded-circle"><i
+                                        class="fas fa-lg fa-search"></i></button>
+
                             </div>
+
+
                         </form>
 
                     </div>
@@ -489,7 +481,7 @@
 
 
             <a href="#mapInResultPage">
-                <button class="rounded-pill btn-dark btn-lg d-lg-none d-xl-none" id="mapButton">map<i
+                <button class="rounded-pill btn-dark btn-lg d-md-none d-lg-none d-xl-none" id="mapButton">map<i
                         class="fa-solid fa-map mx-1"></i></button></a>
 
 
@@ -500,10 +492,10 @@
 
             <div class="row">
 
-                <div class="col-md-12 col-lg col-xl sticky-lg-top" id="mapInResultPage"></div>
+                <div class="col-md-12 col-lg col-xl" id="mapInResultPage"></div>
 
 
-                <div class="my-5 col-md-12 col-lg col-xl">
+                <div class="my-5col-md-12 col-lg col-xl">
 
 
                     <div class="card">

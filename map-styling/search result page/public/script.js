@@ -1,17 +1,25 @@
 
-let autocomplete;
+let autocomplete1;
+let autocomplete2;
 
 async function initAutocomplete() {
 
-    autocomplete = new google.maps.places.Autocomplete(document.querySelector(".autocomplete"),
+    autocomplete1 = new google.maps.places.Autocomplete(document.querySelector(".autocomplete1"),
         {
             componentRestrictions: { 'country': ['de'] },
             fields: ['geometry', 'name', 'place_id'],
             types: ['address'],
         });
 
-    autocomplete.addListener('place_changed', onPlaceChanged);
+    autocomplete2 = new google.maps.places.Autocomplete(document.querySelector(".autocomplete2"),
+        {
+            componentRestrictions: { 'country': ['de'] },
+            fields: ['geometry', 'name', 'place_id'],
+            types: ['address'],
+        });
 
+    autocomplete1.addListener('place_changed', onPlaceChanged);
+    autocomplete2.addListener('place_changed', onPlaceChanged);
 
 }
 
@@ -137,9 +145,6 @@ async function initMap() {
 
 
     }
-
-
-
 
 
     initAutocomplete();
