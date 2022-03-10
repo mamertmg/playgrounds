@@ -1,12 +1,12 @@
 module.exports.playgroundLabels = [
     'fenced',
-    'parking',
+    'parking nearby',
     'benches',
     'restaurant',
     'park',
     'forest',
-    'shade',
-    'toilets',
+    'shaded areas',
+    'public restrooms',
 ];
 
 module.exports.playgroundEquipment = [
