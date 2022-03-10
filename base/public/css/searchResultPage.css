@@ -20,14 +20,7 @@
 
 
 @media screen and (max-width: 425px) {
-  .bg-image{
-    background-image: url(../public/images/wilbur-wong-w6n_GLhIzG4-unsplash-lg.jpg);
-    height: 100vh;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  
-  }
+ 
 
   #mapInResultPage {
 
@@ -37,16 +30,7 @@
 }
 
 @media screen and (min-width: 426px) {
-  .bg-image{
-
-    background-image: url(../public/images/wilbur-wong-w6n_GLhIzG4-unsplash-lg.jpg);
-  
-  height: 50vh;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  
-  }
+ 
 
   #mapInResultPage {
 
@@ -80,7 +64,7 @@
 
   #resultsInLaptopView {
     position: relative;
-    left: 600px;
+    left: 60%;
     
   }
 

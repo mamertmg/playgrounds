@@ -19,7 +19,7 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
 
 
-    <link rel="stylesheet" href="../public/landingpage.css">
+    <link rel="stylesheet" href="../public/css/landingpage.css">
 
 
     <script src="https://kit.fontawesome.com/cb28a685ae.js" crossorigin="anonymous"></script>
@@ -70,60 +70,39 @@
                         </ul>
                     </div>
 
-                    <div class="col-6 my-2 d-flex justify-content-center">
+                    <div class="col-6 my-2">
+
+                        <!-- form for address and search radius in tablet and laptop view , please add action here! -->
 
                         <form action="">
 
-                            <div class="input-group">
-                                <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
-                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        type
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu checkbox-menu allow-focus" aria-labelledby="dropdownMenu1">
+                            <div class="input-group d-flex align-items-center">
 
-                                        <li>
-                                            <label>
-                                                <input type="checkbox"> Skaters
-                                            </label>
-                                        </li>
+                                <div>
 
-                                        <li>
-                                            <label>
-                                                <input type="checkbox"> Kids
-                                            </label>
-                                        </li>
+                                    <label for="selectSearchRadius"></label>
 
-                                        <li>
-                                            <label>
-                                                <input type="checkbox"> Kickers
-                                            </label>
-                                        </li>
+                                    <select class="" id="selectSearchRadius">
+                                        <option selected>Search radius...</option>
+                                        <option value="1">1 km</option>
+                                        <option value="2">2 km </option>
+                                        <option value="3">3 km</option>
+                                        <option value="4">4 km</option>
+                                        <option value="5">5 km</option>
+                                    </select>
 
-                                        <li>
-                                            <label>
-                                                <input type="checkbox"> Others
-                                            </label>
-                                        </li>
-
-                                    </ul>
                                 </div>
 
+                                <label for="autocomplete2"></label>
 
-
-
-                                <input type="text" class="form-control rounded-pill autocompleted"
-                                    id="searchaddress-tablet-laptop" placeholder="Enter address" />
-
-                                <label class="visually-hidden" for="searchaddress-tablet-laptop">Enter address</label>
-
-
+                                <input class="" id="autocomplete2" placeholder="Enter address" type="search">
 
                                 <button type="submit" class="btn btn-danger btn-sm rounded-circle"><i
                                         class="fas fa-lg fa-search"></i></button>
 
                             </div>
+
+
                         </form>
 
                     </div>
@@ -145,7 +124,6 @@
             </div>
 
 
-
         </nav>
 
         <div class="modal d-md-none d-lg-none d-xl-none" id="searchBoxModal" aria-labelledby="exampleModalLabel"
@@ -153,15 +131,15 @@
             <div class="modal-dialog modal-fullscreen-md-down ">
                 <div class="modal-content">
 
-                    <!-- form action needs to be described here -->
+                    <!-- search form for mobile view-->
 
                     <form class="" id="searchform-landingpage-mobileview" action="" method="get" autocomplete="off">
                         <div class="modal-header">
 
                             <i class="fa fa-md fa-map-marker" aria-hidden="true" onclick='getLocation()'></i>
-                            <label for="autocomplete" class="form-label col-1"></label>
-                            <input class="modal-title col-10 border-0 autocompleted" id="autocomplete"
-                                placeholder="Enter address" type="search">
+                            <label for="autocomplete1" class="form-label col-1"></label>
+                            <input class="modal-title col-10 border-0" id="autocomplete1" placeholder="Enter address"
+                                type="search">
 
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
@@ -248,6 +226,8 @@
                         </a>
                     </li>
 
+                    <!-- please add link for add playground -->
+
                     <li class="nav-item text-center mx-2">
                         <a class="nav-link" href="#">
                             <div>
@@ -256,6 +236,8 @@
                             <h6>Contribute</h6>
                         </a>
                     </li>
+
+                    <!-- please add link for login -->
 
                     <li class="nav-item text-center mx-2">
                         <a class="nav-link" href="#">
@@ -271,50 +253,6 @@
         </nav>
 
 
-
-
-        <!-- <nav class="navbar navbar-expand-lg navbar-light px-3 d-none d-lg-block d-xl-block" id="navbar">
-                <a class="navbar-brand text-dark" href="#"> <img id="navbar-logo" src="../public/images/playground.png"
-                        width="30" height="30" alt=""></a>
-    
-                <a href="" class="d-none d-lg-block d-xl-block">my favourite playground</a>
-    
-                <div class="d-inline-flex">
-                    <a href="#" class="nav-link d-lg-none " id="acountIcon">
-                        <svg width="24" height="24">
-                            <use xlink:href="#people-circle" />
-                        </svg>
-    
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-                        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-    
-                </div>
-    
-    
-    
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Explore</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">About</a>
-                        </li>
-                    </ul>
-    
-                    <div class="d-none d-lg-block d-xl-block">
-                        <button type="button" class="btn btn-primary me-2">Login</button>
-                        <button type="button" class="btn btn-warning ">Sign-up</button>
-                    </div>
-    
-    
-            </nav> -->
 
 
         <div class="bg-image d-flex justify-content-center align-items-end">
@@ -596,7 +534,7 @@
         crossorigin="anonymous"></script>
 
 
-    <script src="../public/app.js"></script>
+    <script src="../public/javascript/landingpage.js"></script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
