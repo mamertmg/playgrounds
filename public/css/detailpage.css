@@ -339,13 +339,13 @@ hr {
 
 #statuslost {
     font-weight: 400;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     color: #FF5C5C;
 }
 
 #statusfound {
     font-weight: 400;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     color: #4EA599;
 }
 
@@ -373,4 +373,18 @@ hr {
 .bi-heart:hover {
     fill: red;
 
+}
+
+@media (max-width: 800px) {
+    #statuslost {
+        font-weight: 400;
+        font-size: 1rem;
+        color: #FF5C5C;
+    }
+
+    #statusfound {
+        font-weight: 400;
+        font-size: 1rem;
+        color: #4EA599;
+    }
 }
