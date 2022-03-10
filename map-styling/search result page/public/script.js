@@ -75,14 +75,19 @@ sectionTwoObserver.observe(sectionTwo);
 
 
 // navbar bottom disappears when filters is clicked on
+// map button disappears when filters is clicked
+
+
 
 const filters = document.querySelector('.filters')
 filters.addEventListener('shown.bs.offcanvas', e => {
 
     if (e) {
         navBottom.classList.add("visually-hidden");
+        mapButton.classList.add("visually-hidden")
     } else {
         navBottom.classList.remove("visually-hidden");
+        mapButton.classList.remove("visually-hidden");
     }
 })
 
@@ -90,6 +95,7 @@ filters.addEventListener('hidden.bs.offcanvas', e => {
 
     if (e) {
         navBottom.classList.remove("visually-hidden");
+        mapButton.classList.remove("visually-hidden");
     }
 })
 

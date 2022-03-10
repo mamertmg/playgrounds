@@ -58,6 +58,8 @@
 
                 </div>
 
+                <!-- search filters in navbar for mobile view  -->
+
                 <div class="mx-auto my-2 filters">
 
                     <button class="btn btn-outline-dark btn-sm rounded-pill" type="button" data-bs-toggle="offcanvas"
@@ -70,6 +72,9 @@
                             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                                 aria-label="Close"></button>
                         </div>
+
+                        <!-- form for age filter, please add action here!  -->
+
                         <div class="offcanvas-body small">
                             <form class="" action="" method="get" autocomplete="off">
 
@@ -100,9 +105,6 @@
 
                                 </div>
 
-
-
-
                                 <div class="d-flex justify-content-end">
                                     <button type="button" class="btn btn-secondary btn-sm mx-1"
                                         data-bs-dismiss="offcanvas">Reset</button>
@@ -125,6 +127,9 @@
                                 aria-label="Close"></button>
                         </div>
                         <div class="offcanvas-body small">
+
+                            <!-- form for equipment filter, please add action here!  -->
+
                             <form class="" action="" method="get" autocomplete="off">
 
                                 <div class="d-flex d-flex align-content-start flex-wrap my-2">
@@ -159,8 +164,6 @@
 
 
                                 </div>
-
-
 
 
                                 <div class="d-flex justify-content-end">
@@ -184,6 +187,10 @@
                                 aria-label="Close"></button>
                         </div>
                         <div class="offcanvas-body small">
+
+
+                            <!-- form for Rating filter, please add action here!  -->
+
                             <form class="" action="" method="get" autocomplete="off">
 
                                 <div class="d-flex d-flex align-content-start flex-wrap my-2">
@@ -218,8 +225,6 @@
 
 
                                 </div>
-
-
 
 
                                 <div class="d-flex justify-content-end">
@@ -244,6 +249,8 @@
                                 aria-label="Close"></button>
                         </div>
                         <div class="offcanvas-body small">
+
+                            <!-- form for Feature filter, please add action here!  -->
                             <form class="" action="" method="get" autocomplete="off">
 
                                 <div class="d-flex d-flex align-content-start flex-wrap my-2">
@@ -308,7 +315,7 @@
             <div class="modal-dialog modal-fullscreen-md-down">
                 <div class="modal-content">
 
-                    <!-- form action needs to be described here -->
+                    <!-- form for address and search radius in mobile view, please add action here! -->
 
                     <form class="" id="searchform-landingpage-mobileview" action="" method="get" autocomplete="off">
                         <div class="modal-header">
@@ -366,6 +373,8 @@
                     </div>
 
                     <div class="col-6 my-2">
+
+                        <!-- form for address and search radius in tablet and laptop view , please add action here! -->
 
                         <form action="">
 
@@ -447,6 +456,9 @@
                         </a>
                     </li>
 
+                    <!-- please add link to add playground page here-->
+
+
                     <li class="nav-item text-center mx-2">
                         <a class="nav-link" href="#">
                             <div>
@@ -455,6 +467,8 @@
                             <h6>Contribute</h6>
                         </a>
                     </li>
+
+                    <!-- please add link to login page here-->
 
                     <li class="nav-item text-center mx-2">
                         <a class="nav-link" href="#">
@@ -480,8 +494,8 @@
         <div class="d-flex justify-content-center fixed-bottom">
 
 
-            <a href="#mapInResultPage">
-                <button class="rounded-pill btn-dark btn-lg d-md-none d-lg-none d-xl-none" id="mapButton">map<i
+            <a href="#mapButtonReturnPoint">
+                <button class="rounded-pill btn-dark btn-lg d-lg-none d-xl-none" id="mapButton">map<i
                         class="fa-solid fa-map mx-1"></i></button></a>
 
 
@@ -490,12 +504,18 @@
 
         <div class="container">
 
+            <div class="visually-hidden" id="mapButtonReturnPoint"></div>
+
             <div class="row">
 
-                <div class="col-md-12 col-lg col-xl" id="mapInResultPage"></div>
+                <div class="" id="sticky-map">
 
+                    <div class="col-lg-7" id="mapInResultPage"></div>
+                </div>
 
-                <div class="my-5col-md-12 col-lg col-xl">
+                <!-- please add search result here-->
+
+                <div id="resultsInLaptopView" class="my-3 col-lg-4">
 
 
                     <div class="card">
@@ -506,58 +526,28 @@
                             <h5 class="card-title">Name</h5>
                             <h6 class="card-title"> Address - Type</h6>
                             <p class="card-text">Keywords</p>
-                            <a href="#!" class="btn btn-primary">Register</a>
+                            <a href="#!" class="btn btn-primary">More Information</a>
                         </div>
 
                     </div>
 
-
                     <div class="card">
-                        <div class="card-header">Date: 18th June</div>
+
                         <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top"
                             alt="Fissure in Sandstone" />
                         <div class="card-body">
-                            <h5 class="card-title">Summerbreak Activities
-                            </h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                                bulk of the card's content.</p>
-                            <a href="#!" class="btn btn-primary">Register</a>
+                            <h5 class="card-title">Name</h5>
+                            <h6 class="card-title"> Address - Type</h6>
+                            <p class="card-text">Keywords</p>
+                            <a href="#!" class="btn btn-primary">More Information</a>
                         </div>
-
 
                     </div>
 
-
-
-
-                    <div class="card">
-                        <div class="card-header "> Date: 28th June</div>
-                        <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top"
-                            alt="Fissure in Sandstone" />
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                                bulk of the card's content.</p>
-                            <a href="#!" class="btn btn-primary">Register</a>
-                        </div>
-
-
-                    </div>
                 </div>
             </div>
 
-
         </div>
-
-
-
-
-
-
-
-
-
-
 
     </main>
 

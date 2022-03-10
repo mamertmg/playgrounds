@@ -10,6 +10,13 @@
   margin-bottom: 120px;
 }
 
+#sticky-map {
+  position:sticky;
+  top: 1px;
+  
+
+}
+
 
 
 @media screen and (max-width: 425px) {
@@ -24,9 +31,8 @@
 
   #mapInResultPage {
 
-    height: 40vh;
-    margin-top: 120px;
-    
+    height: 50vh;
+       
   }
 }
 
@@ -44,8 +50,7 @@
 
   #mapInResultPage {
 
-    height: 40vh;
-    margin-top: 120px;
+    height: 50vh;
     
   }
 }
@@ -55,14 +60,31 @@
 
   #mapInResultPage {
 
-    height: 80vh;
-    margin-top: 120px;
-    position: -webkit-sticky;
+    height: 50vh;
+         
+  }
+
+  
+  
+}
+
+
+@media screen and (min-width: 1024px ) { 
+
+  #mapInResultPage {
+
+    height: 100vh;
+
+            
+  }
+
+  #resultsInLaptopView {
+    position: relative;
+    left: 600px;
     
   }
 
- 
-      
+  
   
 }
 
