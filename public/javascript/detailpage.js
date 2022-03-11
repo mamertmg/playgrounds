@@ -4,18 +4,6 @@ const popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
 })
 
 
-// let eventListPGNumber = {};
-
-// let eventListPGNumber = addEventListener('submit') = function input {
-//   eventListPGNumber.push({
-//     eventDate: document.getElementById("eventDate").value,
-//     eventTime: document.getElementById("eventTime").value,
-//     eventName: document.getElementById("eventName").value,
-//     eventInfo: document.getElementById("eventInfo").value
-//   })
-// };
-
-
 //event form
 const form = document.querySelector('#eventForm');
 const inputEventDate = document.querySelector('#eventDate');
@@ -38,6 +26,7 @@ submitMessage.style.display = 'none';
 const targetDiv = document.getElementById("eventForm");
 targetDiv.style.display = 'block';
 const btnSubmit = document.getElementById("btnSubmit");
+
 // btnSubmit.onclick = function () {
 //   targetDiv.style.display = 'none';
 //   btnSubmit.style.display = 'none';
@@ -78,10 +67,6 @@ btnClose2.onclick = function () {
 function preview() {
   frame.src = URL.createObjectURL(event.target.files[0]);
 }
-// function clearImage() {
-//   document.getElementById('eventPhoto').value = null;
-//   frame.src = "";
-// }
 
 // lost & found form
 
@@ -142,10 +127,7 @@ btnClose4.onclick = function () {
 function preview2() {
   frame2.src = URL.createObjectURL(event.target.files[0]);
 }
-// function clearImage2() {
-//   document.getElementById('lostPhoto').value = null;
-//   frame2.src = "";
-// }
+
 
 //addPhoto form
 
@@ -194,10 +176,6 @@ btnClose6.onclick = function () {
 function preview3() {
   framePhoto.src = URL.createObjectURL(event.target.files[0]);
 }
-// function clearImage() {
-//   document.getElementById('playgroundPhoto').value = null;
-//   framePhoto.src = "";
-// }
 
 
 
