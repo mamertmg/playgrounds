@@ -46,7 +46,7 @@
 @media screen and (max-width: 425px) {
   .bg-image{
 
-    background-image: url(../images/wilbur-wong-w6n_GLhIzG4-unsplash-small.jpg);
+    background-image: url(../../images/base/wilbur-wong-w6n_GLhIzG4-unsplash-small.jpg);
   
   height: 100vh;
   background-repeat: no-repeat;
@@ -97,7 +97,7 @@
 @media screen and (min-width: 426px) {
   .bg-image{
 
-    background-image: url(../images/wilbur-wong-w6n_GLhIzG4-unsplash-lg.jpg);
+    background-image: url(../../images/base/wilbur-wong-w6n_GLhIzG4-unsplash-lg.jpg);
   position: relative;
   top: 60px;
   height: 50vh;

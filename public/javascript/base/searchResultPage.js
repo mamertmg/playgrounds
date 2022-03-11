@@ -129,6 +129,10 @@ async function initMap() {
                 map,
 
                 title: currMarker.objektbezeichung,
+                icon: {
+                    url: '../../public/images/base/playground-pixel.png',
+                    scaledSize: new google.maps.Size(40, 40),
+                },
 
                 animation: google.maps.Animation.DROP,
             });
