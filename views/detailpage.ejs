@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <script src="https://kit.fontawesome.com/dcfa7fe939.js" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <title>Playground Details</title>
+    <link rel="stylesheet" href="../public/css/detailpage.css" />
+  </head>
+
+  <body>
+    <nav
+      id="mainNavbar"
+      class="navbar navbar-dark navbar-expand-md py-0 px-3 fixed-top"
+    >
+      <a id="nav-header"
+         class="navbar-brand">
+        <!-- Link to fulfill license regulations of flaticon.com:
+                  <a href="https://www.flaticon.com/free-icons/playground" title="playground icons">Playground icons created by
+        photo3idea_studio - Flaticon</a> -->
+
+        <img id="navbar-logo" 
+             src="../public/images/playground.png" 
+             alt=""/> my favourite playground
+      </a>
+      <button
+        class="navbar-toggler"
+        data-toggle="collapse"
+        data-target="#navlinks"
+        aria-label="Toggle Navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navlinks" class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="" class="nav-link">HOME</a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">EXPLORE</a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">ABOUT</a>
+          </li>
+        </ul>
+      </div>
+      <div class="text-right d-none d-lg-block">
+        <button id="btn-login" type="button" class="btn p-1 mx-1">
+          LOGIN
+        </button>
+        <button id="btn-signup" type="button" class="btn p-1 mx-1">
+          SIGN UP
+        </button>
+      </div>
+    </nav>
+
+    <section class="container-fluid p-0 p-xs-2 p-sm-4 p-md-5">
+      <div class="row">
+        <h1 class="gx-5 col" id="pgName">
+          Playground Lessingplatz
+          <sup>
+          <span class="playground-rating">
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-half"></i>
+          </span>
+        </sup>
+        </h1>
+        </div>
+        <div class="row">
+          <div class="gx-5 col">
+            <div class="btn tag">
+              <i class="fa-solid fa-leaf"></i>
+               natural playground
+            </div>
+              <div class="btn tag">
+                <i class="fa-solid fa-location-dot"></i>
+                   Oberbilk
+              </div>
+        </div>
+        </div>
+
+        <div class="row">
+          <div class="gx-5 col-md-6 order-md-2 mb-3">
+            <div id="playgroundDetails" class="card-body">
+              
+
+              <h3 class="card-title"> 
+                OBERBILK, Düsseldorf    
+              </h3> 
+              <a
+              class="btn-collapse"
+              data-bs-toggle="collapse"
+              href="#infocard-collapse"
+              role="button"
+              aria-expanded="false"
+              aria-controls="infocard-collapse"
+            >
+              <i class="fa-solid fa-map-location-dot"> </i>
+            </a>
+              <p class="card-text">
+                <h5>
+              DESCRIPTION:</h5> </b> This is a lovely playground. It is easy to get to by public transport and it is suitable for smaller children as well as for young teens.</p>
+                
+              
+                <h5>FEATURES</h5>
+                <div id="featureTags"> 
+                  <div class="btn littleTags">
+                    <i class="fa-solid fa-table-tennis-paddle-ball"></i>
+                      <span class="d-none d-md-inline">
+                        table tennis
+                      </span>
+                    </div>
+                  <div class="btn littleTags">
+                    <i class="fa-solid fa-umbrella-beach"></i>
+                    <span class="d-none d-md-inline">
+                      shaded areas
+                    </span>
+                  </div>
+                  <div class="btn littleTags">
+                    <i class="fa-solid fa-restroom"></i>
+                    <span class="d-none d-md-inline">
+                      public restrooms
+                    </span>
+                  </div>
+                  <div class="btn littleTags">
+                    <i class="fa-solid fa-square-parking"></i>
+                    <span class="d-none d-md-inline">
+                      parking nearby
+                    </span>
+                 </div>
+                 
+                  
+             
+                </div>
+           
+              
+              <div class="collapse" id="infocard-collapse">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9997.182405234265!2d6.7936398!3d51.21363!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x1ea4e9a90699b760!2sSpielplatz%20Lessingplatz!5e0!3m2!1sde!2sde!4v1646081872131!5m2!1sde!2sde" 
+                        width="800" 
+                        height="450" 
+                        style="border:2px;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                </iframe>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="gx-5 col-md-6 order-md-1">
+              
+            
+
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="addPhotoForm"
+              data-bs-backdrop="static"
+              data-bs-keyboard="false"
+              tabindex="-1"
+              aria-labelledby="addPhotoFormLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content p-3">
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="staticBackdropLabel">
+                      Add a photograph
+                    </h4>
+                    <button
+                      type="button"
+                      id="btnClose5"
+                      class="btn-close btnClose"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div  class="modal-body">
+                    <form id="photoForm" 
+                          class="mb-5" 
+                          action="https://google.com">
+                      <h5 class="mt-3 mb-2"></h5>
+                      <input
+                        class="form-control"
+                        type="file"
+                        id="playgroundPhoto"
+                        onchange="preview3()"
+                        required
+                      />
+                      <img id="framePhoto" src="" class="img-fluid mt-4" />
+                      <label class="form-check-label" for="photoDescription">
+                        Description
+                      </label>
+                      <input
+                        id="photoDescription"
+                        type="text"
+                        class="w-100 mt-0 mb-2 p-2 br-10"
+                        placeholder="Give a short description"
+                      />
+                    </form>
+                  </div>
+                  <span>
+                    <h3 class="text-center p-5" id="submitMessagePhoto">
+                      Thank you! Your photo has been added!
+                    </h3>
+                  </span>
+
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      id="btnClose6"
+                      class="btn btn-secondary btnClose"
+                      data-bs-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <button
+                      id="btnSubmitPhoto"
+                      type="submit"
+                      form="photoForm"
+                      class="btn btn-primary"
+                    >
+                      Send
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              id="carouselIndicators"
+              class="carousel slide"
+              data-bs-ride="carousel"
+              
+            >
+              <div class="carousel-indicators">
+                <button
+                  type="button"
+                  data-bs-target="#carouselIndicators"
+                  data-bs-slide-to="0"
+                  class="active"
+                  aria-current="true"
+                  aria-label="Slide 1"
+                ></button>
+                <button
+                  type="button"
+                  data-bs-target="#carouselIndicators"
+                  data-bs-slide-to="1"
+                  aria-label="Slide 2"
+                ></button>
+                <button
+                  type="button"
+                  data-bs-target="#carouselIndicators"
+                  data-bs-slide-to="2"
+                  aria-label="Slide 3"
+                ></button>
+              </div>
+
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img
+                    src="https://images.unsplash.com/photo-1606733894347-7cb201dc810b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80"
+                    class="d-block w-100 img-fluid"
+                    alt=""
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="https://images.unsplash.com/photo-1575783970733-1aaedde1db74?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80"
+                    class="d-block w-100 img-fluid"
+                    alt=""
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="https://images.unsplash.com/photo-1596997000103-e597b3ca50df?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80"
+                    class="d-block w-100 img-fluid"
+                    alt=""
+                  />
+                </div>
+              </div>
+
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#carouselIndicators"
+                data-bs-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#carouselIndicators"
+                data-bs-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+              <a id="addphoto"
+                 class="btn btn-plus position-absolute top-0 end-0"
+                 data-bs-toggle="modal"
+                 data-bs-target="#addPhotoForm">
+                <svg
+                  
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="50"
+                  height="50"
+                  fill="currentColor"
+                  class="bi bi-plus-square-fill align-self-end"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"
+                  />
+                </svg>
+              </a>
+            </div>
+            
+          </div>
+
+          <div class="w-100 d-none d-md-block d-xl-none">
+          </div>
+          <div class="gx-5 col-12 col-xl-6 order-md-3 order-xl-4">
+            <h3 id="event-header">UPCOMING EVENTS</h3>
+                      <span class="d-inline-block" 
+                            tabindex="0" 
+                            data-bs-toggle="popover"  
+                            data-bs-trigger="hover focus"
+                            data-bs-content="Add an Event">
+                          <!-- Button trigger modal -->
+                          <span class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                              <a class="btn-plus"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+                                      fill="currentColor" class="bi bi-plus-square" viewBox="0 0 25 25">
+                                      <path
+                                          d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                                      <path
+                                          d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                  </svg> </a>
+                          </span>
+                      </span>
+                      <!-- Modal -->
+                      <div class="modal fade"
+                           id="staticBackdrop"
+                           data-bs-backdrop="static"
+                           data-bs-keyboard="false"
+                           tabindex="-1"
+                           aria-labelledby="staticBackdropLabel"
+                           aria-hidden="true"
+                      >
+                      <div class="modal-dialog">
+                      <div class="modal-content p-3">
+                      <div class="modal-header">
+                    <h4 class="modal-title" id="staticBackdropLabel">
+                      Add an Event
+                    </h4>
+                    <button
+                      type="button"
+                      id="btnClose1"
+                      class="btn-close btnClose"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div id="eventForm" class="modal-body">
+                    <form id="actualEventForm" class="mb-5" action="https://www.google.com">
+                      <label class="form-check-label" for="eventDate">
+                        Date
+                      </label>
+                      <input
+                        id="eventDate"
+                        type="date"
+                        class="w-100 mt-0 mb-2 p-2 br-10"
+                        required
+                      />
+                      <label class="form-check-label" for="eventTime">
+                        Time
+                      </label>
+                      <input
+                        id="eventTime"
+                        type="time"
+                        class="w-100 mt-0 mb-2 p-2 br-10"
+                        required
+                      />
+                      <label class="form-check-label" for="eventName">
+                        Name of the event 
+                      </label>
+                      <input
+                        id="eventName"
+                        type="text"
+                        class="w-100 mt-0 mb-2 p-2 br-10"
+                        placeholder="name of the event"
+                        required
+                      />
+                      <label class="form-check-label" for="eventInfo">
+                        Info
+                      </label>
+                      <textarea 
+                        id="eventInfo"
+                        class="w-100 mt-0 mb-2 p-2 br-10"
+                        placeholder="further information"
+                        cols="30" rows="2"></textarea>
+                      
+                      <label class="form-check-label" for="eventLink">
+                        Add a link
+                      </label>
+                      <input
+                        id="eventLink"
+                        type="link"
+                        class="w-100 mt-0 mb-2 p-2 br-10"
+                        placeholder="add a Link"
+                      />
+
+                      <h5 class="mt-3 mb-2">
+                        Create a thumbnail for your event!
+                      </h5>
+                      <input
+                        class="form-control"
+                        type="file"
+                        id="eventPhoto"
+                        onchange="preview()"
+                      />
+                      <img id="frame" src="" class="img-fluid mt-4" />
+
+                    </form>
+                  </div>
+                  <span>
+                    <h3 class="text-center p-5" id="submitMessage">
+                      Thank you! Your event has been added.
+                    </h3>
+                  </span>
+
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      id="btnClose2"
+                      class="btn btn-secondary btnClose"
+                      data-bs-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <button
+                      id="btnSubmit"
+                      type="submit"
+                      class="btn btn-primary"
+                      form="actualEventForm"
+                    >
+                      Send
+                    </button>
+                  </div>
+                </div>
+              </div>
+                         </div>
+              <div class="card">                               
+                   <ul>
+                      <li>
+                          <div class="row link">
+                              <div id="theDate"
+                                   class="col-2 text-start">
+                                  <div class="day d-inline-block"> 
+                                      14 
+                                  </div>
+                                  <div class="month">
+                                      FEB
+                                  </div>
+                                 
+                              </div>
+                              <div class="col-6 text-center">
+                                  <h5 class="heading"
+                                      data-bs-toggle="collapse" 
+                                      href="#event-collapse" 
+                                      role="button"
+                                      aria-expanded="false" 
+                                      aria-controls="event-collapse">
+                                      Super Fun Day
+                                  </h5>
+                                  <div class="time">
+                                      Mon, 11am</div>
+                                  <div class="location">Spielplatz Lessingplatz</div>
+
+                              </div>
+                        
+                          <div class="col-3">
+
+                              <img class="thumbnail"
+                                   data-bs-toggle="collapse" 
+                                   href="#event-collapse" 
+                                   role="button"
+                                   aria-expanded="false" 
+                                   aria-controls="event-collapse"
+                                   src="https://images.unsplash.com/photo-1615445565741-c60a9edd393f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8a2lkcyUyMHBhcnR5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" 
+                                   alt=""
+                              >
+                              </div>
+                              <div class="col-1 align-self-center">
+                              <i id="iCircleEvent"
+                              class="bi bi-info-circle text-primary info-btn"
+                              type="button"
+                              data-bs-toggle="collapse" 
+                                href="#event-collapse" 
+                                role="button"
+                                aria-expanded="false" 
+                                aria-controls="event-collapse"></i>
+                          </div>
+                          
+                          
+                                                                                   
+                              <div class="row collapse mt-3" 
+                                   id="event-collapse">
+                                   <hr> <div class="col-2 text-start align-self-center"> <a href="https://www.youtube.com/watch?v=lMLXyVRlW4o">somuch.fun</a> </div>
+                                   <div class="col-6 text-center align-self-center">
+                                    This will be a super fun day! BYOB!
+                                    </div>
+                                   <div class="col-3 text-center">
+                                       <img src="https://i.imgur.com/C4egmYM.jpg" height="50" width="50"
+                                           class="rounded-circle" />
+                                           LoneWolf67
+                                   </div>
+                                   <div class="col-1"></div>
+                                  
+                              
+                              
+                          </div>
+
+                      </li>
+                                                      
+                                           
+                   </ul>
+                 </div>
+                 
+              
+       
+                 <h3 id="lostfound-header">LOST & FOUND</h3>
+                 <span
+                   class="d-inline-block"
+                   tabindex="0"
+                   data-bs-toggle="popover"
+                   data-bs-trigger="hover focus"
+                   data-bs-content="Did you loose/find something?"
+                 >
+                   <!-- Button trigger modal -->
+                   <span
+                     class="btn"
+                     data-bs-toggle="modal"
+                     data-bs-target="#staticBackdroplostfound"
+                   >
+                     <a class="btn-plus"
+                       ><svg
+                         xmlns="http://www.w3.org/2000/svg"
+                         width="50"
+                         height="50"
+                         fill="currentColor"
+                         class="bi bi-plus-square"
+                         viewBox="0 0 25 25"
+                       >
+                         <path
+                           d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
+                         />
+                         <path
+                           d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                         />
+                       </svg>
+                     </a>
+                   </span>
+                 </span>
+                 <!-- Modal -->
+                 <div
+                   class="modal fade"
+                   id="staticBackdroplostfound"
+                   data-bs-backdrop="static"
+                   data-bs-keyboard="false"
+                   tabindex="-1"
+                   aria-labelledby="staticBackdropLabel"
+                   aria-hidden="true"
+                 >
+                   <div class="modal-dialog">
+                     <div class="modal-content p-3">
+                       <div class="modal-header">
+                         <h4 class="modal-title" id="staticBackdropLabel2">
+                           Lost or Found?
+                         </h4>
+                         <button
+                           type="button"
+                           id="btnClose3"
+                           class="btn-close"
+                           data-bs-dismiss="modal"
+                           aria-label="Close"
+                         ></button>
+                       </div>
+                       <div id="lostForm" class="modal-body">
+                         <form
+                           id="form-lost"
+                           class="mb-5"
+                           action="https://google.com"
+                         >
+                           <div class="form-check">
+                             <input
+                               class="form-check-input"
+                               type="radio"
+                               name="flexRadioDefault"
+                               id="radioLost"
+                               checked
+                             />
+                             <label class="form-check-label" for="radioLost">
+                               Lost
+                             </label>
+                           </div>
+                           <div class="form-check">
+                             <input
+                               class="form-check-input"
+                               type="radio"
+                               name="flexRadioDefault"
+                               id="radioFound"
+                             />
+                             <label class="form-check-label" for="radioFound">
+                               Found
+                             </label>
+                           </div>
+                           <label
+                             class="form-check-label mt-2 mb-0"
+                             for="lostDate"
+                           >
+                             Date
+                           </label>
+                           <input
+                             id="lostDate"
+                             type="date"
+                             class="w-100 mt-0 mb-2 p-2 br-10"
+                           />
+                           <label class="form-check-label mb-0" for="lostItem">
+                             Item
+                           </label>
+                           <input
+                             id="lostItem"
+                             type="text"
+                             class="w-100 mt-0 mb-2 p-2 br-10"
+                             placeholder="name of the item"
+                             required
+                           />
+                           <textarea 
+                             id="lostItemLong"
+                             class="w-100 mt-0 mb-2 p-2 br-10"
+                             placeholder="description of the item"
+                             cols="30" rows="2"></textarea>
+                           
+                           <label
+                             class="form-check-label mb-0"
+                             for="lostContact"
+                           >
+                             Contact
+                           </label>
+ 
+                           <input
+                             id="lostContact"
+                             type="text"
+                             class="w-100 mt-0 mb-2 p-2 br-10"
+                             placeholder="contact"
+                           />
+ 
+                           <h5 class="mt-3 mb-2">
+                             Upload a picture of the item!
+                           </h5>
+                           <input
+                             class="form-control"
+                             type="file"
+                             id="lostPhoto"
+                             onchange="preview2()"
+                           />
+                           <img id="frame2" src="" class="img-fluid mt-4" />
+                         </form>
+                       </div>
+                       <span>
+                         <h3 class="text-center p-5" id="submitMessage2">
+                           Thank you! Your entry has been added!
+                         </h3>
+                       </span>
+                       <div class="modal-footer">
+                         <button
+                           type="button"
+                           id="btnClose4"
+                           class="btn btn-secondary"
+                           data-bs-dismiss="modal"
+                         >
+                           Close
+                         </button>
+                         <button
+                           id="btnSubmit2"
+                           type="submit"
+                           class="btn btn-primary"
+                           form="form-lost"
+                         >
+                           Send
+                         </button>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+              
+              
+                <div class="card">  
+                <ul>
+                    <li>
+                        <div class="row link">
+                            <div id="statuslost" class="col-2 text-start align-self-center">
+                                LOST
+                            </div>
+
+                            <div class="col-6 text-center align-self-center">
+                                <h5 id="theItem" 
+                                    class="heading"
+                                    type="button"
+                                    data-bs-toggle="collapse" 
+                                    href="#item-collapse" 
+                                    role="button"
+                                    aria-expanded="false" 
+                                    aria-controls="item-collapse">
+                                    My Patience
+                                </h5>
+
+                            </div>
+
+                            <div class="col-3">
+                                <img class="thumbnail"
+                                    src="https://images.unsplash.com/photo-1580250642511-1660fe42ad58?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1025&q=80"
+                                    alt=""
+                                    type="button"
+                                    data-bs-toggle="collapse" 
+                                    href="#item-collapse" 
+                                    role="button"
+                                    aria-expanded="false" 
+                                    aria-controls="item-collapse" 
+                                />
+                            </div>
+
+                            <div class="col-1 align-self-center">
+                              <i id="iCircleLost"
+                              class="bi bi-info-circle text-primary info-btn"
+                              type="button"
+                              data-bs-toggle="collapse" 
+                                href="#item-collapse" 
+                                role="button"
+                                aria-expanded="false" 
+                                aria-controls="item-collapse"></i>
+                               
+                            </div>
+                            <div class="row collapse mt-3" id="item-collapse">
+                                <hr>
+                                    <div class="col-2 text-start align-self-center"> May 21,2020</div>
+                                    <div class="col-6 text-center align-self-center">
+                                        What's gone is gone...
+                                     </div>
+                                    <div class="col-3 text-center">
+                                        <img src="https://i.imgur.com/hczKIze.jpg" height="50" width="50"
+                                            class="rounded-circle" />
+                                            PowerPaps
+                                    </div>
+                                    <div class="col-1"></div>
+                                </div>
+                            
+                        </div>
+                    </li>
+                    <li>
+                      <div class="row link">
+                          <div id="statusfound" class="col-2 text-start align-self-center">
+                              FOUND
+                          </div>
+
+                          <div class="col-6 text-center align-self-center">
+                              <h5 id="theItem" 
+                                  class="heading"
+                                  type="button"
+                                  data-bs-toggle="collapse" 
+                                  href="#item2-collapse" 
+                                  role="button"
+                                  aria-expanded="false" 
+                                  aria-controls="item2-collapse">
+                                  Shopping List
+                              </h5>
+
+                          </div>
+
+                          <div class="col-3">
+                              <img class="thumbnail"
+                                  src="https://images.unsplash.com/photo-1536546025187-bad5bfc86628?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                                  alt=""
+                                  type="button"
+                                  data-bs-toggle="collapse" 
+                                  href="#item2-collapse" 
+                                  role="button"
+                                  aria-expanded="false" 
+                                  aria-controls="item2-collapse" 
+                              />
+                          </div>
+
+                          <div class="col-1 align-self-center">
+                            <i id="iCircleLost"
+                            class="bi bi-info-circle text-primary info-btn"
+                            type="button"
+                            data-bs-toggle="collapse" 
+                              href="#item2-collapse" 
+                              role="button"
+                              aria-expanded="false" 
+                              aria-controls="item-collapse"></i>
+                             
+                          </div>
+                          <div class="row collapse mt-3" id="item2-collapse">
+                              <hr>
+                                  <div class="col-2 text-start align-self-center"> May 21,2020</div>
+                                  <div class="col-6 text-center align-self-center">
+                                      You are supposed to buy: milk, cucumbers, chocolate and diapers.
+                                   </div>
+                                  <div class="col-3 text-center">
+                                      <img src="https://i.imgur.com/hczKIze.jpg" height="50" width="50"
+                                          class="rounded-circle" />
+                                          PowerPaps
+                                  </div>
+                                  <div class="col-1"></div>
+                              </div>
+                          
+                      </div>
+                  </li>
+                    
+
+                </ul>
+              
+            </div>
+          </div>
+
+          <div class="w-100 d-none d-md-block d-xl-none"></div>
+          <div class="gx-5 col col-xl-6 order-md-4 order-xl-3">
+            <div class="text-left mt-4">
+              <h3 id="review-header">REVIEWS (3)</h3>
+            </div>
+            <ul>
+              <li>
+            <div class="card p-3 mb-2">
+              <div class="d-flex flex-row">
+                <img
+                  src="https://i.imgur.com/dwiGgJr.jpg"
+                  height="60"
+                  width="60"
+                  class="rounded-circle"
+                />
+                <div class="d-flex flex-column ms-2">
+                  <h5 class="mb-1 text-primary">Mamita406</h5>
+                  <span class="review-rating">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-half"></i>
+                  </span>
+                  <p class="comment-text">super duper, lots of fun!!!!</p>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between">
+                <div class="d-flex flex-row gap-3 align-items-center">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-heart"
+                       type="button">
+                    </i>
+                    <span class="ms-1 fs-10">Like</span>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-chat-right-text"
+                       type="button"
+                       data-bs-toggle="collapse" 
+                       href="#comment-collapse-1" 
+                       role="button"
+                       aria-expanded="false" 
+                       aria-controls="comment-collapse-1"></i>
+                    <span class="ms-1 fs-10">Comment</span>
+                  </div>
+                </div>
+                <div class="d-flex flex-row">
+                  <span class="text-muted fw-normal fs-10"
+                    >May 22,2020 12:10 PM</span
+                  >
+                </div>
+              </div>
+            
+            <div class="row collapse" id="comment-collapse-1">
+              <form method="post";
+                    action="https://google.com">
+                    <textarea 
+                    cols="100" 
+                    rows="1"
+                    class="mt-2 mb-2 p-2 br-10"
+                    placeholder="comment on this post"></textarea>
+                    <div  class="mb-3 d-flex flex-column"> 
+          <button id="postComment"
+                  type="submit"
+                  class="mt-2 btn btn-primary"
+                  >POST
+                </button>
+                </div>
+                    </form>
+          </div>
+        </div>
+          </li>
+          <li>
+            <div class="card p-3 mb-2">
+              <div class="d-flex flex-row">
+                <img
+                  src="https://i.imgur.com/hczKIze.jpg"
+                  height="60"
+                  width="60"
+                  class="rounded-circle"
+                />
+                <div class="d-flex flex-column ms-2">
+                  <h5 class="mb-1 text-primary">Power Paps</h5>
+                  <span class="review-rating">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star"></i>
+                  </span>
+                  <p class="comment-text">
+                    Nice ONE!!! But no fences... Better keep an eye on your
+                    little runners.
+                  </p>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between">
+                <div class="d-flex flex-row gap-3 align-items-center">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-heart"
+                       type="button">
+                    </i>
+                    <span class="ms-1 fs-10">Like</span>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-chat-right-text"
+                       type="button"
+                       data-bs-toggle="collapse" 
+                       href="#comment-collapse-2" 
+                       role="button"
+                       aria-expanded="false" 
+                       aria-controls="comment-collapse-2"></i>
+                    <span class="ms-1 fs-10">Comment</span>
+                  </div>
+                </div>
+                <div class="d-flex flex-row">
+                  <span class="text-muted fw-normal fs-10"
+                    >May 21,2020 1:10 PM</span
+                  >
+                </div>
+              </div>
+            
+            <div class="row collapse" id="comment-collapse-2">
+              <form method="post";
+                    action="https://google.com">
+                    <textarea 
+                    cols="100" 
+                    rows="1"
+                    class="mt-2 mb-2 p-2 br-10"
+                    placeholder="comment on this post"></textarea>
+                    <div  class="mb-3 d-flex flex-column"> 
+            
+        
+          <button id="postComment"
+                  type="submit"
+                  class="mt-2 btn btn-primary"
+                  >POST
+                </button>
+                </div>
+                    </form>
+          </div>
+        </div>
+          </li>
+          <li>
+            <div class="card p-3 mb-2">
+              <div class="d-flex flex-row">
+                <img
+                  src="https://i.imgur.com/C4egmYM.jpg"
+                  height="60"
+                  width="60"
+                  class="rounded-circle"
+                />
+                <div class="d-flex flex-column ms-2">
+                  <h5 class="mb-1 text-primary">LoneWolf67</h5>
+                  <span class="review-rating">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                  </span>
+                  <p class="comment-text">
+                    The events are really nice. Hope to meet some more people
+                    from the neighbourhood
+                  </p>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between">
+                <div class="d-flex flex-row gap-3 align-items-center">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-heart"
+                       type="button"
+                     ></i>
+                    <span class="ms-1 fs-10">Like</span>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-chat-right-text"
+                       type="button"
+                       data-bs-toggle="collapse" 
+                       href="#comment-collapse-3" 
+                       role="button"
+                       aria-expanded="false" 
+                       aria-controls="comment-collapse-3"></i>
+                    <span class="ms-1 fs-10">Comment</span>
+                  </div>
+                </div>
+                <div class="d-flex flex-row">
+                  <span class="text-muted fw-normal fs-10"
+                    >May 12,2020 12:10 PM</span
+                  >
+                </div>
+              </div>
+              <div class="row collapse" id="comment-collapse-3">
+                
+                <form method="post";
+                      action="https://google.com">
+                      <textarea 
+                      cols="100" 
+                      rows="1"
+                      class="mt-2 mb-2 p-2 br-10"
+                      placeholder="comment on this post"></textarea>
+                      <div  class="mb-3 d-flex flex-column">                  
+            <button id="postComment"
+                    type="submit"
+                    class="mt-2 btn btn-primary"
+                    >POST
+                  </button>
+                </div>
+                      </form>
+                    
+            </div>
+          </li>
+          </ul>
+            <div class="card p-3 mb-2 ">
+              <h4 class=" mb-3 comment-header">  How do you like Playground Lessingplatz? </h4>
+              <form action="https://www.google.com">
+                     
+                 <div class="mb-3 d-flex flex-column">
+                    <span class="rating"
+                          id="starRating">
+                      <input
+                        type="radio"
+                        name="rating"
+                        value="5"
+                        id="5"
+                      /><label for="5">☆</label>
+                      <input
+                        type="radio"
+                        name="rating"
+                        value="4"
+                        id="4"
+                      /><label for="4">☆</label>
+                      <input
+                        type="radio"
+                        name="rating"
+                        value="3"
+                        id="3"
+                      /><label for="3">☆</label>
+                      <input
+                        type="radio"
+                        name="rating"
+                        value="2"
+                        id="2"
+                      /><label for="2">☆</label>
+                      <input
+                        type="radio"
+                        name="rating"
+                        value="1"
+                        id="1"
+                      /><label for="1">☆</label>
+                    </span>
+                 
+              
+                <textarea id="review" 
+                          cols="100" 
+                          rows="3"
+                          class="mt-0 mb-2 p-2 br-10"
+                          placeholder="Please leave a review"></textarea>
+                  
+                <button id="postReview"
+                        type="submit"
+                        class="mt-2 btn btn-primary">
+                       POST REVIEW
+                      </button>
+                      </div>
+              </form>
+              </div>
+            </div>
+          </div>
+       
+    </section>
+
+    <script src="../public/javascript/detailpage.js"></script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

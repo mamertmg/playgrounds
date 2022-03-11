@@ -26,10 +26,7 @@ This branch contains the following aspects:
 - Initiate profile user page
 
 ## New
-- Modified playground model: removed redundant fields, added labels
-- Each playground now has an address!!
-- Adjusted playground form to fit new model.
-- Fixed behaviour of InfoWindow on map.
+TBA
 
 ## Usage
 
