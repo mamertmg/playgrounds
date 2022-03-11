@@ -41,7 +41,7 @@ module.exports.validateLostFound = (req, res, next) => {
         const msg = error.details.map((el) => el.message).join(',');
         throw new AppError(msg, 400);
     } else {
-        const { date } = req.body.lostFound;
+        const { date } = req.body.lost_found;
         const fullDate = new Date(date);
         if (fullDate.toString() === 'Invalid Date') {
             throw new AppError('Invalid date', 400);

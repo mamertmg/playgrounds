@@ -71,6 +71,7 @@ app.use(csrf(), (req, res, next) => {
 
 // Global variables
 app.use(function (req, res, next) {
+    res.locals.currentUser = req.user;
     res.locals.isAuthenticated = req.isAuthenticated();
     res.locals.success = req.flash('success');
     res.locals.failure = req.flash('failure');

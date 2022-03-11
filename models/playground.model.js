@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const Event = require('./event.model');
-const LostFound = require('./lostfound.model');
 const Review = require('./review.model');
+const User = require('./user.model');
 const { playgroundTypesEN } = require('../utils/translation');
 const { playgroundLabels, playgroundEquipment } = require('../utils/labels');
+
+// PLAYGROUND MODEL
 
 const playgroundSchema = new Schema({
     name: {
@@ -135,4 +136,115 @@ playgroundSchema.post('findOneAndDelete', async function (playground) {
 
 const Playground = mongoose.model('Playground', playgroundSchema);
 
-module.exports = Playground;
+// EVENT MODEL
+const eventSchema = new Schema({
+    playground_id: {
+        type: Schema.Types.ObjectId,
+        ref: 'Playground',
+        required: true,
+    },
+    status: {
+        type: Number,
+        required: true,
+    },
+    date: {
+        type: Date,
+        required: true,
+    },
+    title: {
+        type: String,
+        required: true,
+    },
+    description: {
+        type: String,
+        required: true,
+    },
+    image: {
+        type: String,
+    },
+    link: {
+        type: String,
+    },
+    author: {
+        id: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+            required: true,
+        },
+        name: {
+            type: String,
+            required: true,
+        },
+    },
+});
+
+// Delete all references to event.
+eventSchema.post('findOneAndDelete', async function (event) {
+    if (event) {
+        await Playground.findByIdAndUpdate(event.playground_id, {
+            $pull: { events: event._id },
+        });
+        await User.findByIdAndUpdate(event.author.id, {
+            $pull: { events: event._id },
+        });
+    }
+});
+
+const Event = mongoose.model('Event', eventSchema);
+
+// LOST & FOUND MODEL
+
+const lostFoundSchema = new Schema({
+    playground_id: {
+        type: Schema.Types.ObjectId,
+        ref: 'Playground',
+        required: true,
+    },
+    status: {
+        type: String,
+        enum: ['lost', 'found'],
+        required: true,
+    },
+    date: {
+        type: Date,
+        required: true,
+    },
+    title: {
+        type: String,
+        required: true,
+    },
+    description: {
+        type: String,
+        required: true,
+    },
+    contact: {
+        type: String,
+        required: true,
+    },
+    author: {
+        id: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+            required: true,
+        },
+        name: {
+            type: String,
+            required: true,
+        },
+    },
+});
+
+lostFoundSchema.post('findOneAndDelete', async function (lostFound) {
+    if (lostFound) {
+        await User.findByIdAndUpdate(lostFound.author.id, {
+            $pull: { lost_found: lostFound._id },
+        });
+        await Playground.findByIdAndUpdate(lostFound.playground_id, {
+            $pull: { lost_found: lostFound._id },
+        });
+    }
+});
+
+const LostFound = mongoose.model('LostFound', lostFoundSchema);
+
+module.exports = { Playground, Event, LostFound };

@@ -80,7 +80,7 @@ const createEventBtn = document.querySelector('#createEventBtn');
 createEventBtn.addEventListener('click', () => {
     // if more than 4 occurences of '/', then action of event form still set to update route
     if (eventForm.getAttribute('action').split('/').length > 4) {
-      eventForm.setAttribute(
+        eventForm.setAttribute(
             'action',
             eventForm.getAttribute('action').split('/', 4).join('/')
         );
@@ -101,7 +101,6 @@ for (button of eventEditBtns) {
                 eventFormModal.show();
                 inputEventName.value = event.title;
                 const dateAndTime = event.date.split('T');
-                console.log(dateAndTime);
                 inputEventDate.value = dateAndTime[0];
                 inputEventTime.value = dateAndTime[1]
                     .split('.')[0]
@@ -110,7 +109,10 @@ for (button of eventEditBtns) {
                 inputEventLink.value = event.link;
                 eventForm.setAttribute(
                     'action',
-                    eventForm.getAttribute('action') + '/' + eventId + '?_method=PUT'
+                    eventForm.getAttribute('action') +
+                        '/' +
+                        eventId +
+                        '?_method=PUT'
                 );
             })
             .catch((e) => {
@@ -128,6 +130,8 @@ const inputLostItemLong = document.querySelector('#lostItemLong');
 const inputLostContact = document.querySelector('#lostContact');
 const inputLostPhoto = document.querySelector('#lostPhoto');
 const frame2 = document.getElementById('frame2');
+const radioLost = document.querySelector('#radioLost');
+const radioFound = document.querySelector('#radioFound');
 
 const lostDate = inputLostDate.value;
 const lostItem = inputLostItem.value;
@@ -177,6 +181,59 @@ btnClose4.onclick = function () {
 // Image Upload
 function preview2() {
     frame2.src = URL.createObjectURL(event.target.files[0]);
+}
+
+// Lost&Found form modal
+const lostFoundFormModal = new bootstrap.Modal(
+    document.querySelector('#staticBackdroplostfound'),
+    {}
+);
+
+const lostFoundForm = document.querySelector('#form-lost');
+const createLostFoundBtn = document.querySelector('#createLostFoundBtn');
+createLostFoundBtn.addEventListener('click', () => {
+    // if more than 4 occurences of '/', then action of event form still set to update route
+    if (lostFoundForm.getAttribute('action').split('/').length > 4) {
+        lostFoundForm.setAttribute(
+            'action',
+            lostFoundForm.getAttribute('action').split('/', 4).join('/')
+        );
+    }
+});
+
+// Fill event form with data for updates
+const lostFoundEditBtns = document.querySelectorAll('button.editLostFoundBtn');
+for (button of lostFoundEditBtns) {
+    button.addEventListener('click', (event) => {
+        console.log('click');
+        const lfId = event.target.getAttribute('data-id');
+        axios
+            .get(`/api/lost-found?id=${lfId}`)
+            .then((res) => {
+                const lostFound = res.data;
+
+                lostFoundFormModal.show();
+                if (lostFound.status === 'lost') {
+                    radioLost.checked = true;
+                } else {
+                    radioFound.checked = true;
+                }
+                inputLostItem.value = lostFound.title;
+                inputLostDate.value = lostFound.date;
+                inputLostItemLong.value = lostFound.description;
+                inputLostContact.value = lostFound.contact;
+                lostFoundForm.setAttribute(
+                    'action',
+                    lostFoundForm.getAttribute('action') +
+                        '/' +
+                        lfId +
+                        '?_method=PUT'
+                );
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    });
 }
 
 //addPhoto form

@@ -1,5 +1,5 @@
 const express = require('express');
-const Playground = require('../models/playground.model');
+const { Playground } = require('../models/playground.model');
 
 const router = express.Router();
 

@@ -1,9 +1,10 @@
-const Playground = require('../models/playground.model');
+const { Playground } = require('../models/playground.model');
 const {
     playgroundLabels,
     playgroundEquipment,
     labelToIcon,
 } = require('../utils/labels');
+const { numToMonth, numToDay } = require('../utils/utils');
 
 function preprocessInput(inputObj) {
     // convert coordinates to GEOJSON format
@@ -77,7 +78,8 @@ module.exports.showPlayground = async (req, res) => {
     const { eventId } = req.query;
     const playground = await Playground.findById(id)
         .populate('events')
-        .populate('reviews');
+        .populate('reviews')
+        .populate('lost_found');
     if (!playground) {
         req.flash('failure', 'Could not find playground.');
         return res.redirect('/');
@@ -86,7 +88,8 @@ module.exports.showPlayground = async (req, res) => {
     res.render('detailpage', {
         playground,
         labelToIcon,
-        currentUserId: req.user ? req.user._id : '',
+        numToDay,
+        numToMonth,
     });
 };
 
