@@ -14,6 +14,27 @@ h1 {
     padding: 0px 20px 10px 20px;
 }
 
+textarea {
+    max-width: 100%;
+    resize: none;
+}
+
+ul {
+    padding-left: 0px;
+    margin: 0px;
+}
+
+li {
+    list-style-type: none;
+    margin: 0px;
+    padding: 10px;
+}
+
+hr {
+    border-top: 1px solid #0742664b;
+}
+
+
 .container-fluid {
     margin-top: 70px;
 
@@ -214,8 +235,6 @@ h1 {
     border: 1px solid #032B43;
     border-radius: 5px;
     position: relative;
-
-
 }
 
 .carousel-inner {
@@ -246,15 +265,13 @@ h1 {
 
 .comment-header {
     color: #4ea599;
+    display: inline;
 }
 
 #eventName, #eventInfo {
     display: block;
 }
 
-/* #eventForm {
-    padding: 10px 50px 10px 50px;
-} */
 
 .form-check-label {
     font-family: Montserrat, sans-serif;
@@ -266,18 +283,13 @@ h1 {
 
 .link {
     text-decoration: none;
-    /* cursor: pointer; */
     padding: 10px;
     margin: 0px;
-}
-
-.link {
     color: #3F88C5;
 }
 
 
 .link:hover {
-
     text-decoration: none;
     background-color: #f8f8f8;
 }
@@ -317,20 +329,6 @@ h1 {
 
 }
 
-ul {
-    padding-left: 0px;
-    margin: 0px;
-}
-
-li {
-    list-style-type: none;
-    margin: 0px;
-    padding: 10px;
-}
-
-hr {
-    border-top: 1px solid #0742664b;
-}
 
 .thumbnail {
     height: 80px;
@@ -371,9 +369,19 @@ hr {
 }
 
 .bi-heart:hover {
-    fill: red;
-
+    color: #FF5C5C;
 }
+
+.bi-chat-right-text:hover {
+    color: #4EA599;
+}
+
+#postReview, #postComment {
+    width: max-content;
+    align-self: end;
+    line-height: 1rem;
+}
+
 
 @media (max-width: 800px) {
     #statuslost {
