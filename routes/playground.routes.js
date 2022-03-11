@@ -11,7 +11,8 @@ const playgroundController = require('../controllers/playground.controller');
 const Playground = require('../models/playground.model');
 const Event = require('../models/event.model');
 const LostFound = require('../models/lostfound.model');
-const {ensureAuthenticated} = require('../middlewares/authorization');
+const { ensureAuthenticated } = require('../middlewares/authorization');
+const User = require('../models/user.model');
 
 router
     .route('/')
@@ -48,11 +49,18 @@ router.post(
             req.flash('failure', 'Could not find playground.');
             return res.redirect('/');
         }
+
+        const user = await User.findById(req.user);
+
         const event = new Event({
             title: req.body.event.title,
             status: 1,
             date: new Date(req.body.event.date + 'T' + req.body.event.time),
             playground_id: id,
+            author: {
+                id: user._id,
+                name: user.name,
+            },
         });
 
         // optional fields
@@ -67,8 +75,10 @@ router.post(
         }
 
         playground.events.push(event);
+        user.events.push(event);
         await event.save();
         await playground.save();
+        await user.save();
         res.redirect(`/playgrounds/${id}`);
     })
 );

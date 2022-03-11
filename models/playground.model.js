@@ -37,6 +37,11 @@ const playgroundSchema = new Schema({
         type: String,
         default: '',
     },
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+    },
     events: [
         {
             type: Schema.Types.ObjectId,
@@ -82,18 +87,18 @@ const playgroundSchema = new Schema({
     ],
 });
 
-playgroundSchema.index({ "location": '2dsphere' });
+playgroundSchema.index({ location: '2dsphere' });
 
 playgroundSchema.statics.findByLocation = function (
     [lat, lng, dist, limit],
     cb
 ) {
     return this.find({
-        "location": {
-            "$near": {
-                "$geometry": { type: 'Point', coordinates: [lng, lat] },
-                "$minDistance": 0,
-                "$maxDistance": dist,
+        location: {
+            $near: {
+                $geometry: { type: 'Point', coordinates: [lng, lat] },
+                $minDistance: 0,
+                $maxDistance: dist,
             },
         },
     })
@@ -106,14 +111,14 @@ playgroundSchema.statics.findByLocAndLabel = function (
     cb
 ) {
     return this.find({
-        "location": {
-            "$near": {
-                "$geometry": { type: 'Point', coordinates: [lng, lat] },
-                "$minDistance": 0,
-                "$maxDistance": dist,
+        location: {
+            $near: {
+                $geometry: { type: 'Point', coordinates: [lng, lat] },
+                $minDistance: 0,
+                $maxDistance: dist,
             },
         },
-        "type": label,
+        type: label,
     })
         .limit(limit)
         .exec(cb);

@@ -1,5 +1,9 @@
 const Playground = require('../models/playground.model');
-const { playgroundLabels, playgroundEquipment } = require('../utils/labels');
+const {
+    playgroundLabels,
+    playgroundEquipment,
+    labelToIcon,
+} = require('../utils/labels');
 
 function preprocessInput(inputObj) {
     // convert coordinates to GEOJSON format
@@ -79,11 +83,11 @@ module.exports.showPlayground = async (req, res) => {
         return res.redirect('/');
     }
 
-    // TODO: additional check if eventID valid?
-    if (!eventId) {
-        return res.render('detailpage', { playground, eventDetailId: '' });
-    }
-    res.render('detailpage', { playground, eventDetailId: eventId });
+    res.render('detailpage', {
+        playground,
+        labelToIcon,
+        currentUserId: req.user ? req.user._id : '',
+    });
 };
 
 module.exports.updatePlayground = async (req, res) => {

@@ -26,7 +26,9 @@ This branch contains the following aspects:
 - Initiate profile user page
 
 ## New
-TBA
+### New detail page
+- Playground CRUD added
+- Event CRUD added
 
 ## Usage
 

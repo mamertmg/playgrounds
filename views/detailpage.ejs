@@ -24,7 +24,7 @@
       crossorigin="anonymous"
     ></script>
     <title>Playground Details</title>
-    <link rel="stylesheet" href="../public/css/detailpage.css" />
+    <link rel="stylesheet" href="/css/detailpage.css" />
   </head>
 
   <body>
@@ -39,7 +39,7 @@
         photo3idea_studio - Flaticon</a> -->
 
         <img id="navbar-logo" 
-             src="../public/images/playground.png" 
+             src="/images/playground.png" 
              alt=""/> my favourite playground
       </a>
       <button
@@ -53,10 +53,10 @@
       <div id="navlinks" class="collapse navbar-collapse">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a href="" class="nav-link">HOME</a>
+            <a href="/" class="nav-link">HOME</a>
           </li>
           <li class="nav-item">
-            <a href="" class="nav-link">EXPLORE</a>
+            <a href="/playgrounds" class="nav-link">EXPLORE</a>
           </li>
           <li class="nav-item">
             <a href="" class="nav-link">ABOUT</a>
@@ -64,19 +64,20 @@
         </ul>
       </div>
       <div class="text-right d-none d-lg-block">
-        <button id="btn-login" type="button" class="btn p-1 mx-1">
-          LOGIN
-        </button>
-        <button id="btn-signup" type="button" class="btn p-1 mx-1">
-          SIGN UP
-        </button>
+        <% if(isAuthenticated){ %>
+          <a class="nav-link" href="/logout">LOGOUT</a>
+        <% } %> 
+        <% if(!isAuthenticated){ %>
+            <a id="btn-login" class="btn p-1 mx-1" href="/login">LOGIN</a>
+            <a id="btn-signup" class="btn p-1 mx-1" href="/signup">SIGN UP</a>
+        <% } %>
       </div>
     </nav>
 
     <section class="container-fluid p-0 p-xs-2 p-sm-4 p-md-5">
       <div class="row">
         <h1 class="gx-5 col" id="pgName">
-          Playground Lessingplatz
+          <%= playground.name %>
           <sup>
           <span class="playground-rating">
             <i class="bi bi-star-fill"></i>
@@ -87,16 +88,25 @@
           </span>
         </sup>
         </h1>
+        <div class="col d-flex justify-content-end">
+          <% if(isAuthenticated && currentUserId.toString() === playground.author.toString()){ %>
+              <span><a class="btn btn-warning me-2" href="/playgrounds/<%= playground._id %>/edit">Update</a></span>
+              <form style="display: inline;" action="/playgrounds/<%= playground._id %>?_method=delete" method="post">
+                  <input type="hidden" name="_csrf" value="<%= csrftoken %>">
+                  <button class="btn btn-danger">Delete</button>
+              </form>
+          <% } %>                    
         </div>
+      </div>
         <div class="row">
           <div class="gx-5 col">
             <div class="btn tag">
               <i class="fa-solid fa-leaf"></i>
-               natural playground
+              <%= playground.type %>
             </div>
               <div class="btn tag">
                 <i class="fa-solid fa-location-dot"></i>
-                   Oberbilk
+                <%= playground.suburb %>
               </div>
         </div>
         </div>
@@ -107,7 +117,7 @@
               
 
               <h3 class="card-title"> 
-                OBERBILK, Düsseldorf    
+                <%= playground.suburb.toUpperCase() %>, <%= playground.city %>    
               </h3> 
               <a
               class="btn-collapse"
@@ -120,51 +130,30 @@
               <i class="fa-solid fa-map-location-dot"> </i>
             </a>
               <p class="card-text">
-                <h5>
-              DESCRIPTION:</h5> </b> This is a lovely playground. It is easy to get to by public transport and it is suitable for smaller children as well as for young teens.</p>
+                <h5>DESCRIPTION:</h5> </b> <%= playground.description %></p>
                 
               
                 <h5>FEATURES</h5>
                 <div id="featureTags"> 
+                  <% for(label of playground.labels) { %> 
                   <div class="btn littleTags">
-                    <i class="fa-solid fa-table-tennis-paddle-ball"></i>
+                    <i class="fa-solid <%= labelToIcon[label] ? labelToIcon[label] : labelToIcon.default %>"></i>
                       <span class="d-none d-md-inline">
-                        table tennis
+                        <%= label %>
                       </span>
-                    </div>
-                  <div class="btn littleTags">
-                    <i class="fa-solid fa-umbrella-beach"></i>
-                    <span class="d-none d-md-inline">
-                      shaded areas
-                    </span>
                   </div>
-                  <div class="btn littleTags">
-                    <i class="fa-solid fa-restroom"></i>
-                    <span class="d-none d-md-inline">
-                      public restrooms
-                    </span>
-                  </div>
-                  <div class="btn littleTags">
-                    <i class="fa-solid fa-square-parking"></i>
-                    <span class="d-none d-md-inline">
-                      parking nearby
-                    </span>
-                 </div>
-                 
-                  
-             
+                  <% } %>
                 </div>
            
               
               <div class="collapse" id="infocard-collapse">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9997.182405234265!2d6.7936398!3d51.21363!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x1ea4e9a90699b760!2sSpielplatz%20Lessingplatz!5e0!3m2!1sde!2sde!4v1646081872131!5m2!1sde!2sde" 
-                        width="800" 
-                        height="450" 
+                <iframe src="https://maps.google.com/maps?hl=en&amp;q=<%= playground.location.coordinates[1] %>,%20<%= playground.location.coordinates[0] %>&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" 
+                        width="100%"
+                        height="300vh"
                         style="border:2px;" 
                         allowfullscreen="" 
                         loading="lazy">
                 </iframe>
-                
               </div>
             </div>
           </div>
@@ -352,22 +341,26 @@
           </div>
           <div class="gx-5 col-12 col-xl-6 order-md-3 order-xl-4">
             <h3 id="event-header">UPCOMING EVENTS</h3>
-                      <span class="d-inline-block" 
+            <% if(isAuthenticated) { %> 
+              <span class="d-inline-block" 
                             tabindex="0" 
                             data-bs-toggle="popover"  
                             data-bs-trigger="hover focus"
                             data-bs-content="Add an Event">
-                          <!-- Button trigger modal -->
-                          <span class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                              <a class="btn-plus"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
-                                      fill="currentColor" class="bi bi-plus-square" viewBox="0 0 25 25">
-                                      <path
-                                          d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
-                                      <path
-                                          d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                                  </svg> </a>
-                          </span>
-                      </span>
+                <!-- Button trigger modal -->
+                          
+                <span id="createEventBtn" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                  <a class="btn-plus"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+                        fill="currentColor" class="bi bi-plus-square" viewBox="0 0 25 25">
+                    <path
+                        d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                      <path
+                          d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                    </svg>
+                  </a>
+                </span>
+              </span>
+               
                       <!-- Modal -->
                       <div class="modal fade"
                            id="staticBackdrop"
@@ -392,12 +385,14 @@
                     ></button>
                   </div>
                   <div id="eventForm" class="modal-body">
-                    <form id="actualEventForm" class="mb-5" action="https://www.google.com">
+                    <form id="actualEventForm" class="mb-5" action="/playgrounds/<%= playground._id %>/event" method="post">
+                      <input type="hidden" name="_csrf" value="<%= csrftoken %>">
                       <label class="form-check-label" for="eventDate">
                         Date
                       </label>
                       <input
                         id="eventDate"
+                        name="event[date]"
                         type="date"
                         class="w-100 mt-0 mb-2 p-2 br-10"
                         required
@@ -407,6 +402,7 @@
                       </label>
                       <input
                         id="eventTime"
+                        name="event[time]"
                         type="time"
                         class="w-100 mt-0 mb-2 p-2 br-10"
                         required
@@ -416,6 +412,7 @@
                       </label>
                       <input
                         id="eventName"
+                        name="event[title]"
                         type="text"
                         class="w-100 mt-0 mb-2 p-2 br-10"
                         placeholder="name of the event"
@@ -426,6 +423,7 @@
                       </label>
                       <textarea 
                         id="eventInfo"
+                        name="event[description]"
                         class="w-100 mt-0 mb-2 p-2 br-10"
                         placeholder="further information"
                         cols="30" rows="2"></textarea>
@@ -435,6 +433,7 @@
                       </label>
                       <input
                         id="eventLink"
+                        name="event[link]"
                         type="link"
                         class="w-100 mt-0 mb-2 p-2 br-10"
                         placeholder="add a Link"
@@ -479,18 +478,27 @@
                   </div>
                 </div>
               </div>
-                         </div>
+              </div>
+            <% } %>
+
+            <% if(!playground.events.length) { %>
+              <div style="height: 60px; text-align: center;">
+                No Events
+              </div>
+            <% } else { %>
               <div class="card">                               
                    <ul>
+                     <% for(let event of playground.events) { 
+                      const date = new Date(event.date); %> 
                       <li>
                           <div class="row link">
                               <div id="theDate"
                                    class="col-2 text-start">
                                   <div class="day d-inline-block"> 
-                                      14 
+                                    <%= date.getDate() %> 
                                   </div>
                                   <div class="month">
-                                      FEB
+                                    <%= date.getMonth() %>
                                   </div>
                                  
                               </div>
@@ -501,11 +509,11 @@
                                       role="button"
                                       aria-expanded="false" 
                                       aria-controls="event-collapse">
-                                      Super Fun Day
+                                      <%= event.title %>
                                   </h5>
                                   <div class="time">
-                                      Mon, 11am</div>
-                                  <div class="location">Spielplatz Lessingplatz</div>
+                                    <%= date.getDay() %>, <%= [date.getHours(), date.getMinutes()].join(":") %></div>
+                                  <div class="location"><%= playground.name %></div>
 
                               </div>
                         
@@ -520,8 +528,8 @@
                                    src="https://images.unsplash.com/photo-1615445565741-c60a9edd393f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8a2lkcyUyMHBhcnR5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" 
                                    alt=""
                               >
-                              </div>
-                              <div class="col-1 align-self-center">
+                          </div>
+                          <div class="col-1 align-self-center">
                               <i id="iCircleEvent"
                               class="bi bi-info-circle text-primary info-btn"
                               type="button"
@@ -530,36 +538,41 @@
                                 role="button"
                                 aria-expanded="false" 
                                 aria-controls="event-collapse"></i>
+                                <% if(isAuthenticated && currentUserId.toString() === event.author.id.toString()) { %>
+                                  <button data-id="<%= event._id %>" type="button" class="btn btn-warning editEventBtn">Edit</button> 
+                                  <form action="/playgrounds/<%= playground._id %>/event/" method="post">
+                                    <input type="hidden" name="_csrf" value="<%= csrftoken %>">
+                                    <button class="btn-sm btn-danger">Delete</button>
+                                  </form>
+                                <% } %>
                           </div>
                           
                           
                                                                                    
                               <div class="row collapse mt-3" 
                                    id="event-collapse">
-                                   <hr> <div class="col-2 text-start align-self-center"> <a href="https://www.youtube.com/watch?v=lMLXyVRlW4o">somuch.fun</a> </div>
+                                   <hr> <div class="col-2 text-start align-self-center"> <a href="<%= event.link %>"><%= event.link %></a> </div>
                                    <div class="col-6 text-center align-self-center">
-                                    This will be a super fun day! BYOB!
+                                    <%= event.description %> 
                                     </div>
                                    <div class="col-3 text-center">
                                        <img src="https://i.imgur.com/C4egmYM.jpg" height="50" width="50"
                                            class="rounded-circle" />
-                                           LoneWolf67
+                                           <%= event.author.name %>
                                    </div>
                                    <div class="col-1"></div>
-                                  
-                              
-                              
                           </div>
-
                       </li>
-                                                      
+                      <% } %>
                                            
                    </ul>
-                 </div>
+              </div>
+            <% } %> 
                  
               
        
                  <h3 id="lostfound-header">LOST & FOUND</h3>
+                 <% if(isAuthenticated) { %>
                  <span
                    class="d-inline-block"
                    tabindex="0"
@@ -592,6 +605,7 @@
                      </a>
                    </span>
                  </span>
+                 <% } %>
                  <!-- Modal -->
                  <div
                    class="modal fade"
@@ -1127,7 +1141,7 @@
        
     </section>
 
-    <script src="../public/javascript/detailpage.js"></script>
+    <script src="/javascript/detailpage.js"></script>
 
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -1144,5 +1158,6 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </body>
 </html>
