@@ -156,11 +156,56 @@ async function getCoordsFromLocation(location) {
     }
 }
 
+const resultsDisplay = document.querySelector('#resultsInLaptopView');
+
+function createResultCard(playground) {
+    const card = document.createElement('div');
+    card.className = 'card mt-2';
+
+    const img = document.createElement('img');
+    img.src = 'https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp';
+    img.alt = 'Fissure in Sandstone';
+    img.classList.add('card-img-top');
+    card.appendChild(img);
+
+    const cardBody = document.createElement('div');
+    cardBody.classList.add('card-body');
+    card.appendChild(cardBody);
+
+    const name = document.createElement('h5');
+    name.className = 'card-title';
+    name.textContent = playground.name;
+    cardBody.appendChild(name);
+
+    const type = document.createElement('h6');
+    type.className = 'card-subtitle mb-2 text-muted';
+    type.textContent = playground.type;
+    cardBody.appendChild(type);
+
+    const address = document.createElement('p');
+    address.className = 'card-text';
+    address.innerHTML = `${playground.address} <br> ${playground.suburb}, ${playground.city}`;
+    cardBody.appendChild(address);
+
+    const features = document.createElement('p');
+    features.className = 'card-text';
+    features.textContent = playground.labels.join(', ');
+    cardBody.appendChild(features);
+
+    const detailButton = document.createElement('a');
+    detailButton.className = 'btn btn-primary';
+    detailButton.href = `/playgrounds/${playground._id}`;
+    detailButton.textContent = 'More Information';
+    cardBody.appendChild(detailButton);
+
+    resultsDisplay.appendChild(card);
+}
+
 // creates markers on map for given data
 //
 // markers: array of objects with playground data
 // currCoordinates: array [lat, lng]; current center of map
-function placeMarkers(markers, currCoordinates) {
+function placeMarkers(playgrounds, currCoordinates) {
     if (map) {
         // Mark the position of input location
         const marker = new google.maps.Marker({
@@ -170,16 +215,16 @@ function placeMarkers(markers, currCoordinates) {
         markerList.push(marker);
 
         // place markers for all fetched playgrounds
-        for (let i = 0; i < markers.length; i++) {
-            const currMarker = markers[i];
+        for (let i = 0; i < playgrounds.length; i++) {
+            const playground = playgrounds[i];
             const currMarkerImgSrc = `"https://picsum.photos/200?random=${i}"`;
             const marker = new google.maps.Marker({
                 position: {
-                    lat: currMarker.location.coordinates[1],
-                    lng: currMarker.location.coordinates[0],
+                    lat: playground.location.coordinates[1],
+                    lng: playground.location.coordinates[0],
                 },
                 map,
-                title: currMarker.name,
+                title: playground.name,
                 icon: {
                     url: '/images/base/playground-pixel.png',
                     scaledSize: new google.maps.Size(40, 40),
@@ -189,11 +234,11 @@ function placeMarkers(markers, currCoordinates) {
 
             const contentString = ` 
             <div id='currMarkerImg'><a href='www.google.com'><img src=${currMarkerImgSrc}></a></div>
-            <b> ${currMarker.name}</b>
+            <b> ${playground.name}</b>
             <p id='currMarkerDescr'>
-            <div id='currMarkerRating'>Adresse: ${currMarker.address}</div> 
-            Type: ${currMarker.type}</p>
-            <div><a href='http://localhost:3000/playgrounds/${currMarker._id}'>Details</a></div>`;
+            <div id='currMarkerRating'>Adresse: ${playground.address}</div> 
+            Type: ${playground.type}</p>
+            <div><a href='http://localhost:3000/playgrounds/${playground._id}'>Details</a></div>`;
 
             marker.addListener('click', () => {
                 infowindow.setContent(contentString);
@@ -201,6 +246,8 @@ function placeMarkers(markers, currCoordinates) {
             });
 
             markerList.push(marker);
+
+            createResultCard(playground);
         }
     }
 }
@@ -268,8 +315,8 @@ async function initMap() {
     }&dist=${Number(dist) && Number(dist) < 6 ? Number(dist) : '1'}`;
 
     const response = await axios.get(query);
-    const markers = response.data;
-    placeMarkers(markers, currentCoordinates);
+    const playgrounds = response.data;
+    placeMarkers(playgrounds, currentCoordinates);
 }
 
 // distance selector should mirror each other
