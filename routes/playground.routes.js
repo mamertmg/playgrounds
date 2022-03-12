@@ -8,7 +8,9 @@ const {
     validateLostFound,
 } = require('../middlewares/validation');
 const playgroundController = require('../controllers/playground.controller');
-const { Playground, Event, LostFound } = require('../models/playground.model');
+const Playground = require('../models/playground.model');
+const Event = require('../models/event.model');
+const LostFound = require('../models/lostfound.model');
 const { ensureAuthenticated } = require('../middlewares/authorization');
 const User = require('../models/user.model');
 
@@ -74,7 +76,9 @@ router.post(
         playground.events.push(event);
         await event.save();
         await playground.save();
-        await User.findByIdAndUpdate(req.user._id, {$push: {events: event._id}});
+        await User.findByIdAndUpdate(req.user._id, {
+            $push: { events: event._id },
+        });
         res.redirect(`/playgrounds/${id}`);
     })
 );
@@ -83,9 +87,21 @@ router
     .route('/:id/event/:eventId')
     .delete(
         ensureAuthenticated,
-        asyncWrapper(async (req, res) => {
+        asyncWrapper(async (req, res, next) => {
             const { id, eventId } = req.params;
-            await Event.findByIdAndDelete(eventId);
+            const event = await Event.findById(eventId);
+            console.log(event.playground_id);
+            if (!event || event.playground_id.toString() !== id) {
+                req.flash('failure', 'Could not delete event.');
+                return res.redirect('/');
+            }
+            await Playground.findByIdAndUpdate(event.playground_id, {
+                $pull: { events: event._id },
+            });
+            await User.findByIdAndUpdate(event.author.id, {
+                $pull: { events: event._id },
+            });
+            await event.remove();
             req.flash('success', 'Successfully deleted event!');
             res.redirect(`/playgrounds/${id}`);
         })
@@ -149,7 +165,9 @@ router.post(
         playground.lost_found.push(lostFound);
         await lostFound.save();
         await playground.save();
-        await User.findByIdAndUpdate(req.user._id, {$push: {lost_found: lostFound._id}});
+        await User.findByIdAndUpdate(req.user._id, {
+            $push: { lost_found: lostFound._id },
+        });
         res.redirect(`/playgrounds/${id}`);
     })
 );
@@ -160,7 +178,18 @@ router
         ensureAuthenticated,
         asyncWrapper(async (req, res) => {
             const { id, lfId } = req.params;
-            await LostFound.findByIdAndDelete(lfId);
+            const lostFound = await LostFound.findById(lfId);
+            if (!lostFound || lostFound.playground_id.toString() !== id) {
+                req.flash('failure', 'Could not delete Lost&Found entry.');
+                return res.redirect('/');
+            }
+            await Playground.findByIdAndUpdate(lostFound.playground_id, {
+                $pull: { lost_found: lostFound._id },
+            });
+            await User.findByIdAndUpdate(lostFound.author.id, {
+                $pull: { lost_found: lostFound._id },
+            });
+            await lostFound.remove();
             req.flash('success', 'Successfully deleted Lost&Found entry!');
             res.redirect(`/playgrounds/${id}`);
         })

@@ -1,4 +1,4 @@
-const { Playground } = require('../models/playground.model');
+const Playground = require('../models/playground.model');
 const {
     playgroundLabels,
     playgroundEquipment,

@@ -1,5 +1,7 @@
 const express = require('express');
-const { Playground, Event, LostFound } = require('../models/playground.model');
+const Playground = require('../models/playground.model');
+const Event = require('../models/event.model');
+const LostFound = require('../models/lostfound.model');
 const AppError = require('../utils/AppError');
 const asyncWrapper = require('../utils/asyncWrapper');
 const { isLatitude, isLongitude } = require('../utils/validation');
