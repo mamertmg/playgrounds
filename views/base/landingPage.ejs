@@ -19,7 +19,7 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
 
 
-    <link rel="stylesheet" href="../../public/css/base/landingpage.css">
+    <link rel="stylesheet" href="/css/base/landingpage.css">
 
 
     <script src="https://kit.fontawesome.com/cb28a685ae.js" crossorigin="anonymous"></script>
@@ -63,7 +63,7 @@
                     <div class="navbar col-2 d-flex justify-content-center">
                         <ul class="navbar-nav ">
                             <li class="nav-item">
-                                <a class="navbar-brand" href="#"><img src="../../public/images/base/playground.png"
+                                <a class="navbar-brand" href="#"><img src="/images/base/playground.png"
                                         alt="logo" height="40" loading="lazy"></a>
                             </li>
 
@@ -74,7 +74,7 @@
 
                         <!-- form for address and search radius in tablet and laptop view , please add action here! -->
 
-                        <form action="">
+                        <form id="searchForm" action="/search" method="get">
 
                             <div class="input-group d-flex align-items-center">
 
@@ -82,7 +82,7 @@
 
                                     <label for="selectSearchRadius"></label>
 
-                                    <select class="" id="selectSearchRadius">
+                                    <select name="dist" class="" id="selectSearchRadius">
                                         <option selected>Search radius...</option>
                                         <option value="1">1 km</option>
                                         <option value="2">2 km </option>
@@ -95,7 +95,7 @@
 
                                 <label for="autocomplete2"></label>
 
-                                <input class="" id="autocomplete2" placeholder="Enter address" type="search">
+                                <input class="autocomplete" id="autocomplete2" placeholder="Enter address" type="search">
 
                                 <button type="submit" class="btn btn-danger btn-sm rounded-circle"><i
                                         class="fas fa-lg fa-search"></i></button>
@@ -138,7 +138,7 @@
 
                             <i class="fa fa-md fa-map-marker" aria-hidden="true" onclick='getLocation()'></i>
                             <label for="autocomplete1" class="form-label col-1"></label>
-                            <input class="modal-title col-10 border-0" id="autocomplete1" placeholder="Enter address"
+                            <input class="modal-title col-10 border-0 autocomplete" id="autocomplete1" placeholder="Enter address"
                                 type="search">
 
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -534,7 +534,7 @@
         crossorigin="anonymous"></script>
 
 
-    <script src="../../public/javascript/base/landingpage.js"></script>
+    <script src="/javascript/base/landingpage.js"></script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

@@ -29,6 +29,12 @@ This branch contains the following aspects:
 ### Detail page
 - Playground, Event, Lost&Found CRUD linked
 
+### Landing page
+- completed search input behaviour + redirect to search result page
+
+### Search result page
+- defined behaviour when user redirected from landing page and when search page is opened directly
+
 ## Usage
 
 First install [Node.js](http://nodejs.org/) and [MongoDB](https://docs.mongodb.com/manual/installation/). Then download this repository and from its root execute the command
