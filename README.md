@@ -33,7 +33,8 @@ This branch contains the following aspects:
 - completed search input behaviour + redirect to search result page
 
 ### Search result page
-- defined behaviour when user redirected from landing page and when search page is opened directly
+- Location search implemented
+- Result of location search is displayed on map
 
 ## Usage
 

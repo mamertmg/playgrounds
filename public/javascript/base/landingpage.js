@@ -1,5 +1,3 @@
-const baseURL = 'http://localhost:3000/';
-
 //top navbar turn white on scroll, bottom navbar disappears when reaching bottom
 
 const navTop = document.querySelector('.fixed-top');
@@ -83,6 +81,40 @@ function initAutocomplete() {
     }
 }
 
+// Search form behaviour on submit
+
+function defineAndSendQuery(dist) {
+    // build query string
+    let query = '/search';
+    if (place && place.formatted_address === autocomplete1.value) {
+        query += `?q=${
+            place.formatted_address
+        }&lat=${place.geometry.location.lat()}&lng=${place.geometry.location.lng()}`;
+    } else {
+        query += `?q=${autocomplete1.value}`;
+    }
+    query += `&dist=${dist}`;
+    if (query.split('?').length > 1) {
+        window.location = query; // redirect browser to search page
+    }
+}
+
+const searchForm = document.querySelector('#searchForm');
+const searchRadius = document.querySelector('#selectSearchRadius');
+searchForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    defineAndSendQuery(searchRadius.value);
+});
+
+const searchFormMobile = document.querySelector(
+    '#searchform-landingpage-mobileview'
+);
+const searchRadiusMobile = document.querySelector('#searchRadiusMobile');
+searchFormMobile.addEventListener('submit', (event) => {
+    event.preventDefault();
+    defineAndSendQuery(searchRadiusMobile.value);
+});
+
 //get Location from browser
 
 // function getLocation() {
@@ -109,26 +141,6 @@ function initAutocomplete() {
 //         console.log('Geolocation is not supported by this browser.');
 //     }
 // }
-
-const searchForm = document.querySelector('#searchForm');
-const searchRadius = document.querySelector('#selectSearchRadius');
-searchForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    // build query string before submitting form
-    let query = searchForm.getAttribute('action');
-    if (place && place.formatted_address === autocomplete1.value) {
-        query += `?q=${
-            place.formatted_address
-        }&lat=${place.geometry.location.lat()}&lng=${place.geometry.location.lng()}`;
-    } else {
-        query += `?q=${autocomplete1.value} Düsseldorf`;
-    }
-    query += `&dist=${searchRadius.value}`;
-    if (query.split('?').length > 1) {
-        window.location = query;    // redirect browser to search page
-    }
-});
 
 // Swiper
 

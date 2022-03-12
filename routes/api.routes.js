@@ -8,7 +8,7 @@ const { isLatitude, isLongitude } = require('../utils/validation');
 
 const router = express.Router();
 
-const DEFAULT_LIMIT = 10;
+const DEFAULT_LIMIT = 20;
 const DEFAULT_DISTANCE = 2000;
 
 // Handle queries to DB from client

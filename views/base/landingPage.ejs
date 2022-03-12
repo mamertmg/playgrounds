@@ -130,7 +130,7 @@
 
                     <!-- search form for mobile view-->
 
-                    <form class="" id="searchform-landingpage-mobileview" action="" method="get" autocomplete="off">
+                    <form class="" id="searchform-landingpage-mobileview" action="/search" method="get" autocomplete="off">
                         <div class="modal-header">
 
                             <i class="fa fa-md fa-map-marker" aria-hidden="true" onclick='getLocation()'></i>
@@ -145,7 +145,7 @@
 
                         </div>
                         <div class="modal-body">
-                            <div class="my-2">
+                            <!-- <div class="my-2">
 
                                 <h3>Who's playing?</h3>
 
@@ -182,7 +182,7 @@
 
                             </div>
 
-                            <hr>
+                            <hr> -->
 
                             <div class="my-2">
 
@@ -191,7 +191,7 @@
                                 <label for="dist">
                                     Search radius in km:
                                 </label> <br>
-                                <input id="dist" type="range" value="1" min="1" max="5"
+                                <input id="searchRadiusMobile" name="dist" type="range" value="1" min="1" max="5"
                                     class=" d-flex justify-content-center form-range w-100 mt-2"
                                     oninput="this.nextElementSibling.value = this.value">
                                 <output class="d-flex justify-content-center">1</output>

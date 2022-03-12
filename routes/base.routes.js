@@ -22,29 +22,10 @@ router.get(
     '/search',
     asyncWrapper(async (req, res) => {
         const { q, lat, lng, dist } = req.query;
-        if (q && lat && lng && dist) {
-            await Playground.findByLocation(
-                [Number(lat), Number(lng), Number(dist) * 1000, 100],
-                function (err, playgrounds) {
-                    if (err) {
-                        console.log(err);
-                        return next(err);
-                    } else {
-                        return res.render('base/searchResultPage', {
-                            playgrounds,
-                            q,
-                            dist,
-                        });
-                    }
-                }
-            );
-        } else {
-            res.render('base/searchResultPage', {
-                q: 'Düsseldorf',
-                dist: 0,
-                playgrounds: [],
-            });
-        }
+        res.render('base/searchResultPage', {
+            q: q ? q : '',
+            dist: dist ? dist : '1',
+        });
     })
 );
 
