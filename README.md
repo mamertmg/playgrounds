@@ -26,9 +26,15 @@ This branch contains the following aspects:
 - Initiate profile user page
 
 ## New
-### New detail page
-- Playground CRUD added
-- Event CRUD added
+### Detail page
+- Playground, Event, Lost&Found CRUD linked
+
+### Landing page
+- completed search input behaviour + redirect to search result page
+
+### Search result page
+- Location search implemented
+- Result of location search is displayed on map + as cards on the page.
 
 ## Usage
 

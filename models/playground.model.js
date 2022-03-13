@@ -3,8 +3,9 @@ const Schema = mongoose.Schema;
 const Event = require('./event.model');
 const LostFound = require('./lostfound.model');
 const Review = require('./review.model');
+const User = require('./user.model');
 const { playgroundTypesEN } = require('../utils/translation');
-const { playgroundLabels, playgroundEquipment } = require('../utils/labels');
+const { playgroundLabels, playgroundEquipment } = require('../utils/labels'); // PLAYGROUND MODEL
 
 const playgroundSchema = new Schema({
     name: {

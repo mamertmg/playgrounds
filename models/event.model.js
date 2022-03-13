@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 const Playground = require('./playground.model');
 const User = require('./user.model');
-const Schema = mongoose.Schema;
 
 const eventSchema = new Schema({
     playground_id: {
@@ -42,14 +42,6 @@ const eventSchema = new Schema({
             required: true,
         },
     },
-});
-
-// Delete all references to event.
-eventSchema.post('findOneAndDelete', async function (event) {
-    if (event) {
-        await User.findByIdAndUpdate(event.author.id, {"$pull": {"events": event._id}});
-        await Playground.findByIdAndUpdate(event.playground_id, {"$pull": {"events": event._id}});
-    }
 });
 
 const Event = mongoose.model('Event', eventSchema);

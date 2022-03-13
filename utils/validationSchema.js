@@ -31,8 +31,9 @@ module.exports.eventSchema = Joi.object({
 });
 
 module.exports.lostFoundSchema = Joi.object({
-    event: Joi.object({
+    lost_found: Joi.object({
         title: Joi.string().required(),
+        status: Joi.string().required(),
         date: Joi.date().required(),
         description: Joi.string().required(),
         contact: Joi.string().required(),

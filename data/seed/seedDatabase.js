@@ -123,11 +123,14 @@ User.findOne({ name: 'admin' }, async (error, user) => {
                                 'BUEDERICHER STR., Bolzpl.'
                                     ? 'Lörick'
                                     : response.data.address.suburb;
+                            // house numbers are not always defined and require a check
+                            const house_number =
+                                response.data.address.house_number;
                             const playground = {
                                 name: objektbezeichnung,
                                 address: strasse_hausnr
                                     ? strasse_hausnr
-                                    : `${response.data.address.road} ${response.data.address.house_number}`,
+                                    : `${response.data.address.road} ${house_number ? house_number : ''}`,
                                 suburb,
                                 city: 'Düsseldorf',
                                 type: playgroundTypesEN[objektart],
