@@ -1,7 +1,3 @@
-body {
-    background: #fffaf4;
-}
-
 h1, h2, h3, h4, h5 {
     font-family: Montserrat, sans-serif;
     color: #074266;
@@ -251,8 +247,8 @@ hr {
 .card {
     border-radius: 5px;
     border: none;
-    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.03);
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.03)
+    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1)
 }
 
 .comment-text {
