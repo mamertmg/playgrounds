@@ -1,75 +1,47 @@
 .pac-container {
-  z-index: 2000 !important;
-  position: relative;
+    z-index: 2000 !important;
+    position: relative;
 }
 
-
-
-
 #mapButton {
-  margin-bottom: 120px;
+    margin-bottom: 120px;
 }
 
 #sticky-map {
-  position:sticky;
-  top: 1px;
-  
-
+    position: sticky;
+    top: 1px;
 }
 
-
-
 @media screen and (max-width: 425px) {
- 
-
-  #mapInResultPage {
-
-    height: 60vh;
-       
-  }
+    #mapInResultPage {
+        height: 60vh;
+    }
 }
 
 @media screen and (min-width: 426px) {
- 
-
-  #mapInResultPage {
-
-    height: 60vh;
-    
-  }
+    #mapInResultPage {
+        height: 60vh;
+    }
 }
 
-
-@media screen and (min-width: 768px ) { 
-
-  #mapInResultPage {
-
-    height: 60vh;
-         
-  }
-
-  
-  
+@media screen and (min-width: 768px) {
+    #mapInResultPage {
+        height: 60vh;
+    }
 }
 
+@media screen and (min-width: 1024px) {
+    #mapInResultPage {
+        height: 100vh;
+    }
 
-@media screen and (min-width: 1024px ) { 
-
-  #mapInResultPage {
-
-    height: 100vh;
-
-            
-  }
-
-  #resultsInLaptopView {
-    position: relative;
-    left: 60%;
-    
-  }
-
-  
-  
+    #resultsInLaptopView {
+        position: relative;
+        left: 60%;
+    }
 }
 
-
+.icon-blue {
+    color: #0d6efd;
+    cursor: pointer;
+}

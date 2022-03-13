@@ -34,7 +34,7 @@ This branch contains the following aspects:
 
 ### Search result page
 - Location search implemented
-- Result of location search is displayed on map
+- Result of location search is displayed on map + as cards on the page.
 
 ## Usage
 

@@ -77,10 +77,12 @@ filters.addEventListener('hidden.bs.offcanvas', (e) => {
 });
 
 // Location input fields behaviour
+
 const locationInputMobile = document.querySelector('#autocompleteInResultPage');
 const locationDisplayMobile = document.querySelector('#locationDisplayMobile');
 const locationInput = document.querySelector('#autocompleteLg');
-// both input field should ALWAYS have the same value
+
+// both input fields should ALWAYS have the same value
 locationInputMobile.addEventListener('input', () => {
     locationInput.value = locationInputMobile.value;
     locationDisplayMobile.value = locationInputMobile.value;
@@ -114,7 +116,7 @@ function initAutocomplete() {
 }
 
 /*
- * Checks if value is valid for latitude or longitude respectively..
+ * Checks if value is valid for latitude or longitude respectively.
  * Returns false if type is neither 'lat' or 'lng'.
  */
 function isValidLatLng(value, type) {
@@ -156,7 +158,19 @@ async function getCoordsFromLocation(location) {
     }
 }
 
+// Displaying result
+
 const resultsDisplay = document.querySelector('#resultsInLaptopView');
+
+function findAndClickMarker({ lat, lng }) {
+    for (let marker of markerList) {
+        const coords = marker.getPosition();
+        if (coords.lat() === lat && coords.lng() === lng) {
+            mapButton.click();
+            google.maps.event.trigger(marker, 'click');
+        }
+    }
+}
 
 function createResultCard(playground) {
     const card = document.createElement('div');
@@ -172,10 +186,28 @@ function createResultCard(playground) {
     cardBody.classList.add('card-body');
     card.appendChild(cardBody);
 
+    const cardTitle = document.createElement('div');
+    cardTitle.className = 'card-title d-flex justify-content-between';
+    cardBody.appendChild(cardTitle);
+
     const name = document.createElement('h5');
-    name.className = 'card-title';
+    name.className = '';
     name.textContent = playground.name;
-    cardBody.appendChild(name);
+    cardTitle.appendChild(name);
+
+    // clicking here will center map on the playground and open InfoWindow
+    const showMapBtn = document.createElement('i');
+    showMapBtn.className = 'fa-solid fa-map-location-dot fa-2x icon-blue';
+    showMapBtn.addEventListener('click', () => {
+        const coordinates = {
+            lat: playground.location.coordinates[1],
+            lng: playground.location.coordinates[0],
+        };
+        map.panTo(coordinates);
+        map.setZoom(16);
+        findAndClickMarker(coordinates);
+    });
+    cardTitle.appendChild(showMapBtn);
 
     const type = document.createElement('h6');
     type.className = 'card-subtitle mb-2 text-muted';
@@ -232,8 +264,7 @@ function placeMarkers(playgrounds, currCoordinates) {
                 animation: google.maps.Animation.DROP,
             });
 
-            const contentString = ` 
-            <div id='currMarkerImg'><a href='www.google.com'><img src=${currMarkerImgSrc}></a></div>
+            const contentString = `
             <b> ${playground.name}</b>
             <p id='currMarkerDescr'>
             <div id='currMarkerRating'>Adresse: ${playground.address}</div> 
@@ -262,6 +293,8 @@ function deleteMarkers() {
 
 async function initMap() {
     initAutocomplete();
+
+    infowindow = new google.maps.InfoWindow();
 
     // get query string params
     const searchParams = new URLSearchParams(window.location.search);
@@ -301,10 +334,15 @@ async function initMap() {
         currentCoordinates.lng = lng;
     }
 
+    // initialise map
     map = new google.maps.Map(document.getElementById('mapInResultPage'), {
         mapId: '546de97e85a128a6',
         center: currentCoordinates,
         zoom: 15,
+    });
+
+    google.maps.event.addListener(map, 'click', function (event) {
+        infowindow.close();
     });
 
     const dist = searchParams.get('dist');
