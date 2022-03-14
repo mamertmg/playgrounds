@@ -28,6 +28,10 @@ hr {
     border-top: 1px solid #0742664b;
 }
 
+.text-justify {
+    text-align: justify !important;
+}
+
 
 .container-fluid {
     margin-top: 70px;
@@ -140,7 +144,6 @@ hr {
 }
 
 .btn-plus {
-
     color: #FFBA08;
 }
 
@@ -154,7 +157,17 @@ hr {
 #deleteEventButton, #editEventButton, #deleteLostFoundButton, #editLostFoundButton {
     margin: 0px;
     padding: 0px;
+    box-sizing: none;
 }
+
+#editEventButton:hover, #editLostFoundButton:hover {
+    color: #FFBA08;
+}
+
+#deleteEventButton:hover, #deleteLostFoundButton:hover {
+    color: #FF5C5C;
+}
+
 
 .rating {
     display: inline-flex;
@@ -213,14 +226,6 @@ hr {
     background-color: white;
 }
 
-.card-text {
-    line-height: 1.5rem;
-    font-family: Montserrat, sans-serif;
-}
-
-.card-title {
-    text-decoration: underline;
-}
 
 .fa-map-location-dot {
     font-size: 1.5rem;
@@ -264,6 +269,15 @@ hr {
     border: 0.5px solid rgba(0, 0, 0, 0.1);
     -webkit-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
     box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1)
+}
+
+.card-text {
+    line-height: 1.5rem;
+    font-family: Montserrat, sans-serif;
+}
+
+.card-title {
+    text-decoration: underline;
 }
 
 .comment-text {
@@ -383,14 +397,16 @@ hr {
 
 @media (max-width: 800px) {
     #statuslost {
-        font-weight: 400;
+        font-weight: 500;
         font-size: 1rem;
         color: #FF5C5C;
+        letter-spacing: -2px;
     }
 
     #statusfound {
-        font-weight: 400;
+        font-weight: 500;
         font-size: 1rem;
         color: #4EA599;
+        letter-spacing: -2px;
     }
 }
