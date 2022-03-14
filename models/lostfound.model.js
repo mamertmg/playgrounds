@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Playground = require('./playground.model');
+const User = require('./user.model');
 
 const lostFoundSchema = new Schema({
     playground_id: {
@@ -8,7 +10,8 @@ const lostFoundSchema = new Schema({
         required: true,
     },
     status: {
-        type: Number,
+        type: String,
+        enum: ['lost', 'found'],
         required: true,
     },
     date: {
@@ -27,9 +30,16 @@ const lostFoundSchema = new Schema({
         type: String,
         required: true,
     },
-    user_id: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
+    author: {
+        id: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+            required: true,
+        },
+        name: {
+            type: String,
+            required: true,
+        },
     },
 });
 

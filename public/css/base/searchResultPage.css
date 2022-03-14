@@ -1,0 +1,49 @@
+.pac-container {
+    z-index: 2000 !important;
+    position: relative;
+}
+
+#mapButton {
+    margin-bottom: 120px;
+}
+
+#sticky-map {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 1px;
+}
+
+@media screen and (max-width: 425px) {
+    #mapInResultPage {
+        height: 60vh;
+    }
+}
+
+@media screen and (min-width: 426px) {
+    #mapInResultPage {
+        height: 60vh;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #mapInResultPage {
+        height: 60vh;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    #mapInResultPage {
+        height: 100vh;
+    }
+
+    #resultsInLaptopView {
+        position: relative;
+        bottom: 90vh;
+        left: 60%;
+    }
+}
+
+.icon-blue {
+    color: #0d6efd;
+    cursor: pointer;
+}

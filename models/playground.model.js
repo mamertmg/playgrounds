@@ -3,8 +3,9 @@ const Schema = mongoose.Schema;
 const Event = require('./event.model');
 const LostFound = require('./lostfound.model');
 const Review = require('./review.model');
+const User = require('./user.model');
 const { playgroundTypesEN } = require('../utils/translation');
-const { playgroundLabels, playgroundEquipment } = require('../utils/labels');
+const { playgroundLabels, playgroundEquipment } = require('../utils/labels'); // PLAYGROUND MODEL
 
 const playgroundSchema = new Schema({
     name: {
@@ -36,6 +37,11 @@ const playgroundSchema = new Schema({
     description: {
         type: String,
         default: '',
+    },
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
     },
     events: [
         {
@@ -82,38 +88,167 @@ const playgroundSchema = new Schema({
     ],
 });
 
-playgroundSchema.index({ "location": '2dsphere' });
+playgroundSchema.index({ location: '2dsphere' });
 
-playgroundSchema.statics.findByLocation = function (
-    [lat, lng, dist, limit],
+playgroundSchema.statics.findByInputWithLoc = function (
+    [lat, lng, dist, type, minAge, maxAge, labels, limit],
     cb
 ) {
-    return this.find({
-        "location": {
-            "$near": {
-                "$geometry": { type: 'Point', coordinates: [lng, lat] },
-                "$minDistance": 0,
-                "$maxDistance": dist,
+    // if both minAge and maxAge are 0, do not filter for age
+    const useAgeFilter = minAge === 0 && maxAge === 0 ? false : true;
+    if (!useAgeFilter) {
+        return this.find({
+            location: {
+                $near: {
+                    $geometry: { type: 'Point', coordinates: [lng, lat] },
+                    $minDistance: 0,
+                    $maxDistance: dist,
+                },
             },
-        },
+            type: type ? { $in: type } : { $exists: true },
+            labels: labels ? { $all: labels } : { $exists: true },
+        })
+            .limit(limit)
+            .exec(cb);
+    }
+
+    return this.find({
+        $and: [
+            {
+                location: {
+                    $near: {
+                        $geometry: { type: 'Point', coordinates: [lng, lat] },
+                        $minDistance: 0,
+                        $maxDistance: dist,
+                    },
+                },
+            },
+            { type: type ? { $in: type } : { $exists: true } },
+            { labels: labels ? { $all: labels } : { $exists: true } },
+            maxAge === 0
+                ? // case 1: when no upper bound on age set: maxAge *always* 0
+                  {
+                      $and: [
+                          { max_age: { $gte: minAge } },
+                          {
+                              $or: [
+                                  { min_age: { $gte: minAge } },
+                                  { min_age: { $lte: minAge } },
+                              ],
+                          },
+                      ],
+                  }
+                : {
+                      $or: [
+                          // case 2: [minAge, maxAge] is exactly the age range of playground
+                          // => min_age >= minAge && max_age <= maxAge
+                          {
+                              $and: [
+                                  { min_age: { $gte: minAge } },
+                                  { max_age: { $lte: maxAge } },
+                              ],
+                          },
+                          // case 2: [minAge, maxAge] is subinterval of [min_age, max_age]
+                          // => min_age < minAge && max_age > maxAge
+                          {
+                              $and: [
+                                  { min_age: { $lt: minAge } },
+                                  { max_age: { $gt: maxAge } },
+                              ],
+                          },
+                          // case 4.1: Intervals [minAge, maxAge] and [min_age, max_age] overlap
+                          // => min_age < minAge && max_age <= maxAge
+                          {
+                              $and: [
+                                  { min_age: { $lt: minAge } },
+                                  { maxAge: { $gte: minAge, $lte: maxAge } },
+                              ],
+                          },
+                          // case 4.2: Intervals [minAge, maxAge] and [min_age, max_age] overlap
+                          // => min_age >= minAge && max_age > maxAge
+                          {
+                              $and: [
+                                  { min_age: { $gte: minAge, $lte: maxAge } },
+                                  { maxAge: { $gt: maxAge } },
+                              ],
+                          },
+                      ],
+                  },
+        ],
     })
         .limit(limit)
         .exec(cb);
 };
 
-playgroundSchema.statics.findByLocAndLabel = function (
-    [lat, lng, label, dist, limit],
+playgroundSchema.statics.findByInput = function (
+    [type, minAge, maxAge, labels, limit],
     cb
 ) {
+    // if both minAge and maxAge are 0, do not filter for age
+    const useAgeFilter = minAge === 0 && maxAge === 0 ? false : true;
+    if (!useAgeFilter) {
+        return this.find({
+            type: type ? type : { $exists: true },
+            labels: labels ? { $all: labels } : { $exists: true },
+        })
+            .limit(limit)
+            .exec(cb);
+    }
+
     return this.find({
-        "location": {
-            "$near": {
-                "$geometry": { type: 'Point', coordinates: [lng, lat] },
-                "$minDistance": 0,
-                "$maxDistance": dist,
-            },
-        },
-        "type": label,
+        $and: [
+            { type: type ? type : { $exists: true } },
+            { labels: labels ? { $all: labels } : { $exists: true } },
+            maxAge === 0
+                ? // case 1: when no upper bound on age set: maxAge *always* 0
+                  {
+                      $and: [
+                          { max_age: { $gte: minAge } },
+                          {
+                              $or: [
+                                  { min_age: { $gte: minAge } },
+                                  { min_age: { $lte: minAge } },
+                              ],
+                          },
+                      ],
+                  }
+                : {
+                      $or: [
+                          // case 2: [minAge, maxAge] is exactly the age range of playground
+                          // => min_age >= minAge && max_age <= maxAge
+                          {
+                              $and: [
+                                  { min_age: { $gte: minAge } },
+                                  { max_age: { $lte: maxAge } },
+                              ],
+                          },
+                          // case 2: [minAge, maxAge] is subinterval of [min_age, max_age]
+                          // => min_age < minAge && max_age > maxAge
+                          {
+                              $and: [
+                                  { min_age: { $lt: minAge } },
+                                  { max_age: { $gt: maxAge } },
+                              ],
+                          },
+                          // case 4.1: Intervals [minAge, maxAge] and [min_age, max_age] overlap
+                          // => min_age < minAge && max_age <= maxAge
+                          {
+                              $and: [
+                                  { min_age: { $lt: minAge } },
+                                  { maxAge: { $gte: minAge, $lte: maxAge } },
+                              ],
+                          },
+                          // case 4.2: Intervals [minAge, maxAge] and [min_age, max_age] overlap
+                          // => min_age >= minAge && max_age > maxAge
+                          {
+                              $and: [
+                                  { min_age: { $gte: minAge, $lte: maxAge } },
+                                  { maxAge: { $gt: maxAge } },
+                              ],
+                          },
+                      ],
+                  },
+        ],
     })
         .limit(limit)
         .exec(cb);

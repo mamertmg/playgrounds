@@ -31,6 +31,12 @@ const UserSchema = new mongoose.Schema({
             ref: 'Review',
         },
     ],
+    lost_found: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'LostFound',
+        },
+    ],
 });
 
 const User = mongoose.model('User', UserSchema);

@@ -25,11 +25,16 @@ This branch contains the following aspects:
 - Update of EJS views (you need to log in before vieweing/updating or deleting playgrounds, events, lost&found)
 - Initiate profile user page
 
-## New
-- Modified playground model: removed redundant fields, added labels
-- Each playground now has an address!!
-- Adjusted playground form to fit new model.
-- Fixed behaviour of InfoWindow on map.
+## Progress summary
+### Detail page
+- Playground, Event, Lost&Found CRUD linked
+
+### Landing page
+- Search input behaviour + redirect to search result page implemented
+
+### Search result page
+- Location search + type, age, equipment and features filters implemented
+- Result of location search is displayed on map + as cards on the page.
 
 ## Usage
 

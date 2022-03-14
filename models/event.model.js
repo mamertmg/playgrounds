@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Playground = require('./playground.model');
+const User = require('./user.model');
 
 const eventSchema = new Schema({
     playground_id: {
@@ -9,7 +11,7 @@ const eventSchema = new Schema({
     },
     status: {
         type: Number,
-        required: true
+        required: true,
     },
     date: {
         type: Date,
@@ -29,9 +31,16 @@ const eventSchema = new Schema({
     link: {
         type: String,
     },
-    user_id: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
+    author: {
+        id: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+            required: true,
+        },
+        name: {
+            type: String,
+            required: true,
+        },
     },
 });
 

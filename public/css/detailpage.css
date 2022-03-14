@@ -1,33 +1,94 @@
-h1, h2, h3, h4, h5 {
+body {
+    background: #fffaf4;
+}
 
+h1, h2, h3, h4, h5 {
     font-family: Montserrat, sans-serif;
     color: #074266;
     display: inline-block;
 }
 
+
+
 h1 {
-    padding-top: 30px;
+    padding: 0px 20px 10px 20px;
 }
 
+textarea {
+    max-width: 100%;
+    resize: none;
+}
+
+ul {
+    padding-left: 0px;
+    margin: 0px;
+}
+
+li {
+    list-style-type: none;
+    margin: 0px;
+    padding: 10px;
+}
+
+hr {
+    border-top: 1px solid #0742664b;
+}
+
+
 .container-fluid {
-    padding: 50px 4% 0 4%;
+    margin-top: 70px;
+
+}
+
+.playground-rating {
+    font-size: 20px;
+
 }
 
 .tag {
-    border: 1px black solid;
-    border-radius: 5px;
-    background: #3F88C5;
-    padding: 5px;
-    margin: 0px 10px 10px 0px;
-    color: white;
+    background: white;
+    color: #074266;
     font-family: Montserrat, sans-serif;
-    font-style: italic;
+    border: solid 1px #074266;
+    border-radius: 25px;
+    padding: 5px;
+    margin: 0px 5px 5px 0px;
+    font-style: bold;
+    display: inline-block;
+
+}
+
+.tag:hover {
+    color: #4EA599;
+    border: solid 1px #4EA599;
+
+}
+
+#featureTags {
+    display: flexbox;
+    justify-content: space-around;
+}
+
+.littleTags {
+    border: solid 1px #074266;
+    border-radius: 25px;
+    padding: 5px;
+    margin: 0px 5px 5px 0px;
+    color: #074266;
+    background: none;
+    font-style: bold;
     display: inline-block;
 }
 
+.littleTags:hover {
+    color: #4EA599;
+    border: solid 1px #4EA599;
+}
+
+
 #mainNavbar {
     background: #4ea599;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-family: Montserrat, sans-serif;
 }
 
@@ -45,20 +106,24 @@ h1 {
 
 #mainNavbar .navbar-brand {
     color: #032B43;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 400;
     margin-left: 15px;
 }
 
-body {
-    background: #fffaf4;
+#navbar-logo {
+    height: 52px;
+}
+
+#nav-header {
+    cursor: default;
 }
 
 #btn-login, #btn-signup {
     background: #4ea599;
     color: white;
     font-weight: 200;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
 #btn-login:hover, #btn-signup:hover {
@@ -81,6 +146,7 @@ body {
 }
 
 .btn-plus {
+
     color: #FFBA08;
 }
 
@@ -90,6 +156,7 @@ body {
     transition-property: background, color;
     transition-duration: 0.2s
 }
+
 
 .rating {
     display: inline-flex;
@@ -103,7 +170,7 @@ body {
 
 .rating>label {
     position: relative;
-    width: 40px;
+    width: 2.5rem;
     font-size: 3rem;
     color: #FFBA08;
     cursor: pointer;
@@ -128,18 +195,24 @@ body {
     opacity: 0.4
 }
 
-.rating-fixed {
+.bi-star, .bi-star-fill, .bi-star-half {
     color: #FFBA08;
     fill: #FFBA08;
     display: inline-block;
+    margin: -3px;
 }
 
+.playground-rating {
+    display: inline-block;
+    margin-left: 10px;
+}
 
-.card-body {
+#playgroundDetails {
     min-width: fit-content;
     min-height: fit-content;
-    border-radius: 10px;
+    border-radius: 5px;
     border: 2px solid #ffb908a9;
+    background-color: white;
 }
 
 .card-text {
@@ -147,70 +220,179 @@ body {
     font-family: Montserrat, sans-serif;
 }
 
-.link {
-    color: #3F88C5;
+.card-title {
+    text-decoration: underline;
 }
+
+.fa-map-location-dot {
+    font-size: 1.5rem;
+    margin-left: 10px;
+}
+
 
 #carouselIndicators {
     margin: 10px 0;
     border: 1px solid #032B43;
     border-radius: 5px;
     position: relative;
-
 }
 
 .carousel-inner {
     max-height: 460px;
 }
 
-#event-header, #lostfound-header {
+#event-header, #lostfound-header, #review-header {
     margin-top: 30px;
     margin-right: 20px;
-}
-
-#addphoto {
-    color: #ffb908;
-    position: relative;
-    z-index: 1;
-    left: 86%;
-    top: 8%;
-}
-
-#navbar-logo {
-    height: 52px;
+    margin-left: 10px;
 }
 
 
 .card {
+    border-radius: 5px;
     border: none;
     -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.03);
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.03)
 }
 
 .comment-text {
-    font-size: 0.875rempx
+    font-size: 14px
 }
 
 .fs-10 {
-    font-size: 0.875rempx
+    font-size: 14px
 }
 
 .comment-header {
     color: #4ea599;
+    display: inline;
 }
 
 #eventName, #eventInfo {
     display: block;
 }
 
-#eventForm {
-    padding: 10px 50px 10px 50px;
+
+.form-check-label {
+    font-family: Montserrat, sans-serif;
+    color: #074266;
+    display: inline-block;
+    font-size: 1.1rem;
 }
 
-.eventBtn {
-    opacity: 0;
+
+.link {
+    text-decoration: none;
+    padding: 10px;
+    margin: 0px;
+    color: #3F88C5;
 }
-  
-tr:hover .eventBtn {
-    opacity: 1;
+
+
+.link:hover {
+    text-decoration: none;
+    background-color: #f8f8f8;
+}
+
+#theDate:hover, .heading:hover, #eventThumbnail:hover, .location:hover {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#iCircleEvent, #iCircleLost {
+    font-size: 24px;
+
+}
+
+#iCircleEvent:hover, #iCircleLost:hover {
+    font-size: 28px;
+    cursor: pointer;
+
+}
+
+.day {
+    font-family: Montserrat, sans-serif;
+    color: #074266;
+    font-size: 1.8rem;
+}
+
+.month {
+    font-family: Montserrat, sans-serif;
+    color: #07426694;
+    font-size: 1rem;
+}
+
+
+.time, .location {
+    line-height: 1.2rem;
+    color: #07426694;
+
+}
+
+
+.thumbnail {
+    height: 80px;
+    width: 80px;
+}
+
+#statuslost {
+    font-weight: 400;
+    font-size: 1.3rem;
+    color: #FF5C5C;
+}
+
+#statusfound {
+    font-weight: 400;
+    font-size: 1.3rem;
+    color: #4EA599;
+}
+
+#addphoto {
+    z-index: 1;
+
+}
+
+.chip.chip-md {
+    height: 42px;
+    line-height: 42px;
+    border-radius: 21px;
+}
+
+.chip.chip-md .close {
+    height: 42px;
+    line-height: 42px;
+    border-radius: 21px;
+}
+
+.center {
+    text-align: center;
+}
+
+.bi-heart:hover {
+    color: #FF5C5C;
+}
+
+.bi-chat-right-text:hover {
+    color: #4EA599;
+}
+
+#postReview, #postComment {
+    width: max-content;
+    align-self: end;
+    line-height: 1rem;
+}
+
+
+@media (max-width: 800px) {
+    #statuslost {
+        font-weight: 400;
+        font-size: 1rem;
+        color: #FF5C5C;
+    }
+
+    #statusfound {
+        font-weight: 400;
+        font-size: 1rem;
+        color: #4EA599;
+    }
 }
