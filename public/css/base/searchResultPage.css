@@ -8,6 +8,7 @@
 }
 
 #sticky-map {
+    position: -webkit-sticky;
     position: sticky;
     top: 1px;
 }
@@ -37,6 +38,7 @@
 
     #resultsInLaptopView {
         position: relative;
+        bottom: 90vh;
         left: 60%;
     }
 }
