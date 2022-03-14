@@ -65,13 +65,51 @@
                 <div class="mx-auto my-2 filters">
 
                     <button class="btn btn-outline-dark btn-sm rounded-pill" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasBottomType" aria-controls="offcanvasBottomType">Type</button>
+
+                    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottomType"
+                        aria-labelledby="offcanvasBottomLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasBottomLabel">Select playground type</h5>
+                            <button id="closeTypeFilter" type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                        </div>
+
+
+
+                        <div class="offcanvas-body small">
+
+                            <!-- form for type filter, please add action here!  -->
+                            <form id="typeForm" class="" action="" method="get" autocomplete="off">
+
+                                <div class="d-flex d-flex align-content-start flex-wrap my-2">
+                                    <% for(let type of types) { %> 
+                                    <div class="form-check form-check-inline">
+                                        <input type="checkbox" class="form-check-input" id="<%= type %>" name="type" value="<%= type %>">
+                                        <label class="form-check-label" for="<%= type %>"><%= type %>
+                                        </label>
+                                    </div>
+                                    <% } %>
+                                </div>
+
+                                <div class="d-flex justify-content-end">
+                                    <button type="button" class="btn btn-secondary btn-sm mx-1"
+                                        data-bs-dismiss="offcanvas">Reset</button>
+                                    <button type="submit" class="btn btn-primary btn-sm mx-1">Apply filter</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-outline-dark btn-sm rounded-pill" type="button" data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasBottomAge" aria-controls="offcanvasBottomAge">Age</button>
 
                     <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottomAge"
                         aria-labelledby="offcanvasBottomLabel">
                         <div class="offcanvas-header">
                             <h5 class="offcanvas-title" id="offcanvasBottomLabel">Select Age</h5>
-                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                            <button id="closeAgeFilter" type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                                 aria-label="Close"></button>
                         </div>
 
@@ -80,31 +118,27 @@
                         <div class="offcanvas-body small">
 
                             <!-- form for age filter, please add action here!  -->
-                            <form class="" action="" method="get" autocomplete="off">
+                            <form id="ageForm" class="" action="" method="get" autocomplete="off">
 
                                 <div class="d-flex d-flex align-content-start flex-wrap my-2">
 
-
-                                    <div class="form-check form-check-inline">
-                                        <input type="checkbox" class="form-check-input" id="0-3" name="0-3" checked>
-                                        <label class="form-check-label" for="0-3">0-3
-                                        </label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-
-                                        <input type="checkbox" class="form-check-input" id="3-6" name="bolzplatz">
-                                        <label class="form-check-label" for="3-6">3-6
-                                        </label>
+                                    <div class="me-3">
+                                        <label for="minAge" class="form-label">Min. age:</label>
+                                        <select id="minAge" class="form-select" aria-label="Minimal age">
+                                            <% for(let i = 0; i <= 16; i++) { %> 
+                                            <option value=<%= i %>><%= i %></option>
+                                            <% } %> 
+                                          </select>
                                     </div>
 
-                                    <div class="form-check form-check-inline">
-                                        <input type="checkbox" class="form-check-input" id="6-12" name="6-12">
-                                        <label class="form-check-label" for="skaters_playground">6-12</label>
-                                    </div>
-
-                                    <div class="form-check form-check-inline">
-                                        <input type="checkbox" class="form-check-input" id="12-16" name="12-16">
-                                        <label class="form-check-label" for="other_playground">12-16</label>
+                                    <div>
+                                        <label for="maxAge" class="form-label">Max. age:</label>
+                                        <select id="maxAge" class="form-select" aria-label="Maximal age">
+                                            <option value="any">Any</option>
+                                            <% for(let i = 0; i <= 16; i++) { %> 
+                                            <option value="<%= i %>"><%= i %></option>
+                                            <% } %> 
+                                          </select>
                                     </div>
 
                                 </div>
@@ -121,51 +155,29 @@
 
                     <button class="btn btn-outline-dark btn-sm rounded-pill" type="button" data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasBottomEquipments"
-                        aria-controls="offcanvasBottomEquipments">Equipments</button>
+                        aria-controls="offcanvasBottomEquipments">Equipment</button>
 
                     <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottomEquipments"
                         aria-labelledby="offcanvasBottomLabel">
                         <div class="offcanvas-header">
-                            <h5 class="offcanvas-title" id="offcanvasBottomLabel">Select Equipments</h5>
-                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                            <h5 class="offcanvas-title" id="offcanvasBottomLabel">Select Equipment</h5>
+                            <button id="closeEquipFilter" type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                                 aria-label="Close"></button>
                         </div>
                         <div class="offcanvas-body small">
 
                             <!-- form for equipment filter, please add action here!  -->
 
-                            <form class="" action="" method="get" autocomplete="off">
+                            <form id="equipForm" class="" action="" method="get" autocomplete="off">
 
                                 <div class="d-flex d-flex align-content-start flex-wrap my-2">
 
-
+                                    <% for(let equipment of playgroundEquipment) { %> 
                                     <div class="form-check form-check-inline">
-                                        <input type="checkbox" class="form-check-input" id="kids_playground"
-                                            name="kids_playground" checked>
-                                        <label class="form-check-label" for="kids_playground">Kids playground
-                                        </label>
+                                        <input type="checkbox" class="form-check-input" id="<%= equipment %>" name="equipment" value="<%= equipment %>">
+                                        <label class="form-check-label" for="<%= equipment %>"><%= equipment %></label>
                                     </div>
-                                    <div class="form-check form-check-inline">
-
-                                        <input type="checkbox" class="form-check-input" id="bolzplatz" name="bolzplatz">
-                                        <label class="form-check-label" for="bolzplatz">Kickers playground
-                                        </label>
-                                    </div>
-
-                                    <div class="form-check form-check-inline">
-                                        <input type="checkbox" class="form-check-input" id="skaters_playground"
-                                            name="skaters_playground">
-                                        <label class="form-check-label" for="skaters_playground">Skaters
-                                            playground</label>
-                                    </div>
-
-                                    <div class="form-check form-check-inline">
-                                        <input type="checkbox" class="form-check-input" id="other_playground"
-                                            name="other_playground">
-                                        <label class="form-check-label" for="other_playground">Others</label>
-                                    </div>
-
-
+                                    <% } %> 
 
                                 </div>
 
@@ -179,6 +191,44 @@
                             </form>
                         </div>
                     </div>
+
+                    <button class="btn btn-outline-dark btn-sm rounded-pill" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasBottomFeatures"
+                        aria-controls="offcanvasBottomFeatures">Features</button>
+
+                    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottomFeatures"
+                        aria-labelledby="offcanvasBottomLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasBottomLabel">Select Features</h5>
+                            <button id="closeFeatureFilter" type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body small">
+
+                            <!-- form for Feature filter, please add action here!  -->
+                            <form id="featureForm" class="" action="" method="get" autocomplete="off">
+
+                                <div class="d-flex d-flex align-content-start flex-wrap my-2">
+
+                                    <% for(let feature of playgroundLabels) { %> 
+                                    <div class="form-check form-check-inline">
+                                        <input type="checkbox" class="form-check-input" id="<%= feature %>" name="features" value="<%= feature %>">
+                                        <label class="form-check-label" for="<%= feature %>"><%= feature %></label>
+                                    </div>
+                                    <% } %>
+
+                                </div>
+
+                                <div class="d-flex justify-content-end">
+                                    <button type="button" class="btn btn-secondary btn-sm mx-1"
+                                        data-bs-dismiss="offcanvas">Reset</button>
+                                    <button type="submit" class="btn btn-primary btn-sm mx-1">Apply filter</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+
 
                     <button class="btn btn-outline-dark btn-sm rounded-pill" type="button" data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasBottomRatings" aria-controls="offcanvasBottomRatings">Ratings</button>
@@ -241,68 +291,6 @@
                         </div>
                     </div>
 
-                    <button class="btn btn-outline-dark btn-sm rounded-pill" type="button" data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasBottomFeatures"
-                        aria-controls="offcanvasBottomFeatures">Features</button>
-
-                    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottomFeatures"
-                        aria-labelledby="offcanvasBottomLabel">
-                        <div class="offcanvas-header">
-                            <h5 class="offcanvas-title" id="offcanvasBottomLabel">Select Features</h5>
-                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="offcanvas-body small">
-
-                            <!-- form for Feature filter, please add action here!  -->
-                            <form class="" action="" method="get" autocomplete="off">
-
-                                <div class="d-flex d-flex align-content-start flex-wrap my-2">
-
-
-                                    <div class="form-check form-check-inline">
-                                        <input type="checkbox" class="form-check-input" id="kids_playground"
-                                            name="kids_playground" checked>
-                                        <label class="form-check-label" for="kids_playground">Kids playground
-                                        </label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-
-                                        <input type="checkbox" class="form-check-input" id="bolzplatz" name="bolzplatz">
-                                        <label class="form-check-label" for="bolzplatz">Kickers playground
-                                        </label>
-                                    </div>
-
-                                    <div class="form-check form-check-inline">
-                                        <input type="checkbox" class="form-check-input" id="skaters_playground"
-                                            name="skaters_playground">
-                                        <label class="form-check-label" for="skaters_playground">Skaters
-                                            playground</label>
-                                    </div>
-
-                                    <div class="form-check form-check-inline">
-                                        <input type="checkbox" class="form-check-input" id="other_playground"
-                                            name="other_playground">
-                                        <label class="form-check-label" for="other_playground">Others</label>
-                                    </div>
-
-
-
-                                </div>
-
-
-
-
-                                <div class="d-flex justify-content-end">
-                                    <button type="button" class="btn btn-secondary btn-sm mx-1"
-                                        data-bs-dismiss="offcanvas">Reset</button>
-                                    <button type="submit" class="btn btn-primary btn-sm mx-1">Apply filter</button>
-                                </div>
-
-                            </form>
-                        </div>
-                    </div>
-
 
                 </div>
 
@@ -343,7 +331,7 @@
                                 </label> <br>
                                 <input id="distMobile" type="range" value="<%= dist %>" min="1" max="5"
                                     class=" d-flex justify-content-center form-range w-100 mt-2">
-                                <output class="d-flex justify-content-center">1</output>
+                                <output class="d-flex justify-content-center"><%= dist %></output>
 
                             </div>
 
@@ -427,14 +415,16 @@
             <div class="d-flex justify-content-center my-2 filters">
 
                 <button class="btn btn-outline-dark btn-lg rounded-pill" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasBottomType" aria-controls="offcanvasBottomType">Type</button>
+                <button class="btn btn-outline-dark btn-lg rounded-pill" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasBottomAge" aria-controls="offcanvasBottomAge">Age</button>
                 <button class="btn btn-outline-dark btn-lg rounded-pill" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasBottomEquipments"
                     aria-controls="offcanvasBottomEquipments">Equipments</button>
                 <button class="btn btn-outline-dark btn-lg rounded-pill" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasBottomRatings" aria-controls="offcanvasBottomRatings">Ratings</button>
-                <button class="btn btn-outline-dark btn-lg rounded-pill" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasBottomFeatures" aria-controls="offcanvasBottomFeatures">Features</button>
+                <button class="btn btn-outline-dark btn-lg rounded-pill" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasBottomRatings" aria-controls="offcanvasBottomRatings">Ratings</button>
 
             </div>
 
@@ -638,6 +628,7 @@
 
 
 
+    <script src="/javascript/utils.js"></script>
     <script src="/javascript/url-search-params-polyfill/index.js"></script>
     <script src="/javascript/base/searchResultPage.js"></script>
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>

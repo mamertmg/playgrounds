@@ -25,15 +25,15 @@ This branch contains the following aspects:
 - Update of EJS views (you need to log in before vieweing/updating or deleting playgrounds, events, lost&found)
 - Initiate profile user page
 
-## New
+## Progress summary
 ### Detail page
 - Playground, Event, Lost&Found CRUD linked
 
 ### Landing page
-- completed search input behaviour + redirect to search result page
+- Search input behaviour + redirect to search result page implemented
 
 ### Search result page
-- Location search implemented
+- Location search + type, age, equipment and features filters implemented
 - Result of location search is displayed on map + as cards on the page.
 
 ## Usage

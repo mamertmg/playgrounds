@@ -5,6 +5,8 @@ let infowindow = null;
 // list for keeping track of all markers on map
 let markerList = [];
 
+const duessCoord = { lat: 51.22, lng: 6.77 };
+
 const baseQuery = 'http://localhost:3000/api/playgrounds?';
 
 //top navbar turn white on scroll, bottom nabar disappears when reaching bottom
@@ -84,12 +86,16 @@ const locationInput = document.querySelector('#autocompleteLg');
 
 // both input fields should ALWAYS have the same value
 locationInputMobile.addEventListener('input', () => {
+    sessionStorage['q'] = locationInputMobile.value;
     locationInput.value = locationInputMobile.value;
     locationDisplayMobile.value = locationInputMobile.value;
+    console.log(sessionStorage.getItem('q'));
 });
 locationInput.addEventListener('input', () => {
+    sessionStorage['q'] = locationInput.value;
     locationInputMobile.value = locationInput.value;
     locationDisplayMobile.value = locationInput.value;
+    console.log(sessionStorage.getItem('q'));
 });
 
 let addressQuery;
@@ -109,7 +115,10 @@ function initAutocomplete() {
                 autocomplete.target.placeholder = 'Enter a place';
             } else {
                 addressQuery = place.formatted_address;
+                locationInput.value = addressQuery;
                 locationInputMobile.value = addressQuery;
+                locationDisplayMobile.value = addressQuery;
+                sessionStorage['q'] = locationInputMobile.value;
             }
         });
     }
@@ -203,8 +212,6 @@ function createResultCard(playground) {
             lat: playground.location.coordinates[1],
             lng: playground.location.coordinates[0],
         };
-        map.panTo(coordinates);
-        map.setZoom(16);
         findAndClickMarker(coordinates);
     });
     cardTitle.appendChild(showMapBtn);
@@ -233,12 +240,28 @@ function createResultCard(playground) {
     resultsDisplay.appendChild(card);
 }
 
+// Deletes all markers in the array by removing references to them.
+function deleteMarkers() {
+    for (let i = 0; i < markerList.length; i++) {
+        markerList[i].setMap(null);
+    }
+    markerList = [];
+}
+
 // creates markers on map for given data
 //
 // markers: array of objects with playground data
 // currCoordinates: array [lat, lng]; current center of map
 function placeMarkers(playgrounds, currCoordinates) {
     if (map) {
+        // clear previous markers / cards, if they exist
+        if (markerList) {
+            while (resultsDisplay.firstChild) {
+                resultsDisplay.removeChild(resultsDisplay.firstChild);
+            }
+            deleteMarkers();
+        }
+
         // Mark the position of input location
         const marker = new google.maps.Marker({
             position: currCoordinates,
@@ -272,6 +295,11 @@ function placeMarkers(playgrounds, currCoordinates) {
             <div><a href='http://localhost:3000/playgrounds/${playground._id}'>Details</a></div>`;
 
             marker.addListener('click', () => {
+                // pan to coordinates and open InfoWindow
+                const coordinates = marker.getPosition();
+                map.panTo(coordinates);
+                map.setZoom(15);
+
                 infowindow.setContent(contentString);
                 infowindow.open(map, marker);
             });
@@ -283,14 +311,201 @@ function placeMarkers(playgrounds, currCoordinates) {
     }
 }
 
-// Deletes all markers in the array by removing references to them.
-function deleteMarkers() {
-    for (let i = 0; i < markerList.length; i++) {
-        markerList[i].setMap(null);
+// Fetch filter result
+
+async function fetchFilterResult() {
+    // build query string from stored input
+    let query = `${baseQuery}lat=${sessionStorage.getItem(
+        'lat'
+    )}&lng=${sessionStorage.getItem('lng')}&dist=${sessionStorage.getItem(
+        'dist'
+    )}`;
+
+    if (Object.keys(sessionStorage).includes('type')) {
+        query += `&type=${sessionStorage.getItem('type')}`;
     }
-    markerList = [];
+
+    if (
+        Object.keys(sessionStorage).includes('minAge') &&
+        Object.keys(sessionStorage).includes('maxAge')
+    ) {
+        query += `&age=${sessionStorage.getItem(
+            'minAge'
+        )}-${sessionStorage.getItem('maxAge')}`;
+    }
+
+    if (
+        Object.keys(sessionStorage).includes('equipment') &&
+        Object.keys(sessionStorage).includes('features')
+    ) {
+        query += `&labels=${sessionStorage.getItem(
+            'equipment'
+        )},${sessionStorage.getItem('features')}`;
+    } else if (Object.keys(sessionStorage).includes('equipment')) {
+        query += `&labels=${sessionStorage.getItem('equipment')}`;
+    } else if (Object.keys(sessionStorage).includes('features')) {
+        query += `&labels=${sessionStorage.getItem('features')}`;
+    }
+
+    // fetch & display relevant data
+    axios
+        .get(query)
+        .then((response) => {
+            const playgrounds = response.data;
+            placeMarkers(playgrounds, {
+                lat: Number(sessionStorage.getItem('lat')),
+                lng: Number(sessionStorage.getItem('lng')),
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 }
 
+// TYPE FORM
+
+const typeForm = document.querySelector('#typeForm');
+const typeFormCloseBtn = document.querySelector('#closeTypeFilter');
+
+typeForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const selected = [];
+    for (let element of typeForm) {
+        if (element.name === 'type' && element.checked) {
+            selected.push(element.value);
+        }
+    }
+
+    if (selected.length > 0) {
+        sessionStorage.setItem('type', selected.toString());
+    } else {
+        sessionStorage.removeItem('type');
+    }
+    fetchFilterResult();
+    typeFormCloseBtn.click();
+});
+
+// AGE FORM
+
+const minAge = document.querySelector('#minAge');
+const maxAge = document.querySelector('#maxAge');
+minAge.addEventListener('input', () => {
+    const minAgeVal = minAge.value;
+    // remove all but the any option
+    maxAge.length = 1;
+    // set options for maxAge such that smallest value is equal to selected minAge value
+    for (let i = minAgeVal; i <= 16; i++) {
+        const option = document.createElement('option');
+        option.text = i;
+        option.value = i;
+        maxAge.add(option);
+    }
+});
+
+const ageForm = document.querySelector('#ageForm');
+const ageFormCloseBtn = document.querySelector('#closeAgeFilter');
+ageForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    sessionStorage.setItem('minAge', minAge.value);
+    sessionStorage.setItem('maxAge', maxAge.value);
+    fetchFilterResult();
+    ageFormCloseBtn.click();
+});
+
+// EQUIPMENT FORM
+
+const equipForm = document.querySelector('#equipForm');
+const equipFormCloseBtn = document.querySelector('#closeEquipFilter');
+equipForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const selected = [];
+    for (let element of equipForm) {
+        if (element.name === 'equipment' && element.checked) {
+            selected.push(element.value);
+        }
+    }
+
+    if (selected.length > 0) {
+        sessionStorage.setItem('equipment', selected.toString());
+    } else {
+        sessionStorage.removeItem('equipment');
+    }
+    fetchFilterResult();
+    equipFormCloseBtn.click();
+});
+
+// FEATURES FORM
+
+const featureForm = document.querySelector('#featureForm');
+const featureFormCloseBtn = document.querySelector('#closeFeatureFilter');
+featureForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const selected = [];
+    for (let element of featureForm) {
+        if (element.name === 'features' && element.checked) {
+            selected.push(element.value);
+        }
+    }
+
+    if (selected.length > 0) {
+        sessionStorage.setItem('features', selected.toString());
+    } else {
+        sessionStorage.removeItem('features');
+    }
+    fetchFilterResult();
+    featureFormCloseBtn.click();
+});
+
+// on page reload, during the same session, set values for any previously set filters
+function restoreFilterSelection() {
+    // type filter
+    if (Object.keys(sessionStorage).includes('type')) {
+        const selected = sessionStorage.getItem('type').split(',');
+        for (let element of typeForm) {
+            if (element.name === 'type' && selected.includes(element.value)) {
+                element.checked = true;
+            }
+        }
+    }
+
+    // age filter
+    if (
+        Object.keys(sessionStorage).includes('minAge') &&
+        Object.keys(sessionStorage).includes('maxAge')
+    ) {
+        minAge.value = Number(sessionStorage.getItem('minAge'));
+        maxAge.value = Number(sessionStorage.getItem('maxAge'));
+    }
+
+    // equipment filter
+    if (Object.keys(sessionStorage).includes('equipment')) {
+        const selected = sessionStorage.getItem('equipment').split(',');
+        for (let element of equipForm) {
+            if (
+                element.name === 'equipment' &&
+                selected.includes(element.value)
+            ) {
+                element.checked = true;
+            }
+        }
+    }
+
+    // features filter
+    if (Object.keys(sessionStorage).includes('features')) {
+        const selected = sessionStorage.getItem('features').split(',');
+        for (let element of featureForm) {
+            if (
+                element.name === 'features' &&
+                selected.includes(element.value)
+            ) {
+                element.checked = true;
+            }
+        }
+    }
+}
+
+// Main function defining many settings besides map, since it is called every time the
+// page is loaded/refreshed.
 async function initMap() {
     initAutocomplete();
 
@@ -298,6 +513,10 @@ async function initMap() {
 
     // get query string params
     const searchParams = new URLSearchParams(window.location.search);
+
+    if (searchParams.has('q')) {
+        sessionStorage.setItem('q', searchParams.get('q'));
+    }
 
     const currentCoordinates = {};
 
@@ -315,6 +534,11 @@ async function initMap() {
             locationInputMobile.value = address;
             locationInput.value = address;
             locationDisplayMobile.value = address;
+            sessionStorage.setItem('q', address);
+        } else {
+            locationInputMobile.value = searchParams.get('q');
+            locationInput.value = searchParams.get('q');
+            locationDisplayMobile.value = searchParams.get('q');
         }
     } else if (
         locationInputMobile.value === 'Düsseldorf' ||
@@ -322,8 +546,8 @@ async function initMap() {
         !searchParams.get('q')
     ) {
         // default case, i.e. no location input by user: center on Düsseldorf
-        currentCoordinates.lat = 51.22;
-        currentCoordinates.lng = 6.77;
+        currentCoordinates.lat = duessCoord.lat;
+        currentCoordinates.lng = duessCoord.lng;
     } else {
         // no coordinates, but a location was input
         locationInputMobile.value = searchParams.get('q');
@@ -333,6 +557,9 @@ async function initMap() {
         currentCoordinates.lat = lat;
         currentCoordinates.lng = lng;
     }
+
+    sessionStorage.setItem('lat', currentCoordinates.lat);
+    sessionStorage.setItem('lng', currentCoordinates.lng);
 
     // initialise map
     map = new google.maps.Map(document.getElementById('mapInResultPage'), {
@@ -345,16 +572,18 @@ async function initMap() {
         infowindow.close();
     });
 
+    // save search radius from query, set it to 1 if invalid value
     const dist = searchParams.get('dist');
+    sessionStorage.setItem(
+        'dist',
+        Number(dist) && Number(dist) < 6 ? Number(dist) : '1'
+    );
+
+    // re-set values of any filters set during current session
+    restoreFilterSelection();
 
     // fetch relevant playgrounds
-    let query = `${baseQuery}lat=${currentCoordinates.lat}&lng=${
-        currentCoordinates.lng
-    }&dist=${Number(dist) && Number(dist) < 6 ? Number(dist) : '1'}`;
-
-    const response = await axios.get(query);
-    const playgrounds = response.data;
-    placeMarkers(playgrounds, currentCoordinates);
+    fetchFilterResult();
 }
 
 // distance selector should mirror each other
@@ -364,27 +593,35 @@ const distDesktop = document.querySelector('#selectSearchRadius');
 distDesktop.addEventListener('input', () => {
     distMobile.value = distDesktop.value;
     distMobile.nextElementSibling.value = distDesktop.value;
+    sessionStorage.setItem('dist', distDesktop.value);
 });
 distMobile.addEventListener('input', () => {
     distDesktop.value = distMobile.value;
+    distMobile.nextElementSibling.value = distMobile.value;
+    sessionStorage.setItem('dist', distMobile.value);
 });
 
 // Search form behaviour on submit
 
-function defineAndSendQuery(dist) {
+function defineAndSendLocQuery() {
     // build query string
     let query = '/search?';
-    if (place && place.formatted_address === locationInput.value) {
+    if (place && place.formatted_address === sessionStorage.getItem('q')) {
         query += `q=${
             place.formatted_address
         }&lat=${place.geometry.location.lat()}&lng=${place.geometry.location.lng()}&`;
     } else {
-        query += `q=${locationInput.value}&`;
+        query += `q=${sessionStorage.getItem('q')}&`;
     }
-    query += `dist=${dist}`;
+    query += `dist=${sessionStorage.getItem('dist')}`;
+
+    // clear session storage before navigating away
+    clearSearchData();
 
     window.location = query; // redirect browser to search page
 }
+
+// LOCATION forms
 
 const searchFormPlaceMobile = document.querySelector(
     '#searchform-landingpage-mobileview'
@@ -392,41 +629,39 @@ const searchFormPlaceMobile = document.querySelector(
 const searchFormPlaceLg = document.querySelector('#searchFormPlaceLg');
 searchFormPlaceMobile.addEventListener('submit', (event) => {
     event.preventDefault();
-    defineAndSendQuery(distMobile.value);
+    defineAndSendLocQuery();
 });
 searchFormPlaceLg.addEventListener('submit', (event) => {
     event.preventDefault();
-    defineAndSendQuery(distDesktop.value);
+    defineAndSendLocQuery();
 });
 
-//get Location from browser
+// get Location from browser
 
-// function getLocation() {
-//     if (navigator.geolocation) {
-//         navigator.geolocation.getCurrentPosition(function (pos) {
-//             axios
-//                 .get(
-//                     `https://nominatim.openstreetmap.org/reverse?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&format=json&limit=1`
-//                 )
-//                 .then((response) => {
-//                     const { city, road } = response.data.address;
-//                     searchInput.value = `${city} ${road}`;
-//                     getPlaygrounds(
-//                         pos.coords.latitude,
-//                         pos.coords.longitude,
-//                         labelSelect.value,
-//                         limitInput.value,
-//                         distInput.value
-//                     );
-//                 })
-//                 .catch((e) => {
-//                     console.log(e);
-//                 });
-//         });
-//     } else {
-//         console.log('Geolocation is not supported by this browser.');
-//     }
-// }
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (pos) {
+            axios
+                .get(
+                    `https://nominatim.openstreetmap.org/reverse?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&format=json&limit=1`
+                )
+                .then((response) => {
+                    const { city, road } = response.data.address;
+                    sessionStorage.setItem('q', `${road}, ${city}`);
+                    sessionStorage.setItem('lat', pos.coords.latitude);
+                    sessionStorage.setItem('lng', pos.coords.longitude);
+                    locationInput.value = `${road}, ${city}`;
+                    locationInputMobile.value = `${road}, ${city}`;
+                    locationDisplayMobile.value = `${road}, ${city}`;
+                })
+                .catch((e) => {
+                    console.log(e);
+                });
+        });
+    } else {
+        console.log('Geolocation is not supported by this browser.');
+    }
+}
 
 // Swiper
 
