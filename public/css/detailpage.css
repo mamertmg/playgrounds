@@ -4,8 +4,6 @@ h1, h2, h3, h4, h5 {
     display: inline-block;
 }
 
-
-
 h1 {
     padding: 0px 20px 10px 20px;
 }
@@ -153,6 +151,10 @@ hr {
     transition-duration: 0.2s
 }
 
+#deleteEventButton, #editEventButton, #deleteLostFoundButton, #editLostFoundButton {
+    margin: 0px;
+    padding: 0px;
+}
 
 .rating {
     display: inline-flex;
@@ -243,12 +245,25 @@ hr {
     margin-left: 10px;
 }
 
+.row.link {
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+.card-body {
+    border-radius: 5px;
+    border: 0.5px solid rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1)
+}
 
 .card {
+    margin: 0px;
+    padding: 0px;
     border-radius: 5px;
-    border: none;
-    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1)
+    border: 0.5px solid rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1)
 }
 
 .comment-text {
@@ -287,23 +302,8 @@ hr {
 
 .link:hover {
     text-decoration: none;
-    background-color: #f8f8f8;
-}
-
-#theDate:hover, .heading:hover, #eventThumbnail:hover, .location:hover {
-    font-weight: bold;
+    background-color: #f0f0f0;
     cursor: pointer;
-}
-
-#iCircleEvent, #iCircleLost {
-    font-size: 24px;
-
-}
-
-#iCircleEvent:hover, #iCircleLost:hover {
-    font-size: 28px;
-    cursor: pointer;
-
 }
 
 .day {
@@ -377,6 +377,8 @@ hr {
     align-self: end;
     line-height: 1rem;
 }
+
+
 
 
 @media (max-width: 800px) {

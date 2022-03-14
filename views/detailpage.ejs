@@ -251,7 +251,7 @@
                   <label class="form-check-label" for="eventInfo">
                     Info
                   </label>
-                  <textarea id="eventInfo" name="event[description]" class="w-100 mt-0 mb-2 p-2 br-10" placeholder="further information" cols="30" rows="2"></textarea>
+                  <textarea id="eventInfo" name="event[description]" class="w-100 mt-0 mb-2 p-2 br-10" placeholder="further information" cols="30" rows="2" required></textarea>
 
                   <label class="form-check-label" for="eventLink">
                     Add a link
@@ -295,18 +295,25 @@
             <% playground.events.forEach(function(event, i) {
                 const date = new Date(event.date); %>
             <li>
-              <div class="row link">
-                <div id="theDate" class="col-2 text-start">
+              <div class="row link"
+                      data-bs-toggle="collapse"  
+                      href="#event<%= i %>-collapse" 
+                      role="button" 
+                      aria-expanded="false" 
+                      aria-controls="event<%= i %>-collapse">
+
+                <div id="theDate" 
+                     class="col-2 text-center">
                   <div class="day d-inline-block">
                     <%= date.getDate() %>
                   </div>
-                  <div class="month">
+                  <div class="month text-center">
                     <%= numToMonth[date.getMonth()] %>
                   </div>
 
                 </div>
-                <div class="col-6 text-center">
-                  <h5 class="heading" data-bs-toggle="collapse" href="#event<%= i %>-collapse" role="button" aria-expanded="false" aria-controls="event<%= i %>-collapse">
+                <div class="col-5 text-center">
+                  <h5 class="heading">
                     <%= event.title %>
                   </h5>
                   <div class="time">
@@ -320,32 +327,41 @@
 
                 <div class="col-3">
 
-                  <img class="thumbnail" data-bs-toggle="collapse" href="#event<%= i %>-collapse" role="button" aria-expanded="false" aria-controls="event<%= i %>-collapse" src="https://images.unsplash.com/photo-1615445565741-c60a9edd393f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8a2lkcyUyMHBhcnR5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="">
+                  <img class="thumbnail" src="https://images.unsplash.com/photo-1615445565741-c60a9edd393f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8a2lkcyUyMHBhcnR5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="">
                 </div>
-                <div class="col-1 align-self-center">
-                  <i id="iCircleEvent" class="bi bi-info-circle text-primary info-btn" type="button" data-bs-toggle="collapse" href="#event<%= i %>-collapse" role="button" aria-expanded="false" aria-controls="event<%= i %>-collapse"></i>
-                  <% if(isAuthenticated && currentUser._id.toString()===event.author.id.toString()) { %>
-                  <button data-id="<%= event._id %>" type="button" class="btn btn-warning editEventBtn">Edit</button>
+
+                <div class="col-2 justify-content-center align-self-center">
+                                <% if(isAuthenticated && currentUser._id.toString()===event.author.id.toString()) { %>
+                                 
+                  <button  data-id="<%= event._id %>" 
+                           id="editEventButton"
+                           class="btn bi bi-pencil inline-block editEventBtn">
+                  </button>
+                 <label class="d-none d-md-inline"
+                        for="editEventButton">Edit</label> 
                   <form action="/playgrounds/<%= playground._id %>/event/<%= event._id %>?_method=DELETE" method="post">
                     <input type="hidden" name="_csrf" value="<%= csrftoken %>">
-                    <button class="btn-sm btn-danger">Delete</button>
+                    <button id="deleteEventButton" class="btn bi bi-trash3 inline-block deleteEventBtn"></button>
+                    <label class="d-none d-md-inline" for="deleteEventButton">Delete</label> 
                   </form>
                   <% } %>
                 </div>
 
                 <div class="row collapse mt-3" id="event<%= i %>-collapse">
                   <hr>
-                  <div class="col-2 text-start align-self-center"> <a href="<%= event.link %>">
-                      <%= event.link %>
-                    </a> </div>
-                  <div class="col-6 text-center align-self-center">
-                    <%= event.description %>
-                  </div>
-                  <div class="col-3 text-center">
+                  <div class="col-2 text-center align-self-center"> 
                     <img src="https://i.imgur.com/C4egmYM.jpg" height="50" width="50" class="rounded-circle" />
                     <%= event.author.name %>
+                    
+                    </a> </div>
+                  <div class="col-8 text-center align-self-center">
+                    <%= event.description %>
                   </div>
-                  <div class="col-1"></div>
+                  <div class="col-2 align-self-center">
+                    <a href="<%= event.link %>">
+                      <%= event.link %>
+                  </div>
+                  
                 </div>
             </li>
             <% }); %>
@@ -359,7 +375,9 @@
         <% if(isAuthenticated) { %>
         <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Did you loose/find something?">
           <!-- Button trigger modal -->
-          <span id="createLostFoundBtn" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdroplostfound">
+          <span id="createLostFoundBtn" 
+                class="btn" data-bs-toggle="modal" 
+                data-bs-target="#staticBackdroplostfound">
             <a class="btn-plus"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 25 25">
                 <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
@@ -396,17 +414,17 @@
                   <label class="form-check-label mt-2 mb-0" for="lostDate">
                     Date
                   </label>
-                  <input id="lostDate" name="lost_found[date]" type="date" class="w-100 mt-0 mb-2 p-2 br-10" />
+                  <input id="lostDate" name="lost_found[date]" type="date" class="w-100 mt-0 mb-2 p-2 br-10" required/>
                   <label class="form-check-label mb-0" for="lostItem">
                     Item
                   </label>
                   <input id="lostItem" name="lost_found[title]" type="text" class="w-100 mt-0 mb-2 p-2 br-10" placeholder="name of the item" required />
-                  <textarea id="lostItemLong" name="lost_found[description]" class="w-100 mt-0 mb-2 p-2 br-10" placeholder="description of the item" cols="30" rows="2"></textarea>
+                  <textarea id="lostItemLong" name="lost_found[description]" class="w-100 mt-0 mb-2 p-2 br-10" placeholder="description of the item" cols="30" rows="2" required></textarea>
 
-                  <label class="form-check-label mb-0" for="lostContact">
+                  <label class="form-check-label mb-0" for="lostContact" >
                     Contact
                   </label>
-                  <input id="lostContact" name="lost_found[contact]" type="text" class="w-100 mt-0 mb-2 p-2 br-10" placeholder="contact" />
+                  <input id="lostContact" name="lost_found[contact]" type="text" class="w-100 mt-0 mb-2 p-2 br-10" placeholder="contact"required />
 
                   <h5 class="mt-3 mb-2">
                     Upload a picture of the item!
@@ -443,43 +461,52 @@
           <ul>
             <% playground.lost_found.forEach(function(lostFound, i) { %>
             <li>
-              <div class="row link">
-                <div id="<%= lostFound.status === 'lost' ? "statuslost" : "statusfound"%>" class="col-2 text-start align-self-center">
+              <div class="row link"
+                   type="button" 
+                   data-bs-toggle="collapse" 
+                   href="#item<%= i %>-collapse" 
+                   role="button" 
+                   aria-expanded="false" 
+                   aria-controls="item<%= i %>-collapse" >
+                <div id="<%= lostFound.status === 'lost' ? "statuslost" : "statusfound"%>" class="col-2 text-center align-self-center">
                   <%= lostFound.status.toUpperCase() %>
                 </div>
 
-                <div class="col-6 text-center align-self-center">
-                  <h5 id="theItem" class="heading" type="button" data-bs-toggle="collapse" href="#item<%= i %>-collapse" role="button" aria-expanded="false" aria-controls="item-collapse">
+                <div class="col-5 text-center align-self-center">
+                  <h5 id="theItem" class="heading">
                     <%= lostFound.title %>
                   </h5>
 
                 </div>
 
                 <div class="col-3">
-                  <img class="thumbnail" src="https://images.unsplash.com/photo-1580250642511-1660fe42ad58?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1025&q=80" alt="" type="button" data-bs-toggle="collapse" href="#item<%= i %>-collapse" role="button" aria-expanded="false" aria-controls="item<%= i %>-collapse" />
+                  <img class="thumbnail" src="https://images.unsplash.com/photo-1580250642511-1660fe42ad58?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1025&q=80" alt=""/>
                 </div>
 
-                <div class="col-1 align-self-center">
-                  <i id="iCircleLost" class="bi bi-info-circle text-primary info-btn" type="button" data-bs-toggle="collapse" href="#item<%= i %>-collapse" role="button" aria-expanded="false" aria-controls="item<%= i %>-collapse"></i>
+                <div class="col-2">
                   <% if(isAuthenticated && currentUser._id.toString()===lostFound.author.id.toString()) { %>
-                  <button data-id="<%= lostFound._id %>" type="button" class="btn btn-warning editLostFoundBtn">Edit</button>
+                  <button id="editLostFoundButton" data-id="<%= lostFound._id %>" class="btn bi bi-pencil editLostFoundBtn inline-block text-end" ></button>
+                  <label class="d-none d-md-inline"
+                        for="editLostFoundButton">Edit</label> 
                   <form action="/playgrounds/<%= playground._id %>/lost-found/<%= lostFound._id %>?_method=DELETE" method="post">
                     <input type="hidden" name="_csrf" value="<%= csrftoken %>">
-                    <button class="btn-sm btn-danger">Delete</button>
+                    <button id="deleteLostFoundButton" class="btn bi bi-trash3 inline-block"></button>
+                    <label class="d-none d-md-inline"
+                        for="deleteLostFoundButton">Delete</label> 
                   </form>
                   <% } %>
                 </div>
                 <div class="row collapse mt-3" id="item<%= i %>-collapse">
                   <hr>
-                  <div class="col-2 text-start align-self-center"><%= (new Date(lostFound.date)).toDateString() %></div>
-                  <div class="col-6 text-center align-self-center">
+                  <div class="col-2 text-center align-self-center"><%= (new Date(lostFound.date)).toDateString() %></div>
+                  <div class="col-5 text-center align-self-center">
                     <%= lostFound.description %>
                   </div>
                   <div class="col-3 text-center">
                     <img src="https://i.imgur.com/hczKIze.jpg" height="50" width="50" class="rounded-circle" />
                     <%= lostFound.author.name %>
                   </div>
-                  <div class="col-1"></div>
+                  <div class="col-2"></div>
                 </div>
 
               </div>
