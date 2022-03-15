@@ -1,14 +1,8 @@
-body {
-    background: #fffaf4;
-}
-
 h1, h2, h3, h4, h5 {
     font-family: Montserrat, sans-serif;
     color: #074266;
     display: inline-block;
 }
-
-
 
 h1 {
     padding: 0px 20px 10px 20px;
@@ -32,6 +26,10 @@ li {
 
 hr {
     border-top: 1px solid #0742664b;
+}
+
+.text-justify {
+    text-align: justify !important;
 }
 
 
@@ -146,7 +144,6 @@ hr {
 }
 
 .btn-plus {
-
     color: #FFBA08;
 }
 
@@ -155,6 +152,20 @@ hr {
     cursor: pointer;
     transition-property: background, color;
     transition-duration: 0.2s
+}
+
+#deleteEventButton, #editEventButton, #deleteLostFoundButton, #editLostFoundButton {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: none;
+}
+
+#editEventButton:hover, #editLostFoundButton:hover {
+    color: #FFBA08;
+}
+
+#deleteEventButton:hover, #deleteLostFoundButton:hover {
+    color: #FF5C5C;
 }
 
 
@@ -215,14 +226,6 @@ hr {
     background-color: white;
 }
 
-.card-text {
-    line-height: 1.5rem;
-    font-family: Montserrat, sans-serif;
-}
-
-.card-title {
-    text-decoration: underline;
-}
 
 .fa-map-location-dot {
     font-size: 1.5rem;
@@ -247,12 +250,34 @@ hr {
     margin-left: 10px;
 }
 
+.row.link {
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+.card-body {
+    border-radius: 5px;
+    border: 0.5px solid rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1)
+}
 
 .card {
+    margin: 0px;
+    padding: 0px;
     border-radius: 5px;
-    border: none;
-    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.03);
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.03)
+    border: 0.5px solid rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1)
+}
+
+.card-text {
+    line-height: 1.5rem;
+    font-family: Montserrat, sans-serif;
+}
+
+.card-title {
+    text-decoration: underline;
 }
 
 .comment-text {
@@ -291,23 +316,8 @@ hr {
 
 .link:hover {
     text-decoration: none;
-    background-color: #f8f8f8;
-}
-
-#theDate:hover, .heading:hover, #eventThumbnail:hover, .location:hover {
-    font-weight: bold;
+    background-color: #f0f0f0;
     cursor: pointer;
-}
-
-#iCircleEvent, #iCircleLost {
-    font-size: 24px;
-
-}
-
-#iCircleEvent:hover, #iCircleLost:hover {
-    font-size: 28px;
-    cursor: pointer;
-
 }
 
 .day {
@@ -383,16 +393,20 @@ hr {
 }
 
 
+
+
 @media (max-width: 800px) {
     #statuslost {
-        font-weight: 400;
+        font-weight: 500;
         font-size: 1rem;
         color: #FF5C5C;
+        letter-spacing: -2px;
     }
 
     #statusfound {
-        font-weight: 400;
+        font-weight: 500;
         font-size: 1rem;
         color: #4EA599;
+        letter-spacing: -2px;
     }
 }
