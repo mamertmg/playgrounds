@@ -68,6 +68,7 @@ module.exports.renderEditForm = async (req, res) => {
 module.exports.createPlayground = async (req, res) => {
     const values = preprocessInput(req.body.playground);
     const playground = new Playground(values);
+    playground.author = res.currentUser._id;
     await playground.save();
     req.flash('success', 'Added a new playground!');
     res.redirect(`/playgrounds/${playground._id}`);
