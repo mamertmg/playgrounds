@@ -5,6 +5,7 @@ module.exports.playgroundSchema = Joi.object({
         name: Joi.string().required(),
         address: Joi.string().required(),
         city: Joi.string().required(),
+        suburb: Joi.string().required(),
         type: Joi.string().required(),
         lat: Joi.number().min(-90.0).max(90.0),
         lng: Joi.number().min(-180.0).max(180.0),
