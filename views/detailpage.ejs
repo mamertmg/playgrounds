@@ -312,7 +312,7 @@
                   </div>
 
                 </div>
-                <div class="col-5 text-center">
+                <div class="col text-center">
                   <h5 class="heading">
                     <%= event.title %>
                   </h5>
@@ -325,13 +325,14 @@
 
                 </div>
 
+                
                 <div class="col-3">
 
                   <img class="thumbnail" src="https://images.unsplash.com/photo-1615445565741-c60a9edd393f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8a2lkcyUyMHBhcnR5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="">
                 </div>
-
+                <% if(isAuthenticated && currentUser._id.toString()===event.author.id.toString()) { %>
                 <div class="col-2 justify-content-center align-self-center">
-                                <% if(isAuthenticated && currentUser._id.toString()===event.author.id.toString()) { %>
+                               
                                   
                   <button  data-id="<%= event._id %>" 
                            id="editEventButton"
@@ -343,8 +344,9 @@
                     <button id="deleteEventButton" class="btn bi bi-trash3 inline-block deleteEventBtn"></button>
                     <label class="d-none d-md-inline"  for="deleteEventButton">Delete</label>
                   </form>
-                  <% } %>
+                  
                 </div>
+                <% } %>
 
                 <div class="row collapse mt-3" id="event<%= i %>-collapse">
                   <hr>
@@ -352,7 +354,7 @@
                     <img src="https://i.imgur.com/C4egmYM.jpg" height="50" width="50" class="rounded-circle" />
                    <p> <%= event.author.name %></p>
                      </div>
-                  <div class="col-7 text-justify align-self-center">
+                  <div class="col text-justify align-self-center">
                     <%= event.description %>
                   </div>
                   <div class="col-3 align-self-center">
@@ -470,7 +472,7 @@
                   <%= lostFound.status.toUpperCase() %>
                 </div>
 
-                <div class="col-5 text-center align-self-center">
+                <div class="col text-center align-self-center">
                   <h5 id="theItem" class="heading">
                     <%= lostFound.title %>
                   </h5>
@@ -480,9 +482,8 @@
                 <div class="col-3">
                   <img class="thumbnail" src="https://images.unsplash.com/photo-1580250642511-1660fe42ad58?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1025&q=80" alt=""/>
                 </div>
-
+                <% if(isAuthenticated && currentUser._id.toString()===lostFound.author.id.toString()) { %>
                 <div class="col-2 align-self-center">
-                  <% if(isAuthenticated && currentUser._id.toString()===lostFound.author.id.toString()) { %>
                   <button id="editLostFoundButton" data-id="<%= lostFound._id %>" class="btn bi bi-pencil editLostFoundBtn inline-block"></button>
                   <label class="d-none d-md-inline" for="editLostFoundButton">Edit</label>
                   <form action="/playgrounds/<%= playground._id %>/lost-found/<%= lostFound._id %>?_method=DELETE" method="post">
@@ -490,21 +491,21 @@
                     <button id="deleteLostFoundButton"class="btn bi bi-trash3 inline-block"></button>
                     <label class="d-none d-md-inline" for="deleteLostFoundButton">Delete</label>
                   </form>
-                  <% } %>
+                  
                 </div>
+                <% } %>
                 <div class="row collapse mt-3" id="item<%= i %>-collapse">
                   <hr>
                   <div class="col-2 text-center align-self-center"><img src="https://i.imgur.com/hczKIze.jpg" height="50" width="50" class="rounded-circle" />
                  <p>  <%= lostFound.author.name %></p>
                  </div>
-                  <div class="col-7 text-justify align-self-center ">
+                  <div class="col text-justify align-self-center ">
                     <%= lostFound.description %>
                     <hr>
                     <p><i class="fa-solid fa-address-card"></i> <%= lostFound.contact %></p>
                   </div>
                   <div class="col-3 text-center align-self-center"><%= (new Date(lostFound.date)).toDateString() %></div>
                 </div>
-
               </div>
             </li>
             <% }); %>
