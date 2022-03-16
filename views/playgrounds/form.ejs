@@ -12,21 +12,24 @@
         <label for="type" class="form-label">Playground type</label>
         <select class="form-control" list="types" id="type" name="playground[type]" required  value="<%= actionType === 'Edit' ? playground.type : "" %>">
         <datalist id="types">
-            <option value="">-- choose from the list --</option>
+            <option value="">-- choose from list --</option>
             <% for(let type of types) { %>         
                 <option value="<%= type %>"><%= type %></option>
             <% } %>
         </datalist>
         </select>
+        <div class="invalid-feedback">field required</div>
     </div>
     <div class="row mb-3">
         <div class="col">
            <label class="form-label" for="address">Address</label>
             <input class="form-control autocomplete" type="text" name="playground[address]" id="address" required value="<%= actionType === 'Edit' ? playground.address : "" %>">
+            <div class="invalid-feedback">field required</div>
         </div>
         <div class="col">
         <label for="suburb" class="form-label">Suburb</label>
-        <input class="form-control" id="suburb" name="playground[suburb]" minlength="8" maxlength="20" required  value="<%= actionType === 'Edit' ? playground.suburb : "" %>">
+        <input class="form-control" id="suburb" name="playground[suburb]" maxlength="40" required  value="<%= actionType === 'Edit' ? playground.suburb : "" %>">
+        <div class="invalid-feedback">field required</div>
     </div>
         <div class="col">
             <label class="form-label" for="city">City</label>
@@ -58,6 +61,7 @@
     <div class="mb-3">
         <label for="equipment" class="form-label">Description</label>
         <textarea class="form-control" name="playground[description]" id="description" cols="30" rows="2" maxlength="500" required placeholder="please give some general information"><%= actionType === 'Edit' ? playground.description : "" %></textarea>
+        <div class="invalid-feedback">field required</div>
     </div>
     <div class="mb-3">
         <label for="labelsDiv" class="form-label">Labels</label>
