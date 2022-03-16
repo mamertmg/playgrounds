@@ -101,7 +101,8 @@
             <i class="fa-solid fa-map-location-dot"> </i>
           </a>
           <p class="card-text">
-          <p><h5>AGE-RANGE:</h5> <%= playground.min_age %> - <%= playground.max_age %></p>
+          <p>
+          <h5>AGE-RANGE:</h5> <%= playground.min_age %> - <%= playground.max_age %></p>
           <h5>DESCRIPTION:</h5> </b>
           <%= playground.description %>
           </p>
@@ -295,15 +296,9 @@
             <% playground.events.forEach(function(event, i) {
                 const date = new Date(event.date); %>
             <li>
-              <div class="row link"
-                      data-bs-toggle="collapse"  
-                      href="#event<%= i %>-collapse" 
-                      role="button" 
-                      aria-expanded="false" 
-                      aria-controls="event<%= i %>-collapse">
+              <div class="row link" data-bs-toggle="collapse" href="#event<%= i %>-collapse" role="button" aria-expanded="false" aria-controls="event<%= i %>-collapse">
 
-                <div id="theDate" 
-                     class="col-2 text-center">
+                <div id="theDate" class="col-2 text-center">
                   <div class="day d-inline-block">
                     <%= date.getDate() %>
                   </div>
@@ -325,35 +320,33 @@
 
                 </div>
 
-                
+
                 <div class="col-3">
 
                   <img class="thumbnail" src="https://images.unsplash.com/photo-1615445565741-c60a9edd393f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8a2lkcyUyMHBhcnR5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="">
                 </div>
                 <% if(isAuthenticated && currentUser._id.toString()===event.author.id.toString()) { %>
                 <div class="col-2 justify-content-center align-self-center">
-                               
-                                  
-                  <button  data-id="<%= event._id %>" 
-                           id="editEventButton"
-                           class="btn bi bi-pencil inline-block editEventBtn">
-                 </button>
-                 <label class="d-none d-md-inline" for="editEventButton">Edit</label>
+
+
+                  <button data-id="<%= event._id %>" id="editEventButton" class="btn bi bi-pencil inline-block editEventBtn">
+                  </button>
+                  <label class="d-none d-md-inline" for="editEventButton">Edit</label>
                   <form action="/playgrounds/<%= playground._id %>/event/<%= event._id %>?_method=DELETE" method="post">
                     <input type="hidden" name="_csrf" value="<%= csrftoken %>">
                     <button id="deleteEventButton" class="btn bi bi-trash3 inline-block deleteEventBtn"></button>
-                    <label class="d-none d-md-inline"  for="deleteEventButton">Delete</label>
+                    <label class="d-none d-md-inline" for="deleteEventButton">Delete</label>
                   </form>
-                  
+
                 </div>
                 <% } %>
 
                 <div class="row collapse mt-3" id="event<%= i %>-collapse">
                   <hr>
-                  <div class="col-2 text-center align-self-center"> 
+                  <div class="col-2 text-center align-self-center">
                     <img src="https://i.imgur.com/C4egmYM.jpg" height="50" width="50" class="rounded-circle" />
-                   <p> <%= event.author.name %></p>
-                     </div>
+                    <p> <%= event.author.name %></p>
+                  </div>
                   <div class="col text-justify align-self-center">
                     <%= event.description %>
                   </div>
@@ -362,7 +355,7 @@
                       <%= event.link %>
                     </a>
                   </div>
-                 
+
             </li>
             <% }); %>
           </ul>
@@ -375,9 +368,7 @@
         <% if(isAuthenticated) { %>
         <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Did you loose/find something?">
           <!-- Button trigger modal -->
-          <span id="createLostFoundBtn" 
-                class="btn" data-bs-toggle="modal" 
-                data-bs-target="#staticBackdroplostfound">
+          <span id="createLostFoundBtn" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdroplostfound">
             <a class="btn-plus"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 25 25">
                 <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
@@ -414,17 +405,17 @@
                   <label class="form-check-label mt-2 mb-0" for="lostDate">
                     Date
                   </label>
-                  <input id="lostDate" name="lost_found[date]" type="date" class="w-100 mt-0 mb-2 p-2 br-10" required/>
+                  <input id="lostDate" name="lost_found[date]" type="date" class="w-100 mt-0 mb-2 p-2 br-10" required />
                   <label class="form-check-label mb-0" for="lostItem">
                     Item
                   </label>
                   <input id="lostItem" name="lost_found[title]" type="text" class="w-100 mt-0 mb-2 p-2 br-10" placeholder="What did you loose or find?" required />
                   <textarea id="lostItemLong" name="lost_found[description]" class="w-100 mt-0 mb-2 p-2 br-10" placeholder="describe the item in a few words" cols="30" rows="2" required></textarea>
 
-                  <label class="form-check-label mb-0" for="lostContact" >
+                  <label class="form-check-label mb-0" for="lostContact">
                     Contact
                   </label>
-                  <input id="lostContact" name="lost_found[contact]" type="text" class="w-100 mt-0 mb-2 p-2 br-10" placeholder="e.g. phone number or email"required />
+                  <input id="lostContact" name="lost_found[contact]" type="text" class="w-100 mt-0 mb-2 p-2 br-10" placeholder="e.g. phone number or email" required />
 
                   <h5 class="mt-3 mb-2">
                     Upload a picture of the item!
@@ -461,13 +452,7 @@
           <ul>
             <% playground.lost_found.forEach(function(lostFound, i) { %>
             <li>
-              <div class="row link"
-                   type="button" 
-                   data-bs-toggle="collapse" 
-                   href="#item<%= i %>-collapse" 
-                   role="button" 
-                   aria-expanded="false" 
-                   aria-controls="item<%= i %>-collapse" >
+              <div class="row link" type="button" data-bs-toggle="collapse" href="#item<%= i %>-collapse" role="button" aria-expanded="false" aria-controls="item<%= i %>-collapse">
                 <div id="<%= lostFound.status === 'lost' ? "statuslost" : "statusfound"%>" class="col-2 text-center align-self-center">
                   <%= lostFound.status.toUpperCase() %>
                 </div>
@@ -480,7 +465,7 @@
                 </div>
 
                 <div class="col-3">
-                  <img class="thumbnail" src="https://images.unsplash.com/photo-1580250642511-1660fe42ad58?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1025&q=80" alt=""/>
+                  <img class="thumbnail" src="https://images.unsplash.com/photo-1580250642511-1660fe42ad58?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1025&q=80" alt="" />
                 </div>
                 <% if(isAuthenticated && currentUser._id.toString()===lostFound.author.id.toString()) { %>
                 <div class="col-2 align-self-center">
@@ -488,17 +473,16 @@
                   <label class="d-none d-md-inline" for="editLostFoundButton">Edit</label>
                   <form action="/playgrounds/<%= playground._id %>/lost-found/<%= lostFound._id %>?_method=DELETE" method="post">
                     <input type="hidden" name="_csrf" value="<%= csrftoken %>">
-                    <button id="deleteLostFoundButton"class="btn bi bi-trash3 inline-block"></button>
+                    <button id="deleteLostFoundButton" class="btn bi bi-trash3 inline-block"></button>
                     <label class="d-none d-md-inline" for="deleteLostFoundButton">Delete</label>
                   </form>
-                  
                 </div>
                 <% } %>
                 <div class="row collapse mt-3" id="item<%= i %>-collapse">
                   <hr>
                   <div class="col-2 text-center align-self-center"><img src="https://i.imgur.com/hczKIze.jpg" height="50" width="50" class="rounded-circle" />
-                 <p>  <%= lostFound.author.name %></p>
-                 </div>
+                    <p> <%= lostFound.author.name %></p>
+                  </div>
                   <div class="col text-justify align-self-center ">
                     <%= lostFound.description %>
                     <hr>
@@ -517,165 +501,119 @@
 
       <div class="w-100 d-none d-md-block d-xl-none"></div>
       <div class="gx-5 col col-xl-6 order-md-4 order-xl-3">
-        <div class="text-left mt-4">
-          <h3 id="review-header">REVIEWS (3)</h3>
+        <div class="text-left mt-4 mb-3">
+          <h3 id="review-header">REVIEWS (<%= playground.reviews.length %>)</h3>
         </div>
+        <% if(playground.reviews.length) { %>
         <ul>
+          <% playground.reviews.forEach(function(review, i) { %>
           <li>
-            <div class="card p-3 mb-2">
+            <div id="review-<%= i %>" class="card p-3 mb-2">
               <div class="d-flex flex-row">
                 <img src="https://i.imgur.com/dwiGgJr.jpg" height="60" width="60" class="rounded-circle" />
                 <div class="d-flex flex-column ms-2">
-                  <h5 class="mb-1 text-primary">Mamita406</h5>
-                  <span class="review-rating">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-half"></i>
-                  </span>
-                  <p class="comment-text">super duper, lots of fun!!!!</p>
-                </div>
-              </div>
-              <div class="d-flex justify-content-between">
-                <div class="d-flex flex-row gap-3 align-items-center">
-                  <div class="d-flex align-items-center">
-                    <i class="bi bi-heart" type="button">
-                    </i>
-                    <span class="ms-1 fs-10">Like</span>
-                  </div>
-                  <div class="d-flex align-items-center">
-                    <i class="bi bi-chat-right-text" type="button" data-bs-toggle="collapse" href="#comment-collapse-1" role="button" aria-expanded="false" aria-controls="comment-collapse-1"></i>
-                    <span class="ms-1 fs-10">Comment</span>
-                  </div>
-                </div>
-                <div class="d-flex flex-row">
-                  <span class="text-muted fw-normal fs-10">May 22,2020 12:10 PM</span>
-                </div>
-              </div>
+                  <h5 class="mb-1 text-primary col"><%= review.author.name %></h5>
 
-              <div class="row collapse" id="comment-collapse-1">
-                <form method="post" ; action="https://google.com">
-                  <textarea cols="100" rows="1" class="mt-2 mb-2 p-2 br-10" placeholder="comment on this post"></textarea>
-                  <div class="mb-3 d-flex flex-column">
-                    <button id="postComment" type="submit" class="mt-2 btn btn-primary">POST
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="card p-3 mb-2">
-              <div class="d-flex flex-row">
-                <img src="https://i.imgur.com/hczKIze.jpg" height="60" width="60" class="rounded-circle" />
-                <div class="d-flex flex-column ms-2">
-                  <h5 class="mb-1 text-primary">Power Paps</h5>
                   <span class="review-rating">
+                    <% for(let k = 1; k <= 5; k++) {
+                        if(k <= review.rating) { %>
                     <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
+                    <% } else { %>
                     <i class="bi bi-star"></i>
+                    <% }} %>
                   </span>
-                  <p class="comment-text">
-                    Nice ONE!!! But no fences... Better keep an eye on your
-                    little runners.
-                  </p>
+                  <p class="comment-text"><%= review.body %></p>
                 </div>
+
+                <% if(isAuthenticated && currentUser._id.toString() === review.author.id.toString()) { %>
+                <div class="ms-5 col align-self-center">
+                  <button id="editReviewBtn-<%= i %>" class="btn bi bi-pencil editReviewBtn inline-block"></button>
+                  <label class="d-none d-md-inline" for="editReviewBtn-<%= i %>">Edit</label>
+                  <form action="/playgrounds/<%= playground._id %>/reviews/<%= review._id %>?_method=DELETE" method="post">
+                    <input type="hidden" name="_csrf" value="<%= csrftoken %>">
+                    <button id="deleteReviewBtn-<%= i %>" class="btn bi bi-trash3 inline-block"></button>
+                    <label class="d-none d-md-inline" for="deleteReviewBtn-<%= i %>">Delete</label>
+                  </form>
+                </div>
+                <% } %>
+
               </div>
               <div class="d-flex justify-content-between">
                 <div class="d-flex flex-row gap-3 align-items-center">
                   <div class="d-flex align-items-center">
-                    <i class="bi bi-heart" type="button">
+                    <i class="bi bi-heart<%= isAuthenticated && review.likes.includes(currentUser._id) ? "-fill" : "" %>" type="button">
                     </i>
                     <span class="ms-1 fs-10">Like</span>
                   </div>
                   <div class="d-flex align-items-center">
-                    <i class="bi bi-chat-right-text" type="button" data-bs-toggle="collapse" href="#comment-collapse-2" role="button" aria-expanded="false" aria-controls="comment-collapse-2"></i>
+                    <i class="bi bi-chat-right-text" type="button" data-bs-toggle="collapse" href="#comment-collapse-<%= i %>" role="button" aria-expanded="false" aria-controls="comment-collapse-<%= i %>"></i>
                     <span class="ms-1 fs-10">Comment</span>
                   </div>
                 </div>
                 <div class="d-flex flex-row">
-                  <span class="text-muted fw-normal fs-10">May 21,2020 1:10 PM</span>
+                  <span class="text-muted fw-normal fs-10"><%= (new Date(review.createdAt)).toLocaleString() %></span>
                 </div>
               </div>
-
-              <div class="row collapse" id="comment-collapse-2">
+              <div class="row collapse" id="comment-collapse-<%= i %>">
                 <form method="post" ; action="https://google.com">
                   <textarea cols="100" rows="1" class="mt-2 mb-2 p-2 br-10" placeholder="comment on this post"></textarea>
                   <div class="mb-3 d-flex flex-column">
-
-
                     <button id="postComment" type="submit" class="mt-2 btn btn-primary">POST
                     </button>
                   </div>
                 </form>
               </div>
             </div>
-          </li>
-          <li>
-            <div class="card p-3 mb-2">
-              <div class="d-flex flex-row">
-                <img src="https://i.imgur.com/C4egmYM.jpg" height="60" width="60" class="rounded-circle" />
-                <div class="d-flex flex-column ms-2">
-                  <h5 class="mb-1 text-primary">LoneWolf67</h5>
-                  <span class="review-rating">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                  </span>
-                  <p class="comment-text">
-                    The events are really nice. Hope to meet some more people
-                    from the neighbourhood
-                  </p>
-                </div>
-              </div>
-              <div class="d-flex justify-content-between">
-                <div class="d-flex flex-row gap-3 align-items-center">
-                  <div class="d-flex align-items-center">
-                    <i class="bi bi-heart" type="button"></i>
-                    <span class="ms-1 fs-10">Like</span>
-                  </div>
-                  <div class="d-flex align-items-center">
-                    <i class="bi bi-chat-right-text" type="button" data-bs-toggle="collapse" href="#comment-collapse-3" role="button" aria-expanded="false" aria-controls="comment-collapse-3"></i>
-                    <span class="ms-1 fs-10">Comment</span>
-                  </div>
-                </div>
-                <div class="d-flex flex-row">
-                  <span class="text-muted fw-normal fs-10">May 12,2020 12:10 PM</span>
-                </div>
-              </div>
-              <div class="row collapse" id="comment-collapse-3">
 
-                <form method="post" ; action="https://google.com">
-                  <textarea cols="100" rows="1" class="mt-2 mb-2 p-2 br-10" placeholder="comment on this post"></textarea>
-                  <div class="mb-3 d-flex flex-column">
-                    <button id="postComment" type="submit" class="mt-2 btn btn-primary">POST
+            <% if(isAuthenticated && currentUser._id.toString() === review.author.id.toString()) { %>
+            <div id="revEdit-<%= i %>" class="card p-3 mb-2 " hidden>
+              <h4 class=" mb-3 comment-header"> Edit review </h4>
+              <form id="editReviewForm-<%= i %>" action="/playgrounds/<%= playground._id %>/reviews/<%= review._id %>?_method=PUT&j=review-<%= i %>" method="POST">
+                <input type="hidden" name="_csrf" value="<%= csrftoken %>">
+
+                <div class="mb-3 d-flex flex-column">
+                  <span class="rating">
+                    <% for(let k = 5; k > 0; k--) { %>
+                    <input type="radio" name="review[rating]" value="<%= k %>" id="edit-<%= k %>" <%= k === review.rating ? "checked" : "" %> /><label for="edit-<%= k %>">☆</label>
+                    <% } %>
+
+                  </span>
+
+                  <textarea name="review[body]" cols="100" rows="3" class="mt-0 mb-2 p-2 br-10" placeholder="Please leave a review"><%= review.body %></textarea>
+
+                  <div class="d-flex justify-content-end">
+                    <button id="cancelRevEdit-<%= i %>" class="mt-2 me-2 btn btn-secondary cancelReviewEdit">
+                      CANCEL
+                    </button>
+                    <button type="submit" class="mt-2 btn btn-primary">
+                      SAVE
                     </button>
                   </div>
-                </form>
-
-              </div>
+                </div>
+              </form>
+            </div>
+            <% } %>
           </li>
+          <% }); %>
         </ul>
+        <% } %>
+
+        <% if(isAuthenticated) { %>
         <div class="card p-3 mb-2 ">
           <h4 class=" mb-3 comment-header"> How do you like <%= playground.name %>? </h4>
-          <form action="https://www.google.com">
+          <form action="/playgrounds/<%= playground._id %>/reviews" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrftoken %>">
 
             <div class="mb-3 d-flex flex-column">
               <span class="rating" id="starRating">
-                <input type="radio" name="rating" value="5" id="5" /><label for="5">☆</label>
-                <input type="radio" name="rating" value="4" id="4" /><label for="4">☆</label>
-                <input type="radio" name="rating" value="3" id="3" /><label for="3">☆</label>
-                <input type="radio" name="rating" value="2" id="2" /><label for="2">☆</label>
-                <input type="radio" name="rating" value="1" id="1" /><label for="1">☆</label>
+                <input type="radio" name="review[rating]" value="5" id="5" /><label for="5">☆</label>
+                <input type="radio" name="review[rating]" value="4" id="4" /><label for="4">☆</label>
+                <input type="radio" name="review[rating]" value="3" id="3" /><label for="3">☆</label>
+                <input type="radio" name="review[rating]" value="2" id="2" /><label for="2">☆</label>
+                <input type="radio" name="review[rating]" value="1" id="1" /><label for="1">☆</label>
               </span>
 
-
-              <textarea id="review" cols="100" rows="3" class="mt-0 mb-2 p-2 br-10" placeholder="Please leave a review"></textarea>
+              <textarea id="review" name="review[body]" cols="100" rows="3" class="mt-0 mb-2 p-2 br-10" placeholder="Please leave a review"></textarea>
 
               <button id="postReview" type="submit" class="mt-2 btn btn-primary">
                 POST REVIEW
@@ -683,13 +621,17 @@
             </div>
           </form>
         </div>
+        <% } %>
+
       </div>
     </div>
 
   </section>
 
   <script src="/javascript/utils.js"></script>
-  <script>clearSearchData();</script>
+  <script>
+    clearSearchData();
+  </script>
   <script src="/javascript/detailpage.js"></script>
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

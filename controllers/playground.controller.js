@@ -78,13 +78,24 @@ module.exports.showPlayground = async (req, res) => {
     const { id } = req.params;
     const { eventId } = req.query;
     const playground = await Playground.findById(id)
-        .populate('events')
-        .populate('reviews')
-        .populate('lost_found');
+        .populate({
+            path: 'events',
+            options: { sort: [{ date: 'asc' }] },
+        })
+        .populate({
+            path: 'reviews',
+            options: { sort: [{ createdAt: 'desc' }] },
+        })
+        .populate({
+            path: 'lost_found',
+            options: { sort: [{ date: 'desc' }] },
+        });
     if (!playground) {
         req.flash('failure', 'Could not find playground.');
         return res.redirect('/');
     }
+
+    console.log(playground.reviews);
 
     res.render('detailpage', {
         playground,

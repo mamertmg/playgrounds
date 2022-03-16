@@ -76,9 +76,6 @@ router.post(
         playground.events.push(event);
         await event.save();
         await playground.save();
-        await User.findByIdAndUpdate(req.user._id, {
-            $push: { events: event._id },
-        });
         res.redirect(`/playgrounds/${id}`);
     })
 );
@@ -96,9 +93,6 @@ router
                 return res.redirect('/');
             }
             await Playground.findByIdAndUpdate(event.playground_id, {
-                $pull: { events: event._id },
-            });
-            await User.findByIdAndUpdate(event.author.id, {
                 $pull: { events: event._id },
             });
             await event.remove();
@@ -165,9 +159,6 @@ router.post(
         playground.lost_found.push(lostFound);
         await lostFound.save();
         await playground.save();
-        await User.findByIdAndUpdate(req.user._id, {
-            $push: { lost_found: lostFound._id },
-        });
         res.redirect(`/playgrounds/${id}`);
     })
 );
@@ -184,9 +175,6 @@ router
                 return res.redirect('/');
             }
             await Playground.findByIdAndUpdate(lostFound.playground_id, {
-                $pull: { lost_found: lostFound._id },
-            });
-            await User.findByIdAndUpdate(lostFound.author.id, {
                 $pull: { lost_found: lostFound._id },
             });
             await lostFound.remove();

@@ -68,12 +68,6 @@ const playgroundSchema = new Schema({
             ref: 'LostFound',
         },
     ],
-    rating: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Rating',
-        },
-    ],
     reviews: [
         {
             type: Schema.Types.ObjectId,
