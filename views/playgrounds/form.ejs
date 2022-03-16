@@ -1,43 +1,45 @@
 <% layout('./layouts/boilerplate') %>
 <h1 class="mt-3"><%= actionType %> Playground</h1>
-<form id="form" action="<%= actionDest %>" method="post">
+<form id="form"  action="<%= actionDest %>" method="post" novalidate class="validated-form">
     <input type="hidden" name="_csrf" value="<%= csrftoken %>">
     <div class="mb-3">
         <label for="name" class="form-label">Playground name</label>
-        <input type="text" class="form-control" id="name" name="playground[name]" required value="<%= actionType === 'Edit' ? playground.name : "" %>">
+        <input type="text" class="form-control" id="name" name="playground[name]" minlength="10"  maxlength="40" required value="<%= actionType === 'Edit' ? playground.name : "" %>">
+        <div class="invalid-feedback">The name must have at least 10 characters.</div>
     </div>
+    
     <div class="mb-3">
         <label for="type" class="form-label">Playground type</label>
-        <input class="form-control" list="types" id="type" name="playground[type]" required value="<%= actionType === '' ? playground.type : "" %>"/>
+        <select class="form-control" list="types" id="type" name="playground[type]" required  value="<%= actionType === 'Edit' ? playground.type : "" %>">
         <datalist id="types">
-            <% for(let type of types) { %> 
+            <option value="">-- choose from the list --</option>
+            <% for(let type of types) { %>         
                 <option value="<%= type %>"><%= type %></option>
             <% } %>
         </datalist>
+        </select>
     </div>
-    
     <div class="row mb-3">
         <div class="col">
-            <label class="formlabel" for="address">Address</label>
+           <label class="form-label" for="address">Address</label>
             <input class="form-control autocomplete" type="text" name="playground[address]" id="address" required value="<%= actionType === 'Edit' ? playground.address : "" %>">
         </div>
         <div class="col">
-            <label class="formlabel" for="suburb">Suburb</label>
-            <input class="form-control autocomplete" type="text" name="playground[suburb]" id="suburb" value="<%= actionType === 'Edit' ? playground.suburb : "" %>">
-        </div>
+        <label for="suburb" class="form-label">Suburb</label>
+        <input class="form-control" id="suburb" name="playground[suburb]" minlength="8" maxlength="20" required  value="<%= actionType === 'Edit' ? playground.suburb : "" %>">
+    </div>
         <div class="col">
-            <label class="formlabel" for="city">City</label>
+            <label class="form-label" for="city">City</label>
             <input class="form-control autocomplete" type="text" name="playground[city]" id="city" value="<%= actionType === 'Edit' ? playground.city : "" %>" readonly>
         </div>
-        
     </div>
     <div class="row mb-3">
         <div class="col">
-            <label class="formlabel" for="lat">Latitude</label>
+            <label class="form-label" for="lat">Latitude</label>
             <input class="form-control" type="number" name="playground[lat]" id="lat" min="-90" max="90" step="any"  value="<%= actionType === 'Edit' ? playground.location.coordinates[1] : "" %>" readonly>
         </div>
         <div class="col">
-            <label class="formlabel" for="lng">Longitude</label>
+            <label class="form-label" for="lng">Longitude</label>
             <input class="form-control" type="number" name="playground[lng]" id="lng" min="-180" max="180" step="any" value="<%= actionType === 'Edit' ? playground.location.coordinates[0] : "" %>" readonly>
         </div>
     </div>
@@ -45,15 +47,17 @@
         <div class="col">
             <label for="minAge" class="form-label">Min. Age</label>
             <input type="number" class="form-control" id="minAge" name="playground[min_age]" min="0" max="16"  required value="<%= actionType === 'Edit' ? playground.min_age : "" %>">
+            <div class="invalid-feedback">minimum age should be between 0 and 16 years</div>
         </div>
         <div class="col">
             <label for="maxAge" class="form-label">Max. Age</label>
-            <input type="number" class="form-control" id="maxAge" name="playground[max_age]" min="0" max="100" required value="<%= actionType === 'Edit' ? playground.max_age : "" %>">
+            <input type="number" class="form-control" id="maxAge" name="playground[max_age]" min="0" max="25" required value="<%= actionType === 'Edit' ? playground.max_age : "" %>">
+            <div class="invalid-feedback">maximum age should be no more than 25 years</div>
         </div>
     </div>
     <div class="mb-3">
         <label for="equipment" class="form-label">Description</label>
-        <textarea class="form-control" name="playground[description]" id="description" cols="30" rows="2"><%= actionType === 'Edit' ? playground.description : "" %></textarea>
+        <textarea class="form-control" name="playground[description]" id="description" cols="30" rows="2" maxlength="500" required placeholder="please give some general information"><%= actionType === 'Edit' ? playground.description : "" %></textarea>
     </div>
     <div class="mb-3">
         <label for="labelsDiv" class="form-label">Labels</label>
