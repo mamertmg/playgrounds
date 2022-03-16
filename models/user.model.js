@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const Review = require('./review.model');
 const Schema = mongoose.Schema;
 
 const UserSchema = new mongoose.Schema({
@@ -18,25 +17,7 @@ const UserSchema = new mongoose.Schema({
     date: {
         type: Date,
         default: Date.now,
-    },
-    reviews: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Review',
-        },
-    ],
-    events: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Review',
-        },
-    ],
-    lost_found: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'LostFound',
-        },
-    ],
+    }
 });
 
 const User = mongoose.model('User', UserSchema);
