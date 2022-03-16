@@ -76,7 +76,6 @@ module.exports.createPlayground = async (req, res) => {
 
 module.exports.showPlayground = async (req, res) => {
     const { id } = req.params;
-    const { eventId } = req.query;
     const playground = await Playground.findById(id)
         .populate({
             path: 'events',
@@ -94,8 +93,6 @@ module.exports.showPlayground = async (req, res) => {
         req.flash('failure', 'Could not find playground.');
         return res.redirect('/');
     }
-
-    console.log(playground.reviews);
 
     res.render('detailpage', {
         playground,

@@ -107,13 +107,15 @@ for (button of eventEditBtns) {
                     .substring(0, 5);
                 inputEventInfo.value = event.description;
                 inputEventLink.value = event.link;
-                eventForm.setAttribute(
-                    'action',
-                    eventForm.getAttribute('action') +
-                        '/' +
-                        eventId +
-                        '?_method=PUT'
-                );
+                if (eventForm.getAttribute('action').split('/').length <= 4) {
+                    eventForm.setAttribute(
+                        'action',
+                        eventForm.getAttribute('action') +
+                            '/' +
+                            eventId +
+                            '?_method=PUT'
+                    );
+                }
             })
             .catch((e) => {
                 console.log(e);
@@ -219,16 +221,21 @@ for (button of lostFoundEditBtns) {
                     radioFound.checked = true;
                 }
                 inputLostItem.value = lostFound.title;
-                inputLostDate.value = lostFound.date;
+                const dateAndTime = lostFound.date.split('T');
+                inputLostDate.value = dateAndTime[0];
                 inputLostItemLong.value = lostFound.description;
                 inputLostContact.value = lostFound.contact;
-                lostFoundForm.setAttribute(
-                    'action',
-                    lostFoundForm.getAttribute('action') +
-                        '/' +
-                        lfId +
-                        '?_method=PUT'
-                );
+                if (
+                    lostFoundForm.getAttribute('action').split('/').length <= 4
+                ) {
+                    lostFoundForm.setAttribute(
+                        'action',
+                        lostFoundForm.getAttribute('action') +
+                            '/' +
+                            lfId +
+                            '?_method=PUT'
+                    );
+                }
             })
             .catch((e) => {
                 console.log(e);
