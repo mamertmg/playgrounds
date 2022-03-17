@@ -83,6 +83,11 @@ hr {
     border: solid 1px #4EA599;
 }
 
+div.littleTags>a {
+    color: #074266;
+    text-decoration: none !important;
+}
+
 
 #mainNavbar {
     background: #4ea599;

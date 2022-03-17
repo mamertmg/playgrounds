@@ -329,7 +329,7 @@
                                 <label for="dist">
                                     Search radius in km:
                                 </label> <br>
-                                <input id="distMobile" type="range" value="<%= dist %>" min="1" max="5"
+                                <input id="distMobile" name="dist" type="range" value="<%= dist %>" min="1" max="5"
                                     class=" d-flex justify-content-center form-range w-100 mt-2">
                                 <output class="d-flex justify-content-center"><%= dist %></output>
 
@@ -377,7 +377,7 @@
 
                                     <select class="custom-select me-2" id="selectSearchRadius">
                                         <% for(let i=1; i < 6; i++) { %>
-                                            <option value="<%= i %>" <%=dist==i ? "selected" : "" %>><%= i %> km
+                                            <option name="dist" value="<%= i %>" <%=dist==i ? "selected" : "" %>><%= i %> km
                                             </option>
                                             <% } %>
                                     </select>
@@ -626,8 +626,18 @@
     <!-- Footer -->
 
 
-
-
+    <
+    <% if(label) { %> 
+    <script>
+        <% if(playgroundLabels.includes(label)) { %>
+            sessionStorage.setItem('features', "<%= label %>");
+        <% }
+        if(playgroundEquipment.includes(label)) { %>
+            sessionStorage.setItem('equipment', "<%= label %>");
+        <% } %>
+        console.log(sessionStorage);
+    </script>
+    <% } %> 
     <script src="/javascript/utils.js"></script>
     <script src="/javascript/url-search-params-polyfill/index.js"></script>
     <script src="/javascript/base/searchResultPage.js"></script>

@@ -112,10 +112,12 @@
           <div id="featureTags">
             <% for(label of playground.labels) { %>
             <div class="btn littleTags">
-              <i class="fa-solid <%= labelToIcon[label] ? labelToIcon[label] : labelToIcon.default %>"></i>
-              <span class="">
-                <%= label %>
-              </span>
+              <a href="/search?labels=<%= label %>">
+                <i class="fa-solid <%= labelToIcon[label] ? labelToIcon[label] : labelToIcon.default %>"></i>
+                <span class="">
+                  <%= label %>
+                </span>
+              </a>
             </div>
             <% } %>
           </div>
