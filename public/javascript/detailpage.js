@@ -110,9 +110,9 @@ for (button of eventEditBtns) {
                 eventForm.setAttribute(
                     'action',
                     eventForm.getAttribute('action') +
-                        '/' +
-                        eventId +
-                        '?_method=PUT'
+                    '/' +
+                    eventId +
+                    '?_method=PUT'
                 );
             })
             .catch((e) => {
@@ -225,9 +225,9 @@ for (button of lostFoundEditBtns) {
                 lostFoundForm.setAttribute(
                     'action',
                     lostFoundForm.getAttribute('action') +
-                        '/' +
-                        lfId +
-                        '?_method=PUT'
+                    '/' +
+                    lfId +
+                    '?_method=PUT'
                 );
             })
             .catch((e) => {
@@ -308,3 +308,23 @@ btnClose6.onclick = function () {
 function preview3() {
     framePhoto.src = URL.createObjectURL(event.target.files[0]);
 }
+
+// for disabling form submissions if there are invalid fields
+(function () {
+    'use strict'
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = document.querySelectorAll('.validated-form')
+
+    // Loop over them and prevent submission
+    Array.from(forms)
+        .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+                form.classList.add('was-validated')
+            }, false)
+        })
+})()

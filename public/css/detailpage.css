@@ -172,7 +172,7 @@ hr {
 .rating {
     display: inline-flex;
     flex-direction: row-reverse;
-    justify-content: start;
+    justify-content: end;
 }
 
 .rating>input {
