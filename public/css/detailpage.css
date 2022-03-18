@@ -159,17 +159,17 @@ div.littleTags>a {
     transition-duration: 0.2s
 }
 
-#deleteEventButton, #editEventButton, #deleteLostFoundButton, #editLostFoundButton {
+#deleteEventButton, #editEventButton, #deleteLostFoundButton, #editLostFoundButton, .editReviewBtn, .deleteReviewBtn {
     margin: 0px;
     padding: 0px;
     box-sizing: none;
 }
 
-#editEventButton:hover, #editLostFoundButton:hover {
+#editEventButton:hover, #editLostFoundButton:hover, .editReviewBtn:hover{
     color: #FFBA08;
 }
 
-#deleteEventButton:hover, #deleteLostFoundButton:hover {
+#deleteEventButton:hover, #deleteLostFoundButton:hover, .deleteReviewBtn:hover {
     color: #FF5C5C;
 }
 
@@ -315,9 +315,11 @@ div.littleTags>a {
     text-decoration: none;
     padding: 10px;
     margin: 0px;
-    color: #3F88C5;
 }
 
+.user-text {
+    color: #3F88C5;
+}
 
 .link:hover {
     text-decoration: none;
