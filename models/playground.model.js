@@ -7,6 +7,16 @@ const User = require('./user.model');
 const { playgroundTypesEN } = require('../utils/translation');
 const { playgroundLabels, playgroundEquipment } = require('../utils/labels'); // PLAYGROUND MODEL
 
+const ImageSchema = new Schema({
+    url: { type: String, required: true },
+    filename: { type: String, required: true },
+    description: String,
+});
+
+ImageSchema.virtual('thumbnail').get(function () {
+    return this.url.replace('/upload', '/upload/w_200');
+});
+
 const playgroundSchema = new Schema({
     name: {
         type: String,
@@ -80,6 +90,7 @@ const playgroundSchema = new Schema({
             enum: [...playgroundLabels, ...playgroundEquipment],
         },
     ],
+    images: [ImageSchema],
 });
 
 playgroundSchema.index({ location: '2dsphere' });

@@ -18,6 +18,11 @@ const {
     isEventAuthor,
     isLostFoundAuthor,
 } = require('../middlewares/isAuthor');
+const multer = require('multer');
+
+// Image storage on Cloudinary
+const { storage } = require('../config/cloudinaryStorage');
+const upload = multer({ storage });
 
 router
     .route('/')
@@ -210,7 +215,6 @@ router
         validateLostFound,
         asyncWrapper(async (req, res) => {
             const { id, lfId } = req.params;
-            console.log(req.body.lost_found);
             const updatedLostFound = {
                 title: req.body.lost_found.title,
                 status: req.body.lost_found.status,
@@ -224,5 +228,28 @@ router
             res.redirect(`/playgrounds/${id}`);
         })
     );
+
+// Save new playground image
+router.post(
+    '/:id/image/new',
+    ensureAuthenticated,
+    upload.single('playgroundPhoto'),
+    asyncWrapper(async (req, res) => {
+        const { id } = req.params;
+        const playground = await Playground.findById(id);
+        if (!playground) {
+            req.flash('failure', 'Could not find playground.');
+            return res.redirect('/');
+        }
+        
+        const img = { url: req.file.path, filename: req.file.filename };
+        if (req.body.description) {
+            img.description = req.body.description;
+        }
+        playground.images.push(img);
+        await playground.save();
+        res.redirect(`/playgrounds/${playground._id}`);
+    })
+);
 
 module.exports = router;

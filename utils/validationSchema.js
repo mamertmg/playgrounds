@@ -14,6 +14,7 @@ module.exports.playgroundSchema = Joi.object({
         description: Joi.string().allow(''),
         labels: Joi.array(),
     }).required(),
+    deleteImages: Joi.array(),
     _csrf: Joi.string(),
 });
 

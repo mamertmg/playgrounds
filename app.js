@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
+
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
@@ -8,7 +12,7 @@ const playgroundRoutes = require('./routes/playground.routes');
 const apiRoutes = require('./routes/api.routes');
 const baseRoutes = require('./routes/base.routes');
 const userRoutes = require('./routes/user.routes');
-const reviewRoutes = require('./routes/review.routes')
+const reviewRoutes = require('./routes/review.routes');
 
 const csrf = require('csurf');
 

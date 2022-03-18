@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const Playground = require('./playground.model');
-const User = require('./user.model');
 
 const lostFoundSchema = new Schema({
     playground_id: {
