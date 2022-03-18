@@ -579,9 +579,9 @@
               <div class="d-flex justify-content-between">
                 <div class="d-flex flex-row gap-3 align-items-center">
                   <div class="d-flex align-items-center">
-                    <i class="bi bi-heart<%= isAuthenticated && review.likes.includes(currentUser._id) ? "-fill" : "" %>" type="button">
+                    <i data-id="<%= review._id %>" class="bi bi-heart<%= isAuthenticated && review.likes.includes(currentUser._id) ? "-fill" : "" %> reviewLikeBtn" type="button">
                     </i>
-                    <span class="ms-1 fs-10">Like</span>
+                    <span class="ms-1 fs-10"><%= review.likes.length %></span>
                   </div>
                   <div class="d-flex align-items-center">
                     <i class="bi bi-chat-right-text" type="button" data-bs-toggle="collapse" href="#comment-collapse-<%= i %>" role="button" aria-expanded="false" aria-controls="comment-collapse-<%= i %>"></i>
