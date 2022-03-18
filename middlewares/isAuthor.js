@@ -1,6 +1,7 @@
 const Playground = require('../models/playground.model');
 const Event = require('../models/event.model');
 const LostFound = require('../models/lostfound.model');
+const Review = require('../models/review.model');
 
 module.exports = {
     isPlaygroundAuthor: async (req, res, next) => {
@@ -30,5 +31,13 @@ module.exports = {
         }
         next();
     },
+    isReviewAuthor: async (req, res, next) => {
+        const { id, reviewId } = req.params;
+        const review = await Review.findById(reviewId);
+        if (!review.author.id.equals(req.user._id)) {
+            req.flash('error', 'You do not have permission to do that!');
+            return res.redirect(`/playgrounds/${id}`);
+        }
+        next();
+    },
 };
-

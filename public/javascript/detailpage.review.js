@@ -22,3 +22,29 @@ for (let btn of editReviewBtns) {
             reviewEditDisplay.hidden = true;
         });
 }
+
+// set up event listeners for like buttons
+const likeReviewBtns = document.querySelectorAll('.reviewLikeBtn');
+for (let btn of likeReviewBtns) {
+    const label = btn.nextElementSibling;
+    let reqPath = `http://localhost:3000/reviews/${btn.getAttribute('data-id')}/`;
+    btn.addEventListener('click', async (event) => {
+        if (btn.classList.contains('bi-heart')) {
+            btn.classList.toggle('bi-heart');
+            btn.classList.toggle('bi-heart-fill');
+            reqPath += 'addLike';
+        } else if (btn.classList.contains('bi-heart-fill')) {
+            btn.classList.toggle('bi-heart');
+            btn.classList.toggle('bi-heart-fill');
+            reqPath += 'rmvLike';
+        }
+
+        await axios
+            .get(reqPath)
+            .then((res) => {
+                const numLikes = res.data.numLikes;
+                label.textContent = numLikes;
+            })
+            .catch((e) => console.log(e));
+    });
+}

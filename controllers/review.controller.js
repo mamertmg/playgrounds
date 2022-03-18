@@ -36,3 +36,27 @@ module.exports.updateReview = async (req, res) => {
     req.flash('success', 'Updated review!');
     res.redirect(`/playgrounds/${id}`);
 };
+
+module.exports.addLike = async (req, res) => {
+    const { reviewId } = req.params;
+    const review = await Review.findById(reviewId);
+    if (!review) {
+        return res.status(400).send('Invalid reviewId');
+    }
+    review.likes.push(req.user._id);
+    await review.save();
+    const numLikes = review.likes.length;
+    res.json({ numLikes });
+};
+
+module.exports.rmvLike = async (req, res) => {
+    const { reviewId } = req.params;
+    const review = await Review.findById(reviewId);
+    if (!review) {
+        return res.status(400).send('Invalid reviewId');
+    }
+    review.likes.pull(req.user._id);
+    await review.save();
+    const numLikes = review.likes.length;
+    res.json({ numLikes });
+};

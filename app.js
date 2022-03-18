@@ -13,6 +13,7 @@ const apiRoutes = require('./routes/api.routes');
 const baseRoutes = require('./routes/base.routes');
 const userRoutes = require('./routes/user.routes');
 const reviewRoutes = require('./routes/review.routes');
+const likeRoutes = require('./routes/like.routes');
 
 const csrf = require('csurf');
 
@@ -85,6 +86,7 @@ app.use(function (req, res, next) {
 
 // Router handler
 app.use('/api', apiRoutes);
+app.use('/reviews', likeRoutes);
 app.use('/playgrounds', playgroundRoutes);
 app.use('/', baseRoutes);
 app.use('/', userRoutes);
