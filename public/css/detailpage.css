@@ -122,12 +122,11 @@ div label{
 
 .d-grid{
     background-color: #78C2AD;
-    height: fit-content;
+    
 }
-
-/* nav .d-grid{
+.navbar{
     background-color: #78C2AD;
-} */
+}
 
 
 #mainNavbar {
@@ -439,6 +438,44 @@ div label{
     line-height: 1rem;
 }
 
+
+@media(max-width:986px){
+
+    .navbar{
+        padding: 2px 1px;
+        background-color: #78C2AD;
+        
+    }
+
+    .nav-item{
+        padding: 0%;
+        margin: 0%;
+    }
+
+    #autocomplete2{
+        width: 40%;
+    }
+}
+
+@media(max-width: 828px){
+    #autocomplete2{
+        padding: 15px 0 15px;
+        margin: 15px 5px  20px;
+        border-radius: 20px;
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        -ms-border-radius: 20px;
+        -o-border-radius: 20px;
+}
+}
+
+@media  (max-width: 768px ) {
+    #mainNavbar {
+        background-color: #78C2AD;
+        font-size: 1.2rem;
+        font-family: Montserrat, sans-serif;
+    }
+}
 
 
 
