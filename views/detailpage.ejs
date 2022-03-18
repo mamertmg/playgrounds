@@ -102,7 +102,9 @@
           </a>
           <p class="card-text">
           <p>
-          <h5>AGE-RANGE:</h5> <%= playground.min_age %> - <%= playground.max_age %></p>
+          <h5>AGE-RANGE:</h5>
+          <%= playground.min_age %> - <%= playground.max_age %>
+          </p>
           <h5>DESCRIPTION:</h5> </b>
           <%= playground.description %>
           </p>
@@ -145,10 +147,14 @@
                 <button type="button" id="btnClose5" class="btn-close btnClose" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <form id="photoForm" class="mb-5" action="https://google.com">
-                  <h5 class="mt-3 mb-2"></h5>
-                  <input class="form-control" type="file" id="playgroundPhoto" onchange="preview3()" required />
-                  <img id="framePhoto" src="" class="img-fluid mt-4" />
+                <form id="photoForm" class="mb-5 validated-form" action="https://google.com" novalidate>
+                  <div>
+                    <h5 class="mt-3 mb-2"></h5>
+                    <input class="form-control" type="file" id="playgroundPhoto" onchange="preview3()" required />
+                    <div class="invalid-feedback">Please choose a picture from your computer!</div>
+                    <img id="framePhoto" src="" class="img-fluid mt-4" />
+
+                  </div>
                   <label class="form-check-label" for="photoDescription">
                     Description
                   </label>
@@ -240,55 +246,43 @@
                 <form id="actualEventForm" class="mb-5 validated-form" action="/playgrounds/<%= playground._id %>/event" method="post" novalidate>
                   <input type="hidden" name="_csrf" value="<%= csrftoken %>">
                   <div>
-                  <label class="form-check-label" for="eventDate">
-                    Date
-                  </label>
-                  <input id="eventDate" name="event[date]" type="date" class="form-control" required />
-                  <div class="invalid-feedback">Please enter a valid date!</div>
-                </div>
-                <div>
-                  <label class="form-check-label" for="eventTime">
-                    Time
-                  </label>
-                  <input id="eventTime" name="event[time]" type="time" class="form-control" required />
-                  <div class="invalid-feedback">Please enter a valid time!</div>
-                </div>
-                <div>
-                  <label class="form-check-label" for="eventName">
-                    Name of the event
-                  </label>
-                  <input id="eventName" name="event[title]" type="text" class="form-control" placeholder="What are you planning?" minlength="10" maxlength="50" required />
-                 <div class="invalid-feedback">Please enter a name with at least 10 characters!</div>
-                </div>
-                <div>
-                  <label class="form-check-label" for="eventInfo">
-                    Info
-                  </label>
-                  <textarea id="eventInfo" name="event[description]" class="form-control" placeholder="add some details about the event" cols="30" rows="2" minlength="20" maxlength="500" required></textarea>
-                  <div class="invalid-feedback">Please enter at least 20 characters!</div>
-                </div>
-                <div>
-                  <label class="form-check-label" for="eventLink">
-                    Add a link
-                  </label>
-                  <input id="eventLink" name="event[link]" type="link" class="form-control" placeholder="e.g. event homepage" />
-                  
-                </div>
-                <div>
-                  <h5 class="mt-3 mb-2">
-                    Create a thumbnail for your event!
-                  </h5>
-                  <input class="form-control" type="file" id="eventPhoto" onchange="preview()" />
-                  <img id="frame" src="" class="img-fluid mt-4" />
-                </div>
+                    <label class="form-check-label" for="eventDate">
+                      Date
+                    </label>
+                    <input id="eventDate" name="event[date]" type="date" class="form-control" required />
+                    <div class="invalid-feedback">Please enter a valid date!</div>
+                  </div>
+                  <div>
+                    <label class="form-check-label" for="eventTime">
+                      Time
+                    </label>
+                    <input id="eventTime" name="event[time]" type="time" class="form-control" required />
+                    <div class="invalid-feedback">Please enter a valid time!</div>
+                  </div>
+                  <div>
+                    <label class="form-check-label" for="eventName">
+                      Name of the event
+                    </label>
+                    <input id="eventName" name="event[title]" type="text" class="form-control" placeholder="What are you planning?" minlength="10" maxlength="50" required />
+                    <div class="invalid-feedback">Please enter a name with at least 10 characters!</div>
+                  </div>
+                  <div>
+                    <label class="form-check-label" for="eventInfo">
+                      Info
+                    </label>
+                    <textarea id="eventInfo" name="event[description]" class="form-control" placeholder="add some details about the event" cols="30" rows="2" minlength="20" maxlength="500" required></textarea>
+                    <div class="invalid-feedback">Please enter at least 20 characters!</div>
+                  </div>
+                  <div>
+                    <label class="form-check-label" for="eventLink">
+                      Add a link
+                    </label>
+                    <input id="eventLink" name="event[link]" type="link" class="form-control" placeholder="e.g. event homepage" />
+
+                  </div>
+
                 </form>
               </div>
-              <span>
-                <h3 class="text-center p-5" id="submitMessage">
-                  Thank you! Your event has been added.
-                </h3>
-              </span>
-
               <div class="modal-footer">
                 <button type="button" id="btnClose2" class="btn btn-secondary btnClose" data-bs-dismiss="modal">
                   Close
@@ -309,8 +303,7 @@
         <% } else { %>
         <div class="card">
           <ul>
-            <% playground.events.forEach(function(event, i) {
-                const date = new Date(event.date); %>
+            <% playground.events.forEach(function(event, i) { const date=new Date(event.date); %>
             <li>
               <div class="row link" data-bs-toggle="collapse" href="#event<%= i %>-collapse" role="button" aria-expanded="false" aria-controls="event<%= i %>-collapse">
 
@@ -323,8 +316,8 @@
                   </div>
 
                 </div>
-                <div class="col text-center">
-                  <h5 class="heading">
+                <div class="col text-center ">
+                  <h5 class="heading user-text">
                     <%= event.title %>
                   </h5>
                   <div class="time">
@@ -337,13 +330,8 @@
                 </div>
 
 
-                <div class="col-3">
-
-                  <img class="thumbnail" src="https://images.unsplash.com/photo-1615445565741-c60a9edd393f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8a2lkcyUyMHBhcnR5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="">
-                </div>
-                <% if(isAuthenticated && currentUser._id.toString()===event.author.id.toString()) { %>
                 <div class="col-2 justify-content-center align-self-center">
-
+                  <% if(isAuthenticated && currentUser._id.toString()===event.author.id.toString()) { %>
 
                   <button data-id="<%= event._id %>" id="editEventButton" class="btn bi bi-pencil inline-block editEventBtn">
                   </button>
@@ -359,11 +347,13 @@
 
                 <div class="row collapse mt-3" id="event<%= i %>-collapse">
                   <hr>
-                  <div class="col-2 text-center align-self-center">
+                  <div class="col-2 text-center align-self-center text-primary">
                     <img src="https://i.imgur.com/C4egmYM.jpg" height="50" width="50" class="rounded-circle" />
-                    <p> <%= event.author.name %></p>
+                    <p>
+                      <%= event.author.name %>
+                    </p>
                   </div>
-                  <div class="col text-justify align-self-center">
+                  <div class="col text-center align-self-center user-text">
                     <%= event.description %>
                   </div>
                   <div class="col-3 align-self-center">
@@ -371,14 +361,11 @@
                       <%= event.link %>
                     </a>
                   </div>
-
             </li>
             <% }); %>
           </ul>
         </div>
         <% } %>
-
-
 
         <h3 id="lostfound-header">LOST & FOUND</h3>
         <% if(isAuthenticated) { %>
@@ -404,61 +391,52 @@
                 <button type="button" id="btnClose3" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div id="lostForm" class="modal-body">
-                <form id="form-lost" class="mb-5 validated-form" action="/playgrounds/<%= playground._id %>/lost-found" method="post" novalidate >
+                <form id="form-lost" class="mb-5 validated-form" action="/playgrounds/<%= playground._id %>/lost-found" method="post" novalidate>
                   <input type="hidden" name="_csrf" value="<%= csrftoken %>">
                   <div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="lost_found[status]" id="radioLost" value="lost" required/>
-                    <label class="form-check-label" for="radioLost">
-                      Lost
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="lost_found[status]" id="radioLost" value="lost" required />
+                      <label class="form-check-label" for="radioLost">
+                        Lost
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="lost_found[status]" id="radioFound" value="found" required />
+                      <label class="form-check-label" for="radioFound">
+                        Found
+                      </label>
+                      <div class="invalid-feedback">Please choose one option!</div>
+                    </div>
+
+                  </div>
+                  <div>
+                    <label class="form-check-label mt-2 mb-0" for="lostDate">
+                      Date
                     </label>
+                    <input id="lostDate" name="lost_found[date]" type="date" class="form-control" required />
+                    <div class="invalid-feedback">Please enter the date of loss/find!</div>
                   </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="lost_found[status]" id="radioFound" value="found" required/>
-                    <label class="form-check-label" for="radioFound">
-                      Found
+                  <div>
+                    <label class="form-check-label mb-0" for="lostItem">
+                      Item
                     </label>
-                    <div class="invalid-feedback">Please choose one option!</div>
+                    <input id="lostItem" name="lost_found[title]" type="text" class="form-control" placeholder="What did you loose or find?" maxlength="100" required />
+                    <div class="invalid-feedback">Please enter the name of the item!</div>
                   </div>
-                  
-                </div>
-                <div>
-                  <label class="form-check-label mt-2 mb-0" for="lostDate">
-                    Date
-                  </label>
-                  <input id="lostDate" name="lost_found[date]" type="date" class="form-control" required />
-                  <div class="invalid-feedback">Please enter the date of loss/find!</div>
-                </div>
-                <div>
-                  <label class="form-check-label mb-0" for="lostItem">
-                    Item
-                  </label>
-                  <input id="lostItem" name="lost_found[title]" type="text" class="form-control" placeholder="What did you loose or find?" maxlength="100" required />
-                  <div class="invalid-feedback">Please enter the name of the item!</div>
-                </div>
-                <div>
-                  <textarea id="lostItemLong" name="lost_found[description]" class="form-control mt-3" placeholder="describe the item in a few words" minlength="20" maxlength="250" cols="30" rows="2" required></textarea>
-                <div class="invalid-feedback">Please enter a description of minimum 20 characters!</div>
-                </div>
-<div>
-                  <label class="form-check-label mb-0" for="lostContact">
-                    Contact
-                  </label>
-                  <input id="lostContact" name="lost_found[contact]" type="text" class="form-control" placeholder="e.g. phone number or email" required />
-                  <div class="invalid-feedback">Please enter your contact information!</div>
+                  <div>
+                    <textarea id="lostItemLong" name="lost_found[description]" class="form-control mt-3" placeholder="describe the item in a few words" minlength="20" maxlength="250" cols="30" rows="2" required></textarea>
+                    <div class="invalid-feedback">Please enter a description of minimum 20 characters!</div>
                   </div>
-                  <h5 class="mt-3 mb-2">
-                    Upload a picture of the item!
-                  </h5>
-                  <input class="form-control" type="file" id="lostPhoto" onchange="preview2()" />
-                  <img id="frame2" src="" class="img-fluid mt-4" />
+                  <div>
+                    <label class="form-check-label mb-0" for="lostContact">
+                      Contact
+                    </label>
+                    <input id="lostContact" name="lost_found[contact]" type="text" class="form-control" placeholder="e.g. phone number or email" required />
+                    <div class="invalid-feedback">Please enter your contact information!</div>
+                  </div>
                 </form>
               </div>
-              <span>
-                <h3 class="text-center p-5" id="submitMessage2">
-                  Thank you! Your entry has been added!
-                </h3>
-              </span>
+
               <div class="modal-footer">
                 <button type="button" id="btnClose4" class="btn btn-secondary" data-bs-dismiss="modal">
                   Close
@@ -472,7 +450,7 @@
         </div>
         <% } %>
 
-
+        
         <% if(!playground.lost_found.length) { %>
         <div style="height: 60px; text-align: center;">
           No Entries
@@ -483,22 +461,18 @@
             <% playground.lost_found.forEach(function(lostFound, i) { %>
             <li>
               <div class="row link" type="button" data-bs-toggle="collapse" href="#item<%= i %>-collapse" role="button" aria-expanded="false" aria-controls="item<%= i %>-collapse">
-                <div id="<%= lostFound.status === 'lost' ? "statuslost" : "statusfound"%>" class="col-2 text-center align-self-center">
+                <div id="<%= lostFound.status === 'lost' ? "statuslost" : "statusfound" %>" class="col-2 text-center align-self-center">
                   <%= lostFound.status.toUpperCase() %>
                 </div>
 
                 <div class="col text-center align-self-center">
-                  <h5 id="theItem" class="heading">
+                  <h5 id="theItem" class="heading user-text">
                     <%= lostFound.title %>
                   </h5>
 
                 </div>
-
-                <div class="col-3">
-                  <img class="thumbnail" src="https://images.unsplash.com/photo-1580250642511-1660fe42ad58?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1025&q=80" alt="" />
-                </div>
-                <% if(isAuthenticated && currentUser._id.toString()===lostFound.author.id.toString()) { %>
                 <div class="col-2 align-self-center">
+                  <% if(isAuthenticated &&  currentUser._id.toString()===lostFound.author.id.toString()) { %>
                   <button id="editLostFoundButton" data-id="<%= lostFound._id %>" class="btn bi bi-pencil editLostFoundBtn inline-block"></button>
                   <label class="d-none d-md-inline" for="editLostFoundButton">Edit</label>
                   <form action="/playgrounds/<%= playground._id %>/lost-found/<%= lostFound._id %>?_method=DELETE" method="post">
@@ -510,15 +484,15 @@
                 <% } %>
                 <div class="row collapse mt-3" id="item<%= i %>-collapse">
                   <hr>
-                  <div class="col-2 text-center align-self-center"><img src="https://i.imgur.com/hczKIze.jpg" height="50" width="50" class="rounded-circle" />
+                  <div class="col-2 text-center align-self-center text-primary"><img src="https://i.imgur.com/hczKIze.jpg" height="50" width="50" class="rounded-circle" />
                     <p> <%= lostFound.author.name %></p>
                   </div>
-                  <div class="col text-justify align-self-center ">
+                  <div class="col text-justify align-self-center user-text">
                     <%= lostFound.description %>
                     <hr>
-                    <p><i class="fa-solid fa-address-card"></i> <%= lostFound.contact %></p>
+                    <p><i class="fa-solid fa-address-card user-text"></i> <%= lostFound.contact %></p>
                   </div>
-                  <div class="col-3 text-center align-self-center"><%= (new Date(lostFound.date)).toDateString() %></div>
+                  <div class="col-3 text-center align-self-center user-text"><%= (new Date(lostFound.date)).toDateString() %></div>
                 </div>
               </div>
             </li>
@@ -531,7 +505,7 @@
 
       <div class="w-100 d-none d-md-block d-xl-none"></div>
       <div class="gx-5 col col-xl-6 order-md-4 order-xl-3">
-        <div class="text-left mt-4 mb-3">
+        <div class="text-left mt-4 mb-1">
           <h3 id="review-header">REVIEWS (<%= playground.reviews.length %>)</h3>
         </div>
         <% if(playground.reviews.length) { %>
@@ -539,29 +513,37 @@
           <% playground.reviews.forEach(function(review, i) { %>
           <li>
             <div id="review-<%= i %>" class="card p-3 mb-2">
-              <div class="d-flex flex-row">
-                <img src="https://i.imgur.com/dwiGgJr.jpg" height="60" width="60" class="rounded-circle" />
-                <div class="d-flex flex-column ms-2">
-                  <h5 class="mb-1 text-primary col"><%= review.author.name %></h5>
+              <div class="row">
+                <div class="col-2">
+                  <img src="https://i.imgur.com/dwiGgJr.jpg" height="60" width="60" class="rounded-circle" />
 
-                  <span class="review-rating">
-                    <% for(let k = 1; k <= 5; k++) {
-                        if(k <= review.rating) { %>
-                    <i class="bi bi-star-fill"></i>
-                    <% } else { %>
-                    <i class="bi bi-star"></i>
-                    <% }} %>
-                  </span>
-                  <p class="comment-text"><%= review.body %></p>
+                </div>
+                <div class="col-7 ">
+                  <h5 class="mb-1 text-primary">
+                    <%= review.author.name %>
+                  </h5>
+                  <div>
+                    <span class="review-rating">
+                      <% for(let k=1; k <=5; k++) { if(k <=review.rating) { %>
+                      <i class="bi bi-star-fill"></i>
+                      <% } else { %>
+                      <i class="bi bi-star"></i>
+                      <% }} %>
+                    </span>
+                    <hr>
+                  </div>
+                  <p class="comment-text">
+                    <%= review.body %>
+                  </p>
                 </div>
 
-                <% if(isAuthenticated && currentUser._id.toString() === review.author.id.toString()) { %>
-                <div class="ms-5 col align-self-center">
+                <div class="col-3">
+                  <% if(isAuthenticated && currentUser._id.toString()===review.author.id.toString()) { %>
                   <button id="editReviewBtn-<%= i %>" class="btn bi bi-pencil editReviewBtn inline-block"></button>
                   <label class="d-none d-md-inline" for="editReviewBtn-<%= i %>">Edit</label>
                   <form action="/playgrounds/<%= playground._id %>/reviews/<%= review._id %>?_method=DELETE" method="post">
                     <input type="hidden" name="_csrf" value="<%= csrftoken %>">
-                    <button id="deleteReviewBtn-<%= i %>" class="btn bi bi-trash3 inline-block"></button>
+                    <button id="deleteReviewBtn-<%= i %>" class="btn bi bi-trash3 inline-block deleteReviewBtn"></button>
                     <label class="d-none d-md-inline" for="deleteReviewBtn-<%= i %>">Delete</label>
                   </form>
                 </div>
@@ -571,7 +553,8 @@
               <div class="d-flex justify-content-between">
                 <div class="d-flex flex-row gap-3 align-items-center">
                   <div class="d-flex align-items-center">
-                    <i class="bi bi-heart<%= isAuthenticated && review.likes.includes(currentUser._id) ? "-fill" : "" %>" type="button">
+                    <i class="bi bi-heart<%= isAuthenticated && review.likes.includes(currentUser._id) ? " -fill"
+                          : "" %>" type="button">
                     </i>
                     <span class="ms-1 fs-10">Like</span>
                   </div>
@@ -581,7 +564,9 @@
                   </div>
                 </div>
                 <div class="d-flex flex-row">
-                  <span class="text-muted fw-normal fs-10"><%= (new Date(review.createdAt)).toLocaleString() %></span>
+                  <span class="text-muted fw-normal fs-10">
+                    <%= (new Date(review.createdAt)).toLocaleString() %>
+                  </span>
                 </div>
               </div>
               <div class="row collapse" id="comment-collapse-<%= i %>">
@@ -595,7 +580,7 @@
               </div>
             </div>
 
-            <% if(isAuthenticated && currentUser._id.toString() === review.author.id.toString()) { %>
+            <% if(isAuthenticated && currentUser._id.toString()===review.author.id.toString()) { %>
             <div id="revEdit-<%= i %>" class="card p-3 mb-2 " hidden>
               <h4 class=" mb-3 comment-header"> Edit review </h4>
               <form id="editReviewForm-<%= i %>" action="/playgrounds/<%= playground._id %>/reviews/<%= review._id %>?_method=PUT&j=review-<%= i %>" method="POST">
@@ -603,8 +588,8 @@
 
                 <div class="mb-3 d-flex flex-column">
                   <span class="rating">
-                    <% for(let k = 5; k > 0; k--) { %>
-                    <input type="radio" name="review[rating]" value="<%= k %>" id="edit-<%= k %>" <%= k === review.rating ? "checked" : "" %> /><label for="edit-<%= k %>">☆</label>
+                    <% for(let k=5; k> 0; k--) { %>
+                    <input type="radio" name="review[rating]" value="<%= k %>" id="edit-<%= k %>" <%=k===review.rating ? "checked" : "" %> /><label for="edit-<%= k %>">☆</label>
                     <% } %>
 
                   </span>
@@ -636,20 +621,20 @@
 
             <div class="mb-3 d-flex flex-column">
               <span class="rating" id="starRating">
-                
+
                 <input type="radio" name="review[rating]" value="5" id="5" required /><label for="5">☆</label>
                 <input type="radio" name="review[rating]" value="4" id="4" required /><label for="4">☆</label>
                 <input type="radio" name="review[rating]" value="3" id="3" required /><label for="3">☆</label>
                 <input type="radio" name="review[rating]" value="2" id="2" required /><label for="2">☆</label>
                 <input type="radio" name="review[rating]" value="1" id="1" required /><label for="1">☆</label>
-                
-                <div  class="invalid-feedback">Rating is required</div>
+
+                <div class="invalid-feedback">Rating is required</div>
               </span>
-              
-<div>
-              <textarea id="review" name="review[body]" cols="100" rows="3" maxlength="1000" class="form-control" placeholder="Please leave a review" required></textarea>
-              <div class="invalid-feedback">some text is required here </div>
-            </div>
+
+              <div>
+                <textarea id="review" name="review[body]" cols="100" rows="3" maxlength="1000" class="form-control" placeholder="Please leave a review" required></textarea>
+                <div class="invalid-feedback">some text is required here </div>
+              </div>
               <button id="postReview" type="submit" class="mt-2 btn btn-primary">
                 POST REVIEW
               </button>
