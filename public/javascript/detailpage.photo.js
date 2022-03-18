@@ -11,8 +11,6 @@ const submitMessagePhoto = document.getElementById('submitMessagePhoto');
 submitMessagePhoto.style.display = 'none';
 const btnSubmitPhoto = document.getElementById('btnSubmitPhoto');
 
-console.log(photoForm);
-
 // btnSubmitPhoto.onclick = function () {
 
 //   photoForm.style.display = 'none';

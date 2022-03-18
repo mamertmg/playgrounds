@@ -14,7 +14,7 @@
         <datalist id="types">
             <option value="">-- choose from list --</option>
             <% for(let type of types) { %>         
-                <option value="<%= type %>" <%= type === playground.type ? "selected" : "" %>><%= type %></option>
+                <option value="<%= type %>" <%= actionType === 'Edit' && type === playground.type ? "selected" : "" %>><%= type %></option>
             <% } %>
         </datalist>
         </select>
@@ -86,7 +86,7 @@
             </div>
         </div>
     </div>
-    <% if(playground.images.length > 0) { %> 
+    <% if(actionType === 'Edit' && playground.images.length > 0) { %> 
     <label class="form-label" for="currentImages">Images</label>
     <div class="mb-3" id="currentImages">
         <% playground.images.forEach(function(img, i) { %>
@@ -99,7 +99,11 @@
     </div>
     <% } %> 
     <div class="d-flex justify-content-end">
-        <a class="btn btn-danger me-2" href="/playgrounds/<%= playground._id %>">Cancel</a>
+        <% if(actionType === 'Edit') { %> 
+        <a class="btn btn-danger me-2" href="/playgrounds/<%- playground._id %>">Cancel</a>
+        <% } else { %>
+        <a class="btn btn-danger me-2" href="/">Cancel</a>
+        <% } %>
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 </form>
