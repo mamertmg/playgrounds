@@ -465,9 +465,8 @@ div label{
 @media(max-width:986px){
 
     .navbar{
-        padding: 2px 1px;
+        padding: 0px ;
         background-color: #78C2AD;
-        
     }
 
     .nav-item{
@@ -482,14 +481,14 @@ div label{
 
 @media(max-width: 828px){
     #autocomplete2{
-        padding: 15px 0 15px;
-        margin: 15px 5px  20px;
-        -webkit-border-radius: 20px;
-        -moz-border-radius: 20px;
-        -ms-border-radius: 20px;
-        -o-border-radius: 20px;
-        border-radius: 20px;
-}
+        padding: 5px 0 5px;
+    margin: 5px 5px  5px;
+        border-radius: 15px;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        -ms-border-radius: 15px;
+        -o-border-radius: 15px;
+        border: none;
 }
 
 @media  (max-width: 768px ) {
