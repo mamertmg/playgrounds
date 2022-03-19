@@ -7,22 +7,9 @@ const inputPlaygroundPhoto = document.querySelector('#playgroundPhoto');
 const photoDescription = inputPhotoDescription.value;
 const playgroundPhoto = inputPlaygroundPhoto.value;
 
-const submitMessagePhoto = document.getElementById('submitMessagePhoto');
-submitMessagePhoto.style.display = 'none';
-const btnSubmitPhoto = document.getElementById('btnSubmitPhoto');
-
-// btnSubmitPhoto.onclick = function () {
-
-//   photoForm.style.display = 'none';
-//   btnSubmitPhoto.style.display = 'none';
-//   submitMessagePhoto.style.display = 'inline-block';
-// }
 
 const btnClose5 = document.getElementById('btnClose5');
 btnClose5.onclick = function () {
-    photoForm.style.display = 'block';
-    btnSubmitPhoto.style.display = 'block';
-    submitMessagePhoto.style.display = 'none';
     inputPhotoDescription.value = '';
     inputPlaygroundPhoto.value = '';
     document.getElementById('playgroundPhoto').value = null;
@@ -31,9 +18,6 @@ btnClose5.onclick = function () {
 
 const btnClose6 = document.getElementById('btnClose6');
 btnClose6.onclick = function () {
-    photoForm.style.display = 'block';
-    btnSubmitPhoto.style.display = 'block';
-    submitMessagePhoto.style.display = 'none';
     inputPhotoDescription.value = '';
     inputPlaygroundPhoto.value = '';
     document.getElementById('playgroundPhoto').value = null;

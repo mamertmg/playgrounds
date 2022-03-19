@@ -5,62 +5,25 @@ const inputEventTime = document.querySelector('#eventTime');
 const inputEventName = document.querySelector('#eventName');
 const inputEventInfo = document.querySelector('#eventInfo');
 const inputEventLink = document.querySelector('#eventLink');
-const inputEventPhoto = document.querySelector('#eventPhoto');
-const frame = document.getElementById('frame');
 
-// const eventDate = inputEventDate.value;
-// const eventTime = inputEventTime.value;
-// const eventName = inputEventName.value;
-// const eventInfo = inputEventInfo.value;
-// const eventLink = inputEventLink.value;
-// const eventPhoto = inputEventPhoto.value;
-
-const submitMessage = document.getElementById('submitMessage');
-submitMessage.style.display = 'none';
-const targetDiv = document.getElementById('eventForm');
-targetDiv.style.display = 'block';
-const btnSubmit = document.getElementById('btnSubmit');
-
-// btnSubmit.onclick = function () {
-//   targetDiv.style.display = 'none';
-//   btnSubmit.style.display = 'none';
-//   submitMessage.style.display = 'inline-block';
-
-// };
 
 const btnClose1 = document.getElementById('btnClose1');
 btnClose1.onclick = function () {
-    targetDiv.style.display = 'block';
-    btnSubmit.style.display = 'block';
-    submitMessage.style.display = 'none';
     inputEventDate.value = '';
     inputEventTime.value = '';
     inputEventName.value = '';
     inputEventInfo.value = '';
     inputEventLink.value = '';
-    inputEventPhoto.value = '';
-    document.getElementById('eventPhoto').value = null;
-    frame.src = '';
 };
 
 const btnClose2 = document.getElementById('btnClose2');
 btnClose2.onclick = function () {
-    targetDiv.style.display = 'block';
-    btnSubmit.style.display = 'block';
-    submitMessage.style.display = 'none';
     inputEventDate.value = '';
     inputEventTime.value = '';
     inputEventName.value = '';
     inputEventInfo.value = '';
     inputEventLink.value = '';
-    inputEventPhoto.value = '';
-    document.getElementById('eventPhoto').value = null;
-    frame.src = '';
 };
-// Image Upload
-function preview() {
-    frame.src = URL.createObjectURL(event.target.files[0]);
-}
 
 // Event form modal
 const eventFormModal = new bootstrap.Modal(
