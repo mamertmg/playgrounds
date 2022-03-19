@@ -1,12 +1,48 @@
 
 
-/* #nav-landpage{
+h2{
+color: #4ea599;
+}
+
+/* nav bar */
+
+div.row{
   background-color: #4ea599;
-} */
+}
+div .card-header{
+  background-color: #4ea599 ;
+  color: #fff;
+}
 
-/* .btn #searchbtn{
+ div .bg-image{
+  position: relative;
+  top: 20px;
+}
 
-} */
+div .text-white a{
+  background-color: #4ea599;
+  border: none;
+}
+
+/* button and tex over image */
+
+
+
+/* register button */
+.card-body a  {
+  background-color: #4ea599;
+  border: none;
+}
+
+.card-body a:hover{
+  background-color: #4ea599;
+  opacity: 0.5;
+
+}
+
+div .text-white h2{
+  color: #fff;
+}
 
 .pac-container {
   z-index: 1061 !important;
@@ -73,9 +109,7 @@
   
   }
 
-/* .bg-white{
-  background-color: #4ea599;
-} */
+
 
   .swiper {
     width: 100%;
@@ -123,12 +157,16 @@
 
     background-image: url(../../images/base/wilbur-wong-w6n_GLhIzG4-unsplash-lg.jpg);
   position: relative;
-  top: 60px;
+  top: 50px;
   height: 50vh;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   
+  }
+
+  nav {
+    background-color: #4ea599;
   }
 
   .mx-3 h2{
@@ -182,6 +220,57 @@
 
 
 @media screen and (min-width: 769px) {
+
+  .navbar {
+    background-color: #4ea599;
+    padding: 0px ;
+
+  }
+
+  .nav-item{
+    padding:10px;
+    margin: 0px;
+}
+
+
+
+  #autocomplete2{
+    width: 40%;
+}
+
+
+  #autocomplete2{
+    padding: 0px 0 5px;
+    margin: 5px 5px  5px;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    border: none;
+align-items: center;
+justify-content: center;
+display: flex;
+padding: 5px;
+}
+
+.me-2{
+  border: none;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+
+.swiper-wrapper{
+  width: 100%;
+  display: flexbox;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
   
   .swiper {
     width: 100%;
@@ -222,4 +311,32 @@
 
 
 }
+
+/* footer */
+
+/* grid column hover  */
+.row .col-md-3 p:hover{
+  color: #fff;
+}
+
+.row .col-md-3 {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.row .col-md-3 .mb-4{
+  margin-top: 10px;
+  color: #fff;
+  font: 100;
+}
+
+.col-md-4 .mb-4{
+  margin-top: 10px;
+  color: #fff;
+}
+
+
+
 
