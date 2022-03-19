@@ -58,6 +58,10 @@
     cursor: pointer;
 }
 
+.icon-blue:hover {
+    color: #78C2AD;
+}
+
 
 h1, h2, h3, h4, h5 {
     font-family: Montserrat, sans-serif;
@@ -132,5 +136,14 @@ div label{
     border: 1px solid #4EA599;
     color:#4EA599;
     background:white;
+}
+
+.detailButton {
+    background-color: #4EA599;
+    color: white;
+}
+
+.detailButton:hover {
+    background-color: #78C2AD;
 }
 

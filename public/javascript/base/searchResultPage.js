@@ -233,7 +233,7 @@ function createResultCard(playground) {
     cardBody.appendChild(features);
 
     const detailButton = document.createElement('a');
-    detailButton.className = 'btn btn-primary';
+    detailButton.className = 'btn detailButton';
     detailButton.href = `/playgrounds/${playground._id}`;
     detailButton.textContent = 'More Information';
     cardBody.appendChild(detailButton);
