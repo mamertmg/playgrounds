@@ -626,7 +626,6 @@
     <!-- Footer -->
 
 
-    <
     <% if(label) { %> 
     <script>
         <% if(playgroundLabels.includes(label)) { %>
@@ -635,7 +634,13 @@
         if(playgroundEquipment.includes(label)) { %>
             sessionStorage.setItem('equipment', "<%= label %>");
         <% } %>
-        console.log(sessionStorage);
+    </script>
+    <% } %> 
+    <% if(type) { %> 
+    <script>
+        <% if(types.includes(type)) { %>
+            sessionStorage.setItem('type', "<%= type %>");
+        <% } %>
     </script>
     <% } %> 
     <script src="/javascript/utils.js"></script>

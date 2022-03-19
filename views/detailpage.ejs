@@ -55,69 +55,67 @@
   <!-- nav for tablet and laptop -->
   <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light d-none d-md-block d-lg-block d-xl-block">
     <div class="d-grid">
-        <div class="row">
-            <div class="navbar col-2 d-flex justify-content-center">
-                <ul class="navbar-nav ">
-                    <li class="nav-item">
-                        <a class="navbar-brand" href="/"><img src="/images/base/playground.png"
-                                alt="logo" height="40" loading="lazy"></a>
-                    </li>
+      <div class="row">
+        <div class="navbar col-2 d-flex justify-content-center">
+          <ul class="navbar-nav ">
+            <li class="nav-item">
+              <a class="navbar-brand" href="/"><img src="/images/base/playground.png" alt="logo" height="40" loading="lazy"></a>
+            </li>
 
-                </ul>
-            </div>
-
-         <div class="col-6 my-2">
-
-                <!-- form for address and search radius in tablet and laptop view , please add action here! -->
-
-                <form id="searchForm" action="/search" method="get">
-
-                    <div class="input-group d-flex align-items-center">
-
-                        <div>
-
-                            <label for="selectSearchRadius">Search radius:</label>
-
-                            <select name="dist" class="me-2" id="selectSearchRadius">
-                                <% for(let i = 1; i < 6; i++) { %> 
-                                <option value="<%= i %>" <%= i === 1 ? "selected" : "" %>><%= i %> km</option>
-                                <% } %>
-                            </select>
-
-                        </div>
-
-                        <label for="autocomplete2"></label>
-
-                        <input class="autocomplete" id="autocomplete2" placeholder="Enter address" type="search">
-
-                        <button type="submit" class="btn btn-danger btn-sm rounded-circle"><i
-                                class="fas fa-lg fa-search"></i></button>
-
-                    </div>
-
-
-                </form>
-
-            </div>
-
-            <div class="navbar col-4 d-flex justify-content-center">
-
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Add new playground</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"> <i class="far fa-lg fa-user-circle"></i> </a>
-                    </li>
-                </ul>
-
-            </div>
+          </ul>
         </div>
+
+        <div class="col-6 my-2">
+
+          <!-- form for address and search radius in tablet and laptop view , please add action here! -->
+
+          <form id="searchForm" action="/search" method="get">
+
+            <div class="input-group d-flex align-items-center">
+
+              <div>
+
+                <label for="selectSearchRadius">Search radius:</label>
+
+                <select name="dist" class="me-2" id="selectSearchRadius">
+                  <% for(let i = 1; i < 6; i++) { %>
+                  <option value="<%= i %>" <%= i === 1 ? "selected" : "" %>><%= i %> km</option>
+                  <% } %>
+                </select>
+
+              </div>
+
+              <label for="autocomplete2"></label>
+
+              <input class="autocomplete" id="autocomplete2" placeholder="Enter address" type="search">
+
+              <button type="submit" class="btn btn-danger btn-sm rounded-circle"><i class="fas fa-lg fa-search"></i></button>
+
+            </div>
+
+
+          </form>
+
+        </div>
+
+        <div class="navbar col-4 d-flex justify-content-center">
+
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Add new playground</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#"> <i class="far fa-lg fa-user-circle"></i> </a>
+            </li>
+          </ul>
+
+        </div>
+      </div>
     </div>
 
 
-</nav>
+  </nav>
 
   <section class="container-fluid p-0 p-xs-2 p-sm-4 p-md-5">
     <div class="row-section">
@@ -146,12 +144,10 @@
     <div class="row">
       <div class="gx-5 col">
         <div class="btn tag">
-          <i class="fa-solid fa-leaf"></i>
-          <%= playground.type %>
-        </div>
-        <div class="btn tag">
-          <i class="fa-solid fa-location-dot"></i>
-          <%= playground.suburb %>
+          <a href="/search?type=<%= playground.type %>">
+            <i class="fa-solid fa-leaf"></i>
+            <%= playground.type %>
+          </a>
         </div>
       </div>
     </div>
@@ -162,6 +158,7 @@
 
 
           <h3 class="card-title">
+            <%= playground.address %> <br>
             <%= playground.suburb.toUpperCase() %>, <%= playground.city %>
           </h3>
           <a class="btn-collapse" data-bs-toggle="collapse" href="#infocard-collapse" role="button" aria-expanded="false" aria-controls="infocard-collapse">
@@ -227,7 +224,7 @@
                   </label>
                   <input id="photoDescription" type="text" class="w-100 mt-0 mb-2 p-2 br-10" placeholder="Give a short description" />
                 </form>
-              </div>     
+              </div>
               <div class="modal-footer">
                 <button type="button" id="btnClose6" class="btn btn-secondary btnClose" data-bs-dismiss="modal">
                   Close
@@ -515,7 +512,7 @@
         </div>
         <% } %>
 
-        
+
         <% if(!playground.lost_found.length) { %>
         <div style="height: 60px; text-align: center;">
           No Entries
@@ -595,7 +592,7 @@
                       <i class="bi bi-star"></i>
                       <% }} %>
                     </span>
-                    
+
                   </div>
                   <p class="comment-text user-text mt-3">
                     <%= review.body %>
@@ -615,22 +612,22 @@
                 <% } %>
 
               </div>
-              
+
               <div class="row">
-                
-                  <div class="col-8">
-                    <i data-id="<%= review._id %>" class="bi bi-heart<%= isAuthenticated && review.likes.includes(currentUser._id) ? "-fill" : "" %> reviewLikeBtn" type="button">
-                    </i>
-                    <span class="m-1"><%= review.likes.length %></span>
-                  </div>
-                
+
+                <div class="col-8">
+                  <i data-id="<%= review._id %>" class="bi bi-heart<%= isAuthenticated && review.likes.includes(currentUser._id) ? "-fill" : "" %> reviewLikeBtn" type="button">
+                  </i>
+                  <span class="m-1"><%= review.likes.length %></span>
+                </div>
+
                 <div class="col">
                   <span class="text-muted fw-normal fs-10">
                     <%= (new Date(review.createdAt)).toLocaleString() %>
                   </span>
                 </div>
               </div>
-             
+
             </div>
 
             <% if(isAuthenticated && currentUser._id.toString()===review.author.id.toString()) { %>

@@ -43,6 +43,11 @@ hr {
 
 }
 
+div.tag>a {
+    color: #074266;
+    text-decoration: none !important;
+}
+
 .tag {
     background: white;
     color: #074266;
@@ -98,12 +103,12 @@ div label{
 
 #selectSearchRadius{
     color: rgba(0,0,0,.55);
-    border-radius: 1rem ;
     border-style: hidden;
     -webkit-border-radius: 1rem ;
     -moz-border-radius: 1rem ;
     -ms-border-radius: 1rem ;
     -o-border-radius: 1rem ;
+    border-radius: 1rem ;
 }
 
 .col-6 {
@@ -116,7 +121,6 @@ div label{
 
 #autocomplete2{
     margin: 1rem 1rem 1rem;
-    border-radius: 2rem;
     width: 15rem;
     height: 3rem;
     border-style: double;
@@ -124,6 +128,7 @@ div label{
     -moz-border-radius: 2rem;
     -ms-border-radius: 2rem;
     -o-border-radius: 2rem;
+    border-radius: 2rem;
 }
 
 
@@ -272,7 +277,10 @@ div label{
 }
 
 #playgroundDetails {
+    min-width: -moz-fit-content;
+    min-width: -webkit-fill-available;
     min-width: fit-content;
+    min-height: -moz-fit-content;
     min-height: fit-content;
     border-radius: 5px;
     border: 2px solid #ffb908a9;
@@ -474,11 +482,11 @@ div label{
     #autocomplete2{
         padding: 15px 0 15px;
         margin: 15px 5px  20px;
-        border-radius: 20px;
         -webkit-border-radius: 20px;
         -moz-border-radius: 20px;
         -ms-border-radius: 20px;
         -o-border-radius: 20px;
+        border-radius: 20px;
 }
 }
 
