@@ -13,6 +13,16 @@ const Event = require('../models/event.model');
 const LostFound = require('../models/lostfound.model');
 const { ensureAuthenticated } = require('../middlewares/authorization');
 const User = require('../models/user.model');
+const {
+    isPlaygroundAuthor,
+    isEventAuthor,
+    isLostFoundAuthor,
+} = require('../middlewares/isAuthor');
+const multer = require('multer');
+
+// Image storage on Cloudinary
+const { storage } = require('../config/cloudinaryStorage');
+const upload = multer({ storage });
 
 router
     .route('/')
@@ -22,7 +32,10 @@ router
             res.render('base/playgrounds', { playgrounds });
         })
     )
-    .post(asyncWrapper(playgroundController.createPlayground));
+    .post(
+        ensureAuthenticated,
+        asyncWrapper(playgroundController.createPlayground)
+    );
 
 router.get('/new', ensureAuthenticated, playgroundController.renderNewFrom);
 
@@ -30,12 +43,23 @@ router
     .route('/:id')
     .get(asyncWrapper(playgroundController.showPlayground))
     .put(
+        ensureAuthenticated,
+        isPlaygroundAuthor,
         validatePlayground,
         asyncWrapper(playgroundController.updatePlayground)
     )
-    .delete(asyncWrapper(playgroundController.deletePlayground));
+    .delete(
+        ensureAuthenticated,
+        isPlaygroundAuthor,
+        asyncWrapper(playgroundController.deletePlayground)
+    );
 
-router.get('/:id/edit', asyncWrapper(playgroundController.renderEditForm));
+router.get(
+    '/:id/edit',
+    ensureAuthenticated,
+    isPlaygroundAuthor,
+    asyncWrapper(playgroundController.renderEditForm)
+);
 
 // Event routes
 router.post(
@@ -76,9 +100,6 @@ router.post(
         playground.events.push(event);
         await event.save();
         await playground.save();
-        await User.findByIdAndUpdate(req.user._id, {
-            $push: { events: event._id },
-        });
         res.redirect(`/playgrounds/${id}`);
     })
 );
@@ -87,6 +108,7 @@ router
     .route('/:id/event/:eventId')
     .delete(
         ensureAuthenticated,
+        isEventAuthor,
         asyncWrapper(async (req, res, next) => {
             const { id, eventId } = req.params;
             const event = await Event.findById(eventId);
@@ -98,9 +120,6 @@ router
             await Playground.findByIdAndUpdate(event.playground_id, {
                 $pull: { events: event._id },
             });
-            await User.findByIdAndUpdate(event.author.id, {
-                $pull: { events: event._id },
-            });
             await event.remove();
             req.flash('success', 'Successfully deleted event!');
             res.redirect(`/playgrounds/${id}`);
@@ -108,6 +127,7 @@ router
     )
     .put(
         ensureAuthenticated,
+        isEventAuthor,
         validateEvent,
         validateEventDate,
         asyncWrapper(async (req, res) => {
@@ -165,9 +185,6 @@ router.post(
         playground.lost_found.push(lostFound);
         await lostFound.save();
         await playground.save();
-        await User.findByIdAndUpdate(req.user._id, {
-            $push: { lost_found: lostFound._id },
-        });
         res.redirect(`/playgrounds/${id}`);
     })
 );
@@ -176,6 +193,7 @@ router
     .route('/:id/lost-found/:lfId')
     .delete(
         ensureAuthenticated,
+        isLostFoundAuthor,
         asyncWrapper(async (req, res) => {
             const { id, lfId } = req.params;
             const lostFound = await LostFound.findById(lfId);
@@ -186,9 +204,6 @@ router
             await Playground.findByIdAndUpdate(lostFound.playground_id, {
                 $pull: { lost_found: lostFound._id },
             });
-            await User.findByIdAndUpdate(lostFound.author.id, {
-                $pull: { lost_found: lostFound._id },
-            });
             await lostFound.remove();
             req.flash('success', 'Successfully deleted Lost&Found entry!');
             res.redirect(`/playgrounds/${id}`);
@@ -196,19 +211,45 @@ router
     )
     .put(
         ensureAuthenticated,
+        isLostFoundAuthor,
+        validateLostFound,
         asyncWrapper(async (req, res) => {
             const { id, lfId } = req.params;
-            const updatedLostFound = new LostFound({
+            const updatedLostFound = {
                 title: req.body.lost_found.title,
                 status: req.body.lost_found.status,
                 date: new Date(req.body.lost_found.date),
-                playground_id: id,
                 description: req.body.lost_found.description,
                 contact: req.body.lost_found.contact,
-            });
+            };
 
-            await LostFound.findByIdAndUpdate(id, updatedLostFound);
+            await LostFound.findByIdAndUpdate(lfId, updatedLostFound);
+            req.flash('success', 'Successfully updated Lost&Found entry!');
+            res.redirect(`/playgrounds/${id}`);
         })
     );
+
+// Save new playground image
+router.post(
+    '/:id/image/new',
+    ensureAuthenticated,
+    upload.single('playgroundPhoto'),
+    asyncWrapper(async (req, res) => {
+        const { id } = req.params;
+        const playground = await Playground.findById(id);
+        if (!playground) {
+            req.flash('failure', 'Could not find playground.');
+            return res.redirect('/');
+        }
+        
+        const img = { url: req.file.path, filename: req.file.filename };
+        if (req.body.description) {
+            img.description = req.body.description;
+        }
+        playground.images.push(img);
+        await playground.save();
+        res.redirect(`/playgrounds/${playground._id}`);
+    })
+);
 
 module.exports = router;

@@ -5,6 +5,7 @@ const {
     labelToIcon,
 } = require('../utils/labels');
 const { numToMonth, numToDay } = require('../utils/utils');
+const { cloudinary } = require('../config/cloudinaryStorage');
 
 function preprocessInput(inputObj) {
     // convert coordinates to GEOJSON format
@@ -76,11 +77,19 @@ module.exports.createPlayground = async (req, res) => {
 
 module.exports.showPlayground = async (req, res) => {
     const { id } = req.params;
-    const { eventId } = req.query;
     const playground = await Playground.findById(id)
-        .populate('events')
-        .populate('reviews')
-        .populate('lost_found');
+        .populate({
+            path: 'events',
+            options: { sort: [{ date: 'asc' }] },
+        })
+        .populate({
+            path: 'reviews',
+            options: { sort: [{ createdAt: 'desc' }] },
+        })
+        .populate({
+            path: 'lost_found',
+            options: { sort: [{ date: 'desc' }] },
+        });
     if (!playground) {
         req.flash('failure', 'Could not find playground.');
         return res.redirect('/');
@@ -100,6 +109,14 @@ module.exports.updatePlayground = async (req, res) => {
     const playground = await Playground.findByIdAndUpdate(id, {
         ...values,
     });
+    if (req.body.deleteImages) {
+        for (let filename of req.body.deleteImages) {
+            await cloudinary.uploader.destroy(filename);
+        }
+        await playground.updateOne({
+            $pull: { images: { filename: { $in: req.body.deleteImages } } },
+        });
+    }
     req.flash('success', 'Updated playground!');
     res.redirect(`/playgrounds/${playground._id}`);
 };

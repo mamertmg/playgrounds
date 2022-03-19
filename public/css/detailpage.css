@@ -43,6 +43,11 @@ hr {
 
 }
 
+div.tag>a {
+    color: #074266;
+    text-decoration: none !important;
+}
+
 .tag {
     background: white;
     color: #074266;
@@ -66,6 +71,10 @@ hr {
     display: flexbox;
     justify-content: space-around;
 }
+div.littleTags>a {
+    color: #074266;
+    text-decoration: none !important;
+}
 
 .littleTags {
     border: solid 1px #074266;
@@ -82,7 +91,12 @@ hr {
     color: #4EA599;
     border: solid 1px #4EA599;
 }
-
+div.littleTags>a:hover {
+    color: #4EA599;
+}
+div.tag>a:hover {
+    color: #4EA599;
+}
 /* navbar */
 
 div label{
@@ -91,12 +105,12 @@ div label{
 
 #selectSearchRadius{
     color: rgba(0,0,0,.55);
-    border-radius: 1rem ;
     border-style: hidden;
     -webkit-border-radius: 1rem ;
     -moz-border-radius: 1rem ;
     -ms-border-radius: 1rem ;
     -o-border-radius: 1rem ;
+    border-radius: 1rem ;
 }
 
 .col-6 {
@@ -109,7 +123,6 @@ div label{
 
 #autocomplete2{
     margin: 1rem 1rem 1rem;
-    border-radius: 2rem;
     width: 15rem;
     height: 3rem;
     border-style: double;
@@ -117,6 +130,7 @@ div label{
     -moz-border-radius: 2rem;
     -ms-border-radius: 2rem;
     -o-border-radius: 2rem;
+    border-radius: 2rem;
 }
 
 
@@ -200,17 +214,17 @@ div label{
     transition-duration: 0.2s
 }
 
-#deleteEventButton, #editEventButton, #deleteLostFoundButton, #editLostFoundButton {
+.deleteEventBtn, #editEventButton, #deleteLostFoundButton, #editLostFoundButton, .editReviewBtn, .deleteReviewBtn {
     margin: 0px;
     padding: 0px;
     box-sizing: none;
 }
 
-#editEventButton:hover, #editLostFoundButton:hover {
+#editEventButton:hover, #editLostFoundButton:hover, .editReviewBtn:hover{
     color: #FFBA08;
 }
 
-#deleteEventButton:hover, #deleteLostFoundButton:hover {
+.deleteEventBtn:hover, #deleteLostFoundButton:hover, .deleteReviewBtn:hover {
     color: #FF5C5C;
 }
 
@@ -265,7 +279,10 @@ div label{
 }
 
 #playgroundDetails {
+    min-width: -moz-fit-content;
+    min-width: -webkit-fill-available;
     min-width: fit-content;
+    min-height: -moz-fit-content;
     min-height: fit-content;
     border-radius: 5px;
     border: 2px solid #ffb908a9;
@@ -317,6 +334,10 @@ div label{
     box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1)
 }
 
+.delete{
+    color: #032B43;
+}
+
 .card-text {
     line-height: 1.5rem;
     font-family: Montserrat, sans-serif;
@@ -327,11 +348,11 @@ div label{
 }
 
 .comment-text {
-    font-size: 14px
+    font-size: 18px;
 }
 
 .fs-10 {
-    font-size: 14px
+    font-size: 14px;
 }
 
 .comment-header {
@@ -356,9 +377,11 @@ div label{
     text-decoration: none;
     padding: 10px;
     margin: 0px;
-    color: #3F88C5;
 }
 
+.user-text {
+    color: #3F88C5;
+}
 
 .link:hover {
     text-decoration: none;
@@ -467,7 +490,6 @@ div label{
         -o-border-radius: 15px;
         border: none;
 }
-}
 
 @media  (max-width: 768px ) {
     #mainNavbar {
@@ -494,3 +516,4 @@ div label{
         letter-spacing: -2px;
     }
 }
+

@@ -89,13 +89,11 @@ locationInputMobile.addEventListener('input', () => {
     sessionStorage['q'] = locationInputMobile.value;
     locationInput.value = locationInputMobile.value;
     locationDisplayMobile.value = locationInputMobile.value;
-    console.log(sessionStorage.getItem('q'));
 });
 locationInput.addEventListener('input', () => {
     sessionStorage['q'] = locationInput.value;
     locationInputMobile.value = locationInput.value;
     locationDisplayMobile.value = locationInput.value;
-    console.log(sessionStorage.getItem('q'));
 });
 
 let addressQuery;
@@ -186,8 +184,11 @@ function createResultCard(playground) {
     card.className = 'card mt-2';
 
     const img = document.createElement('img');
-    img.src = 'https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp';
-    img.alt = 'Fissure in Sandstone';
+    if (!playground.images.length) {
+        img.src = '/images/playground.png';
+    } else {
+        img.src = playground.images[0].url;
+    }
     img.classList.add('card-img-top');
     card.appendChild(img);
 
@@ -456,8 +457,31 @@ featureForm.addEventListener('submit', (event) => {
     featureFormCloseBtn.click();
 });
 
+// distance selector should mirror each other
+
+const distMobile = document.querySelector('#distMobile');
+const distDesktop = document.querySelector('#selectSearchRadius');
+distDesktop.addEventListener('input', () => {
+    distMobile.value = distDesktop.value;
+    distMobile.nextElementSibling.value = distDesktop.value;
+    sessionStorage.setItem('dist', distDesktop.value);
+});
+distMobile.addEventListener('input', () => {
+    distDesktop.value = distMobile.value;
+    distMobile.nextElementSibling.value = distMobile.value;
+    sessionStorage.setItem('dist', distMobile.value);
+});
+
 // on page reload, during the same session, set values for any previously set filters
 function restoreFilterSelection() {
+    // distance selector
+    if (Object.keys(sessionStorage).includes('dist')) {
+        const selected = sessionStorage.getItem('dist');
+        distDesktop.value = selected;
+        distMobile.value = selected;
+        distMobile.nextElementSibling.value = selected;
+    }
+
     // type filter
     if (Object.keys(sessionStorage).includes('type')) {
         const selected = sessionStorage.getItem('type').split(',');
@@ -541,13 +565,18 @@ async function initMap() {
             locationDisplayMobile.value = searchParams.get('q');
         }
     } else if (
-        locationInputMobile.value === 'Düsseldorf' ||
+        // locationInputMobile.value === 'Düsseldorf' ||
         !searchParams.has('q') ||
         !searchParams.get('q')
     ) {
         // default case, i.e. no location input by user: center on Düsseldorf
         currentCoordinates.lat = duessCoord.lat;
         currentCoordinates.lng = duessCoord.lng;
+
+        sessionStorage.setItem('q', 'Düsseldorf');
+        locationInputMobile.value = 'Düsseldorf';
+        locationInput.value = 'Düsseldorf';
+        locationDisplayMobile.value = 'Düsseldorf';
     } else {
         // no coordinates, but a location was input
         locationInputMobile.value = searchParams.get('q');
@@ -572,11 +601,11 @@ async function initMap() {
         infowindow.close();
     });
 
-    // save search radius from query, set it to 1 if invalid value
+    // save search radius from query, set it to 5 if invalid value
     const dist = searchParams.get('dist');
     sessionStorage.setItem(
         'dist',
-        Number(dist) && Number(dist) < 6 ? Number(dist) : '1'
+        Number(dist) && Number(dist) < 6 ? Number(dist) : '5'
     );
 
     // re-set values of any filters set during current session
@@ -585,21 +614,6 @@ async function initMap() {
     // fetch relevant playgrounds
     fetchFilterResult();
 }
-
-// distance selector should mirror each other
-
-const distMobile = document.querySelector('#distMobile');
-const distDesktop = document.querySelector('#selectSearchRadius');
-distDesktop.addEventListener('input', () => {
-    distMobile.value = distDesktop.value;
-    distMobile.nextElementSibling.value = distDesktop.value;
-    sessionStorage.setItem('dist', distDesktop.value);
-});
-distMobile.addEventListener('input', () => {
-    distDesktop.value = distMobile.value;
-    distMobile.nextElementSibling.value = distMobile.value;
-    sessionStorage.setItem('dist', distMobile.value);
-});
 
 // Search form behaviour on submit
 

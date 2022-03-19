@@ -1,53 +1,67 @@
 <% layout('./layouts/boilerplate') %>
 <h1 class="mt-3"><%= actionType %> Playground</h1>
-<form id="form" action="<%= actionDest %>" method="post">
+<form id="form"  action="<%= actionDest %>" method="post" novalidate class="validated-form mb-3">
     <input type="hidden" name="_csrf" value="<%= csrftoken %>">
     <div class="mb-3">
         <label for="name" class="form-label">Playground name</label>
-        <input type="text" class="form-control" id="name" name="playground[name]" value="<%= actionType === 'Edit' ? playground.name : "" %>">
+        <input type="text" class="form-control" id="name" name="playground[name]" minlength="10"  maxlength="40" required value="<%= actionType === 'Edit' ? playground.name : "" %>">
+        <div class="invalid-feedback">The name must have at least 10 characters.</div>
     </div>
+    
     <div class="mb-3">
         <label for="type" class="form-label">Playground type</label>
-        <input class="form-control" list="types" id="type" name="playground[type]" value="<%= actionType === 'Edit' ? playground.type : "" %>"/>
+        <select class="form-control" list="types" id="type" name="playground[type]" required  value="<%= actionType === 'Edit' ? playground.type : "" %>">
         <datalist id="types">
-            <% for(let type of types) { %> 
-                <option value="<%= type %>"><%= type %></option>
+            <option value="">-- choose from list --</option>
+            <% for(let type of types) { %>         
+                <option value="<%= type %>" <%= actionType === 'Edit' && type === playground.type ? "selected" : "" %>><%= type %></option>
             <% } %>
         </datalist>
+        </select>
+        <div class="invalid-feedback">field required</div>
     </div>
     <div class="row mb-3">
         <div class="col">
-            <label class="formlabel" for="address">Address</label>
-            <input class="form-control autocomplete" type="text" name="playground[address]" id="address" value="<%= actionType === 'Edit' ? playground.address : "" %>">
+           <label class="form-label" for="address">Address</label>
+            <input class="form-control autocomplete" type="text" name="playground[address]" id="address" required value="<%= actionType === 'Edit' ? playground.address : "" %>">
+            <div class="invalid-feedback">field required</div>
         </div>
         <div class="col">
-            <label class="formlabel" for="city">City</label>
+        <label for="suburb" class="form-label">Suburb</label>
+        <input class="form-control" id="suburb" name="playground[suburb]" maxlength="40" required  value="<%= actionType === 'Edit' ? playground.suburb : "" %>">
+        <div class="invalid-feedback">field required</div>
+    </div>
+        <div class="col">
+            <label class="form-label" for="city">City</label>
             <input class="form-control autocomplete" type="text" name="playground[city]" id="city" value="<%= actionType === 'Edit' ? playground.city : "" %>" readonly>
         </div>
     </div>
     <div class="row mb-3">
         <div class="col">
-            <label class="formlabel" for="lat">Latitude</label>
-            <input class="form-control" type="number" name="playground[lat]" id="lat" min="-90" max="90" step="any" value="<%= actionType === 'Edit' ? playground.location.coordinates[1] : "" %>" readonly>
+            <label class="form-label" for="lat">Latitude</label>
+            <input class="form-control" type="number" name="playground[lat]" id="lat" min="-90" max="90" step="any"  value="<%= actionType === 'Edit' ? playground.location.coordinates[1] : "" %>" readonly>
         </div>
         <div class="col">
-            <label class="formlabel" for="lng">Longitude</label>
+            <label class="form-label" for="lng">Longitude</label>
             <input class="form-control" type="number" name="playground[lng]" id="lng" min="-180" max="180" step="any" value="<%= actionType === 'Edit' ? playground.location.coordinates[0] : "" %>" readonly>
         </div>
     </div>
     <div class="mb-3 row">
         <div class="col">
             <label for="minAge" class="form-label">Min. Age</label>
-            <input type="number" class="form-control" id="minAge" name="playground[min_age]" min="0" max="16" value="<%= actionType === 'Edit' ? playground.min_age : "" %>">
+            <input type="number" class="form-control" id="minAge" name="playground[min_age]" min="0" max="16"  required value="<%= actionType === 'Edit' ? playground.min_age : "" %>">
+            <div class="invalid-feedback">minimum age should be between 0 and 16 years</div>
         </div>
         <div class="col">
             <label for="maxAge" class="form-label">Max. Age</label>
-            <input type="number" class="form-control" id="maxAge" name="playground[max_age]" min="0" max="100" value="<%= actionType === 'Edit' ? playground.max_age : "" %>">
+            <input type="number" class="form-control" id="maxAge" name="playground[max_age]" min="0" max="25" required value="<%= actionType === 'Edit' ? playground.max_age : "" %>">
+            <div class="invalid-feedback">maximum age should be no more than 25 years</div>
         </div>
     </div>
     <div class="mb-3">
         <label for="equipment" class="form-label">Description</label>
-        <textarea class="form-control" name="playground[description]" id="description" cols="30" rows="2"><%= actionType === 'Edit' ? playground.description : "" %></textarea>
+        <textarea class="form-control" name="playground[description]" id="description" cols="30" rows="2" maxlength="500" required placeholder="please give some general information"><%= actionType === 'Edit' ? playground.description : "" %></textarea>
+        <div class="invalid-feedback">field required</div>
     </div>
     <div class="mb-3">
         <label for="labelsDiv" class="form-label">Labels</label>
@@ -72,7 +86,26 @@
             </div>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <% if(actionType === 'Edit' && playground.images.length > 0) { %> 
+    <label class="form-label" for="currentImages">Images</label>
+    <div class="mb-3" id="currentImages">
+        <% playground.images.forEach(function(img, i) { %>
+            <img src="<%= img.thumbnail %> " class="img-thumbnail" alt="">
+            <div class="form-check-inline">
+                <input type="checkbox" name="deleteImages[]" id="image-<%= i %>" value="<%= img.filename %>">
+            </div>
+            <label for="image-<%= i %>">Delete?</label>
+        <% }) %> 
+    </div>
+    <% } %> 
+    <div class="d-flex justify-content-end">
+        <% if(actionType === 'Edit') { %> 
+        <a class="btn btn-danger me-2" href="/playgrounds/<%- playground._id %>">Cancel</a>
+        <% } else { %>
+        <a class="btn btn-danger me-2" href="/">Cancel</a>
+        <% } %>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
 </form>
 
 <script src="/javascript/playgroundForm.js"></script>
