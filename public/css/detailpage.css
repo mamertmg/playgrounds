@@ -66,6 +66,10 @@ hr {
     display: flexbox;
     justify-content: space-around;
 }
+div.littleTags>a {
+    color: #074266;
+    text-decoration: none !important;
+}
 
 .littleTags {
     border: solid 1px #074266;
@@ -81,6 +85,9 @@ hr {
 .littleTags:hover {
     color: #4EA599;
     border: solid 1px #4EA599;
+}
+div.littleTags>a:hover {
+    color: #4EA599;
 }
 
 /* navbar */
@@ -200,7 +207,7 @@ div label{
     transition-duration: 0.2s
 }
 
-#deleteEventButton, #editEventButton, #deleteLostFoundButton, #editLostFoundButton, .editReviewBtn, .deleteReviewBtn {
+.deleteEventBtn, #editEventButton, #deleteLostFoundButton, #editLostFoundButton, .editReviewBtn, .deleteReviewBtn {
     margin: 0px;
     padding: 0px;
     box-sizing: none;
@@ -210,7 +217,7 @@ div label{
     color: #FFBA08;
 }
 
-#deleteEventButton:hover, #deleteLostFoundButton:hover, .deleteReviewBtn:hover {
+.deleteEventBtn:hover, #deleteLostFoundButton:hover, .deleteReviewBtn:hover {
     color: #FF5C5C;
 }
 
