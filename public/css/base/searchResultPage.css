@@ -5,6 +5,16 @@
 
 #mapButton {
     margin-bottom: 120px;
+    border: 1px solid #4EA599;
+    background:#4EA599;
+    color:white;
+}
+
+#mapButton:hover {
+    margin-bottom: 120px;
+    border: 1px solid #4EA599;
+    color:#4EA599;
+    background:white;
 }
 
 #sticky-map {
@@ -44,6 +54,83 @@
 }
 
 .icon-blue {
-    color: #0d6efd;
+    color: #4EA599;
     cursor: pointer;
 }
+
+
+h1, h2, h3, h4, h5 {
+    font-family: Montserrat, sans-serif;
+    color: #074266;
+    display: inline-block;
+}
+
+/* navbar */
+
+div label{
+    color: rgba(0,0,0,.55);
+}
+
+#selectSearchRadius{
+    color: rgba(0,0,0,.55);
+    border-style: hidden;
+    -webkit-border-radius: 1rem ;
+    -moz-border-radius: 1rem ;
+    -ms-border-radius: 1rem ;
+    -o-border-radius: 1rem ;
+    border-radius: 1rem ;
+}
+
+.col-6 {
+    /* background-color: #78C2AD; */
+    width: 50%;
+    display: flex;
+    justify-content:center ;
+    align-items: center;
+}
+
+#autocomplete2{
+    margin: 1rem 1rem 1rem;
+    width: 15rem;
+    height: 3rem;
+    border-style: double;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
+    border-radius: 2rem;
+}
+
+
+.d-grid{
+    background-color: #78C2AD;
+    
+}
+.navbar{
+    background-color: #78C2AD;
+}
+
+
+
+.card {
+    margin: 0px;
+    padding: 0px;
+    border-radius: 5px;
+    border: 0.5px solid rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1)
+}
+
+.btn-lg, .btn-sm {
+    font-family: Montserrat, sans-serif;
+    padding: 1px 10px;
+    margin: 2px;
+}
+
+.btn-lg:hover, .btn-sm:hover {
+    font-family: Montserrat, sans-serif;
+    border: 1px solid #4EA599;
+    color:#4EA599;
+    background:white;
+}
+

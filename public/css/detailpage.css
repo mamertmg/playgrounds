@@ -318,12 +318,7 @@ div label{
     padding-left: 0px;
 }
 
-.card-body {
-    border-radius: 5px;
-    border: 0.5px solid rgba(0, 0, 0, 0.1);
-    -webkit-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1)
-}
+
 
 .card {
     margin: 0px;
