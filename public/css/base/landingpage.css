@@ -158,7 +158,7 @@ div .text-white h2{
     background-image: url(../../images/base/wilbur-wong-w6n_GLhIzG4-unsplash-lg.jpg);
   position: relative;
   top: 50px;
-  height: 50vh;
+  height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -338,5 +338,35 @@ padding: 5px;
 }
 
 
+/* modal header */
 
+.modal-header{
+  background-color: #4ea599;
+  opacity: 0.5;
+}
 
+/* modal footer */
+
+.modal-body{
+  background-color: #4ea599;
+}
+
+/* button modal footer  */
+.modal-footer{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-footer button:nth-last-of-type(1){
+  background-color: #4ea599;
+  border: none;
+
+}
+
+.modal-footer button:nth-last-of-type(1):hover{
+  background-color: #4ea599;
+  opacity: 0.5;
+  box-shadow: unset 1px;
+}
