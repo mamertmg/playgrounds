@@ -83,14 +83,54 @@ hr {
     border: solid 1px #4EA599;
 }
 
-div.littleTags>a {
-    color: #074266;
-    text-decoration: none !important;
+/* navbar */
+
+div label{
+    color: rgba(0,0,0,.55);
+}
+
+#selectSearchRadius{
+    color: rgba(0,0,0,.55);
+    border-radius: 1rem ;
+    border-style: hidden;
+    -webkit-border-radius: 1rem ;
+    -moz-border-radius: 1rem ;
+    -ms-border-radius: 1rem ;
+    -o-border-radius: 1rem ;
+}
+
+.col-6 {
+    /* background-color: #78C2AD; */
+    width: 50%;
+    display: flex;
+    justify-content:center ;
+    align-items: center;
+}
+
+#autocomplete2{
+    margin: 1rem 1rem 1rem;
+    border-radius: 2rem;
+    width: 15rem;
+    height: 3rem;
+    border-style: double;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
+}
+
+
+.d-grid{
+    background-color: #78C2AD;
+    
+}
+.navbar{
+    background-color: #78C2AD;
 }
 
 
 #mainNavbar {
-    background: #4ea599;
+    background-color: #78C2AD;
     font-size: 1.2rem;
     font-family: Montserrat, sans-serif;
 }
@@ -116,6 +156,7 @@ div.littleTags>a {
 
 #navbar-logo {
     height: 52px;
+    background-color: #78C2AD;
 }
 
 #nav-header {
@@ -177,7 +218,7 @@ div.littleTags>a {
 .rating {
     display: inline-flex;
     flex-direction: row-reverse;
-    justify-content: end;
+    justify-content: start;
 }
 
 .rating>input {
@@ -274,6 +315,10 @@ div.littleTags>a {
     border: 0.5px solid rgba(0, 0, 0, 0.1);
     -webkit-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
     box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1)
+}
+
+.delete{
+    color: #032B43;
 }
 
 .card-text {
@@ -397,6 +442,44 @@ div.littleTags>a {
     line-height: 1rem;
 }
 
+
+@media(max-width:986px){
+
+    .navbar{
+        padding: 2px 1px;
+        background-color: #78C2AD;
+        
+    }
+
+    .nav-item{
+        padding: 0%;
+        margin: 0%;
+    }
+
+    #autocomplete2{
+        width: 40%;
+    }
+}
+
+@media(max-width: 828px){
+    #autocomplete2{
+        padding: 15px 0 15px;
+        margin: 15px 5px  20px;
+        border-radius: 20px;
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        -ms-border-radius: 20px;
+        -o-border-radius: 20px;
+}
+}
+
+@media  (max-width: 768px ) {
+    #mainNavbar {
+        background-color: #78C2AD;
+        font-size: 1.2rem;
+        font-family: Montserrat, sans-serif;
+    }
+}
 
 
 
