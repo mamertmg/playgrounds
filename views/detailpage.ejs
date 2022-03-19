@@ -410,7 +410,7 @@
                 <div class="row collapse mt-3" id="event<%= i %>-collapse">
                   <hr>
                   <div class="col-2 text-center align-self-center text-primary">
-                    <img src="https://i.imgur.com/C4egmYM.jpg" height="50" width="50" class="rounded-circle" />
+                    <img src="http://cdn.onlinewebfonts.com/svg/img_184513.png" height="50" width="50" class="rounded-circle" />
                     <p>
                       <%= event.author.name %>
                     </p>
@@ -546,7 +546,7 @@
                 <% } %>
                 <div class="row collapse mt-3" id="item<%= i %>-collapse">
                   <hr>
-                  <div class="col-2 text-center align-self-center text-primary"><img src="https://i.imgur.com/hczKIze.jpg" height="50" width="50" class="rounded-circle" />
+                  <div class="col-2 text-center align-self-center text-primary"><img src="http://cdn.onlinewebfonts.com/svg/img_184513.png" height="50" width="50" class="rounded-circle" />
                     <p> <%= lostFound.author.name %></p>
                   </div>
                   <div class="col text-center align-self-center user-text">
@@ -575,9 +575,9 @@
           <% playground.reviews.forEach(function(review, i) { %>
           <li>
             <div id="review-<%= i %>" class="card p-3 mb-2">
-              <div class="row">
+              <div class="row ">
                 <div class="col-2">
-                  <img src="https://i.imgur.com/dwiGgJr.jpg" height="60" width="60" class="rounded-circle" />
+                  <img src="http://cdn.onlinewebfonts.com/svg/img_184513.png" height="50" width="50" class="rounded-circle m-2" />
 
                 </div>
                 <div class="col-8 ">
@@ -614,14 +614,13 @@
               </div>
 
               <div class="row">
-
-                <div class="col-8">
-                  <i data-id="<%= review._id %>" class="bi bi-heart<%= isAuthenticated && review.likes.includes(currentUser._id) ? "-fill" : "" %> reviewLikeBtn" type="button">
+                <div class="col">
+                  <i data-id="<%= review._id %>" class="bi bi-heart m-2<%= isAuthenticated && review.likes.includes(currentUser._id) ? "-fill" : "" %> reviewLikeBtn" type="button">
                   </i>
-                  <span class="m-1"><%= review.likes.length %></span>
+                  <span class=""><%= review.likes.length %></span>
                 </div>
 
-                <div class="col">
+                <div class="col-3">
                   <span class="text-muted fw-normal fs-10">
                     <%= (new Date(review.createdAt)).toLocaleString() %>
                   </span>
@@ -670,7 +669,7 @@
             <input type="hidden" name="_csrf" value="<%= csrftoken %>">
 
             <div class="mb-3 d-flex flex-column">
-              <span class="rating" id="starRating">
+              <span class="rating justify-content-start" id="starRating">
 
                 <input type="radio" name="review[rating]" value="5" id="5" required /><label for="5">☆</label>
                 <input type="radio" name="review[rating]" value="4" id="4" required /><label for="4">☆</label>
@@ -678,7 +677,7 @@
                 <input type="radio" name="review[rating]" value="2" id="2" required /><label for="2">☆</label>
                 <input type="radio" name="review[rating]" value="1" id="1" required /><label for="1">☆</label>
 
-                <div class="invalid-feedback">Rating is required</div>
+                <div class="invalid-feedback justify-content-start">Rating is required</div>
               </span>
 
               <div>

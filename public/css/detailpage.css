@@ -94,7 +94,9 @@ div.littleTags>a {
 div.littleTags>a:hover {
     color: #4EA599;
 }
-
+div.tag>a:hover {
+    color: #4EA599;
+}
 /* navbar */
 
 div label{
@@ -346,11 +348,11 @@ div label{
 }
 
 .comment-text {
-    font-size: 14px
+    font-size: 18px;
 }
 
 .fs-10 {
-    font-size: 14px
+    font-size: 14px;
 }
 
 .comment-header {
@@ -515,3 +517,4 @@ div label{
         letter-spacing: -2px;
     }
 }
+
