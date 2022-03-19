@@ -5,60 +5,26 @@ const inputLostDate = document.querySelector('#lostDate');
 const inputLostItem = document.querySelector('#lostItem');
 const inputLostItemLong = document.querySelector('#lostItemLong');
 const inputLostContact = document.querySelector('#lostContact');
-const inputLostPhoto = document.querySelector('#lostPhoto');
-const frame2 = document.getElementById('frame2');
-const radioLost = document.querySelector('#radioLost');
-const radioFound = document.querySelector('#radioFound');
+const inputRadioLost = document.querySelector('#radioLost');
+const inputRadioFound = document.querySelector('#radioFound');
 
-const lostDate = inputLostDate.value;
-const lostItem = inputLostItem.value;
-const lostItemLong = inputLostItemLong.value;
-const lostContact = inputLostContact.value;
-const lostPhoto = inputLostPhoto.value;
 
-const submitMessage2 = document.getElementById('submitMessage2');
-submitMessage2.style.display = 'none';
-const targetDiv2 = document.getElementById('lostForm');
-targetDiv2.style.display = 'block';
-const btnSubmit2 = document.getElementById('btnSubmit2');
-
-// btnSubmit2.onclick = function () {
-//   targetDiv2.style.display = 'none';
-//   btnSubmit2.style.display = 'none';
-//   submitMessage2.style.display = 'inline-block';
-// }
 
 const btnClose3 = document.getElementById('btnClose3');
 btnClose3.onclick = function () {
-    targetDiv2.style.display = 'block';
-    btnSubmit2.style.display = 'block';
-    submitMessage2.style.display = 'none';
-    inputLostDate.value = '';
-    inputLostItem.value = '';
-    inputLostItemLong.value = '';
-    inputLostContact.value = '';
-    inputLostPhoto.value = '';
-    document.getElementById('lostPhoto').value = null;
-    frame2.src = '';
+    setTimeout(function () { window.location.reload(); }, 10)
 };
 
 const btnClose4 = document.getElementById('btnClose4');
 btnClose4.onclick = function () {
-    targetDiv2.style.display = 'block';
-    btnSubmit2.style.display = 'block';
-    submitMessage2.style.display = 'none';
     inputLostDate.value = '';
     inputLostItem.value = '';
     inputLostItemLong.value = '';
     inputLostContact.value = '';
-    inputLostPhoto.value = '';
-    document.getElementById('lostPhoto').value = null;
-    frame2.src = '';
+    inputRadioLost.checked = false;
+    inputRadioFound.checked = false;
 };
-// Image Upload
-function preview2() {
-    frame2.src = URL.createObjectURL(event.target.files[0]);
-}
+
 
 // Lost&Found form modal
 const lostFoundFormModal = new bootstrap.Modal(
