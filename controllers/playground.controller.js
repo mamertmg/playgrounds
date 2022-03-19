@@ -42,7 +42,7 @@ module.exports.renderNewFrom = async (req, res, next) => {
     });
 };
 
-module.exports.renderEditForm = async (req, res) => {
+module.exports.renderEditForm = async (req, res, next) => {
     const { id } = req.params;
     const playground = await Playground.findById(id);
     if (!playground) {
@@ -71,7 +71,7 @@ module.exports.createPlayground = async (req, res) => {
     const playground = new Playground(values);
     playground.author = req.user._id;
     await playground.save();
-    req.flash('success', 'Added a new playground!');
+    // req.flash('success', 'Added a new playground!');
     res.redirect(`/playgrounds/${playground._id}`);
 };
 
@@ -91,12 +91,20 @@ module.exports.showPlayground = async (req, res) => {
             options: { sort: [{ date: 'desc' }] },
         });
     if (!playground) {
-        req.flash('failure', 'Could not find playground.');
         return res.redirect('/');
+    }
+
+    let rating = 0;
+    const numRatings = playground.reviews.length;
+    if (numRatings > 0) {
+        for (let review of playground.reviews) {
+            rating += review.rating / numRatings;
+        }
     }
 
     res.render('detailpage', {
         playground,
+        rating,
         labelToIcon,
         numToDay,
         numToMonth,
@@ -117,7 +125,7 @@ module.exports.updatePlayground = async (req, res) => {
             $pull: { images: { filename: { $in: req.body.deleteImages } } },
         });
     }
-    req.flash('success', 'Updated playground!');
+    // req.flash('success', 'Updated playground!');
     res.redirect(`/playgrounds/${playground._id}`);
 };
 
@@ -125,7 +133,7 @@ module.exports.deletePlayground = async (req, res) => {
     const { id } = req.params;
     const playground = await Playground.findByIdAndDelete(id);
     if (!playground) {
-        req.flash('failure', 'Could not find playground.');
+        // req.flash('failure', 'Could not find playground.');
         return res.redirect('/');
     }
     res.redirect('/');

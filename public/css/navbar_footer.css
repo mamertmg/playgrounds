@@ -1,0 +1,163 @@
+/* nav bar */
+
+nav div.row {
+    background-color: #4ea599;
+}
+nav div .card-header {
+    background-color: #4ea599;
+    color: #fff;
+}
+
+nav div .bg-image {
+    position: relative;
+    top: 20px;
+}
+
+nav div .text-white a {
+    background-color: #4ea599;
+    border: none;
+}
+
+/* button and tex over image */
+
+/* register button */
+nav .card-body a {
+    background-color: #4ea599;
+    border: none;
+}
+
+nav .card-body a:hover {
+    background-color: #4ea599;
+    opacity: 0.5;
+}
+
+nav div .text-white h2 {
+    color: #fff;
+}
+
+.pac-container {
+    z-index: 1061 !important;
+    position: relative;
+}
+
+nav .mx-3 h2 {
+    justify-content: center;
+    display: flex;
+    padding: 1rem;
+    position: relative;
+    top: -5px;
+}
+
+
+/* small screen background image with search bar on top, text, button get inspired, footer with explore contribute and login  */
+
+@media screen and (min-width: 426px) {
+    
+    nav {
+        background-color: #4ea599;
+    }
+
+    nav .mx-3 h2 {
+        padding: 1rem;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .navbar {
+        background-color: #4ea599;
+        padding: 0px;
+    }
+
+    .nav-item {
+        padding: 10px;
+        margin: 0px;
+    }
+
+    #autocomplete2 {
+        width: 40%;
+    }
+
+    #autocomplete2 {
+        padding: 0px 0 5px;
+        margin: 5px 5px 5px;
+        border-radius: 15px;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        -ms-border-radius: 15px;
+        -o-border-radius: 15px;
+        border: none;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        padding: 5px;
+    }
+
+    bav .me-2 {
+        border: none;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+    }
+}
+
+/* footer */
+
+footer {
+    background-color: #4ea599;
+}
+
+/* grid column hover  */
+footer .row .col-md-3 p:hover {
+    color: #fff;
+}
+
+footer .row .col-md-3 {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer .row .col-md-3 .mb-4 {
+    margin-top: 10px;
+    color: #fff;
+    font: 100;
+}
+
+footer .col-md-4 .mb-4 {
+    margin-top: 10px;
+    color: #fff;
+}
+
+/* modal header */
+
+footer .modal-header {
+    background-color: #4ea599;
+    opacity: 0.5;
+}
+
+/* modal footer */
+
+footer .modal-body {
+    background-color: #4ea599;
+}
+
+/* button modal footer  */
+footer .modal-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer .modal-footer button:nth-last-of-type(1) {
+    background-color: #4ea599;
+    border: none;
+}
+
+footer .modal-footer button:nth-last-of-type(1):hover {
+    background-color: #4ea599;
+    opacity: 0.5;
+    box-shadow: unset 1px;
+}

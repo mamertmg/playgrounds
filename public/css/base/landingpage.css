@@ -1,77 +1,71 @@
-
-
-h2{
-color: #4ea599;
+h2 {
+    color: #4ea599;
 }
 
 /* nav bar */
 
-div.row{
-  background-color: #4ea599;
+div.row {
+    background-color: #4ea599;
 }
-div .card-header{
-  background-color: #4ea599 ;
-  color: #fff;
-}
-
- div .bg-image{
-  position: relative;
-  top: 20px;
+div .card-header {
+    background-color: #4ea599;
+    color: #fff;
 }
 
-div .text-white a{
-  background-color: #4ea599;
-  border: none;
+div .bg-image {
+    position: relative;
+    top: 20px;
+}
+
+div .text-white a {
+    background-color: #4ea599;
+    border: none;
 }
 
 /* button and tex over image */
 
-
-
 /* register button */
-.card-body a  {
-  background-color: #4ea599;
-  border: none;
+.card-body a {
+    background-color: #4ea599;
+    border: none;
 }
 
-.card-body a:hover{
-  background-color: #4ea599;
-  opacity: 0.5;
-
+.card-body a:hover {
+    background-color: #4ea599;
+    opacity: 0.5;
 }
 
-div .text-white h2{
-  color: #fff;
+div .text-white h2 {
+    color: #fff;
 }
 
 .pac-container {
-  z-index: 1061 !important;
-  position: relative;
-  
+    z-index: 1061 !important;
+    position: relative;
 }
 .swiper {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 .swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #4ea599;
+    text-align: center;
+    font-size: 18px;
+    background: #4ea599;
 
-  /* Center slide text vertically */
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
 }
 /* 
 .swiper-slide img {
@@ -82,291 +76,257 @@ div .text-white h2{
 } */
 
 .swiper-slide {
-  width: 80%;
-
+    width: 80%;
 }
 
-
-.mx-3 h2{
-  justify-content: center;
-  display: flex;
-  padding: 1rem;
-  position: relative;
-  top: -5px;
+.mx-3 h2 {
+    justify-content: center;
+    display: flex;
+    padding: 1rem;
+    position: relative;
+    top: -5px;
 }
-
-
 
 @media screen and (max-width: 425px) {
-  .bg-image{
+    .bg-image {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(../../images/base/wilbur-wong-w6n_GLhIzG4-unsplash-small.jpg);
 
-    background-image: url(../../images/base/wilbur-wong-w6n_GLhIzG4-unsplash-small.jpg);
-  
-  height: 100vh;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  
-  }
+        height: 100vh;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
 
+    .swiper {
+        width: 100%;
+        height: 100%;
+    }
 
+    .swiper-slide {
+        text-align: center;
+        font-size: 1rem;
+        background: #fff;
 
-  .swiper {
-    width: 100%;
-    height: 100%;
-  }
-  
-  .swiper-slide {
-    text-align: center;
-    font-size: 1rem;
-    background: #fff;
-  
-    /* Center slide text vertically */
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
-  }
-  /* 
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+    /* 
   .swiper-slide img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
   } */
-  
-  .swiper-slide {
-    width: 80%;
-  
-  }
-}
 
+    .swiper-slide {
+        width: 80%;
+    }
+}
 
 /* small screen background image with search bar on top, text, button get inspired, footer with explore contribute and login  */
 
 @media screen and (min-width: 426px) {
-  .bg-image{
+    .bg-image {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(../../images/base/wilbur-wong-w6n_GLhIzG4-unsplash-lg.jpg);
+        position: relative;
+        top: 50px;
+        height: 100vh;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
 
-    background-image: url(../../images/base/wilbur-wong-w6n_GLhIzG4-unsplash-lg.jpg);
-  position: relative;
-  top: 50px;
-  height: 100vh;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  
-  }
+    nav {
+        background-color: #4ea599;
+    }
 
-  nav {
-    background-color: #4ea599;
-  }
+    .mx-3 h2 {
+        padding: 1rem;
+    }
 
-  .mx-3 h2{
-    padding: 1rem;
-  }
+    .swiper {
+        width: 100%;
+        height: 100%;
+    }
 
+    .swiper-slide {
+        text-align: center;
+        font-size: 1rem;
+        background: #fff;
 
-  .swiper {
-    width: 100%;
-    height: 100%;
-
-  }
-  
-  .swiper-slide {
-    text-align: center;
-    font-size: 1rem;
-    background: #fff;
-    
-  
-    /* Center slide text vertically */
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
-  }
-  /* 
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+    /* 
   .swiper-slide img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
   } */
-  
-  .swiper-slide {
-    width: 50%;
-  
-  }
 
-
-  
-
+    .swiper-slide {
+        width: 50%;
+    }
 }
-
 
 @media screen and (min-width: 769px) {
+    .navbar {
+        background-color: #4ea599;
+        padding: 0px;
+    }
 
-  .navbar {
-    background-color: #4ea599;
-    padding: 0px ;
+    .nav-item {
+        padding: 10px;
+        margin: 0px;
+    }
 
-  }
+    #autocomplete2 {
+        width: 40%;
+    }
 
-  .nav-item{
-    padding:10px;
-    margin: 0px;
-}
+    #autocomplete2 {
+        padding: 0px 0 5px;
+        margin: 5px 5px 5px;
+        border-radius: 15px;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        -ms-border-radius: 15px;
+        -o-border-radius: 15px;
+        border: none;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        padding: 5px;
+    }
 
+    .me-2 {
+        border: none;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+    }
 
+    .swiper-wrapper {
+        width: 100%;
+        display: flexbox;
+        align-items: flex-start;
+        justify-content: space-around;
+    }
 
-  #autocomplete2{
-    width: 40%;
-}
+    .swiper {
+        width: 100%;
+        height: 100%;
+    }
 
+    .swiper-slide {
+        text-align: center;
+        font-size: 1rem;
+        background: #fff;
 
-  #autocomplete2{
-    padding: 0px 0 5px;
-    margin: 5px 5px  5px;
-    border-radius: 15px;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    -ms-border-radius: 15px;
-    -o-border-radius: 15px;
-    border: none;
-align-items: center;
-justify-content: center;
-display: flex;
-padding: 5px;
-}
-
-.me-2{
-  border: none;
-  border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
-}
-
-
-.swiper-wrapper{
-  width: 100%;
-  display: flexbox;
-  align-items: flex-start;
-  justify-content: space-around;
-}
-
-  
-  .swiper {
-    width: 100%;
-    height: 100%;
-  }
-  
-  .swiper-slide {
-    text-align: center;
-    font-size: 1rem;
-    background: #fff;
-  
-    /* Center slide text vertically */
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
-  }
-  /* 
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+    /* 
   .swiper-slide img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
   } */
-  
-  .swiper-slide {
-    width: 20%;
-  
-  }
 
-
+    .swiper-slide {
+        width: 20%;
+    }
 }
 
 /* footer */
 
 /* grid column hover  */
-.row .col-md-3 p:hover{
-  color: #fff;
+.row .col-md-3 p:hover {
+    color: #fff;
 }
 
 .row .col-md-3 {
-  flex-direction: column;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.row .col-md-3 .mb-4{
-  margin-top: 10px;
-  color: #fff;
-  font: 100;
+.row .col-md-3 .mb-4 {
+    margin-top: 10px;
+    color: #fff;
+    font: 100;
 }
 
-.col-md-4 .mb-4{
-  margin-top: 10px;
-  color: #fff;
+.col-md-4 .mb-4 {
+    margin-top: 10px;
+    color: #fff;
 }
-
 
 /* modal header */
 
-.modal-header{
-  background-color: #4ea599;
-  opacity: 0.5;
+.modal-header {
+    background-color: #4ea599;
+    opacity: 0.5;
 }
 
 /* modal footer */
 
-.modal-body{
-  background-color: #4ea599;
+.modal-body {
+    background-color: #4ea599;
 }
 
 /* button modal footer  */
-.modal-footer{
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.modal-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.modal-footer button:nth-last-of-type(1){
-  background-color: #4ea599;
-  border: none;
-
+.modal-footer button:nth-last-of-type(1) {
+    background-color: #4ea599;
+    border: none;
 }
 
-.modal-footer button:nth-last-of-type(1):hover{
-  background-color: #4ea599;
-  opacity: 0.5;
-  box-shadow: unset 1px;
+.modal-footer button:nth-last-of-type(1):hover {
+    background-color: #4ea599;
+    opacity: 0.5;
+    box-shadow: unset 1px;
 }

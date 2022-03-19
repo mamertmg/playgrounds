@@ -12,110 +12,16 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
   <script src="https://kit.fontawesome.com/dcfa7fe939.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
   <title>Playground Details</title>
+
   <link rel="stylesheet" href="/css/detailpage.css" />
+  <link rel="stylesheet" href="/css/navbar_footer.css">
+
 </head>
 
 <body>
-  <nav id="mainNavbar" class="navbar navbar-dark navbar-expand-md py-0 px-3 fixed-top">
-    <a id="nav-header" class="navbar-brand">
-      <!-- Link to fulfill license regulations of flaticon.com:
-                  <a href="https://www.flaticon.com/free-icons/playground" title="playground icons">Playground icons created by
-        photo3idea_studio - Flaticon</a> -->
-
-      <img id="navbar-logo" src="/images/playground.png" alt="" /> my favourite playground
-    </a>
-    <button class="navbar-toggler" data-toggle="collapse" data-target="#navlinks" aria-label="Toggle Navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div id="navlinks" class="collapse navbar-collapse">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a href="/" class="nav-link">HOME</a>
-        </li>
-        <li class="nav-item">
-          <a href="/playgrounds" class="nav-link">EXPLORE</a>
-        </li>
-        <li class="nav-item">
-          <a href="" class="nav-link">ABOUT</a>
-        </li>
-      </ul>
-    </div>
-    <div class="text-right d-none d-lg-block">
-      <% if(isAuthenticated){ %>
-      <a class="nav-link" href="/logout">LOGOUT</a>
-      <% } %>
-      <% if(!isAuthenticated){ %>
-      <a id="btn-login" class="btn p-1 mx-1" href="/login">LOGIN</a>
-      <a id="btn-signup" class="btn p-1 mx-1" href="/signup">SIGN UP</a>
-      <% } %>
-    </div>
-  </nav>
-
-  <!-- nav for tablet and laptop -->
-  <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light d-none d-md-block d-lg-block d-xl-block">
-    <div class="d-grid">
-      <div class="row">
-        <div class="navbar col-2 d-flex justify-content-center">
-          <ul class="navbar-nav ">
-            <li class="nav-item">
-              <a class="navbar-brand" href="/"><img src="/images/base/playground.png" alt="logo" height="40" loading="lazy"></a>
-            </li>
-
-          </ul>
-        </div>
-
-        <div class="col-6 my-2">
-
-          <!-- form for address and search radius in tablet and laptop view , please add action here! -->
-
-          <form id="searchForm" action="/search" method="get">
-
-            <div class="input-group d-flex align-items-center">
-
-              <div>
-
-                <label for="selectSearchRadius">Search radius:</label>
-
-                <select name="dist" class="me-2" id="selectSearchRadius">
-                  <% for(let i = 1; i < 6; i++) { %>
-                  <option value="<%= i %>" <%= i === 1 ? "selected" : "" %>><%= i %> km</option>
-                  <% } %>
-                </select>
-
-              </div>
-
-              <label for="autocomplete2"></label>
-
-              <input class="autocomplete" id="autocomplete2" placeholder="Enter address" type="search">
-
-              <button type="submit" class="btn btn-danger btn-sm rounded-circle"><i class="fas fa-lg fa-search"></i></button>
-
-            </div>
-
-
-          </form>
-
-        </div>
-
-        <div class="navbar col-4 d-flex justify-content-center">
-
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Add new playground</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="#"> <i class="far fa-lg fa-user-circle"></i> </a>
-            </li>
-          </ul>
-
-        </div>
-      </div>
-    </div>
-
-
-  </nav>
+  <%- partial('./shared/partials/navbar')%>
 
   <section class="container-fluid p-0 p-xs-2 p-sm-4 p-md-5">
     <div class="row-section">
@@ -123,11 +29,20 @@
         <%= playground.name %>
         <sup>
           <span class="playground-rating">
+            <% if(rating === 0) { 
+            for(let i = 0; i < 5; i++) { %>
+            <i class="bi bi-star"></i>
+            <% }} else {
+            for(let i = 5; i > 0; i--) { 
+              if(rating >= 1.0) { %>
             <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
+            <% } else if(rating <= 0.0) { %>
+            <i class="bi bi-star"></i>
+            <% } else if(rating < 1.0 && rating > 0.0) { %>
             <i class="bi bi-star-half"></i>
+            <% }
+          rating--;
+               }} %>
           </span>
         </sup>
       </h1>
@@ -211,18 +126,17 @@
                 <button type="button" id="btnClose5" class="btn-close btnClose" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <form id="photoForm" class="mb-5 validated-form" action="https://google.com" novalidate>
-                  <div>
-                    <h5 class="mt-3 mb-2"></h5>
-                    <input class="form-control" type="file" id="playgroundPhoto" onchange="preview3()" required />
-                    <div class="invalid-feedback">Please choose a picture from your computer!</div>
+                <form id="photoForm" class="mb-5" action="/playgrounds/<%= playground._id %>/image/new?_csrf=<%=csrftoken%>" method="post" accept="image/png, image/jpeg, image/jpg" enctype="multipart/form-data">
+                  <div class="mt-3 mb-2">
+                    <input class="form-control" name="playgroundPhoto" type="file" id="playgroundPhoto" onchange="preview3()" required />
                     <img id="framePhoto" src="" class="img-fluid mt-4" />
-
                   </div>
-                  <label class="form-check-label" for="photoDescription">
-                    Description
-                  </label>
-                  <input id="photoDescription" type="text" class="w-100 mt-0 mb-2 p-2 br-10" placeholder="Give a short description" />
+                  <div>
+                    <label class="form-check-label" for="photoDescription">
+                      Description
+                    </label>
+                    <input name="description" id="photoDescription" type="text" class="w-100 mt-0 mb-2 p-2 br-10" placeholder="Give a short description" />
+                  </div>
                 </form>
               </div>
               <div class="modal-footer">
@@ -697,10 +611,13 @@
 
   </section>
 
+  <%- partial('./shared/partials/footer')%>
+
   <script src="/javascript/utils.js"></script>
   <script>
     clearSearchData();
   </script>
+  <script src="/javascript/navbarSearch.js"></script>
   <script src="/javascript/detailpage.js"></script>
   <% if(isAuthenticated) { %>
   <script src="/javascript/detailpage.event.js"></script>
@@ -713,6 +630,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARgDXNRDqAFtg-mDbjeTrLOjrm1LBQwCc&libraries=places&callback=initAutocomplete" async defer></script>
 </body>
 
 </html>

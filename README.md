@@ -27,7 +27,8 @@ This branch contains the following aspects:
 
 ## Progress summary
 ### Detail page
-- Playground, Event, Lost&Found CRUD linked
+- Playground, Event, Lost&Found, Review CRUD linked
+- Image upload + deletion added
 
 ### Landing page
 - Search input behaviour + redirect to search result page implemented
@@ -54,4 +55,4 @@ to start the server. Alternatively, you can run
 
     $ npm run dev
 
- to start the server with [Nodemon](https://www.npmjs.com/package/nodemon) for development. The web app can then be seen at [http://localhost:3000/](http://localhost:3000/).
+ to start the server with [Nodemon](https://www.npmjs.com/package/nodemon). The web app can then be seen at [http://localhost:3000/](http://localhost:3000/).
