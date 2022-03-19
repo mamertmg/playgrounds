@@ -7,6 +7,10 @@ module.exports = {
     isPlaygroundAuthor: async (req, res, next) => {
         const { id } = req.params;
         const playground = await Playground.findById(id);
+        if (!playground) {
+            req.flash('failure', 'Could not find playground.');
+            return res.redirect('/');
+        }
         if (!playground.author.equals(req.user._id)) {
             req.flash('error', 'You do not have permission to do that!');
             return res.redirect(`/playgrounds/${id}`);
@@ -16,25 +20,25 @@ module.exports = {
     isEventAuthor: async (req, res, next) => {
         const { id, eventId } = req.params;
         const event = await Event.findById(eventId);
-        if (!event.author.id.equals(req.user._id)) {
+        if (!event || !event.author.id.equals(req.user._id)) {
             req.flash('error', 'You do not have permission to do that!');
-            return res.redirect(`/playgrounds/${event.playground_id}`);
+            return res.redirect(`/playgrounds/${id}`);
         }
         next();
     },
     isLostFoundAuthor: async (req, res, next) => {
-        const { lfId } = req.params;
+        const { id, lfId } = req.params;
         const lostFound = await LostFound.findById(lfId);
-        if (!lostFound.author.id.equals(req.user._id)) {
+        if (!lostFound || !lostFound.author.id.equals(req.user._id)) {
             req.flash('error', 'You do not have permission to do that!');
-            return res.redirect(`/playgrounds/${lostFound.playground_id}`);
+            return res.redirect(`/playgrounds/${id}`);
         }
         next();
     },
     isReviewAuthor: async (req, res, next) => {
         const { id, reviewId } = req.params;
         const review = await Review.findById(reviewId);
-        if (!review.author.id.equals(req.user._id)) {
+        if (!review || !review.author.id.equals(req.user._id)) {
             req.flash('error', 'You do not have permission to do that!');
             return res.redirect(`/playgrounds/${id}`);
         }

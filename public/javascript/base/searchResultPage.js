@@ -184,8 +184,11 @@ function createResultCard(playground) {
     card.className = 'card mt-2';
 
     const img = document.createElement('img');
-    img.src = 'https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp';
-    img.alt = 'Fissure in Sandstone';
+    if (!playground.images.length) {
+        img.src = '/images/playground.png';
+    } else {
+        img.src = playground.images[0].url;
+    }
     img.classList.add('card-img-top');
     card.appendChild(img);
 
