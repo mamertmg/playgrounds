@@ -1,7 +1,17 @@
 
+
+/* #nav-landpage{
+  background-color: #4ea599;
+} */
+
+/* .btn #searchbtn{
+
+} */
+
 .pac-container {
   z-index: 1061 !important;
   position: relative;
+  
 }
 .swiper {
   width: 100%;
@@ -11,7 +21,7 @@
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: #fff;
+  background: #4ea599;
 
   /* Center slide text vertically */
   display: -webkit-box;
@@ -41,6 +51,14 @@
 }
 
 
+.mx-3 h2{
+  justify-content: center;
+  display: flex;
+  padding: 1rem;
+  position: relative;
+  top: -5px;
+}
+
 
 
 @media screen and (max-width: 425px) {
@@ -54,6 +72,10 @@
   background-position: center;
   
   }
+
+/* .bg-white{
+  background-color: #4ea599;
+} */
 
   .swiper {
     width: 100%;
@@ -94,6 +116,8 @@
 }
 
 
+/* small screen background image with search bar on top, text, button get inspired, footer with explore contribute and login  */
+
 @media screen and (min-width: 426px) {
   .bg-image{
 
@@ -106,15 +130,23 @@
   background-position: center;
   
   }
+
+  .mx-3 h2{
+    padding: 1rem;
+  }
+
+
   .swiper {
     width: 100%;
     height: 100%;
+
   }
   
   .swiper-slide {
     text-align: center;
     font-size: 1rem;
     background: #fff;
+    
   
     /* Center slide text vertically */
     display: -webkit-box;
@@ -143,6 +175,8 @@
   
   }
 
+
+  
 
 }
 

@@ -442,9 +442,8 @@ div label{
 @media(max-width:986px){
 
     .navbar{
-        padding: 2px 1px;
+        padding: 0px ;
         background-color: #78C2AD;
-        
     }
 
     .nav-item{
