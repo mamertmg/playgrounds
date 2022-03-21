@@ -476,7 +476,7 @@ div label{
 
 @media(max-width: 828px){
     #autocomplete2{
-        padding: 5px 0 5px;
+    padding: 5px 0 5px;
     margin: 5px 5px  5px;
         border-radius: 15px;
         -webkit-border-radius: 15px;
