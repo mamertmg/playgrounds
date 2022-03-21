@@ -16,7 +16,7 @@ module.exports.createReview = async (req, res) => {
     await review.save();
     await playground.save();
     // req.flash('success', 'Created new review!');
-    // res.redirect(`/playgrounds/${playground._id}`);
+    res.redirect(`/playgrounds/${playground._id}`);
 };
 
 module.exports.deleteReview = async (req, res) => {
