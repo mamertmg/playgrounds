@@ -82,7 +82,7 @@ filters.addEventListener('hidden.bs.offcanvas', (e) => {
 
 const locationInputMobile = document.querySelector('#autocompleteInResultPage');
 const locationDisplayMobile = document.querySelector('#locationDisplayMobile');
-const locationInput = document.querySelector('#autocompleteLg');
+const locationInput = document.querySelector('#autocomplete2');
 
 // both input fields should ALWAYS have the same value
 locationInputMobile.addEventListener('input', () => {
