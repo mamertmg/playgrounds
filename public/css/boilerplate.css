@@ -1,0 +1,15 @@
+.btn-block {
+    background-color: #4ea599;
+    color: white;
+
+    
+}
+
+.btn-block:hover {
+    background-color: #408f84;
+    color: white;
+}
+
+.mintlink {
+    color: #4ea599;
+}
