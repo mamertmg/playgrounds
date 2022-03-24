@@ -349,6 +349,10 @@ div.tag>a:hover {
     color: #FF5C5C;
 }
 
+.bi-heart-fill {
+    color: #FF5C5C;
+}
+
 .bi-chat-right-text:hover {
     color: #4EA599;
 }
