@@ -531,7 +531,7 @@
 
               <div class="row">
                 <div class="col">
-                  <i data-id="<%= review._id %>" class="bi bi-heart m-2<%= isAuthenticated && review.likes.includes(currentUser._id) ? "-fill" : "" %> reviewLikeBtn" type="button">
+                  <i data-id="<%= review._id %>" class="bi bi-heart<%= isAuthenticated && review.likes.includes(currentUser._id) ? "-fill" : "" %> m-2 <%= isAuthenticated && currentUser._id.toString()!==review.author.id.toString() ? "reviewLikeBtn" : "" %>" type="button">
                   </i>
                   <span class=""><%= review.likes.length %></span>
                 </div>

@@ -26,9 +26,9 @@ for (let btn of editReviewBtns) {
 // set up event listeners for like buttons
 const likeReviewBtns = document.querySelectorAll('.reviewLikeBtn');
 for (let btn of likeReviewBtns) {
-    const label = btn.nextElementSibling;
-    let reqPath = `http://localhost:3000/reviews/${btn.getAttribute('data-id')}/`;
     btn.addEventListener('click', async (event) => {
+        const label = event.target.nextElementSibling;
+        let reqPath = `http://localhost:3000/reviews/${event.target.getAttribute('data-id')}/`;
         if (btn.classList.contains('bi-heart')) {
             btn.classList.toggle('bi-heart');
             btn.classList.toggle('bi-heart-fill');

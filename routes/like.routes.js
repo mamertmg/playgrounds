@@ -8,14 +8,12 @@ const asyncWrapper = require('../utils/asyncWrapper');
 router.get(
     '/:reviewId/addLike',
     ensureAuthenticated,
-    isReviewAuthor,
     asyncWrapper(reviews.addLike)
 );
 
 router.get(
     '/:reviewId/rmvLike',
     ensureAuthenticated,
-    isReviewAuthor,
     asyncWrapper(reviews.rmvLike)
 );
 
