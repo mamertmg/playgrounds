@@ -1,0 +1,4 @@
+{"_id":{"$oid":"6230fb4ebe848e4be392c6a2"},"name":"admin","email":"admin@playgroundduess.de","password":"$2a$10$wdZux8kDEQQb0MBJoJU9XuCXVh5g705pWMmtjTEwdx8nUC/WpKQcG","date":{"$date":"2022-03-15T20:47:10.725Z"},"__v":0}
+{"_id":{"$oid":"623c7a751452f798db528dd6"},"name":"PowerPaps","email":"power@paps.de","password":"$2a$10$iBGqBZ5gh.u8eqksZkipye.ZfIHNV/4rDtQW5F.4zxKJA0h/uTYkS","date":{"$date":"2022-03-24T14:04:37.25Z"},"__v":0}
+{"_id":{"$oid":"623ce1dd1452f798db528dde"},"name":"MamaCita","email":"mama@cita.de","password":"$2a$10$CGOag./pzTkuTZ43jRaveOyKN7D2OzH7slIenI0hjXD9RZFFOCxna","date":{"$date":"2022-03-24T21:25:49.581Z"},"__v":0}
+{"_id":{"$oid":"623d9c6d2d316a7b357ebe8b"},"name":"superfly74","email":"superfly@74.de","password":"$2a$10$s5xuxp8DBMWJLAfJrvGMse//s4snlXXBiRJqBpzEHp4yMAIWvAEcO","date":{"$date":"2022-03-25T10:41:49.648Z"},"__v":0}

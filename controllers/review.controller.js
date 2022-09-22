@@ -16,7 +16,7 @@ module.exports.createReview = async (req, res) => {
     await review.save();
     await playground.save();
     // req.flash('success', 'Created new review!');
-    // res.redirect(`/playgrounds/${playground._id}`);
+    res.redirect(`/playgrounds/${playground._id}`);
 };
 
 module.exports.deleteReview = async (req, res) => {
@@ -43,9 +43,11 @@ module.exports.addLike = async (req, res) => {
     if (!review) {
         return res.status(400).send('Invalid reviewId');
     }
-    review.likes.push(req.user._id);
-    await review.save();
-    const numLikes = review.likes.length;
+    if (!review.likes.includes(req.user._id)) {
+        review.likes.push(req.user._id);
+        await review.save();
+    }
+    const numLikes = review.likes.length ? review.likes.length : 0;
     res.json({ numLikes });
 };
 
@@ -55,8 +57,11 @@ module.exports.rmvLike = async (req, res) => {
     if (!review) {
         return res.status(400).send('Invalid reviewId');
     }
-    review.likes.pull(req.user._id);
+    const index = review.likes.indexOf(req.user._id);
+    if (index > -1) {
+        review.likes.splice(index, 1);
+    }
     await review.save();
-    const numLikes = review.likes.length;
+    const numLikes = review.likes.length ? review.likes.length : 0;
     res.json({ numLikes });
 };

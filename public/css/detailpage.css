@@ -97,99 +97,6 @@ div.littleTags>a:hover {
 div.tag>a:hover {
     color: #4EA599;
 }
-/* navbar */
-
-div label{
-    color: rgba(0,0,0,.55);
-}
-
-#selectSearchRadius{
-    color: rgba(0,0,0,.55);
-    border-style: hidden;
-    -webkit-border-radius: 1rem ;
-    -moz-border-radius: 1rem ;
-    -ms-border-radius: 1rem ;
-    -o-border-radius: 1rem ;
-    border-radius: 1rem ;
-}
-
-.col-6 {
-    /* background-color: #78C2AD; */
-    width: 50%;
-    display: flex;
-    justify-content:center ;
-    align-items: center;
-}
-
-#autocomplete2{
-    margin: 1rem 1rem 1rem;
-    width: 15rem;
-    height: 3rem;
-    border-style: double;
-    -webkit-border-radius: 2rem;
-    -moz-border-radius: 2rem;
-    -ms-border-radius: 2rem;
-    -o-border-radius: 2rem;
-    border-radius: 2rem;
-}
-
-
-.d-grid{
-    background-color: #78C2AD;
-    
-}
-.navbar{
-    background-color: #78C2AD;
-}
-
-
-#mainNavbar {
-    background-color: #78C2AD;
-    font-size: 1.2rem;
-    font-family: Montserrat, sans-serif;
-}
-
-#mainNavbar .nav-link {
-    color: white;
-    font-weight: 100;
-}
-
-#mainNavbar .nav-link:hover {
-    color: #FFBA08;
-    transition-property: color;
-    transition-duration: 0.5s;
-
-}
-
-#mainNavbar .navbar-brand {
-    color: #032B43;
-    font-size: 1.2rem;
-    font-weight: 400;
-    margin-left: 15px;
-}
-
-#navbar-logo {
-    height: 52px;
-    background-color: #78C2AD;
-}
-
-#nav-header {
-    cursor: default;
-}
-
-#btn-login, #btn-signup {
-    background: #4ea599;
-    color: white;
-    font-weight: 200;
-    font-size: 1.2rem;
-}
-
-#btn-login:hover, #btn-signup:hover {
-    background: #90CBC3;
-    color: #032B43;
-    transition-property: background, color;
-    transition-duration: 0.5s;
-}
 
 .btn-collapse {
     font-weight: 700;
@@ -295,7 +202,6 @@ div label{
     margin-left: 10px;
 }
 
-
 #carouselIndicators {
     margin: 10px 0;
     border: 1px solid #032B43;
@@ -317,8 +223,6 @@ div label{
     margin-left: 0px;
     padding-left: 0px;
 }
-
-
 
 .card {
     margin: 0px;
@@ -403,7 +307,6 @@ div label{
 
 }
 
-
 .thumbnail {
     height: 80px;
     width: 80px;
@@ -446,6 +349,10 @@ div label{
     color: #FF5C5C;
 }
 
+.bi-heart-fill {
+    color: #FF5C5C;
+}
+
 .bi-chat-right-text:hover {
     color: #4EA599;
 }
@@ -455,46 +362,6 @@ div label{
     align-self: end;
     line-height: 1rem;
 }
-
-
-@media(max-width:986px){
-
-    .navbar{
-        padding: 0px ;
-        background-color: #78C2AD;
-    }
-
-    .nav-item{
-        padding: 0%;
-        margin: 0%;
-    }
-
-    #autocomplete2{
-        width: 40%;
-    }
-}
-
-@media(max-width: 828px){
-    #autocomplete2{
-        padding: 5px 0 5px;
-    margin: 5px 5px  5px;
-        border-radius: 15px;
-        -webkit-border-radius: 15px;
-        -moz-border-radius: 15px;
-        -ms-border-radius: 15px;
-        -o-border-radius: 15px;
-        border: none;
-}
-
-@media  (max-width: 768px ) {
-    #mainNavbar {
-        background-color: #78C2AD;
-        font-size: 1.2rem;
-        font-family: Montserrat, sans-serif;
-    }
-}
-
-
 
 @media (max-width: 800px) {
     #statuslost {
@@ -512,4 +379,3 @@ div label{
     }
 }
 
-}

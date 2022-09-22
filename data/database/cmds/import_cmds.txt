@@ -1,0 +1,9 @@
+mongoimport --db=playgrounds --collection=playgrounds --file=playgrounds.json
+
+mongoimport --db=playgrounds --collection=events --file=events.json
+
+mongoimport --db=playgrounds --collection=users --file=users.json
+
+mongoimport --db=playgrounds --collection=lostfounds --file=lostfounds.json
+
+mongoimport --db=playgrounds --collection=reviews --file=reviews.json

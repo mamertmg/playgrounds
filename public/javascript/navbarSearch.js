@@ -84,7 +84,6 @@ function initMap() {
 // Search form behaviour on submit
 
 function defineAndSendQuery(dist) {
-    console.log(place.formatted_address);
     // build query string
     let query = '/search';
     if (place && place.formatted_address === autocomplete1.value) {

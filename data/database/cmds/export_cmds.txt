@@ -1,0 +1,19 @@
+Playgrounds
+------------------
+mongoexport --uri="mongodb://127.0.0.1:27017/playgrounds"  --collection=playgrounds  --out=playgrounds.json
+
+Events
+------------------
+mongoexport --uri="mongodb://127.0.0.1:27017/playgrounds"  --collection=events  --out=events.json
+
+LostFound
+------------------
+mongoexport --uri="mongodb://127.0.0.1:27017/playgrounds"  --collection=lostfounds  --out=lostfounds.json
+
+Users
+------------------
+mongoexport --uri="mongodb://127.0.0.1:27017/playgrounds"  --collection=users  --out=users.json
+
+Reviews
+------------------
+mongoexport --uri="mongodb://127.0.0.1:27017/playgrounds"  --collection=reviews  --out=reviews.json

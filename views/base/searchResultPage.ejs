@@ -47,8 +47,8 @@
       <!-- nav for mobile view -->
       <nav class="navbar fixed-top navbar-light">
 
-        <div class="d-md-none d-lg-none d-xl-none">
-
+        <div class="mx-auto d-md-none d-lg-none d-xl-none">
+          <a id="navbrand-mobile" class="navbar-brand" href="/"><img src="/images/base/playground.png" alt="logo" height="40" loading="lazy"></a>
           <a class="btn btn-link btn-floating btn-md text-dark ps-3" href="/" role="button" data-bs-ripple-color="dark"><i class="fa-solid fa-angle-left"></i></a>
 
           <!-- Please make the placeholder of the following input box the address entered by user for search -->
@@ -61,7 +61,7 @@
 
         <div class="mx-auto my-2 filters">
 
-          <button class="btn btn-outline-dark btn-sm rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomType" aria-controls="offcanvasBottomType">Type</button>
+          <button class="btn btn-outline-dark btn-sm btn-sm2 rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomType" aria-controls="offcanvasBottomType">Type</button>
 
           <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottomType" aria-labelledby="offcanvasBottomLabel">
             <div class="offcanvas-header">
@@ -95,7 +95,7 @@
             </div>
           </div>
 
-          <button class="btn btn-outline-dark btn-sm rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomAge" aria-controls="offcanvasBottomAge">Age</button>
+          <button class="btn btn-outline-dark btn-sm btn-sm2 rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomAge" aria-controls="offcanvasBottomAge">Age</button>
 
           <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottomAge" aria-labelledby="offcanvasBottomLabel">
             <div class="offcanvas-header">
@@ -142,7 +142,7 @@
             </div>
           </div>
 
-          <button class="btn btn-outline-dark btn-sm rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomEquipments" aria-controls="offcanvasBottomEquipments">Equipment</button>
+          <button class="btn btn-outline-dark btn-sm btn-sm2 rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomEquipments" aria-controls="offcanvasBottomEquipments">Equipment</button>
 
           <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottomEquipments" aria-labelledby="offcanvasBottomLabel">
             <div class="offcanvas-header">
@@ -176,7 +176,7 @@
             </div>
           </div>
 
-          <button class="btn btn-outline-dark btn-sm rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomFeatures" aria-controls="offcanvasBottomFeatures">Features</button>
+          <button class="btn btn-outline-dark btn-sm btn-sm2 rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomFeatures" aria-controls="offcanvasBottomFeatures">Features</button>
 
           <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottomFeatures" aria-labelledby="offcanvasBottomLabel">
             <div class="offcanvas-header">
@@ -209,7 +209,7 @@
           </div>
 
 
-          <button class="btn btn-outline-dark btn-sm rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomRatings" aria-controls="offcanvasBottomRatings">Ratings</button>
+          <button class="btn btn-outline-dark btn-sm btn-sm2 rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomRatings" aria-controls="offcanvasBottomRatings">Ratings</button>
 
           <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottomRatings" aria-labelledby="offcanvasBottomLabel">
             <div class="offcanvas-header">
@@ -285,7 +285,7 @@
 
               <i class="fa fa-md fa-map-marker" aria-hidden="true" onclick='getLocation()'></i>
               <label for="autocompleteInResultPage" class="form-label col-1"></label>
-              <input class="modal-title col-10 border-0 autocomplete" id="autocompleteInResultPage" placeholder="Enter address" type="search">
+              <input class="modal-title col-10 border-0 autocomplete rounded-pill" id="autocompleteInResultPage" placeholder="Enter address" type="search">
 
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
@@ -341,7 +341,7 @@
 
                 <div>
 
-                  <label for="selectSearchRadius">Search radius...</label>
+                  <label class="fw-bold" for="selectSearchRadius">Search radius:</label>
 
                   <select class="custom-select me-2" id="selectSearchRadius">
                     <% for(let i=1; i < 6; i++) { %>
@@ -352,7 +352,7 @@
 
                 </div>
 
-                <input id="autocompleteLg" class="autocomplete" placeholder="Enter address" value="<%= q %>" type="search">
+                <input id="autocomplete2" class="autocomplete rounded-pill" placeholder="Enter address" value="<%= q %>" type="search">
 
                 <button type="submit" class="btn btn-danger btn-sm rounded-circle"><i class="fas fa-lg fa-search"></i></button>
 
@@ -388,11 +388,11 @@
       </div>
       <div class="d-flex justify-content-center my-2 filters">
 
-        <button class="btn btn-outline-dark btn-lg rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomType" aria-controls="offcanvasBottomType">Type</button>
-        <button class="btn btn-outline-dark btn-lg rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomAge" aria-controls="offcanvasBottomAge">Age</button>
-        <button class="btn btn-outline-dark btn-lg rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomEquipments" aria-controls="offcanvasBottomEquipments">Equipments</button>
-        <button class="btn btn-outline-dark btn-lg rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomFeatures" aria-controls="offcanvasBottomFeatures">Features</button>
-        <button class="btn btn-outline-dark btn-lg rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomRatings" aria-controls="offcanvasBottomRatings">Ratings</button>
+        <button class="btn btn-outline-dark btn-lg btn-lg2 rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomType" aria-controls="offcanvasBottomType">Type</button>
+        <button class="btn btn-outline-dark btn-lg btn-lg2 rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomAge" aria-controls="offcanvasBottomAge">Age</button>
+        <button class="btn btn-outline-dark btn-lg btn-lg2 rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomEquipments" aria-controls="offcanvasBottomEquipments">Equipments</button>
+        <button class="btn btn-outline-dark btn-lg btn-lg2 rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomFeatures" aria-controls="offcanvasBottomFeatures">Features</button>
+        <button class="btn btn-outline-dark btn-lg btn-lg2 rounded-pill" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottomRatings" aria-controls="offcanvasBottomRatings">Ratings</button>
 
       </div>
 
@@ -484,7 +484,7 @@
   <!-- Footer -->
   <div class="top-container"></div>
 
-  <footer class="text-center text-lg-start text-muted">
+  <footer class="text-center text-lg-start">
 
     <!-- Section: Links  -->
     <section class="">
@@ -518,9 +518,6 @@
             <p>
               <a href="#!" class="text-reset">Become a partner</a>
             </p>
-            <p>
-              <a href="#!" class="text-reset">Career</a>
-            </p>
           </div>
           <!-- Grid column -->
 
@@ -536,7 +533,6 @@
               info@example.com
             </p>
             <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-            <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
           </div>
           <!-- Grid column -->
         </div>
